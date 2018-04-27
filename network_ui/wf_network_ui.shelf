@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="wf_network_ui" label="wf_network_ui">
+    <memberTool name="qq_expand"/>
+    <memberTool name="wf_network_ui_qq_parse_uberfile"/>
+    <memberTool name="parm_generate"/>
+    <memberTool name="parm_clean"/>
+    <memberTool name="wf_network_ui_ramp_lib_get"/>
+    <memberTool name="folders_tab_go_l"/>
+    <memberTool name="folders_tab_go_r"/>
+  </toolshelf>
+
+  <tool name="qq_expand" label="qq_expand" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_ui
+#reload(wf_network_ui)
+wf_network_ui.qq_expand()]]></script>
+  </tool>
+
+  <tool name="parm_generate" label="parm_generate" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_ui
+#reload(wf_network_ui)
+wf_network_ui.parm_generate()]]></script>
+  </tool>
+
+  <tool name="parm_clean" label="parm_clean" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_ui
+#reload(wf_network_ui)
+wf_network_ui.parm_clean()]]></script>
+  </tool>
+
+  <tool name="folders_tab_go_r" label="folders_tab_go_r" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_ui
+#reload(wf_network_ui)
+wf_network_ui.folders_tab_go(1)]]></script>
+  </tool>
+
+  <tool name="folders_tab_go_l" label="folders_tab_go_l" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_ui
+#reload(wf_network_ui)
+wf_network_ui.folders_tab_go(-1)]]></script>
+  </tool>
+
+  <tool name="wf_network_ui_qq_parse_uberfile" label="wf network ui parse uberfile" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+      <contextNetType>SOP</contextNetType>
+      <contextNetType>CHOP</contextNetType>
+      <contextNetType>ROP</contextNetType>
+      <contextNetType>SHOP</contextNetType>
+      <contextNetType>COP2</contextNetType>
+      <contextNetType>VOP</contextNetType>
+      <contextNetType>VOPNET</contextNetType>
+      <contextNetType>DOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>_workflow</toolSubmenu>
+    <script scriptType="python"><![CDATA[import wf_network_ui
+#reload(wf_network_ui)
+wf_network_ui.qq_parse_uberfile()]]></script>
+  </tool>
+
+  <tool name="wf_network_ui_ramp_lib_get" label="wf network ui ramp lib get" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+      <contextNetType>SOP</contextNetType>
+      <contextNetType>CHOP</contextNetType>
+      <contextNetType>ROP</contextNetType>
+      <contextNetType>SHOP</contextNetType>
+      <contextNetType>COP2</contextNetType>
+      <contextNetType>VOP</contextNetType>
+      <contextNetType>VOPNET</contextNetType>
+      <contextNetType>DOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>_workflow</toolSubmenu>
+    <script scriptType="python"><![CDATA[import wf_network_ui_ramp_lib
+#reload(wf_network_ui_ramp_lib)
+wf_network_ui_ramp_lib.ramp_lib_get()]]></script>
+  </tool>
+</shelfDocument>
