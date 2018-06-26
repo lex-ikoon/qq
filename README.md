@@ -52,6 +52,7 @@
 # instalation
 - copy the files (which you really want) into `$HOUDINI_USER_PREF_DIR`
 - on Windows it is typically `C:\Users\your_user_name\Documents\houdini16.5`
+- restart Houdini
 - if you copied the `toolbar` folder, you can enable the shelf as in this gif:
 
 ![enable-shelf](http://lex.ikoon.cz/images/install/enable-shelf.gif)
