@@ -1,0 +1,150 @@
+h.desktop07	"Desktop 7"	"Switch to Desktop 7"	 Alt+Ctrl+Pad4
+h.desktop08	"Desktop 8"	"Switch to Desktop 8"	 Alt+Ctrl+Pad5
+h.desktop09	"Desktop 9"	"Switch to Desktop 9"	 Alt+Ctrl+Pad6
+h.mat_palette	"Shader Palette"	"Open shader palette"	
+h.merge	Merge	"Merge with a file"	
+h.open	Open	"Open a new file"	 Ctrl+O
+h.pane.chedit.dope.rippletool	"Ripple Tool"	"Ripples All Frames After Selected Frame"	
+h.pane.chedit.toggle_list	"Toggle Channel List"	"Toggle channel list"	 Tab
+h.pane.chview.handle	Handles	Handles	 Tab
+h.pane.chview.scope_tools	"Scope Tools"	"Scope tools"	
+h.pane.editpathastext	"Edit Path As Text"	"Edit the current path in text mode"	
+h.pane.gview.cleartemplates	"Clear All templates"	"Clear all template flags"	 Ctrl+Shift+Del
+h.pane.gview.handle.agentconfigurejoints.twisthandle	"Twist Handle"	"Display the twist handle"	
+h.pane.gview.redoselection	"Restart Selecting"	"Restart selecting"	 Alt+Ctrl+R
+h.pane.gview.repeat_current	"Repeat Current Operation"	"Quick-repeat current operation"	
+h.pane.gview.repeat_current_branch	"Repeat Current Operation Branched"	"Quick-repeat current operation branched"	
+h.pane.gview.selectmode	"Toggle Object/Geometry Mode"	"Toggle the selection mode between object and geometry"	
+h.pane.gview.selectstylebox	"Box Selection"	"Switch to box selection"	 Q
+h.pane.gview.selectstylebrush	"Brush Selection"	"Switch to brush selection"	 Shift+Q
+h.pane.gview.state.floor.y_normal_center	"Center C-Plane Around World Y Axis"	"Center construction plane around world Y axis"	
+h.pane.gview.state.floor.z_normal_center	"Center C-Plane Around World Z Axis"	"Center construction plane around world Z axis"	
+h.pane.gview.state.view.set_pivot_and_center	"Set Pivot And Center"	"Set pivot and center view to geometry under the cursor"	
+h.pane.gview.state.view.to_right	"Right Viewport"	"Change viewport type to Right"	 Ctrl+Shift+F7
+h.pane.gview.state.view.to_top	"Top Viewport"	"Change viewport type to Top"	 Shift+F7
+h.pane.gview.state.volatile_view	"Volatile View Operation"	"Volatile viewing operation"	 Space F6
+h.pane.gview.toggle_wireover	"Toggle Shaded/Wire-over-shaded"	"Toggle shaded/Wire-over-shaded"	
+h.pane.gview.toggle_wireshaded	"Toggle Wireframe/Shaded"	"Toggle wireframe/shaded"	
+h.pane.imgui.handle.roto.showfeather	"Show Feather Handle"	"Show feather handle"	
+h.pane.jump_forth	"Jump Forward"	"Jump forward one step"	 Alt+RightArrow Alt+UpArrow
+h.pane.linkeditor.open_sheet	"Open Parameter Sheet"	"Open parameter sheet"	
+h.pane.parms.edit_expression_external	"Edit in External Editor"	"Custom Menu Operation: Edit in External Editor"	 Alt+E
+h.pane.prevtab	"Previous Tab"	"Previous pane tab"	 Ctrl+Shift+Tab
+h.pane.projectm.new_folder	"Add New Folder"	"Add New Folder"	
+h.pane.take.list.insert	"Insert New Take"	"Insert New Take"	
+h.pane.take.list.showcontents	"Show Take Contents"	"Show Take Contents"	
+h.pane.wsheet.align_horizontal	"Align Nodes Horizontally"	"Align the selected nodes horizontally"	 E
+h.pane.wsheet.align_vertical	"Align Nodes Vertically"	"Align the selected nodes vertically"	 C
+h.pane.wsheet.collapse	"Collapse Selected"	"Collapse selected operators"	 Ctrl+N
+h.pane.wsheet.distribute_horizontal	"Distribute Nodes Horizontally"	"Distribute the selected nodes horizontally"	 Shift+E
+h.pane.wsheet.find	"Find Node"	"Opens a window to find a node in the current network"	 Shift+Tab
+h.pane.wsheet.frame_selected	"Frame Selected"	"Frame selected OP tiles"	 Shift+F
+h.pane.wsheet.home_selected	"Home Selected"	"Home selected OP tiles"	 Shift+H G F
+h.pane.wsheet.open_treeview	"Show Tree Viewer"	"Open OP tree view"	 Alt+L
+h.pane.wsheet.shape_palette	"Shape Palette"	"Open shape palette"	 Alt+S
+h.pane.wsheet.tool:lay	lay	"Shelf Tool: lay"	 L
+h.pane.wsheet.tool:pin	pin	"Shelf Tool: pin"	 Ctrl+L
+h.pane.wsheet.updir	"Jump Up"	"Jump up to parent network"	 U Ctrl+PageUp
+h.pane.wsheet.visualize_mode	"Visualize Output"	"Hold this key and select a node or output connector to visualize the output"	
+h.reset_sim	"Reset Simulations"	"Recook simulations in open viewers"	 Alt+Ctrl+S
+h.tool:folders_tab_go_l	folders_tab_go_l	"Shelf Tool: folders_tab_go_l"	 Alt+PageUp
+h.tool:frame_all	frame_all	"Shelf Tool: frame_all"	 Shift+Z
+h.tool:framerange_from_name	framerange_from_name	"Shelf Tool: framerange_from_name"	 Alt+F
+h.tool:play_scrub	play_scrub	"Shelf Tool: play_scrub"	 F8
+h.tool:render_kill	render_kill	"Shelf Tool: render_kill"	 F11
+h.tool:scope_timedependent_container	scope_timedependent_container	"Shelf Tool: scope_timedependent_container"	 Alt+A
+h.tool:toggle_normals	toggle_normals	"Shelf Tool: toggle_normals"	 Alt+N
+h.tool:toggle_objectselection	toggle_objectselection	"Shelf Tool: toggle_objectselection"	 Alt+O
+h.tool:toggle_points	toggle_points	"Shelf Tool: toggle_points"	 Alt+W
+h.tool:toggle_primnumbers	toggle_primnumbers	"Shelf Tool: toggle_primnumbers"	 Alt+P
+h.tool:toggle_realtime	toggle_realtime	"Shelf Tool: toggle_realtime"	 Alt+R
+h.pane.wsheet.tool:create_node_transform	create_node_transform	"Shelf Tool: create_node_transform"	 T
+h.pane.gview.handle.light.conehandle	"Cone Handle"	"Display the cone handle"	
+h.pane.wsheet.tool:create_node_switch	create_node_switch	"Shelf Tool: create_node_switch"	 S
+h.pane.parmsheet.open_tree	"Open Operator Tree"	"Open operator tree"	
+h.pane.wsheet.flag3_mode	"Set Third Flag"	"Hold this key and select a node to toggle a third flag value"	
+h.tool:parm_generate	parm_generate	"Shelf Tool: parm_generate"	 F10
+h.tool:toggle_grid	toggle_grid	"Shelf Tool: toggle_grid"	 Alt+G
+h.pane.wsheet.cut_wires_mode	"Cut Wires Mode"	"Hold this key to enter cut wires mode"	 X
+h.pane.wsheet.tool:create_node_merge	create_node_merge	"Shelf Tool: create_node_merge"	 M
+h.pane.wsheet.opmenu.spareparms	"Edit Parameter Interface"	"Edit the node's parameter interface"	 I
+h.pane.wsheet.flag2_mode	"Set Secondary Flag"	"Hold this key and select a node to toggle the secondary flag value"	
+h.pane.wsheet.flag4_mode	"Set Fourth Flag"	"Hold this key and select a node to toggle a fourth flag value"	
+h.tool:render_start	render_start	"Shelf Tool: render_start"	 F12
+h.tool:flag_template	flag_template	"Shelf Tool: flag_template"	 Ctrl+Shift+Insert
+h.pane.gview.handle.xform.pivot_mode	"Pivot Mode"	"Toggle pivot mode"	 Ctrl+Enter
+h.pane.wsheet.flag1_mode	"Set Primary Flag"	"Hold this key and select a node to toggle the primary flag value"	
+h.pane.wsheet.open_groups	"Show Group List"	"Open OP group list"	
+h.pane.parms.copy_parm	"Copy Parameter"	"Copy parameter"	 Alt+C
+h.tool:toggle_ghostother	toggle_ghostother	"Shelf Tool: toggle_ghostother"	 Y
+h.tool:toggle_pointnumbers	toggle_pointnumbers	"Shelf Tool: toggle_pointnumbers"	 Alt+Shift+W
+h.pane.gview.handle.camera.slidehandle	"Focus Handle"	"Display the focus handle"	
+h.tool:toggle_wireover	toggle_wireover	"Shelf Tool: toggle_wireover"	 Shift+W
+h.pane.gview.state.view.toggle_view_context	"Toggle Local/World View Context"	"Toggle local/world view context"	
+h.tool:flag_render	flag_render	"Shelf Tool: flag_render"	 Ctrl+Insert
+h.tool:toggle_wireframe	toggle_wireframe	"Shelf Tool: toggle_wireframe"	 W
+h.pane.gview.handle.xform.handle_geometry_detachment	"Toggle Handle-Geometry Detachment"	"Toggle handle-geometry detachment"	
+h.pane.gview.handle.cycle_mode	"Cycle Handle Mode"	"Cycle through the different modes of the handle"	
+h.pane.wsheet.layout_all	"Layout All"	"Layout all nodes"	
+h.pane.gview.nextcamera	"Next Camera"	"Look through the next camera in the list"	 ]
+h.pane.gview.handle.edit.pivot_mode	"Pivot Mode"	"Toggle pivot mode"	 Ctrl+Enter
+h.tool:flag_bypass	flag_bypass	"Shelf Tool: flag_bypass"	 Ctrl+Del
+h.pane.wsheet.distribute_vertical	"Distribute Nodes Vertically"	"Distribute the selected nodes vertically"	 Shift+C
+h.pane.gview.state.floor.z_normal	"Align Normal With World Z Axis"	"Align normal with world Z axis"	
+h.tool:play_scrub_fast	play_scrub_fast	"Shelf Tool: play_scrub_fast"	 Shift+F8
+h.pane.chedit.dope.vstretch	"Visual Stretch/Paste"	"Visual stretch/paste"	
+h.tool:parm_clean	parm_clean	"Shelf Tool: parm_clean"	 Ctrl+F10
+h.tool:toggle_ups	toggle_ups	"Shelf Tool: toggle_ups"	 Alt+U
+h.pane.wsheet.scope_chans	"Scope Channels"	"Scope channels"	
+h.pane.wsheet.jump	"Jump Down"	"Jump down to child network"	 Enter Ctrl+PageDown
+h.pane.chedit.dope.sstretch	Stretch/Paste	Stretch/paste	
+h.pane.wsheet.create_channel_groups	"Create Nested Channel Groups"	"Create nested channel groups that correspond to parameter folders"	 Ctrl+Shift+A
+h.pane.wsheet.select_mode	"Select Mode"	"Hold this key to enter select mode"	
+h.pane.wsheet.tool:create_node_null	create_node_null	"Shelf Tool: create_node_null"	 N
+h.pane.gview.state.view.set_pivot	"Set Pivot"	"Set pivot to geometry under the cursor"	 Alt+Z
+h.tool:flag_display	flag_display	"Shelf Tool: flag_display"	 Insert
+h.tool:toggle_velocities	toggle_velocities	"Shelf Tool: toggle_velocities"	 Alt+V
+h.pane.nexttab	"Next Tab"	"Next pane tab"	 Ctrl+Tab
+h.pane.wsheet.layout_mode	"Layout Mode"	"Hold this key and swipe nodes with the mouse to layout or align"	 Shift+A Alt+Shift+A
+h.pane.wsheet.tool:create_node_awrangle	create_node_awrangle	"Shelf Tool: create_node_awrangle"	 A
+h.pane.playbar	"Move Playbar Here"	"Move playbar to this pane"	
+h.next_frame	"Step Forward One Frame"	"Step forward one frame"	 UpArrow
+h.play_bwd	"Play Backward"	"Playback backward"	
+h.play_fwd	"Play Forward"	"Playback forward"	 RightArrow
+h.find	"Find Operator"	"Find operator"	 Ctrl+F
+h.pane.maximize_split	"Maximize in Split Direction"	"Toggle pane full size horizontally or vertically"	 \"
+h.prev_frame	"Step Backward One Frame"	"Step backward one frame"	 DownArrow
+h.pane.jump_back	"Jump Back"	"Jump back one step"	 Alt+LeftArrow Backspace Alt+DownArrow
+h.tool:toggle_manualupdate	toggle_manualupdate	"Shelf Tool: toggle_manualupdate"	 Alt+M
+h.pane.maximize_full	Maximize	"Toggle pane full screen"	 Alt+\\' Ctrl+B \\'
+h.pane.wsheet.expose	"Unhide All"	"Expose all hidden operators"	
+h.textport	Textport	"Open texport"	
+h.floatpanel	"Floating Panel"	"New floating panel"	
+h.pane.gview.operator_menu	"Toolbar Menu"	"Pop up toolbar menu"	 Tab
+h.pane.gview.state.sop.agentcollisionlayer.mode	"Cycle Collision Shape"	"Cycle collision shape through box, capsule and sphere"	
+h.rename_selected_nodes	"Rename Selected Nodes"	"Rename selected nodes"	
+h.pane.wsheet.add_op	"Add Operator"	"Add Operator"	 Tab
+h.pane.gview.state.new_view	"View Tool"	"Invoke the view tool"	 `
+h.pane.parms.paste_rel_refs	"Paste Copied Relative Refs"	"Paste copied relative refs"	 Alt+V
+h.desktop05	"Desktop 5"	"Switch to Desktop 5"	 Alt+Ctrl+Pad1
+h.play_stop	"Play Stop"	"Playback stop"	 LeftArrow
+h.range_end	"Jump To End Of Range"	"Jump to end of range"	 Ctrl+UpArrow
+h.paste	Paste	"Paste Selection"	 Ctrl+V
+h.tool:frame_selected	frame_selected	"Shelf Tool: frame_selected"	 Z
+h.pane.chedit.handle	"Box Handle"	"Toggle box handle display"	
+h.pane.wsheet.color_palette	"Color Palette"	"Open color palette"	 Alt+C
+h.pane.gview.tool:toggle_constructionplane	toggle_constructionplane	"Shelf Tool: toggle_constructionplane"	 Alt+C
+h.copy	Copy	"Copy selection"	 Ctrl+C
+h.tool:qq_expand	qq_expand	"Shelf Tool: qq_expand"	 F9
+h.pane.gview.state.view.to_persp	"Perspective Viewport"	"Change viewport type to Perspective"	 F7
+h.desktop10	"Desktop 10"	"Switch to Desktop 10"	 Alt+Ctrl+Pad9
+h.range_start	"Jump To Start Of Range"	"Jump to start of range"	 Ctrl+DownArrow
+h.desktop06	"Desktop 6"	"Switch to Desktop 6"	 Alt+Ctrl+Pad3
+h.save	Save	"Save current file"	 Ctrl+S
+h.reload_desktop	"Reload Current Desktop"	"Reload the current desktop"	 Alt+Ctrl+Pad0
+h.new	New	"Delete all contents"	
+h.pane.gview.state.view.to_front	"Front Viewport"	"Change viewport type to Front"	 Ctrl+F7
+h.pane.chedit.graph.toggle_lod	"Toggle Minimum Detail"	"Toggle between current and minimum detail level"	
+h.tool:folders_tab_go_r	folders_tab_go_r	"Shelf Tool: folders_tab_go_r"	 Alt+PageDown
+h.pane.wsheet.rename_node	"Rename Node"	"Edit the name of the current node"	 F2 Shift+Enter
+h.save_as	"Save As"	"Specify name for saved file"	 Ctrl+Shift+S

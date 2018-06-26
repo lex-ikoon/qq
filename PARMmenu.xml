@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menuDocument>
+    <menu>
+    
+
+
+
+
+
+    <scriptItem id="ikoon.parm.PREview">
+        <label>ikoon.parm.PREview</label>
+        <parent>root_menu</parent>
+        <insertAfter/>
+        <scriptCode><![CDATA[
+
+import wf_network_kwargs as qq
+parms     = kwargs['parms']
+node_app  = parms[0].node()
+qq.parmmenu_pre (node_app, parms)
+
+            ]]>
+        </scriptCode>
+    </scriptItem>
+
+
+
+
+
+
+    <scriptItem id="ikoon.parm.REF">
+        <label>ikoon.parm.REFerence</label>
+        <parent>root_menu</parent>
+        <insertAfter/>
+        <scriptCode><![CDATA[
+
+import wf_network_kwargs as qq
+parms     = kwargs['parms']
+node_app  = parms[0].node()
+qq.parmmenu_ref (node_app, parms)
+
+            ]]>
+        </scriptCode>
+    </scriptItem>
+
+
+<scriptItem id="ikoon.parm.MIXer">
+        <label>ikoon.parm.MIXer</label>
+        <parent>root_menu</parent>
+        <insertAfter/>
+        <scriptCode><![CDATA[
+
+import wf_network_kwargs as qq
+parms     = kwargs['parms']
+node_app  = parms[0].node()
+qq.parmmenu_ref (node_app, parms)
+
+            ]]>
+        </scriptCode>
+    </scriptItem>
+
+
+
+    </menu>
+</menuDocument>
