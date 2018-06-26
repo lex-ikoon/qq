@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <shelfSet name="workflow__set" label="workflow__set">
+    <memberToolshelf name="wf_chaneditor"/>
+    <memberToolshelf name="wf_network_connection"/>
+    <memberToolshelf name="wf_network_kwargs"/>
+    <memberToolshelf name="wf_network_layout"/>
+    <memberToolshelf name="wf_network_parm"/>
+    <memberToolshelf name="wf_network_ui"/>
+    <memberToolshelf name="wf_network_utils"/>
+    <memberToolshelf name="wf_render"/>
+    <memberToolshelf name="wf_sceneview"/>
+    <memberToolshelf name="wf_selected"/>
+    <memberToolshelf name="wf_timeline"/>
+    <memberToolshelf name="wf_utils"/>
+  </shelfSet>
+</shelfDocument>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="wf_network_utils" label="wf_network_utils">
+    <memberTool name="wf_network_utils_create_object_merge"/>
+    <memberTool name="recook_container"/>
+    <memberTool name="create_node_null"/>
+    <memberTool name="create_node_switch"/>
+    <memberTool name="create_node_transform"/>
+    <memberTool name="create_node_awrangle"/>
+    <memberTool name="create_node_merge"/>
+    <memberTool name="collect_by_name"/>
+  </toolshelf>
+
+  <tool name="recook_container_old" label="recook_container_old" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[]]></script>
+  </tool>
+
+  <tool name="recook_container" label="qq recook container" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+      <contextNetType>SOP</contextNetType>
+      <contextNetType>CHOP</contextNetType>
+      <contextNetType>ROP</contextNetType>
+      <contextNetType>SHOP</contextNetType>
+      <contextNetType>COP2</contextNetType>
+      <contextNetType>VOP</contextNetType>
+      <contextNetType>VOPNET</contextNetType>
+      <contextNetType>DOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>_workflow</toolSubmenu>
+    <script scriptType="python"><![CDATA[import wf_network_utils
+reload(wf_network_utils)
+wf_network_utils.recook_container()]]></script>
+  </tool>
+
+  <tool name="wf_network_utils_create_object_merge" label="qq object merge" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+      <contextNetType>SOP</contextNetType>
+      <contextNetType>CHOP</contextNetType>
+      <contextNetType>ROP</contextNetType>
+      <contextNetType>SHOP</contextNetType>
+      <contextNetType>COP2</contextNetType>
+      <contextNetType>VOP</contextNetType>
+      <contextNetType>VOPNET</contextNetType>
+      <contextNetType>DOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>_workflow</toolSubmenu>
+    <script scriptType="python"><![CDATA[import wf_network_utils
+reload(wf_network_utils)
+wf_network_utils.create_object_merge()]]></script>
+  </tool>
+
+  <tool name="create_node_null" label="create_node_null" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_utils
+reload(wf_network_utils)
+wf_network_utils.create_node('null')]]></script>
+  </tool>
+
+  <tool name="create_node_merge" label="create_node_merge" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_utils
+reload(wf_network_utils)
+wf_network_utils.create_node('merge')]]></script>
+  </tool>
+
+  <tool name="create_node_awrangle" label="create_node_awrangle" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_utils
+reload(wf_network_utils)
+wf_network_utils.create_node('attribwrangle')]]></script>
+  </tool>
+
+  <tool name="create_node_transform" label="create_node_transform" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_utils
+reload(wf_network_utils)
+wf_network_utils.create_node('xform')]]></script>
+  </tool>
+
+  <tool name="create_node_switch" label="create_node_switch" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_utils
+reload(wf_network_utils)
+wf_network_utils.create_node('switch')]]></script>
+  </tool>
+
+  <tool name="collect_by_name" label="collect_by_name" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou
+import wf_selection
+reload(wf_selection)
+
+
+query = hou.ui.readInput("Collect name:", buttons=("OK", "Cancel"))
+pattern = query[1]
+nodes = hou.node('/obj/').recursiveGlob(pattern)
+
+for node_src in nodes :
+
+    name_src = node_src.parent().name()
+
+    #create, name, pos
+    container = wf_selection.parmnode()
+    name_mrg = "IN_" + name_src
+    node_mrg = container.parent().createNode('object_merge',name_mrg)
+
+    #parm
+    path_src = node_src.path()
+    parm = node_mrg.parm("objpath1")
+    parm.set(path_src)]]></script>
+  </tool>
+</shelfDocument>

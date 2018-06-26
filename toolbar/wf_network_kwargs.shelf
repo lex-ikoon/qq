@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="wf_network_kwargs" label="wf_network_kwargs">
+    <memberTool name="create_reference"/>
+  </toolshelf>
+
+  <tool name="create_reference" label="create_reference" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[#########################################################
+####                                                 ####
+####  This function is called from the PARMmenu.xml  ####
+####          Location:  $HOME/houdiniX.Y/           ####
+####                                                 ####
+####     PARMmenu.xml defines the menu items when    ####
+####         right-clicking over parameters.         ####
+####                                                 ####
+#########################################################
+####             PARMmenu.xml example:               ####
+#########################################################
+
+# <?xml version="1.0" encoding="UTF-8"?>
+# <menuDocument>
+#     <menu>
+
+#     <scriptItem id="ikoon.parm.PRE">
+#         <label>ikoon.parm.PRE</label>
+#         <parent>root_menu</parent>
+#         <insertAfter/>
+#         <scriptCode><![CDATA[
+
+# import wf_network_kwargs as qq
+# parms     = kwargs['parms']
+# node_app  = parms[0].node()
+# qq.parmmenu_pre (node_app, parms)
+
+#             ]]]]><![CDATA[>
+#         </scriptCode>
+#     </scriptItem>
+
+#     <scriptItem id="ikoon.parm.REF">
+#         <label>ikoon.parm.REF</label>
+#         <parent>root_menu</parent>
+#         <insertAfter/>
+#         <scriptCode><![CDATA[
+
+# import wf_network_kwargs as qq
+# parms     = kwargs['parms']
+# node_app  = parms[0].node()
+# qq.parmmenu_ref (node_app, parms)
+
+#             ]]]]><![CDATA[>
+#         </scriptCode>
+#     </scriptItem>
+
+#     </menu>
+# </menuDocument>]]></script>
+  </tool>
+</shelfDocument>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="wf_utils" label="wf_utils">
+    <memberTool name="collect_for_github"/>
+    <memberTool name="xml_for_wordpress"/>
+  </toolshelf>
+
+  <tool name="xml_for_wordpress" label="xml_for_wordpress" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_utils
+reload(wf_utils)
+wf_utils.xml_for_wordpress()]]></script>
+  </tool>
+
+  <tool name="collect_for_github" label="collect_for_github" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_utils
+reload(wf_utils)
+wf_utils.collect_for_github()]]></script>
+  </tool>
+</shelfDocument>

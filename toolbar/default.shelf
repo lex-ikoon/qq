@@ -1,0 +1,1700 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="mytools" label="mytools">
+    <memberTool name="toggle_pts"/>
+    <memberTool name="toggle_realtime"/>
+    <memberTool name="node_rend"/>
+    <memberTool name="node_disp"/>
+    <memberTool name="node_byp"/>
+    <memberTool name="node_tpl"/>
+    <memberTool name="fram_sel"/>
+    <memberTool name="fram_all"/>
+    <memberTool name="start_ren"/>
+    <memberTool name="kill_ren"/>
+    <memberTool name="sim_manual"/>
+    <memberTool name="qrange"/>
+    <memberTool name="anim_scope"/>
+    <memberTool name="opencl"/>
+    <memberTool name="o merge"/>
+    <memberTool name="takes"/>
+    <memberTool name="view_y"/>
+    <memberTool name="layout_pin"/>
+    <memberTool name="layout_lay"/>
+    <memberTool name="obj_mtl"/>
+    <memberTool name="play_bwd"/>
+    <memberTool name="play_fwd"/>
+    <memberTool name="playhead"/>
+    <memberTool name="guide"/>
+  </toolshelf>
+
+  <tool name="toggle_pts" label="toggle_pts" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[# Get a reference to the geometry viewer
+pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.SceneViewer)
+
+# Get the display settings
+settings = pane.curViewport().settings()
+
+# Get the GeometryViewportDisplaySet for objects
+markersDisplayModel = settings.displaySet(hou.displaySetType.DisplayModel)
+markersSceneObject = settings.displaySet(hou.displaySetType.SceneObject)
+
+# Toggle the markers (visible when inside /obj/...)
+markersDisplayModel.showPointMarkers(not markersDisplayModel.isShowingPointMarkers())
+
+# Unify with the scene (visible when in top level "/obj")
+markersSceneObject.showPointMarkers(markersDisplayModel.isShowingPointMarkers())]]></script>
+  </tool>
+
+  <tool name="node_tpl" label="node_tpl" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[for node in hou.selectedNodes():
+    node.setTemplateFlag(not node.isTemplateFlagSet())]]></script>
+  </tool>
+
+  <tool name="node_byp" label="node_byp" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[for node in hou.selectedNodes():
+    node.bypass(not node.isBypassed())]]></script>
+  </tool>
+
+  <tool name="node_disp" label="node_disp" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou
+import toolutils
+
+parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
+parmnode = parm_pane.currentNode()
+containername = parmnode.parent().name()
+
+nodetype = "multiflag"
+
+if hou.sopNodeTypeCategory() == parmnode.parent().childTypeCategory():
+    nodetype = "singleflag"
+
+if hou.dopNodeTypeCategory() == parmnode.parent().childTypeCategory():
+    nodetype = "singleflag"
+
+
+################################
+## unflag to the last flagged ##
+################################
+
+
+if nodetype == "singleflag":
+
+    # get this
+    if len(hou.selectedNodes()) == 0:
+        thisnode = parmnode
+    else:
+        thisnode = hou.selectedNodes()[0]
+    thispath = thisnode.path()
+
+    # get last
+    lastpath = hou.getenv("unflagged", thispath)
+    try:
+        #node exists
+        if hou.node(lastpath).parent().name() != containername:
+            lastpath = thispath
+    except:
+        #node was deleted / renamed
+        lastpath = thispath
+    
+    # get flag
+    flagpath = hou.getenv("flag", thispath)
+    try:
+        #node exists    
+        if hou.node(flagpath).parent().name() != containername:
+            flagpath = thispath
+    except:
+        #node was deleted / renamed
+        flagpath = thispath
+
+        
+    try:
+        flag = hou.node(thispath).isDisplayFlagSet()
+    except:
+        flag = 2
+        
+
+    if flag == 0 :
+    
+        # setting clean
+        setpath = thispath
+        unflag = flagpath
+        hou.putenv("unflagged", unflag )
+
+        # set
+        hou.putenv("flag", setpath )    
+        setnode = hou.node( setpath )
+        setnode.setDisplayFlag(True)
+
+    if flag == 1 :
+    
+        # setting flagged
+        setpath = lastpath
+        unflag = thispath
+        hou.putenv("unflagged", unflag )
+
+        # set
+        hou.putenv("flag", setpath )    
+        setnode = hou.node( setpath )
+        setnode.setDisplayFlag(True)
+
+    
+
+################################
+####  not SOP, just toggle  ####
+################################
+
+if nodetype == "multiflag":
+
+    # none is selected
+    if len(hou.selectedNodes()) == 0:
+        parmnode.setDisplayFlag(not parmnode.isDisplayFlagSet())
+        
+    # for all selected    
+    for node in hou.selectedNodes():
+        try:
+            node.setDisplayFlag(not node.isDisplayFlagSet())
+        except:
+            hasnoflag = True]]></script>
+  </tool>
+
+  <tool name="fram_all" label="fram_all" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.SceneViewer)
+pane.curViewport().frameAll()]]></script>
+  </tool>
+
+  <tool name="anim_scope" label="qanim_scope" icon="OBJ_light_point">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>AA</toolSubmenu>
+    <script scriptType="python"><![CDATA[import hou
+
+parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
+parmnode = parm_pane.currentNode()
+container = parmnode.parent().path()
+
+#node_src = hou.selectedNodes()[0]
+#container = node_src.parent().path()
+
+
+nodeArr = hou.node(container).allSubChildren()
+for n in nodeArr:
+    if not n.isInsideLockedHDA():
+        parmArr = n.parms()
+        for p in parmArr:
+            if p.isTimeDependent():
+                p.setScope(1)]]></script>
+  </tool>
+
+  <tool name="opencl" label="opencl" icon="OBJ_light_point">
+    <script scriptType="python"><![CDATA[for node in hou.selectedNodes():
+    for subnode in node.allSubChildren():
+        for p in subnode.parms():
+            if p.name()=='opencl':
+                try:
+                    p.set(1)
+                except hou.PermissionError: 
+                    pass]]></script>
+  </tool>
+
+  <tool name="start_ren" label="start_ren" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.IPRViewer)
+pane.killRender()
+pane.startRender()]]></script>
+  </tool>
+
+  <tool name="kill_ren" label="kill_ren" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.IPRViewer)
+pane.killRender()]]></script>
+  </tool>
+
+  <tool name="qrange" label="qrange" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>AA</toolSubmenu>
+    <script scriptType="python"><![CDATA[import hou
+import toolutils
+
+
+#local playback range
+start  = hou.playbar.playbackRange()[0]
+end    = hou.playbar.playbackRange()[1]
+actual = hou.intFrame;
+
+
+# global time range
+globalstart  = hou.playbar.timelineRange()[0]
+globalend    = hou.playbar.timelineRange()[1]
+
+
+# container name
+active_pane = toolutils.activePane(kwargs)
+if active_pane is not None and active_pane.type() == hou.paneTabType.NetworkEditor:
+    containername = active_pane.pwd().name()
+
+    
+if containername == "obj":
+
+    # range from global
+    cont_start = globalstart;
+    cont_end   = globalend;
+
+else:
+
+    # range from name
+    name = containername.split("_")
+    if len(name) == 3 :
+        cont_start = float( name[1] )
+        cont_end   = float( name[2] )
+    else:
+        cont_start = globalstart
+        cont_end   = globalend
+        
+
+    
+# set range
+hou.playbar.setPlaybackRange( cont_start, cont_end )]]></script>
+  </tool>
+
+  <tool name="ramp get" label="ramp get" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[node = hou.selectedNodes()[0]
+parms = node.parms()
+
+string = '''
+ramp_preset = []
+ramp_basis = []
+ramp_keys = []
+ramp_values = []
+
+'''
+
+for parm in parms:
+    if parm.parmTemplate().type() == hou.parmTemplateType.Ramp:
+    
+        #parm is Ramp
+        parmName = parm.name()
+        orig_ramp = parm.eval()
+
+        basis = orig_ramp.basis()
+        keys = orig_ramp.keys()
+        values = orig_ramp.values()
+
+        string = string + "ramp_preset.append( '%s' )" % parmName  + "\n"
+        string = string + "ramp_basis.append( %s ) " % (basis,) + "\n"
+        string = string + "ramp_keys.append( %s ) " % (keys,) + "\n"
+        string = string + "ramp_values.append( %s ) " % (values,) + "\n"
+        string = string + "\n"
+
+
+string = string.replace( "rampBasis." , "hou.rampBasis." )
+
+print string]]></script>
+  </tool>
+
+  <tool name="node_rend" label="node_rend" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[for node in hou.selectedNodes():
+    node.setRenderFlag(not node.isRenderFlagSet())]]></script>
+  </tool>
+
+  <tool name="qqreplace" label="qqreplace" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[###################################################
+#######     qqr qqi qqf //  +  interface    #######
+###################################################
+
+parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
+node = parm_pane.currentNode()
+
+snippet = node.parm("snippet")
+actualcode = snippet.unexpandedString()
+lines = actualcode.split('\n')
+
+for line in lines:
+    found = 0
+    if line.startswith("qqf."):
+        qq,var = line.split('.')
+        newline = 'float ' + var + ' = chf("' + var + '"); // 0.5 in 0.0 to 1.0'
+        found = 1
+        
+    if line.startswith("qqi."):
+        qq,var = line.split('.')        
+        newline = 'int ' + var + ' = chi("' + var + '"); // 1 in 0 to 10'
+        found = 1
+        
+    if line.startswith("qqr."):
+        qq,var = line.split('.')        
+        newline = var + ' = chramp("' + var + '",' + var + '); //' + var
+        found = 1
+
+    if line.startswith("qqs."):
+        qq,var = line.split('.')        
+        newline = 'string ' + var + ' = chs("' + var + '"); // file node'
+        found = 1
+
+    if line.startswith("qqv."):
+        qq,var = line.split('.')        
+        newline = 'vector ' + var + ' = chv("' + var + '"); // color'
+        found = 1
+
+    if line.startswith("qq@f."):
+        qq,var = line.split('.')
+        newline = 'f@' + var + ' = chf("' + var + '"); // 0.5 in 0.0 to 1.0'
+        found = 1
+
+    if line.startswith("qq@i."):
+        qq,var = line.split('.')
+        newline = 'i@' + var + ' = chi("' + var + '"); // 1 in 0 to 10'
+        found = 1
+
+    if line.startswith("qq01."):
+        qq,var = line.split('.')
+        newline  = 'float new_min = chf("new_min"); // -1 in -10 to 10\n';
+        newline += 'float new_max = chf("new_max"); //  1 in -10 to 10\n';
+        newline += var + ' = fit01(' + var + ', new_min, new_max);';
+        found = 1
+
+        
+    if line.startswith("qqx."):
+        qq,var = line.split('.')
+        if var.find("//") > 0 :
+            # comment is defined
+            var,comment = var.split('//')
+            comment = " //"+comment
+        else:
+            comment = ""
+
+        var = var.strip(" ")
+        newline = '//----\n'
+        newline += 'float ' + var + '_x = chf("' + var + '_x");' + comment + '\n'
+        newline += 'float ' + var + '_y = chf("' + var + '_y");' + comment + '\n'
+        newline += 'float ' + var + '_z = chf("' + var + '_z");' + comment + '\n'
+        newline += 'vector  ' + var + ' = set(' + var + '_x, ' + var + '_y, ' + var + '_z);'   
+        found = 1 
+
+        
+    if line.startswith("qqxx."):
+        qq,var = line.split('.')
+        if var.find("//") > 0 :
+            # comment is defined
+            var,comment = var.split('//')
+            comment = " //"+comment
+        else:
+            comment = ""
+
+        var = var.strip(" ")
+        newline = '//----\n'
+        newline += 'float ' + var + '_x_min = chf("' + var + '_x_min");' + comment + '\n'
+        newline += 'float ' + var + '_x_max = chf("' + var + '_x_max");' + comment + '\n'
+        newline += '//----\n'
+        newline += 'float ' + var + '_y_min = chf("' + var + '_y_min");' + comment + '\n'
+        newline += 'float ' + var + '_y_max = chf("' + var + '_y_max");' + comment + '\n'
+        newline += '//----\n'
+        newline += 'float ' + var + '_z_min = chf("' + var + '_z_min");' + comment + '\n'
+        newline += 'float ' + var + '_z_max = chf("' + var + '_z_max");' + comment + '\n'
+
+        newline += 'fit_xyz( '+ var + '_noise, ' + var + '_x_min, ' + var + '_x_max, ' + var + '_y_min, ' + var + '_y_max, ' + var + '_z_min, ' + var + '_z_max);'
+        
+        
+        found = 1 
+        
+        
+    if found:
+        actualcode = actualcode.replace(line,newline,1) # only the first occurrence
+
+snippet.set(actualcode)
+
+
+##############################################
+#######         read library         #########
+##############################################
+
+
+import pickle
+
+path_shortcuts = "C:/Users/info/OneDrive/Documents/houdini16.5/vex/include/uber qq shortcuts.vfl"
+path_snippets  = "C:/Users/info/OneDrive/Documents/houdini16.5/vex/include/uber qq snippets.vfl"
+
+with open(path_shortcuts, 'r') as f:
+    src = pickle.load(f)
+    
+with open(path_snippets, 'r') as f:
+    rep = pickle.load(f)
+
+
+
+##############################################
+#######        replace library        ########
+##############################################
+
+
+snippet = node.parm("snippet")
+actualcode = snippet.unexpandedString()
+index = 0
+for src_item in src:
+    rep_item = rep[index]
+    if src_item in actualcode:
+        newcode = actualcode.replace(src_item,rep_item)
+        snippet.set(newcode)
+        actualcode = newcode
+    index = index+1]]></script>
+  </tool>
+
+  <tool name="o merge" label="qomerge" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>AA</toolSubmenu>
+    <script scriptType="python"><![CDATA[# define
+offsetx = 3
+offsety = 0
+color = hou.Color(0.0, 0.0, 0.0)
+
+node_src = hou.selectedNodes()[0]
+name_src = node_src.name()
+
+posx = node_src.position()[0] + offsetx
+posy = node_src.position()[1] + offsety
+
+#create, name, pos
+container = node_src.parent().path()
+name_mrg = "IN_" + name_src
+node_mrg = hou.node(container).createNode('object_merge',name_mrg)
+node_mrg.setPosition( [posx,posy] )
+
+#parm
+path_src = node_src.path()
+parm = node_mrg.parm("objpath1")
+parm.set(path_src)
+
+#setcol
+node_src.setColor(color)
+node_mrg.setColor(color)
+]]></script>
+  </tool>
+
+  <tool name="takes" label="takes" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import PyTake2 as pt
+
+for node in hou.selectedNodes():
+    name = node.name()
+    myTake = pt.Take(name)
+    myTake.includeDisplayFlag(node)
+    pt.returnToMainTake()]]></script>
+  </tool>
+
+  <tool name="view_y" label="view_y" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou
+
+ghost = hou.getenv("ghost", "2")
+
+if ghost == "0":
+        ghost = "2"
+else:
+        ghost = "0"
+
+#print ghost
+        
+script = "vieweroption -a " + ghost + " %s`run('viewls -n')`"
+hou.hscript(script)
+
+hou.putenv("ghost", ghost)]]></script>
+  </tool>
+
+  <tool name="layout_pin" label="layout_pin" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[### swap pin / unpin
+
+for node in hou.selectedNodes():
+    node.setGenericFlag(hou.nodeFlag.DisplayComment,False)
+
+    if node.comment() == "`" :
+        node.setComment("")
+    else:
+        node.setComment("`")
+]]></script>
+  </tool>
+
+  <tool name="layout_lay" label="layout_lay" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou
+import toolutils
+
+def getConnectedNodes(node,got):
+    iteration = []
+
+    inout = []
+    try:
+        inout += node.inputs()
+    except:
+        has_no_inputs = 1
+        
+    try:
+        inout += node.outputs()
+    except:
+        has_no_outputs = 1
+
+    for n in inout:
+        if n not in got:
+            got.append(n)
+            iteration.append(n)
+            iteration += getConnectedNodes(n,got)
+
+    return iteration
+
+
+def node_prefixes () :
+
+    node_prefixes = []
+
+    node_prefixes.append( 'mat' )
+    node_prefixes.append( 'MAT' )
+    node_prefixes.append( 'QQMAT' )
+
+    node_prefixes.append( 'chop' )
+    node_prefixes.append( 'CHOP' )
+    node_prefixes.append( 'QQCHOP' )
+
+    node_prefixes.append( 'ref' )
+    node_prefixes.append( 'REF' )
+    node_prefixes.append( 'QQREF' )
+
+    node_prefixes.append( 'pre' )
+    node_prefixes.append( 'PRE' )
+    node_prefixes.append( 'QQPRE' )
+
+    return node_prefixes
+    
+
+
+
+################################
+########   the pins    #########
+################################
+
+parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
+containernode = parm_pane.currentNode().parent()
+
+childrenArr = containernode.children()
+pinStatesArr = []
+pinNodesArr = []
+positionsArr = []
+
+# store all positions
+
+for child in childrenArr:
+    pinned = 0
+    if child.comment() == "`" :
+        pinned = 1
+        pinNodesArr.append( child )
+        
+    pinStatesArr.append( pinned )
+    positionsArr.append( child.position() )
+    
+# store pinned positions
+
+for pinNode in pinNodesArr:
+    pos = pinNode.position()
+    comment = str(pos[0]) + "," + str(pos[1])
+    pinNode.setComment(comment)
+
+    
+# classic layoutChildren()
+
+containernode.layoutChildren()
+
+# reposition the branches
+
+for pinNode in pinNodesArr:
+
+    pinpos = pinNode.comment()
+    pinpos = pinpos.split(",")
+    pinpos = [ float(pinpos[0]) , float(pinpos[1]) ]
+    
+    allConnected = []
+    allConnected = getConnectedNodes(pinNode,allConnected)
+    
+    pos = pinNode.position()
+    move = [ pinpos[0] - pos[0] , pinpos[1] - pos[1] ]
+    
+    for connected in allConnected:
+        try:
+            connected.move(move)
+        except:
+            no_connected = 1
+        
+    # cleanup
+    pinNode.setPosition(pinpos)
+    pinNode.setComment("`")
+   
+    
+
+################################
+#######   net  to  set  ########
+################################
+
+
+# define offset
+offsetx = 3
+offsety = 0
+
+containerpath = containernode.path()
+
+prefixes = node_prefixes()
+
+
+for prefix in prefixes :
+        
+        name_dat = prefix + "dat_"
+        name_app = prefix + "app_"
+
+        dats = hou.node(containerpath).glob(name_dat+"*")
+
+        # for all
+        for dat in dats:
+            xxx,task = dat.name().split("_")
+            
+            # appropriate channel node
+            path_dat = containerpath + "/" + name_dat + task
+            path_app = containerpath + "/" + name_app + task
+            
+            node_dat = hou.node(path_dat)    
+            node_app = hou.node(path_app)
+
+            # get pos
+            posx = node_app.position()[0] + offsetx
+            posy = node_app.position()[1] + offsety
+
+            # set pos
+            node_dat.setPosition( [posx,posy] )
+
+            # shape
+            node_dat.setUserData("nodeshape", "clipped_right")
+            node_app.setUserData("nodeshape", "clipped_left")]]></script>
+  </tool>
+
+  <tool name="sim_manual" label="sim_manual" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou
+mode = hou.updateModeSetting().name()
+if mode == 'AutoUpdate':
+    hou.setUpdateMode(hou.updateMode.Manual)
+if mode == 'Manual':
+    hou.setUpdateMode(hou.updateMode.AutoUpdate)]]></script>
+  </tool>
+
+  <tool name="obj_mtl" label="obj_mtl" icon="$HIP/Map__1_Falloff.tga">
+    <script scriptType="python"><![CDATA[# Simple .MTL reader.
+# Run after .OBJ import.
+# Creates a basic Redshift material with a texture map.
+
+# EXAMPLE: Expected format.
+#newmtl _4_2_                       <- Material name.
+#Ns 96.078431                       <- Specular intensity
+#Ka 0.000000 0.000000 0.000000      <- Ambient color.
+#Kd 0.640000 0.640000 0.640000      <- Diffuse color.
+#Ks 0.500000 0.500000 0.500000      <- Specular color.
+#Ni 1.000000                        <- Index of refraction.
+#d 1.000000                         <- Opacity.
+#illum 2                            <- Illumination model, expect 2..probably will not support.
+#map_Kd 21_budova/_4_2_.jpg         <- Map name.
+ 
+import hou,os, re
+
+def returnValidHoudiniNodeName(passedItem):
+    # Thanks to Graham on OdForce for this function!
+    # Replace any illegal characters for node names here.
+    return re.sub("[^0-9a-zA-Z\.]+", "_", passedItem)
+    
+def createRedshiftImageMapMaterial(passedSHOP, passedImageFilePath, passedName, passedDiffuse=[0,0,0], passedSpecular=[0,0,0], passedWeight=0.1, passedIOR=1.0, passedOpacity=1.0):
+    print "->%s [%s]" % (passedName, passedImageFilePath)
+    rs_vop = hou.node(passedSHOP).createNode("redshift_vopnet",passedName)
+    if rs_vop != None:
+        rs_output = hou.node("%s/%s/redshift_material1" % (passedSHOP, passedName))  # Detect the default closure node that should be created by the redshift_vopnet.
+        if rs_output != None:
+            # Create.
+            rs_mat = rs_vop.createNode("redshift::Material","rs_Mat")
+            if rs_mat != None:
+                # Set passed values.
+                rs_mat.parm("diffuse_colorr").set(passedDiffuse[0])
+                rs_mat.parm("diffuse_colorg").set(passedDiffuse[1])
+                rs_mat.parm("diffuse_colorb").set(passedDiffuse[2])
+                rs_mat.parm("refl_colorr").set(passedSpecular[0])
+                rs_mat.parm("refl_colorg").set(passedSpecular[1])
+                rs_mat.parm("refl_colorb").set(passedSpecular[2])
+                rs_mat.parm("refl_weight").set(passedWeight)
+
+                rs_mat.parm("refl_ior").set(passedIOR)
+                rs_mat.parm("opacity_colorr").set(passedOpacity)
+                rs_mat.parm("opacity_colorg").set(passedOpacity)
+                rs_mat.parm("opacity_colorb").set(passedOpacity)
+                
+                
+                rs_mat.parm("refl_roughness").set(0.0)         # Hard coded to soft blur reflection.                
+                
+                rs_tex = rs_vop.createNode("redshift::TextureSampler",returnValidHoudiniNodeName("rs_Tex_%s" % passedName))
+                if rs_tex != None:
+                    # Wire
+                    try:
+                        rs_output.setInput(0,rs_mat)
+                        can_continue = True
+                    except:
+                        can_continue = False
+                    if can_continue:
+                        if passedImageFilePath.find("NOT_DETECTED")==-1:
+                            # Only plug in texture if the texture map was specified.
+                            rs_mat.setInput(0,rs_tex)                       # input #0 is diffuse color.
+                        extension = os.path.splitext(passedImageFilePath)[1]
+                        files_with_alphas = [".png",".PNG",".tga",".TGA",".tif",".TIF",".tiff",".TIFF",".exr",".EXR"]
+                        if extension in files_with_alphas:
+                            # Place a sprite after the rsMaterial to implment opacity support.
+                            rs_sprite = rs_vop.createNode("redshift::Sprite",returnValidHoudiniNodeName("rs_Sprite_%s" % passedName))
+                            if rs_sprite != None:
+                                rs_sprite.parm("tex0").set(passedImageFilePath)    # set the filename to the texture.
+                                rs_sprite.parm("mode").set("1")
+                                rs_sprite.setInput(0,rs_mat)
+                                rs_output.setInput(0,rs_sprite)
+                                #rs_mat.setInput(46,rs_tex)                  # input #46 is opacity color (i.e. alpha).
+
+                        rs_tex.parm("tex0").set(passedImageFilePath)    # set the filename to the texture.
+                        
+                        # Remove luminosity from texture using a color corrector.
+                        rs_cc = rs_vop.createNode("redshift::RSColorCorrection",returnValidHoudiniNodeName("rs_CC_%s" % passedName))
+                        if rs_cc != None:
+                            rs_cc.setInput(0,rs_tex)
+                            
+                            rs_cc.parm("saturation").set(0)
+                            # Add a slight bump using the greyscale value of the diffuse texture.
+                            rs_bump = rs_vop.createNode("redshift::BumpMap",returnValidHoudiniNodeName("rs_Bump_%s" % passedName))
+                            if rs_bump != None:
+                                rs_bump.setInput(0,rs_cc)
+                                rs_bump.parm("scale").set(0.25)          # Hard coded, feel free to adjust.
+                                rs_output.setInput(2,rs_bump)
+                                                
+                        # Layout.
+                        rs_vop.moveToGoodPosition() 
+                        rs_tex.moveToGoodPosition()
+                        rs_cc.moveToGoodPosition() 
+                        rs_bump.moveToGoodPosition()
+                        rs_mat.moveToGoodPosition()
+                        rs_output.moveToGoodPosition()
+                else:
+                    print "problem creating redshift::TextureSampler node."
+            else:
+                print "problem creating redshift::Material node."
+        else:
+            print "problem detecting redshift_material1 automatic closure."
+    else:
+        print "problem creating redshift vop net?"
+ 
+cur_mat = None
+
+# Select MTL file to process...
+n = 2
+if n==0:
+    texture_path = '/media/banedesh/Storage/Documents/Models/Blendswap/cc0_Destruction_Assets/Building_Budova~/01'
+    file_name = '/media/banedesh/Storage/Documents/Models/Blendswap/cc0_Destruction_Assets/Building_Budova~/01/21_budova.mtl'
+if n==1:
+    texture_path = 'D:/a.mtl'
+    file_name = 'D:/a.mtl'
+if n==2:
+    texture_path = 'D:/bond/2 models/slot-max'
+    file_name = 'D:/bond/2 models/slot-max/ex1.mtl'
+
+print file_name
+with open(file_name, 'r') as f:
+    lines = f.read().splitlines()   # Remove slash n character at the end of each line.
+f.close()
+
+
+# Defaults
+material_pending = False
+opacity = 1.0
+ior = 1.0
+reflection_weight = 0.5
+reflection_roughness = 0.0
+diffuse_color = [0,0,0]
+specular_color = [0,0,0]
+
+for line in lines:
+
+
+    ary = line.split(' ')
+    
+    if ary[0] == 'newmtl':
+        mat_name = ary[1]   # Kind of assuming that only one space will be between the token and the value.
+    if ary[0] == 'Ks':
+        specular_color = [ float(ary[1]) ,float (ary[2]) , float(ary[3])]
+    if ary[0] == 'Kd':
+        diffuse_color =  [ float(ary[1]) ,float (ary[2]) , float(ary[3])]
+        print specular_color        
+    if ary[0] == 'Ns':
+        reflection_weight = float(ary[1])/100
+        reflection_weight = 1
+    if ary[0] == 'Ni':
+        ior = float(ary[1])
+    if ary[0] == 'd':
+        opacity = float(ary[1])
+#    if ary[0] == 'map_Kd':
+    
+    if ary[0] == 'createmat':
+        # Found a diffuse map.
+        # Grab the name of this new material and create a Redshift shader network that we can populate.
+        shader_name = returnValidHoudiniNodeName("%s" % mat_name)
+
+#        createRedshiftImageMapMaterial("/shop", "%s/%s" % (texture_path,ary[1]), shader_name, diffuse_color,specular_color,reflection_weight,ior, opacity)
+        createRedshiftImageMapMaterial("/shop", "%s/%s" % (texture_path,"NOT_DETECTED"), shader_name, diffuse_color,specular_color,reflection_weight,ior, opacity)
+        # Reset defaults.
+]]></script>
+  </tool>
+
+  <toolshelf name="qqreplace" label="qqreplace">
+    <memberTool name="qqreplace"/>
+    <memberTool name="clean_UI"/>
+    <memberTool name="uber_file"/>
+    <memberTool name="ramp get"/>
+    <memberTool name="tab_l"/>
+    <memberTool name="tab_r"/>
+    <memberTool name="autoscope_off_old"/>
+    <memberTool name="md"/>
+  </toolshelf>
+
+  <tool name="uber_file" label="uber_file" icon="OBJ_light_point">
+    <script scriptType="python"><![CDATA[import pickle
+
+path_include = 
+path_uber = hou.getenv("HOUDINI_USER_PREF_DIR") + "/vex/include/uber qq.vfl"
+file_uber = open( path_uber )
+data = file_uber.read()
+
+
+snippets    = []  # above --
+shortcuts   = []  # qq--
+includes    = ""  # -- plus below
+helplines   = ""  # --
+
+
+blocks = data.split('///------------------------------------------------------------------')
+
+for block in blocks:
+    
+    block = block.strip("-")
+    lines = block.split('\n')
+    line_num = len(lines)
+    line_with_shortcut = -1
+
+    for i, line in enumerate(lines) :
+        if line.startswith("--") :
+            line_with_shortcut = i
+
+    if line_with_shortcut == -1 :
+
+        # block is headline
+        # -----------------
+        
+        helplines += "----------------\n"
+
+
+    else :
+
+        # block is definition
+        # -------------------
+        
+        snippet    = ""
+        shortcut   = ""
+        include    = ""        
+        helpline   = ""        
+        
+        # snippet
+        for i in range( 0 , line_with_shortcut ) :
+            snippet += lines[i].lstrip("-")
+            snippet += "\n"
+        
+        snippet = snippet.strip("\n")
+
+        # include        
+        if lines[line_with_shortcut].startswith("--dont") :
+            #this definition is just a shortcut without function to be included
+            pass
+        else:    
+            include += "//DON'T EDIT THIS FILE, IT GETS OVERWRITTEN BY A SCRIPT\n"
+            for i in range( line_with_shortcut , len(lines) ) :
+                include += lines[i].lstrip("-")
+                include += "\n"
+
+        # helpline
+        helpline = lines[line_with_shortcut]
+        helpline = helpline.lstrip("-")
+        helpline = helpline.split(" ")[1]
+        helpline = helpline.replace(" ", "")
+        helpline = helpline.split("(")[0]
+
+        # shortcut
+        shortcut = "qq" + helpline
+
+
+        snippets.append(snippet)
+        shortcuts.append(shortcut)
+        includes  += include  + "\n"
+        helplines += helpline + "\n"
+
+
+        
+#print snippets
+#print shortcuts
+#print includes
+
+# write on disk
+path_includes  = "C:/Users/info/OneDrive/Documents/houdini16.5/vex/include/qq.vfl"
+path_shortcuts = "C:/Users/info/OneDrive/Documents/houdini16.5/vex/include/uber qq shortcuts.vfl"
+path_snippets  = "C:/Users/info/OneDrive/Documents/houdini16.5/vex/include/uber qq snippets.vfl"
+path_helpcard  = "C:/Users/info/OneDrive/Documents/houdini16.5/vex/include/uber qq helpcard.vfl"
+
+file_includes  = open( path_includes, 'w')
+file_shortcuts = open( path_shortcuts, 'w')
+file_snippets  = open( path_snippets, 'w')
+file_helpcard  = open( path_helpcard, 'w')
+
+pickle.dump(shortcuts, file_shortcuts)
+pickle.dump(snippets,  file_snippets )
+file_helpcard.write(helplines)
+file_includes.write(includes)]]></script>
+  </tool>
+
+  <tool name="clean_UI" label="clean_UI" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
+node = parm_pane.currentNode()
+
+ptg = node.parmTemplateGroup()
+ptg.clear()
+node.setParmTemplateGroup(ptg)
+]]></script>
+  </tool>
+
+  <tool name="tab_r" label="tab_r" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[
+parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
+node = parm_pane.currentNode()
+
+
+def names_counts_in (node, ptg) :
+    names     = []
+    counts    = []
+    index     = -1
+    for pt in ptg.parmTemplates() :
+        if pt.type() == hou.parmTemplateType.Folder :
+            if pt.folderType() == hou.folderType.Tabs :
+                try:
+                    name      = pt.name() + "1"
+                    parm      = node.parm(name).eval()
+                    names.append(pt.name())
+                    counts.append(0)
+                    index     = index+1
+                except:
+                    pass
+                counts[index] = counts[index] + 1
+               
+    return names, counts
+
+def fold_trygo (node, name, count, dir) :
+    went = 0
+    parm = node.parm(name+"1")
+    actual = parm.eval()
+    if dir > 0 :
+        if actual < count-1:
+            parm.set(actual+1)
+            went = 1
+  
+    if dir < 0 :
+        if actual > 0:
+            parm.set(actual-1)
+            went = 1
+
+    return went    
+    
+def node_folder_go (node, dir) :
+
+    A = node.parmTemplateGroup()
+    A_names, A_counts = names_counts_in (node, A)
+
+    for (iA,A_name) in enumerate(A_names) :
+
+        A_went = 0
+        B_went = 0
+        C_went = 0
+        
+        A_actual = node.parm(A_name+"1").eval()
+        A_count = A_counts[iA]
+        pt_name = A_name 
+        
+        if A_actual > 0:
+            pt_name += "_" + str(A_actual)
+            
+        B = node.parmTemplateGroup().find(pt_name)
+        B_names, B_counts = names_counts_in (node, B)
+        
+        for (iB,B_name) in enumerate(B_names) :
+            B_actual = node.parm(B_name+"1").eval()
+            B_count = B_counts[iB]
+            pt_name = B_name 
+            if B_actual > 0:
+                pt_name += "_" + str(B_actual)
+                
+            C = node.parmTemplateGroup().find(pt_name)
+            C_names, C_counts = names_counts_in (node, C)
+            
+            for (iC,C_name) in enumerate(C_names):
+                C_count = C_counts[iC]
+                C_went = fold_trygo(node, C_name, C_count , dir)
+                
+                    
+            if C_went == 0:
+                B_went = fold_trygo(node, B_name, B_count , dir)
+
+
+        if B_went == 0 and C_went == 0:
+            A_went = fold_trygo(node, A_name, A_count , dir)
+
+
+
+parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
+node = parm_pane.currentNode()
+
+node_folder_go (node, 1)]]></script>
+  </tool>
+
+  <tool name="tab_l" label="tab_l" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[
+parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
+node = parm_pane.currentNode()
+
+
+def names_counts_in (node, ptg) :
+    names     = []
+    counts    = []
+    index     = -1
+    for pt in ptg.parmTemplates() :
+        if pt.type() == hou.parmTemplateType.Folder :
+            if pt.folderType() == hou.folderType.Tabs :
+                try:
+                    name      = pt.name() + "1"
+                    parm      = node.parm(name).eval()
+                    names.append(pt.name())
+                    counts.append(0)
+                    index     = index+1
+                except:
+                    pass
+                counts[index] = counts[index] + 1
+               
+    return names, counts
+
+def fold_trygo (node, name, count, dir) :
+    went = 0
+    parm = node.parm(name+"1")
+    actual = parm.eval()
+    if dir > 0 :
+        if actual < count-1:
+            parm.set(actual+1)
+            went = 1
+  
+    if dir < 0 :
+        if actual > 0:
+            parm.set(actual-1)
+            went = 1
+
+    return went    
+    
+def node_folder_go (node, dir) :
+
+    A = node.parmTemplateGroup()
+    A_names, A_counts = names_counts_in (node, A)
+
+    for (iA,A_name) in enumerate(A_names) :
+
+        A_went = 0
+        B_went = 0
+        C_went = 0
+        
+        A_actual = node.parm(A_name+"1").eval()
+        A_count = A_counts[iA]
+        pt_name = A_name 
+        
+        if A_actual > 0:
+            pt_name += "_" + str(A_actual)
+            
+        B = node.parmTemplateGroup().find(pt_name)
+        B_names, B_counts = names_counts_in (node, B)
+        
+        for (iB,B_name) in enumerate(B_names) :
+            B_actual = node.parm(B_name+"1").eval()
+            B_count = B_counts[iB]
+            pt_name = B_name 
+            if B_actual > 0:
+                pt_name += "_" + str(B_actual)
+                
+            C = node.parmTemplateGroup().find(pt_name)
+            C_names, C_counts = names_counts_in (node, C)
+            
+            for (iC,C_name) in enumerate(C_names):
+                C_count = C_counts[iC]
+                C_went = fold_trygo(node, C_name, C_count , dir)
+                
+                    
+            if C_went == 0:
+                B_went = fold_trygo(node, B_name, B_count , dir)
+
+
+        if B_went == 0 and C_went == 0:
+            A_went = fold_trygo(node, A_name, A_count , dir)
+
+
+
+parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
+node = parm_pane.currentNode()
+
+node_folder_go (node, -1)]]></script>
+  </tool>
+
+  <tool name="play_fwd" label="play_fwd" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[hou.playbar.play()
+#
+#import hou
+#
+##p_count = hou.parm('/obj/box_object1/CONTROLS/count')
+##p_last_frame = hou.parm('/obj/box_object1/CONTROLS/last_frame')
+#
+## Setup event monitoring as described in help.
+#def outputPlaybarEvent(event_type, frame):
+#    print type(event_type)
+#    s = ""
+#    if s.find("FrameChanged") != -1:
+#        # Houdini gives us many events on the same frame.
+#        # We only want to count once for each frame number.
+#        if p_frame != frame:
+#            # Our last frame is not equal to this frame, issue a new count.
+#            val = p_count.eval()
+#            p_count.set(val+1)
+#    p_last_frame.set(frame)
+#    print "Playbar event", event_type, "at frame", frame
+#hou.playbar.addEventCallback(outputPlaybarEvent)
+#
+#
+#if hou.playbar.isPlaying():
+#    # We are already playing, so issue a stop.
+#    hou.playbar.stop()
+#
+#else:
+#    # The user want to start playing, reset count to one.
+#    hou.playbar.play()
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+##def outputPlaybarEvent(event_type, frame):
+##    if event_type == hou.playbarEvent.FrameChanged and frame == 1:
+##        print event_type
+##        hou.playbar.play()
+##        hou.playbar.removeEventCallback(outputPlaybarEvent)
+##
+##    return False
+##
+##hou.playbar.addEventCallback(outputPlaybarEvent)      
+##    
+##if hou.playbar.isPlaying() :
+##    hou.playbar.addEventCallback(outputPlaybarEvent)
+##    hou.playbar.clearEventCallbacks()
+##    hou.playbar.addEventCallback(hou.playbarEvent.Started)
+##    print "stop"
+##else :
+##    hou.playbar.addEventCallback(hou.playbarEvent.Stopped)
+##    
+##    print hou.playbar.eventCallbacks()
+##    #hou.setFrame(hou.frame()+1)
+##    hou.playbar.stop()
+##
+##    
+##
+]]></script>
+  </tool>
+
+  <tool name="play_bwd" label="play_bwd" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[hou.playbar.stop()
+#
+#if hou.playbar.isPlaying() :
+#    hou.playbar.stop()
+#else :
+#    hou.playbar.reverse()
+#
+]]></script>
+  </tool>
+
+  <tool name="playhead" label="playhead" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import time
+from PySide2.QtGui import QCursor
+
+mouse_last = hou.getenv("mouse", "0")
+mouse_last = float(mouse_last)
+
+mouse_now = QCursor().pos()
+
+
+
+
+time_now = time.time()
+time_last = hou.getenv("time", "0")
+time_last = float(time_last)
+
+time_diff = time_now-time_last
+
+#print time_diff
+
+mouse_now = round(  mouse_now.x() / 10 )
+
+if time_diff > 0.1 :
+    mouse_last = mouse_now
+
+skip = mouse_last - mouse_now
+if abs(skip) > 20 :
+    skip = skip * 2
+
+frame_now = hou.frame()
+frame_now = hou.frame() - skip
+hou.setFrame(frame_now)
+
+hou.putenv("mouse", str(mouse_now))
+hou.putenv("time", str(time_now))]]></script>
+  </tool>
+
+  <tool name="guide" label="guide" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[panes = hou.ui.currentPaneTabs()
+for p in panes:
+    if p.type().name() == 'SceneViewer':
+        guide = hou.viewportGuide.ObjectSelection
+        val = p.curViewport().settings().guideEnabled(guide)
+        p.curViewport().settings().enableGuide(guide, not val)]]></script>
+  </tool>
+
+  <toolshelf name="tests" label="tests">
+    <memberTool name="blog files"/>
+    <memberTool name="recook_container_old"/>
+    <memberTool name="parm UI"/>
+    <memberTool name="connect by y"/>
+    <memberTool name="merge by x"/>
+    <memberTool name="current"/>
+    <memberTool name="panel"/>
+    <memberTool name="dialog"/>
+    <memberTool name="select A"/>
+    <memberTool name="bbox"/>
+    <memberTool name="snippet parm"/>
+    <memberTool name="merge"/>
+  </toolshelf>
+
+  <tool name="kw_args" label="kw_args" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[parm = kwargs['parms'][0]
+n = parm.node()
+
+print parm
+print n]]></script>
+  </tool>
+
+  <tool name="blog files" label="blog files" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import os
+
+path = "C:/Users/info/Desktop/ikoon/blog_parse"
+for root, dirs, files in os.walk( path ):
+    print "-----------\nroot:"
+    print root
+    #print "-----------\ndirs:"
+    #print dirs
+    #print "-----------\nfiles:"    
+    #print files]]></script>
+  </tool>
+
+  <tool name="connect by y" label="connect by y" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[node_list      = []
+
+for node in hou.selectedNodes() :
+    node_list_pair = []
+    node_list_pair.append(node)
+    node_list_pair.append(node.position()[1])
+    node_list.append(node_list_pair)
+
+# first item is top
+node_list = sorted(node_list, key=lambda x: -x[1])
+
+for (i,pair) in enumerate(node_list):
+    if i>0 :
+        node_this = pair[0]
+        node_prev = node_list[i-1][0]
+        node_this.setInput(0, node_prev)]]></script>
+  </tool>
+
+  <tool name="merge by x" label="merge by x" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[parm_pane  = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
+node_merge = parm_pane.currentNode()
+node_list  = []
+
+for node in node_merge.inputs():
+    node_list_pair = []
+    node_list_pair.append(node)
+    node_list_pair.append(node.position()[0])
+    node_list.append(node_list_pair)
+
+# first item is left
+node_list = sorted(node_list, key=lambda x: x[1])
+
+for (i,pair) in enumerate(node_list):
+    node_merge.setInput(i, pair[0])]]></script>
+  </tool>
+
+  <tool name="parm UI" label="parm UI" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import re
+import qq_parm_ui
+
+  
+parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
+node = parm_pane.currentNode()
+parm = node.parm("snippet")
+snippet = parm.unexpandedString()
+snippet_updated = ''
+lines = snippet.split('\n')
+
+for (linenum, line) in enumerate(lines):
+    line_updated = qq_parm_ui.line_parse (node, line, linenum)
+    snippet_updated += line_updated
+    if linenum < len(lines)-1 : snippet_updated += '\n'
+
+node.parm("snippet").set(snippet_updated)]]></script>
+  </tool>
+
+  <tool name="tool_2" label="New Tool" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[]]></script>
+  </tool>
+
+  <tool name="fram_sel" label="fram_sel" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.SceneViewer)
+pane.curViewport().frameSelected()]]></script>
+  </tool>
+
+  <tool name="md" label="md" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import mistune
+print mistune.markdown('I am using **mistune markdown parser**')]]></script>
+  </tool>
+
+  <tool name="current" label="current" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
+node = hou.node("/obj/geo1/")
+
+parm_pane.setPwd(node)]]></script>
+  </tool>
+
+  <tool name="panel" label="panel" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[panel = hou.ui.curDesktop().createFloatingPanel(hou.paneTabType.NetworkEditor)
+tab = panel.panes()[0].tabs()[0]
+node = hou.node("/mat")
+
+tab.setPwd(node)
+
+#panel = hou.ui.curDesktop().createFloatingPanel(hou.paneTabType.NetworkEditor)
+#panel = hou.ui.curDesktop().createFloatingPaneTab(hou.paneTabType.NetworkEditor)
+#panel.setPwd(hou.node("/mat"))]]></script>
+  </tool>
+
+  <tool name="dialog" label="dialog" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[i, buff = hou.ui.readMultiInput(message = "Input framerange", input_labels = ("Start","End"), title="Bake object to world", buttons = ('Ok', 'Cancel'), default_choice = 0, close_choice = 1, initial_contents = ( str(1), str(2) )  )
+print i 
+print buff]]></script>
+  </tool>
+
+  <tool name="popwind" label="popwind1" icon="POP_wind">
+    <helpURL>operator:Dop/popwind</helpURL>
+    <toolMenuContext name="network">
+      <contextOpType>Dop/popwind</contextOpType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[
+import sys
+import toolutils
+
+outputitem = None
+inputindex = -1
+inputitem = None
+outputindex = -1
+
+num_args = 1
+h_extra_args = ''
+pane = toolutils.activePane(kwargs)
+if not isinstance(pane, hou.NetworkEditor):
+    pane = hou.ui.paneTabOfType(hou.paneTabType.NetworkEditor)
+    if pane is None:
+       hou.ui.displayMessage(
+               'Cannot create node: cannot find any network pane')
+       sys.exit(0)
+else: # We're creating this tool from the TAB menu inside a network editor
+    pane_node = pane.pwd()
+    if kwargs.has_key("outputnodename") and kwargs.has_key("inputindex"):
+        outputitem = pane_node.item(kwargs["outputnodename"])
+        inputindex = kwargs["inputindex"]
+        h_extra_args += 'set arg4 = "' + kwargs["outputnodename"] + '"\n'
+        h_extra_args += 'set arg5 = "' + str(inputindex) + '"\n'
+        num_args = 6
+    if kwargs.has_key("inputnodename") and kwargs.has_key("outputindex"):
+        inputitem = pane_node.item(kwargs["inputnodename"])
+        outputindex = kwargs["outputindex"]
+        h_extra_args += 'set arg6 = "' + kwargs["inputnodename"] + '"\n'
+        h_extra_args += 'set arg9 = "' + str(outputindex) + '"\n'
+        num_args = 9 
+    if kwargs.has_key("autoplace"):
+        autoplace = kwargs["autoplace"]
+    else:
+        autoplace = False
+    # If shift-clicked we want to auto append to the current
+    # node
+    if kwargs.has_key("shiftclick") and kwargs["shiftclick"]:
+        if inputitem is None:
+            inputitem = pane.currentNode()
+            outputindex = 0
+    if kwargs.has_key("nodepositionx") and             kwargs.has_key("nodepositiony"):
+        try:
+            pos = [ float( kwargs["nodepositionx"] ),
+                    float( kwargs["nodepositiony"] )]
+        except:
+            pos = None
+    else:
+        pos = None
+
+    if not autoplace and not pane.listMode():
+        if pos is not None:
+            pass
+        elif outputitem is None:
+            pos = pane.selectPosition(inputitem, outputindex, None, -1)
+        else:
+            pos = pane.selectPosition(inputitem, outputindex,
+                                      outputitem, inputindex)
+
+    if pos is not None:
+        if kwargs.has_key("node_bbox"):
+            size = kwargs["node_bbox"]
+            pos[0] -= size[0] / 2
+            pos[1] -= size[1] / 2
+        else:
+            pos[0] -= 0.573625
+            pos[1] -= 0.220625
+        h_extra_args += 'set arg2 = "' + str(pos[0]) + '"\n'
+        h_extra_args += 'set arg3 = "' + str(pos[1]) + '"\n'
+h_extra_args += 'set argc = "' + str(num_args) + '"\n'
+            
+pane_node = pane.pwd()
+child_type = pane_node.childTypeCategory().nodeTypes()
+
+if not child_type.has_key('popwind'):
+   hou.ui.displayMessage(
+           'Cannot create node: incompatible pane network type')
+   sys.exit(0)
+
+# First clear the node selection
+pane_node.setSelected(False, True)
+
+h_path = pane_node.path()
+h_preamble = 'set arg1 = "' + h_path + '"\n'
+h_cmd = r''' 
+if ($argc < 2 || "$arg2" == "") then
+   set arg2 = 0
+endif
+if ($argc < 3 || "$arg3" == "") then
+   set arg3 = 0
+endif
+# Automatically generated script
+# $arg1 - the path to add this node
+# $arg2 - x position of the tile
+# $arg3 - y position of the tile
+# $arg4 - input node to wire to
+# $arg5 - which input to wire to
+# $arg6 - output node to wire to
+# $arg7 - the type of this node
+# $arg8 - the node is an indirect input
+# $arg9 - index of output from $arg6
+
+\set noalias = 1
+set saved_path = `execute("oppwf")`
+opcf $arg1
+
+# Node $_obj_geo1_popnet_popwind1 (Dop/popwind)
+set _obj_geo1_popnet_popwind1 = `run("opadd -e -n -v popwind popwind1")`
+oplocate -x `$arg2 + 0` -y `$arg3 + 0` $_obj_geo1_popnet_popwind1
+opparm $_obj_geo1_popnet_popwind1 showguide ( on )
+opset -d on -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off $_obj_geo1_popnet_popwind1
+opexprlanguage -s hscript $_obj_geo1_popnet_popwind1
+opuserdata -n '___Version___' -v '' $_obj_geo1_popnet_popwind1
+opuserdata -n '___toolcount___' -v '2' $_obj_geo1_popnet_popwind1
+opuserdata -n '___toolid___' -v 'dynamics_popwind' $_obj_geo1_popnet_popwind1
+opset -p on $_obj_geo1_popnet_popwind1
+
+opcf $arg1
+
+set oidx = 0
+if ($argc >= 9 && "$arg9" != "") then
+    set oidx = $arg9
+endif
+
+if ($argc >= 5 && "$arg4" != "") then
+    set output = $_obj_geo1_popnet_popwind1
+    opwire -n $output -$arg5 $arg4
+endif
+if ($argc >= 6 && "$arg6" != "") then
+    set input = $_obj_geo1_popnet_popwind1
+    if ($arg8) then
+        opwire -n -i $arg6 -0 $input
+    else
+        opwire -n -o $oidx $arg6 -0 $input
+    endif
+endif
+opcf $saved_path
+'''
+hou.hscript(h_preamble + h_extra_args + h_cmd)
+]]></script>
+  </tool>
+
+  <tool name="select A" label="select A" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import hou
+import toolutils
+from PySide2 import QtGui, QtCore, QtWidgets
+
+
+def sel():
+    selection = toolutils.sceneViewer().selectGeometry(prompt='Select POINTS', sel_index=0,   \
+            allow_drag=False,  # drag and transform, we don't want that    \  
+            quick_select=True,     # select on mouse_up, immediately, don't expect to be accepted,   \
+            use_existing_selection=True, initial_selection = None,   \
+            initial_selection_type = None, ordered=False,   \
+            geometry_types=(hou.geometryType.Points,),   \
+            primitive_types=(), allow_obj_sel=True,   \
+            icon=None, label=None, prior_selection_paths=[],   \
+            prior_selection_ids=[], prior_selections=[],   \
+            allow_other_sops=True, consume_selections=True)
+    
+    
+    
+    node = selection.nodes()[0]
+    sel_geo = node.geometry()
+    sel_pattern = str(selection)
+    key_pressed = QtWidgets.QApplication.keyboardModifiers()
+
+    if key_pressed == QtCore.Qt.ShiftModifier:
+        print "shift"
+
+    if key_pressed == (QtCore.Qt.ControlModifier | QtCore.Qt.ShiftModifier) :
+        print "shift-ctrl"
+
+        
+    for sel_point in sel_geo.globPoints(sel_pattern):
+        try:
+            path_hda = sel_point.stringAttribValue("path_hda")
+            frame = sel_point.intAttribValue("frame")
+            print path_hda + "/" + str(frame)
+        except:
+            attributes_missing = 1
+
+
+    
+    # repeat
+    sel()
+    
+sel()
+
+
+
+
+
+]]></script>
+  </tool>
+
+  <tool name="bbox" label="bbox" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_sceneview
+pane = wf_sceneview.view_pane()
+
+node = hou.node('/obj/geo1/file1')
+geo = node.geometry()
+bba = geo.boundingBox()
+
+
+node = hou.node('/obj/geo1/transform1')
+geo = node.geometry()
+bbb = geo.boundingBox()
+
+
+bba.enlargeToContain(bbb) 
+
+
+pane.curViewport().frameBoundingBox(bba)
+
+print bba]]></script>
+  </tool>
+
+  <tool name="snippet parm" label="snippet parm" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[    try:
+        snippet = node.parm("snippet")
+        actualcode = snippet.unexpandedString()
+    except:
+        snippet = node.parm("code")
+        actualcode = snippet.unexpandedString()
+        ]]></script>
+  </tool>
+
+  <tool name="merge" label="merge" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[
+def create_node(type) :
+    nodes = hou.selectedNodes()
+    connections = hou.selectedConnections()
+
+
+    
+    if nodes :
+        if type == 'merge' or type == 'switch' :
+            # one node, multiple inputs
+            node_create = nodes[0].parent().createNode( type )
+            for node in nodes:
+                node_create.setNextInput(node)
+            node_create.moveToGoodPosition(relative_to_inputs=True, move_inputs=False, move_outputs=True, move_unconnected=False)
+    
+        if type == 'null' :
+            # one node, multiple inputs
+            
+            for node in nodes:
+                node_create = node.createOutputNode( type )
+                node_create.moveToGoodPosition(relative_to_inputs=True, move_inputs=False, move_outputs=True, move_unconnected=False)
+            
+    if connections :
+        for connection in connections :
+            node_up = connection.inputNode()
+            node_dn = connection.outputNode()
+            node_create = node_dn.createInputNode(0, type )
+            node_create.setNextInput(node_up)
+            node_create.moveToGoodPosition(relative_to_inputs=False, move_inputs=False, move_outputs=True, move_unconnected=False)
+
+            
+create_node('null')]]></script>
+  </tool>
+
+  <shelfSetEdit name="shelf_set_2" fileLocation="C:/PROGRA~1/SIDEEF~1/HOUDIN~1.439/houdini/toolbar\ShelfDefinitions.master_shelf">
+    <addMemberToolshelf name="tests" inPosition="17"/>
+    <addMemberToolshelf name="Redshift" inPosition="18"/>
+  </shelfSetEdit>
+
+  <toolshelfEdit name="lights_and_cameras" fileLocation="C:/PROGRA~1/SIDEEF~1/HOUDIN~1.439/houdini/toolbar\ShelfDefinitions.shelf">
+    <addMemberTool name="popwind" inPosition="17"/>
+  </toolshelfEdit>
+</shelfDocument>
