@@ -11,9 +11,9 @@
     - twelve shelves (`wf_chaneditor.shelf`, `wf_render.shelf`, etc.)
 - each shelve contains tools, and each tool calls a specific function
 - some of the tools have their hotkey, other are accessible by the TAB menu
-&nbsp;
-&nbsp;
-&nbsp;
+&nbsp;  
+&nbsp;  
+&nbsp;  
 #### python2.7libs
 - this folder contains python functions
 - here is described what each function does: 
