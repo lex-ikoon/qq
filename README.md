@@ -21,9 +21,9 @@
   - http://lex.ikoon.cz/network_ui
   - etc.
 - this folder is **necessary** for the shelf (toolbar) to work
-  
-  
-  
+&nbsp;  
+&nbsp;  
+&nbsp;  
 #### vex
 - this folder contains:
   - `uber.vfl` - a source for "uber parse" as described here: http://lex.ikoon.cz/vex-uber-parse
@@ -32,22 +32,22 @@
   - `snippets.db` - library of snippets
   - `helpcard.txt` - just a helpcard
 - this folder is **not** necessary for the shelf to work
-&nbsp;
-&nbsp;
-&nbsp;
+&nbsp;  
+&nbsp;  
+&nbsp;  
 #### Houdini.keymap.overrides
 - this file is set of my custom hotkeys
 - You probably dont want to import the file 1:1 as it is. I recommend you to look inside the file and check it.
 - this folder is **not** necessary for the shelf to work
-&nbsp;
-&nbsp;
-&nbsp;
+&nbsp;  
+&nbsp;  
+&nbsp;  
 #### PARMmenu.xml
 - this file customizes the Parameter context menu (right click on any Parameter)
 - this folder is **not** necessary for the shelf to work
-&nbsp;
-&nbsp;
-&nbsp;
+&nbsp;  
+&nbsp;  
+&nbsp;  
 # instalation
 - copy the files (which you really want) into `$HOUDINI_USER_PREF_DIR`
 - on Windows it is typically `C:\Users\your_user_name\Documents\houdini16.5`
