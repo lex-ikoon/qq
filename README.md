@@ -29,10 +29,13 @@
 
 #### Houdini.keymap.overrides
 - this file is set of my custom hotkeys
+- You probably dont want to import the file 1:1 as it is. I recommend you to look inside the file and check it.
 
 #### PARMmenu.xml
 - this file customizes the Parameter context menu (right click on any Parameter)
 
 # instalation
-- copy the files into `$HOUDINI_USER_PREF_DIR`
+- copy the files (which you really want) into `$HOUDINI_USER_PREF_DIR`
 - on Windows it is typically `C:\Users\your_user_name\Documents\houdini16.5`
+- if you copied the `toolbar` folder, you can enable the shelf as in this gif:
+![enable-shelf](http://lex.ikoon.cz/images/install/enable-shelf.gif)
