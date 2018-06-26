@@ -21,9 +21,9 @@
   - http://lex.ikoon.cz/network_ui
   - etc.
 - this folder is **necessary** for the shelf (toolbar) to work
-&nbsp;
-&nbsp;
-&nbsp;
+  
+  
+  
 #### vex
 - this folder contains:
   - `uber.vfl` - a source for "uber parse" as described here: http://lex.ikoon.cz/vex-uber-parse
