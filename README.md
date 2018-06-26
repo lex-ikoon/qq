@@ -1,6 +1,6 @@
 *This repository is described here: http://lex.ikoon.cz*
 
-*I hope that some of the python or VEX functions will help you. Some of them are mine, some of them are collected and I [THANK YOU](http://lex.ikoon.cz/thanks/) very much, all the authors and great community. I could not do this without you. I will record a video description asap.*
+*I hope that some of the Python or VEX functions will help you. Some of them are mine, some of them are collected and I [THANK YOU](http://lex.ikoon.cz/thanks/) very much, all the authors and great community. I could not do this without you. I will record a video description asap.*
 
 
 # files and folders 
