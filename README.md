@@ -53,6 +53,6 @@
 - copy the files (which you really want) into `$HOUDINI_USER_PREF_DIR`
 - on Windows it is typically `C:\Users\your_user_name\Documents\houdini16.5`
 - restart Houdini
-- if you copied the `toolbar` and `python2.7libs` folder, you can enable the shelf as in this gif (`Shelf Sets > workflow__set`)
+- if you copied the `toolbar` and `python2.7libs` folder, you can enable the shelf as in this gif <br>(`Shelf Sets > workflow__set`)
 
 ![enable-shelf](http://lex.ikoon.cz/images/install/enable-shelf.gif)
