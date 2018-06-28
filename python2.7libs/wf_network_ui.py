@@ -6,7 +6,7 @@ import wf_midi
 reload (wf_midi)
 
 def node_global () :
-    color = hou.color(0.0, 0.0, 0.0)
+    color = hou.Color(0.0, 0.0, 0.0)
     path = "/obj/global"
     name = "global"
     
@@ -15,10 +15,10 @@ def node_global () :
         return hou.node(path)
     else :
         existed = 0
-        node_global = hou.node("/obj").createnode('null',name)
-        node_global.movetogoodposition()
-        node_global.setuserdata("nodeshape", "circle")
-        node_global.setcolor(color)
+        node_global = hou.node("/obj").createNode('null',name)
+        node_global.moveToGoodPosition()
+        node_global.setUserData("nodeshape", "circle")
+        node_global.setColor(color)
         return node_global
 
 
