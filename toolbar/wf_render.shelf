@@ -9,19 +9,14 @@
     <memberTool name="render_start"/>
     <memberTool name="render_kill"/>
     <memberTool name="wf_render_take_from_name"/>
+    <memberTool name="wf_create_ogl_rop"/>
+    <memberTool name="wf_batch_script_rop"/>
+    <memberTool name="wf_create_rs_rop"/>
   </toolshelf>
 
   <tool name="wf_render_take_from_name" label="wf render take from name" icon="PLASMA_App">
     <toolMenuContext name="network">
       <contextNetType>OBJ</contextNetType>
-      <contextNetType>SOP</contextNetType>
-      <contextNetType>CHOP</contextNetType>
-      <contextNetType>ROP</contextNetType>
-      <contextNetType>SHOP</contextNetType>
-      <contextNetType>COP2</contextNetType>
-      <contextNetType>VOP</contextNetType>
-      <contextNetType>VOPNET</contextNetType>
-      <contextNetType>DOP</contextNetType>
     </toolMenuContext>
     <toolSubmenu>_workflow</toolSubmenu>
     <script scriptType="python"><![CDATA[import wf_render
@@ -39,5 +34,35 @@ wf_render.kill()]]></script>
     <script scriptType="python"><![CDATA[import wf_render
 #reload(wf_render)
 wf_render.start()]]></script>
+  </tool>
+
+  <tool name="wf_create_ogl_rop" label="wf create ogl rop" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>_workflow</toolSubmenu>
+    <script scriptType="python"><![CDATA[import wf_render
+reload(wf_render)
+wf_render.create_ogl_rop()]]></script>
+  </tool>
+
+  <tool name="wf_batch_script_rop" label="wf batch script rop" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>ROP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>_workflow</toolSubmenu>
+    <script scriptType="python"><![CDATA[import wf_render
+reload(wf_render)
+wf_render.batch_script_rop()]]></script>
+  </tool>
+
+  <tool name="wf_create_rs_rop" label="wf create rs rop" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>_workflow</toolSubmenu>
+    <script scriptType="python"><![CDATA[import wf_render
+reload(wf_render)
+wf_render.create_rs_rop()]]></script>
   </tool>
 </shelfDocument>

@@ -8,6 +8,11 @@
   <toolshelf name="wf_network_connection" label="wf_network_connection">
     <memberTool name="wf_network_connection_sort_by_x"/>
     <memberTool name="wf_network_connection_create_by_y"/>
+    <memberTool name="toggle_dependencies"/>
+    <memberTool name="go_up"/>
+    <memberTool name="go_down"/>
+    <memberTool name="go_left"/>
+    <memberTool name="go_right"/>
   </toolshelf>
 
   <tool name="wf_network_connection_sort_by_x" label="wf network connection sort by x" icon="PLASMA_App">
@@ -44,5 +49,35 @@ wf_network_connection.sort_by_x()]]></script>
     <script scriptType="python"><![CDATA[import wf_network_connection
 #reload(wf_network_connection)
 wf_network_connection.create_by_y()]]></script>
+  </tool>
+
+  <tool name="toggle_dependencies" label="toggle_dependencies" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_connection
+reload(wf_network_connection)
+wf_network_connection.toggle_dependencies()]]></script>
+  </tool>
+
+  <tool name="go_up" label="go_up" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_connection
+reload(wf_network_connection)
+wf_network_connection.selection_go([0,1])]]></script>
+  </tool>
+
+  <tool name="go_down" label="go_down" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_connection
+reload(wf_network_connection)
+wf_network_connection.selection_go([0,-1])]]></script>
+  </tool>
+
+  <tool name="go_left" label="go_left" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_connection
+reload(wf_network_connection)
+wf_network_connection.selection_go([-1,0])]]></script>
+  </tool>
+
+  <tool name="go_right" label="go_right" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_connection
+reload(wf_network_connection)
+wf_network_connection.selection_go([1,0])]]></script>
   </tool>
 </shelfDocument>

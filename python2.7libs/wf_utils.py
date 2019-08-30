@@ -10,7 +10,8 @@ def xml_for_wordpress ():
     dir_py   = "python2.7libs/" 
 
     py_begin = '''<h2>source code</h2>
-    the following code is maintained also on my <a href="https://github.com/lex-ikoon/qq">github</a>
+    the following code is maintained also on my <a href="https://github.com/lex-ikoon/qq">github</a><br>
+    <a href="http://lex.ikoon.cz/thanks">thank you, great people</a>, I couldn't do this without you.
     <pre class="EnlighterJSRAW" data-enlighter-language="null">'''
     py_end = '</pre>'
 
@@ -85,21 +86,25 @@ def xml_for_wordpress ():
 
 
 def collect_for_github() :
+
     #################################
     #####     copy files     ########
     #################################
 
     from shutil import copyfile
 
-    root       = "C:/Users/info/OneDrive/Documents/houdini16.5/"
+    root       = "Q:/_houdini17.5/"
     git        = "_git/qq/"
 
     src_py     = "python2.7libs/"
-    src_readme = "python2.7libs/" 
     src_shelf  = "toolbar/"
-
+        
     files = []
+    files.append ("_set")
+    files.append ("hotkeys")
     files.append ("chaneditor")
+    files.append ("midi")
+    files.append ("music")
     files.append ("network_connection")
     files.append ("network_kwargs")
     files.append ("network_layout")
@@ -109,7 +114,7 @@ def collect_for_github() :
     files.append ("network_utils")
     files.append ("render")
     files.append ("sceneview")
-    files.append ("selected")
+    files.append ("selection")
     files.append ("timeline")
     files.append ("utils")
 
@@ -117,69 +122,56 @@ def collect_for_github() :
     for file in files :
 
         # py
-        src = root + src_py + "wf_" + file + ".py"
-        dst = root + git + file + "/wf_" + file + ".py"
-        if file == "network_ui_ramp_lib" :
-            dst = root + git + "network_ui/wf_" + file + ".py"
-        copyfile(src, dst)
-
-        # readme
-        src = root + src_readme + "wf_" + file + ".md"
-        dst = root + git + file + "/readme.md"
-        if file == "network_ui_ramp_lib" :
-            dst = root + git + "network_ui/readme_ramp_lib.md"
-        copyfile(src, dst)
+        try :
+            src = root + src_py + "wf_" + file + ".py"
+            dst = root + git + src_py   + "wf_" + file + ".py"
+            copyfile(src, dst)
+        except :
+            pass
 
         # shelf
-        if file == "network_ui_ramp_lib" :
-            file = "network_ui"
-        src = root + src_shelf + "wf_" + file + ".shelf"
-        dst = root + git + file + "/wf_" + file + ".shelf"
-        copyfile(src, dst)
+        try :
+            src = root + src_shelf + "wf_" + file + ".shelf"
+            dst = root + git + src_shelf + "/wf_" + file + ".shelf"
+            copyfile(src, dst)
+        except :
+            pass
 
 
     #################################
-    ###     create blog  files    ###
+    #####     vex and other    ######
     #################################
 
-    from shutil import copyfile
+    files_src = []
+    files_dst = []
 
-    root       = "C:/Users/info/OneDrive/Documents/houdini16.5/"
-    git        = "_git/qq/"
+    files_src.append ("Q:/_houdini17.5/vex/include/helpcard.txt")
+    files_dst.append ("Q:/_houdini17.5/_git/qq/vex/include/helpcard.txt")
 
-    src_py     = "python2.7libs/"
-    src_md = "python2.7libs/" 
+    files_src.append ("Q:/_houdini17.5/vex/include/qq.vfl")
+    files_dst.append ("Q:/_houdini17.5/_git/qq/vex/include/qq.vfl")
 
-    files = []
-    files.append ("chaneditor")
-    files.append ("network_connection")
-    files.append ("network_kwargs")
-    files.append ("network_layout")
-    files.append ("network_parm")
-    files.append ("network_ui")
-    files.append ("network_ui_ramp_lib")
-    files.append ("network_utils")
-    files.append ("render")
-    files.append ("sceneview")
-    files.append ("selected")
-    files.append ("timeline")
-    files.append ("utils")
+    files_src.append ("Q:/_houdini17.5/vex/include/snippets.db")
+    files_dst.append ("Q:/_houdini17.5/_git/qq/vex/include/snippets.db")
 
+    files_src.append ("Q:/_houdini17.5/vex/include/triggers.db")
+    files_dst.append ("Q:/_houdini17.5/_git/qq/vex/include/triggers.db")
 
-    for file in files :
+    files_src.append ("Q:/_houdini17.5/vex/include/uber.vfl")
+    files_dst.append ("Q:/_houdini17.5/_git/qq/vex/include/uber.vfl")
 
-        # py
-        src = root + src_py + "wf_" + file + ".py"
-        dst = root + git + file + "/wf_" + file + ".py"
-        if file == "network_ui_ramp_lib" :
-            dst = root + git + "network_ui/wf_" + file + ".py"
-        copyfile(src, dst)
+    files_src.append ("Q:/_houdini17.5/PARMmenu.xml")
+    files_dst.append ("Q:/_houdini17.5/_git/qq/PARMmenu.xml")
 
-        # readme
-        src = root + src_md + "wf_" + file + ".md"
-        dst = root + git + file + "/readme.md"
-        if file == "network_ui_ramp_lib" :
-            dst = root + git + "network_ui/readme_ramp_lib.md"
-        copyfile(src, dst)
+    files_src.append ("C:/Users/info/OneDrive/Documents/houdini17.5/Houdini.keymap.overrides")
+    files_dst.append ("Q:/_houdini17.5/_git/qq/Houdini.keymap.overrides")
 
 
+
+    for counter, file in enumerate(files_src):
+        try :
+            src = file
+            dst = files_dst[counter]
+            copyfile(src, dst)
+        except :
+            pass

@@ -59,9 +59,22 @@ def toggle_ghostother () :
     else:            view_ghost = "0"
     hou.putenv("view_ghost", view_ghost)
 
-    script = "vieweroption -a " + view_ghost + " %s`run('viewls -n')`"
+    #script = "vieweroption -a " + view_ghost + " %s`run('viewls -n')`"
+    script = "vieweroption -a " + view_ghost + " `run('viewls -n')`"
+    #print script
     hou.hscript(script)
-    
+
+
+def toggle_maskoverlay () :
+
+    view_maskoverlay = hou.getenv("view_maskoverlay", "1.0")
+    if view_maskoverlay == "1.0": view_maskoverlay = "0.4"
+    else:            view_maskoverlay = "1.0"
+    hou.putenv("view_maskoverlay", view_maskoverlay)
+
+    # hou.hscript('viewmaskoverlay -o 1.0 *')
+    script = "viewmaskoverlay -o " + view_maskoverlay + " *"
+    hou.hscript(script)  
 
 def toggle_objectselection () :
     panes = hou.ui.currentPaneTabs()
@@ -70,6 +83,8 @@ def toggle_objectselection () :
             guide = hou.viewportGuide.ObjectSelection
             val = pane.curViewport().settings().guideEnabled(guide)
             pane.curViewport().settings().enableGuide(guide, not val)
+            # just a test:
+            # pane.curViewport().settings().setVisibleObjects("name*")
 
 
 def toggle_constructionplane () :

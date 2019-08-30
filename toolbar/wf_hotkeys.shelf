@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="wf_hotkeys" label="wf_hotkeys">
+    <memberTool name="hk_z"/>
+    <memberTool name="hk_z_shift"/>
+    <memberTool name="hk_pgup"/>
+    <memberTool name="hk_pgdn"/>
+    <memberTool name="hk_pgup_ctrl"/>
+    <memberTool name="hk_pgup_shift"/>
+    <memberTool name="hk_pgdn_ctrl"/>
+    <memberTool name="hk_pgdn_shift"/>
+    <memberTool name="hk_del_ctrl"/>
+    <memberTool name="hk_enter_alt"/>
+    <memberTool name="hk_enter_ctrl_shift"/>
+    <memberTool name="hk_ins"/>
+    <memberTool name="hk_ins_shift"/>
+    <memberTool name="hk_ins_ctrl"/>
+    <memberTool name="hk_ins_ctrl_shift"/>
+    <memberTool name="hk_f_alt"/>
+    <memberTool name="hk_right_ctrl_shift"/>
+    <memberTool name="hk_left_ctrl_shift"/>
+    <memberTool name="hk_j"/>
+  </toolshelf>
+
+  <tool name="hk_z" label="hk_z" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_z()]]></script>
+  </tool>
+
+  <tool name="hk_z_shift" label="hk_z_shift" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_z_shift()]]></script>
+  </tool>
+
+  <tool name="hk_pgup" label="hk_pgup" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_pgup()]]></script>
+  </tool>
+
+  <tool name="hk_pgdn" label="hk_pgdn" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_pgdn()]]></script>
+  </tool>
+
+  <tool name="hk_pgup_shift" label="hk_pgup_shift" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_pgup_shift()]]></script>
+  </tool>
+
+  <tool name="hk_pgdn_shift" label="hk_pgdn_shift" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_pgdn_shift()]]></script>
+  </tool>
+
+  <tool name="hk_pgup_ctrl" label="hk_pgup_ctrl" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_pgup_ctrl()]]></script>
+  </tool>
+
+  <tool name="hk_pgdn_ctrl" label="hk_pgdn_ctrl" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_pgdn_ctrl()]]></script>
+  </tool>
+
+  <tool name="hk_enter_alt" label="hk_enter_alt" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_enter_alt()]]></script>
+  </tool>
+
+  <tool name="hk_enter_ctrl_shift" label="hk_enter_ctrl_shift" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_enter_ctrl_shift()]]></script>
+  </tool>
+
+  <tool name="hk_del_ctrl" label="hk_del_ctrl" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_del_ctrl()]]></script>
+  </tool>
+
+  <tool name="hk_ins" label="hk_ins" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_ins()]]></script>
+  </tool>
+
+  <tool name="hk_ins_ctrl" label="hk_ins_ctrl" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_ins_ctrl()]]></script>
+  </tool>
+
+  <tool name="hk_ins_ctrl_shift" label="hk_ins_ctrl_shift" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_ins_ctrl_shift()]]></script>
+  </tool>
+
+  <tool name="hk_f_alt" label="hk_f_alt" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_f_alt()]]></script>
+  </tool>
+
+  <tool name="hk_left_ctrl_shift" label="hk_left_ctrl_shift" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_left_ctrl_shift()]]></script>
+  </tool>
+
+  <tool name="hk_right_ctrl_shift" label="hk_right_ctrl_shift" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_right_ctrl_shift()]]></script>
+  </tool>
+
+  <tool name="hk_ins_shift" label="hk_ins_shift" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_ins_shift()]]></script>
+  </tool>
+
+  <tool name="hk_j" label="hk_j" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_j()]]></script>
+  </tool>
+</shelfDocument>

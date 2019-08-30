@@ -24,10 +24,11 @@ int preview (int preview_toggle; int value_preview, value_final)
 
 
 //DON'T EDIT THIS FILE, IT GETS OVERWRITTEN BY A SCRIPT
-void clamp01(float value)
+float clamp01(float value)
 {
-    value = clamp(value,0,1);    
+    return clamp(value,0,1);    
 }
+
 
 
 
@@ -154,7 +155,7 @@ void distort_ease(float dimension, ease)
 
 
 //DON'T EDIT THIS FILE, IT GETS OVERWRITTEN BY A SCRIPT
-void distort_noise(float dimension, noise, limit_impact; string channel)
+void distort_noise(float dimension, noise; int limit_impact; string channel)
 {
     float impact = chramp(channel, dimension);
 
@@ -233,6 +234,21 @@ float coord_midi(string name; float pitch, time)
 
 
 
+//DON'T EDIT THIS FILE, IT GETS OVERWRITTEN BY A SCRIPT
+float coord_music(string track, array; int pitch, clone, frame)
+{
+    float  amp;
+    string path    = "op:/obj/music/tracks/" + track + "/vex/" + array;
+    int    pitches = detail(path,"track_pitches",0);
+    int    first   = detail(path,"array_frame_first",0);
+    int    prim    = pitch + (clone * pitches);
+    vector vertex  = vertex(path, "P", prim, frame-first);
+           amp     = vertex[1];
+    return amp;
+}
+
+
+
 
 //DON'T EDIT THIS FILE, IT GETS OVERWRITTEN BY A SCRIPT
 float fill_to_coord(float dimension, coord, feather_spread) //clamped
@@ -266,6 +282,11 @@ float fill_to_coord(float dimension, coord, feather_spread) //clamped
 float geo_line_u (int geometry, ptnum)
 {
     
+    // TODO
+    // int vtx = vertexprimindex(0, @vtxnum);
+    // int nvtx = primvertexcount(0, @primnum);
+    // f@u = (float)vtx/(@numvtx-1);
+
     int linvert   = pointvertex (geometry, ptnum);
     int vertex    = vertexprimindex (geometry, linvert);
     int primnum[] = pointprims (geometry, ptnum);
@@ -283,16 +304,15 @@ float geo_line_u (int geometry, ptnum)
 void geo_carve_point (int geometry, primnum; float u)
 {
     int oldprim = primnum;
-    int newprim = addprim(geometry, "polyline");
     vector pos  = primuv(0, "P", primnum, set(u,0,0));
     vector N    = primuv(0, "N", primnum, set(u,0,0));
     vector up   = primuv(0, "up", primnum, set(u,0,0));
     
-    int ptnum   = addpoint(newprim, pos);
-    int vertex  = addvertex(0, newprim, ptnum);
+    int ptnum   = addpoint(0, pos);
 
     setpointattrib(0, "N", ptnum, N, "set");
     setpointattrib(0, "up", ptnum, up, "set");
+    setpointattrib(0, "u", ptnum, u, "set");
     
     removeprim  (geometry, oldprim, 1);
 }
@@ -331,7 +351,8 @@ void geo_carve_line (int geometry, primnum; float start, end)
     if (start<end){
     
         int newprim = addprim(geometry, "polyline");
-        
+        setprimattrib(0, "newprim", newprim, primnum, "set");        
+
         //new point at start
         createpoint(newprim, getlinepos(oldprim, start));
                 
@@ -359,8 +380,10 @@ void geo_carve_line (int geometry, primnum; float start, end)
 
     if (start>end){
 
-        int newprim;
-        newprim = addprim(geometry, "polyline");
+
+
+        int newprim_beg = addprim(geometry, "polyline");
+        setprimattrib(0, "newprim", newprim_beg, primnum, "set");
         
         //from prim
         int startvert, endvert;
@@ -371,15 +394,17 @@ void geo_carve_line (int geometry, primnum; float start, end)
         for (int i = 0; i < endvert; i++)
         {
             vector vertpos = vertex(geometry, "P", oldprim, i);
-            createpoint(newprim, vertpos);
+            createpoint(newprim_beg, vertpos);
         }
         
         //new point at end
-        createpoint(newprim, getlinepos(oldprim, end));
+        createpoint(newprim_beg, getlinepos(oldprim, end));
         
         //new point at start
-        newprim = addprim(geometry, "polyline");
-        createpoint(newprim, getlinepos(oldprim, start));
+        int newprim_end = addprim(geometry, "polyline");
+        setprimattrib(0, "newprim", newprim_end, primnum, "set");
+
+        createpoint(newprim_end, getlinepos(oldprim, start));
         
         //from prim
         for (int i = startvert; i <= segments; i++)
@@ -393,7 +418,7 @@ void geo_carve_line (int geometry, primnum; float start, end)
                 // usual point
                 vertpos = vertex(geometry, "P", oldprim, i);
             }
-            createpoint(newprim, vertpos);
+            createpoint(newprim_end, vertpos);
         }
     }
 
@@ -402,9 +427,9 @@ void geo_carve_line (int geometry, primnum; float start, end)
 
     removeprim(geometry, oldprim, 1);
 
+    //return newprim;
+
 }
-
-
 
 
 
@@ -686,14 +711,14 @@ float time_snap(int frame_current, frame_snap, smooth_frames; float value_at_sna
     {
         range_start = frame_snap;
         range_end   = min(frame_current, frame_1);
-        sign        = 1;
+        sign        = 1.0;
     }
 
     if (frame_current < frame_snap && smooth_frames < 0)
     {
         range_start = max(frame_current, frame_0);
         range_end   = frame_snap;
-        sign        = -1;
+        sign        = -1.0;
     }
 
     float distance_smooth = 0;
@@ -977,7 +1002,7 @@ vector noise_vanim (float px, py, pz , f, fx, fy, fz, s, sx, sy, sz, ox, oy, oz,
 
 
 //DON'T EDIT THIS FILE, IT GETS OVERWRITTEN BY A SCRIPT
-float noise_fstat ( float pos, f, offset, turb, rough, atten, amp )
+float noise_fstat ( float pos, f, offset; int turb; float rough, atten, amp )
 {
 
     float sample = pos * f - offset;
@@ -1014,6 +1039,11 @@ float noise_fanim ( float px, py, f, sx, sy, ox, oy, time; int turb; float rough
     return noise_x;
 
 }
+
+
+
+
+
 
 
 

@@ -18,13 +18,29 @@
   <tool name="qq_expand" label="qq_expand" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_ui
 reload(wf_network_ui)
-wf_network_ui.qq_expand()]]></script>
+
+parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
+node = parm_pane.currentNode()
+
+for parm_code in node.parms() :
+    try:
+        wf_network_ui.qq_expand(node,parm_code)
+    except:
+        notcode = 1]]></script>
   </tool>
 
   <tool name="parm_generate" label="parm_generate" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_ui
 reload(wf_network_ui)
-wf_network_ui.parm_generate()]]></script>
+
+parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
+node = parm_pane.currentNode()
+
+for parm_code in node.parms() :
+    try:
+        wf_network_ui.parm_generate(node,parm_code)
+    except:
+        notcode = 1]]></script>
   </tool>
 
   <tool name="parm_clean" label="parm_clean" icon="PLASMA_App">

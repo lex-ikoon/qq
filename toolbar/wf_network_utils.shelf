@@ -13,12 +13,13 @@
     <memberTool name="create_node_transform"/>
     <memberTool name="create_node_awrangle"/>
     <memberTool name="create_node_merge"/>
+    <memberTool name="create_geo"/>
     <memberTool name="collect_by_name"/>
+    <memberTool name="find_parm"/>
+    <memberTool name="batch create geo"/>
+    <memberTool name="selection_switch"/>
+    <memberTool name="qrender hqueue render"/>
   </toolshelf>
-
-  <tool name="recook_container_old" label="recook_container_old" icon="PLASMA_App">
-    <script scriptType="python"><![CDATA[]]></script>
-  </tool>
 
   <tool name="recook_container" label="qq recook container" icon="PLASMA_App">
     <toolMenuContext name="network">
@@ -109,5 +110,40 @@ for node_src in nodes :
     path_src = node_src.path()
     parm = node_mrg.parm("objpath1")
     parm.set(path_src)]]></script>
+  </tool>
+
+  <tool name="find_parm" label="find_parm" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_utils
+reload(wf_network_utils)
+wf_network_utils.find_parm(None)]]></script>
+  </tool>
+
+  <tool name="batch create geo" label="batch create geo" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[array=['bripfloor','cripdepth','dmeshdepth','ebigleft','ebigright','fhead','ghair','hheaddisp','iblobs','jink','kraindrops','krainrip','ldropsrotate','lmaelstrom','mballmesh','nballwinleft','nballwinright','owindpara','paquarium','qcrown','rflower','ssemen','aripall']
+for name_mrg in array :
+    hou.node('/obj').createNode('geo',name_mrg)
+
+]]></script>
+  </tool>
+
+  <tool name="create_geo" label="create_geo" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_utils
+reload(wf_network_utils)
+wf_network_utils.create_node('geo')]]></script>
+  </tool>
+
+  <tool name="selection_switch" label="selection_switch" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_utils
+reload(wf_network_utils)
+wf_network_utils.selection_switch()]]></script>
+  </tool>
+
+  <tool name="qrender hqueue render" label="qrender hqueue render" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>ROP</contextNetType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[import wf_network_utils
+reload(wf_network_utils)
+wf_network_utils.create_hqueue_render()]]></script>
   </tool>
 </shelfDocument>

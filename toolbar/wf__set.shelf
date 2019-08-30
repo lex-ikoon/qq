@@ -15,8 +15,9 @@
     <memberToolshelf name="wf_network_utils"/>
     <memberToolshelf name="wf_render"/>
     <memberToolshelf name="wf_sceneview"/>
-    <memberToolshelf name="wf_selected"/>
+    <memberToolshelf name="wf_selection"/>
     <memberToolshelf name="wf_timeline"/>
     <memberToolshelf name="wf_utils"/>
+    <memberToolshelf name="wf_hotkeys"/>
   </shelfSet>
 </shelfDocument>

@@ -1,7 +1,7 @@
 (lp0
 S'//-------\nint   preview_toggle = chi("preview_toggle"); // toggle parent\n//-------\nfloat value_preview  = chf("value_preview"); // 0.5 in 0.0 to 1.0\nfloat value_final    = chf("value_final");   // 0.5 in 0.0 to 1.0\n\nint value_preview    = chi("value_preview"); // 1 in 0 to 10\nint value_final      = chi("value_final");   // 1 in 0 to 10\n\npreview( preview_toggle, value_preview, value_final);'
 p1
-aS'clamp01(val);'
+aS'clamp01(val);\n\nvoid clamp01(float value)\n{\n    value = clamp(value,0,1);    \n}'
 p2
 aS'string = ftoa(float)'
 p3
@@ -29,114 +29,126 @@ aS'// UI\n//----\nstring segment_attname = chs("name"); // letters etc.\nstring 
 p14
 aS'int    pitch = 0;\n\n@Cd = coord_midi("midi_beat", pitch, @Frame);'
 p15
-aS'float dimension = @dim_falloff;\nfloat coord = @coord;\nfloat feather_spread = chf("feather_spread"); // 0.5 in 0 to 1\n\nfloat fill = fill_to_coord(dimension, coord, feather_spread);'
+aS'string track = "beat";\nstring array = "posamp"; //preamp, poslin, prelin\nint    pitch = 0;\nint    clone = 0;\nint    frame = int(@Frame);\n\nfloat amp = coord_music(track, array, pitch, clone, frame);\n@Cd *= amp;'
 p16
-aS'float u = geo_line_u (0, @ptnum);'
+aS'float dimension = @dim_falloff;\nfloat coord = @coord;\nfloat feather_spread = chf("feather_spread"); // 0.5 in 0 to 1\n\nfloat fill = fill_to_coord(dimension, coord, feather_spread);'
 p17
-aS'int geometry = 0;\nint primnum  = @primnum;\nfloat u      = (@Time*0.1*random(@primnum)+random(@primnum)) %1;\n\n// reads and sets N, up\ngeo_carve_point (geometry, primnum, u);'
+aS'float u = geo_line_u (0, @ptnum);'
 p18
-aS'int geometry = 0;\nint primnum  = @primnum;\n\nfloat offset = @Time;\nfloat start = (0.0 + offset) %1;\nfloat end   = (0.1 + offset) %1;\n\n\ngeo_carve_line (geometry, primnum, start, end);'
+aS'int geometry = 0;\nint primnum  = @primnum;\nfloat u      = (@Time*0.1*random(@primnum)+random(@primnum)) %1;\n\n// reads and sets N, up\n// sets f@u\n\ngeo_carve_point (geometry, primnum, u);'
 p19
-aS'int geometry = 0;\n\n  vector farthest_point_from = point(1,"P",0);\n//vector farthest_point_from = chv("farthest_point_from");\n\ngeo_farthest_point_position (geometry, farthest_point_from);'
+aS'int geometry = 0;\nint primnum  = @primnum;\n\nfloat offset = @Time;\nfloat start = (0.0 + offset) %1;\nfloat end   = (0.1 + offset) %1;\n\n\ngeo_carve_line (geometry, primnum, start, end);'
 p20
-aS'int geometry = 0;\n\n  vector farthest_distance_from = point(1,"P",0);\n//vector farthest_distance_from = chv("farthest_distance_from");\n\ngeo_farthest_point_distance (geometry, farthest_distance_from);'
+aS'int geometry = 0;\n\n  vector farthest_point_from = point(1,"P",0);\n//vector farthest_point_from = chv("farthest_point_from");\n\ngeo_farthest_point_position (geometry, farthest_point_from);'
 p21
-aS'// geo can be number or /obj/geo/out\nstring surface_geo = chs("surface_geo"); // node\nint surface_geo    = 0;\nvector from        = @P;\n\nvector closest = geo_closest_point_position_input(surface_geo, from);'
+aS'int geometry = 0;\n\n  vector farthest_distance_from = point(1,"P",0);\n//vector farthest_distance_from = chv("farthest_distance_from");\n\ngeo_farthest_point_distance (geometry, farthest_distance_from);'
 p22
-aS'int geometry = 0;\n\nvector direction_from = point(1,"P",0);\nvector direction_to = point(1,"P",1);\n\n//vector direction_from = chv("direction_from");\n//vector direction_to   = chv("direction_to");\n\nvector result_from;\nvector result_to;\n\n\ngeo_bounding_vector (geometry, direction_from, direction_to, result_from, result_to);'
+aS'// geo can be number or /obj/geo/out\nstring surface_geo = chs("surface_geo"); // node\nint surface_geo    = 0;\nvector from        = @P;\n\nvector closest = geo_closest_point_position_input(surface_geo, from);'
 p23
-aS'qqxx.rotation // 0 in -360 to 360'
+aS'int geometry = 0;\n\nvector direction_from = point(1,"P",0);\nvector direction_to = point(1,"P",1);\n\n//vector direction_from = chv("direction_from");\n//vector direction_to   = chv("direction_to");\n\nvector result_from;\nvector result_to;\n\n\ngeo_bounding_vector (geometry, direction_from, direction_to, result_from, result_to);'
 p24
-aS'float amount = chf("amount"); // 1 in 0 to 1\nvec = vec_dir_randomize(vec, amount, seed);'
+aS'qqxx.rotation // 0 in -360 to 360'
 p25
-aS'vector pos = @P;\nvector noise = curlnoise(pos*scale);\nvector quant = {0,0,0};\n\nfloat amount = chf("amount"); // 1 in 0 to 1\n\n\nvec = vec_dir_quantize();'
+aS'float amount = chf("amount"); // 1 in 0 to 1\nvec = vec_dir_randomize(vec, amount, seed);'
 p26
-aS'vector4 quaternion = @orient;\nvector euler = euler_from_quat(quaternion);'
+aS'vector pos = @P;\nvector noise = curlnoise(pos*scale);\nvector quant = {0,0,0};\n\nfloat amount = chf("amount"); // 1 in 0 to 1\n\n\nvec = vec_dir_quantize();'
 p27
-aS'vector z = @N;\nvector y = {0,1,0};\n\n@orient = quat_from_zy(z,y);'
+aS'vector4 quaternion = @orient;\nvector euler = euler_from_quat(quaternion);'
 p28
-aS'vector  amount = {0,0,0};   // rotiation in degrees\nvector  pivot  = {0,0,0};   // pivot position\nvector4 orient = {0,0,0,1}; // pivot rotation\n\nmatrix xmat = xmat(amount, pivot, orient, "rotate"); // "scale"  "translate"'
+aS'vector z = @N;\nvector y = {0,1,0};\n\n@orient = quat_from_zy(z,y);'
 p29
-aS'intri_xmat(@ptnum, xmat);'
+aS'vector  amount = set(0,0,0);   // rotiation in degrees\nvector  pivot  = set(0,0,0);   // pivot position\nvector4 orient = set(0,0,0,1); // pivot rotation\n\nmatrix xmat = xmat(amount, pivot, orient, "rotate"); // "scale"  "translate"'
 p30
-aS'// packed disk primitive\nsetprimintrinsic(0, "unexpandedfilename", @primnum, s@path);\n\n// pecked disk sequence (mantra does motion blur on it)\nsetprimintrinsic(0, "index", @primnum, f@seqnum);\nsetprimintrinsic(0, "wrap",  @primnum, "mirror"); // "clamp", "cycle", "mirror" or "strict"\n\n// alembic\nsetprimintrinsic(0, "abcframe", @primnum, f@time);\n\n// i didn\'t define any function for this'
+aS'intri_xmat(@ptnum, xmat);'
 p31
-aS'float current    = @Frame;\nfloat zero_at    = 0;\nfloat seq_length = 1;       // 1 to get dimension 01\nfloat speed      = 1;       // -1 to before\nstring type      = "once";  // loop, ping\n\nf@test = time_sequence(current, zero_at, seq_length, speed, type);'
+aS'// packed disk primitive\nsetprimintrinsic(0, "unexpandedfilename", @primnum, s@path);\n\n// pecked disk sequence (mantra does motion blur on it)\nsetprimintrinsic(0, "index", @primnum, f@seqnum);\nsetprimintrinsic(0, "wrap",  @primnum, "mirror"); // "clamp", "cycle", "mirror" or "strict"\n\n// alembic\nsetprimintrinsic(0, "abcframe", @primnum, f@time);\n\n// i didn\'t define any function for this'
 p32
-aS'//-----\nfloat value_at_snap = chf("value_at_snap");    // 0.5 in 0.0 to 1.0\n//-----\nint frame_snap      = chi("frame_snap");       // 100 in 0 to 500\nint smooth_frames   = chi("smooth_frames");    // 0 in -100 to 100\n//# negative smooth_frames means before snap\n//-----\nfloat speed_before  = chf("speed_before");     // 0 in 0.0 to 0.1\nfloat speed_after   = chf("speed_after");      // 0 in 0.0 to 0.1\n\nint frame_current   = int (rint(@Frame));\n\nfloat value = time_snap(frame_current, frame_snap, smooth_frames, value_at_snap, speed_before, speed_after);'
+aS'float current    = @Frame;\nfloat zero_at    = 0;\nfloat seq_length = 1;       // 1 to get dimension 01\nfloat speed      = 1;       // -1 to before\nstring type      = "once";  // loop, ping\n\nf@test = time_sequence(current, zero_at, seq_length, speed, type);'
 p33
-aS'//-----\nint snapframe_0     = chi("snapframe_0");       // 100 in 0 to 500\nint snapframe_1     = chi("snapframe_1");       // 100 in 0 to 500\n//-----\nint frames_smooth_0 = chi("frames_smooth_0");    //  10 in 0 to 100\nint frames_smooth_1 = chi("frames_smooth_1");    // -10 in -100 to 0\n//# frames_smooth_1 has to be negative (before snapframe_1)\n\n//-----\nfloat value_0       = chf("value_0");     // 0 in 0.0 to 1\nfloat value_1       = chf("value_1");     // 0 in 0.0 to 1\n\nint frame_current   = int (rint(@Frame));\n\nfloat value = time_twosnap(frame_current, snapframe_0, snapframe_1, frames_smooth_0, frames_smooth_1, value_0, value_1);'
+aS'//-----\nfloat value_at_snap = chf("value_at_snap");    // 0.5 in 0.0 to 1.0\n//-----\nint frame_snap      = chi("frame_snap");       // 100 in 0 to 500\nint smooth_frames   = chi("smooth_frames");    // 0 in -100 to 100\n//# negative smooth_frames means before snap\n//-----\nfloat speed_before  = chf("speed_before");     // 0 in 0.0 to 0.1\nfloat speed_after   = chf("speed_after");      // 0 in 0.0 to 0.1\n\nint frame_current   = int (rint(@Frame));\n\nfloat value = time_snap(frame_current, frame_snap, smooth_frames, value_at_snap, speed_before, speed_after);'
 p34
-aS'// convention:\n// ............/name_mov/name_mov_index.ext\n// $HIP/img/dir/name_000/name_000_00000.png\n\nstring firstfile = chs("firstfile"); // file \nint mov          = 0;\nint index        = 0;\n\noverride_value = file_mov_index(firstfile, mov, index);'
+aS'//-----\nint snapframe_0     = chi("snapframe_0");       // 100 in 0 to 500\nint snapframe_1     = chi("snapframe_1");       // 100 in 0 to 500\n//-----\nint frames_smooth_0 = chi("frames_smooth_0");    //  10 in 0 to 100\nint frames_smooth_1 = chi("frames_smooth_1");    // -10 in -100 to 0\n//# frames_smooth_1 has to be negative (before snapframe_1)\n\n//-----\nfloat value_0       = chf("value_0");     // 0 in 0.0 to 1\nfloat value_1       = chf("value_1");     // 0 in 0.0 to 1\n\nint frame_current   = int (rint(@Frame));\n\nfloat value = time_twosnap(frame_current, snapframe_0, snapframe_1, frames_smooth_0, frames_smooth_1, value_0, value_1);'
 p35
-aS'// convention:\n// ............/name_index.ext\n// $HIP/img/dir/name_00000.png\n\n\nstring firstfile = chs("firstfile"); // file \nint index        = 0;\n\noverride_value = file_index(firstfile, index);'
+aS'// convention:\n// ............/name_mov/name_mov_index.ext\n// $HIP/img/dir/name_000/name_000_00000.png\n\nstring firstfile = chs("firstfile"); // file \nint mov          = 0;\nint index        = 0;\n\noverride_value = file_mov_index(firstfile, mov, index);'
 p36
-aS'// ogl_opacitymap       RS\n// basecolor_texture    MANTRA\n\nstring override_name      = chs("override_name");\nstring override_value     = chs("override_value"); \nint    override_is_string = chi("override_is_string"); //toggle\n\nmat_over(s@material_override , override_name, override_value , override_is_string);'
+aS'// convention:\n// ............/name_index.ext\n// $HIP/img/dir/name_00000.png\n\n\nstring firstfile = chs("firstfile"); // file \nint index        = 0;\n\noverride_value = file_index(firstfile, index);'
 p37
-aS''
+aS'// ogl_opacitymap       RS\n// basecolor_texture    MANTRA\n\nstring override_name      = chs("override_name");\nstring override_value     = chs("override_value"); \nint    override_is_string = chi("override_is_string"); //toggle\n\nmat_over(s@material_override , override_name, override_value , override_is_string);'
 p38
-aS'////////////////\n// put this in a node\n// detail wrangle\n\nf@amp   = chf("amplitude");      // 3 in 0 to 5\n//---\nf@f     = chf("frequency");      // 1 in 0 to 10\nf@fx    = chf("frequency_x");    // 1 in 0 to 10\nf@fy    = chf("frequency_y");    // 1 in 0 to 10\nf@fz    = chf("frequency_z");    // 1 in 0 to 10\n//---\nf@s     = chf("speed");          // 1 in 0 to 10\nf@sx    = chf("speed_x");        // 1 in 0 to 1\nf@sy    = chf("speed_y");        // 1 in 0 to 1\nf@sz    = chf("speed_z");        // 1 in 0 to 1\n//---\ni@turb  = chi("turbulence");     // 1    in 0 to 5\nf@rough = chf("roughness");      // 0.5  in 0 to 1\nf@atten = chf("attenuation");    // 1    in 0 to 1\n\nf@ox = 1.23;\nf@oy = 2.34;\nf@oz = 3.45;\nf@time = @Time;\n\n/////////////////\n\nvector pos           = @P;\nstring node_absolute = chs("node_absolute"); // node\nvector noise         = noise_vref (pos, node_absolute);\n\n@P  = @P + noise;'
+aS''
 p39
-aS'// noise UI\n\n//---\nfloat      amp = chf("amplitude");      // 3 in 0 to 5\n//---\nfloat        f = chf("frequency");      // 1 in 0 to 10\nfloat       fx = chf("frequency_x");    // 1 in 0 to 10\nfloat       fy = chf("frequency_y");    // 1 in 0 to 10\nfloat       fz = chf("frequency_z");    // 1 in 0 to 10\n//---\nint       turb = chi("turbulence");     // 1   in 0 to 5\nfloat    rough = chf("roughness");      // 0.5 in 0 to 1\nfloat    atten = chf("attenuation");    // 1   in 0 to 1\n\n\n// noise FUNCTION\n\nfloat       ox = 1.23;\nfloat       oy = 2.34;\nfloat       oz = 3.45;\nfloat       px = @rest.x; //@uv.x  @P.x\nfloat       py = @rest.y; //@uv.y  @P.y\nfloat       pz = @rest.z; //@uv.z  @P.z\n\nvector   noise = noise_vstat ( px, py, pz , f, fx, fy, fz, ox, oy, oz, turb, rough, atten, amp );\n\n@P = @P + noise;\n//@P.x += getcomp(noise,0);'
+aS'////////////////\n// put this in a node\n// detail wrangle\n\nf@amp   = chf("amplitude");      // 3 in 0 to 5\n//---\nf@f     = chf("frequency");      // 1 in 0 to 10\nf@fx    = chf("frequency_x");    // 1 in 0 to 10\nf@fy    = chf("frequency_y");    // 1 in 0 to 10\nf@fz    = chf("frequency_z");    // 1 in 0 to 10\n//---\nf@s     = chf("speed");          // 1 in 0 to 10\nf@sx    = chf("speed_x");        // 1 in 0 to 1\nf@sy    = chf("speed_y");        // 1 in 0 to 1\nf@sz    = chf("speed_z");        // 1 in 0 to 1\n//---\ni@turb  = chi("turbulence");     // 1    in 0 to 5\nf@rough = chf("roughness");      // 0.5  in 0 to 1\nf@atten = chf("attenuation");    // 1    in 0 to 1\n\nf@ox = 1.23;\nf@oy = 2.34;\nf@oz = 3.45;\nf@time = @Time;\n\n/////////////////\n\nvector pos           = @P;\nstring node_absolute = chs("node_absolute"); // node\nvector noise         = noise_vref (pos, node_absolute);\n\n@P  = @P + noise;'
 p40
-aS'// noise UI\n\n//---\nfloat      amp = chf("amplitude");      // 3 in 0 to 5\n//---\nfloat        f = chf("frequency");      // 1 in 0 to 10\nfloat       fx = chf("frequency_x");    // 1 in 0 to 10\nfloat       fy = chf("frequency_y");    // 1 in 0 to 10\nfloat       fz = chf("frequency_z");    // 1 in 0 to 10\n//---\nfloat        s = chf("speed");          // 1 in 0 to 10\nfloat       sx = chf("speed_x");        // 1 in 0 to 1\nfloat       sy = chf("speed_y");        // 1 in 0 to 1\nfloat       sz = chf("speed_z");        // 1 in 0 to 1\n//----\nint       turb = chi("turbulence");     // 1    in 0 to 5\nfloat    rough = chf("roughness");      // 0.5  in 0 to 1\nfloat    atten = chf("attenuation");    // 1    in 0 to 1\n\n\n// noise FUNCTION\n\nfloat       ox = 1.23;\nfloat       oy = 2.34;\nfloat       oz = 3.45;\nfloat     time = @Time;\nfloat       px = @rest.x; //@uv.x  @P.x\nfloat       py = @rest.y; //@uv.y  @P.y\nfloat       pz = @rest.z; //@uv.z  @P.z\n\nvector   noise = noise_vanim ( px, py, pz , f, fx, fy, fz, s, sx, sy, sz, ox, oy, oz, time, turb, rough, atten, amp );\n\n@P = @P + noise;\n//@P.x += getcomp(noise,0);'
+aS'// noise UI\n\n//---\nfloat      amp = chf("amplitude");      // 3 in 0 to 5\n//---\nfloat        f = chf("frequency");      // 1 in 0 to 10\nfloat       fx = chf("frequency_x");    // 1 in 0 to 10\nfloat       fy = chf("frequency_y");    // 1 in 0 to 10\nfloat       fz = chf("frequency_z");    // 1 in 0 to 10\n//---\nint       turb = chi("turbulence");     // 1   in 0 to 5\nfloat    rough = chf("roughness");      // 0.5 in 0 to 1\nfloat    atten = chf("attenuation");    // 1   in 0 to 1\n\n\n// noise FUNCTION\n\nfloat       ox = 1.23;\nfloat       oy = 2.34;\nfloat       oz = 3.45;\nfloat       px = @rest.x; //@uv.x  @P.x\nfloat       py = @rest.y; //@uv.y  @P.y\nfloat       pz = @rest.z; //@uv.z  @P.z\n\nvector   noise = noise_vstat ( px, py, pz , f, fx, fy, fz, ox, oy, oz, turb, rough, atten, amp );\n\n@P = @P + noise;\n//@P.x += getcomp(noise,0);'
 p41
-aS'// noise UI\n\n//---\nfloat      amp = chf("amplitude");      // 3 in 0 to 5\nfloat        f = chf("frequency");      // 1 in 0 to 10\n//---\nint       turb = chi("turbulence");     // 1    in 0 to 5\nfloat    rough = chf("roughness");      // 0.5  in 0 to 1\nfloat    atten = chf("attenuation");    // 1    in 0 to 1\n\n\n// noise FUNCTION\n\nfloat   offset = 1.23;\nfloat      pos = dimension;\n\nfloat    noise = noise_fstat ( pos, f, offset, turb, rough, atten, amp );'
+aS'// noise UI\n\n//---\nfloat      amp = chf("amplitude");      // 3 in 0 to 5\n//---\nfloat        f = chf("frequency");      // 1 in 0 to 10\nfloat       fx = chf("frequency_x");    // 1 in 0 to 10\nfloat       fy = chf("frequency_y");    // 1 in 0 to 10\nfloat       fz = chf("frequency_z");    // 1 in 0 to 10\n//---\nfloat        s = chf("speed");          // 1 in 0 to 10\nfloat       sx = chf("speed_x");        // 1 in 0 to 1\nfloat       sy = chf("speed_y");        // 1 in 0 to 1\nfloat       sz = chf("speed_z");        // 1 in 0 to 1\n//----\nint       turb = chi("turbulence");     // 1    in 0 to 5\nfloat    rough = chf("roughness");      // 0.5  in 0 to 1\nfloat    atten = chf("attenuation");    // 1    in 0 to 1\n\n\n// noise FUNCTION\n\nfloat       ox = 1.23;\nfloat       oy = 2.34;\nfloat       oz = 3.45;\nfloat     time = @Time;\nfloat       px = @rest.x; //@uv.x  @P.x\nfloat       py = @rest.y; //@uv.y  @P.y\nfloat       pz = @rest.z; //@uv.z  @P.z\n\nvector   noise = noise_vanim ( px, py, pz , f, fx, fy, fz, s, sx, sy, sz, ox, oy, oz, time, turb, rough, atten, amp );\n\n@P = @P + noise;\n//@P.x += getcomp(noise,0);'
 p42
-aS'// noise UI\n\n//---\nfloat      amp = chf("amplitude");      // 3 in 0 to 5\nfloat        f = chf("frequency");      // 1 in 0 to 10\n//---\nfloat       sx = chf("speed_along");    // 1 in 0 to 10\nfloat       sy = chf("speed_cross");    // 1 in 0 to 10\n//----\nint       turb = chi("turbulence");     // 1    in 0 to 5\nfloat    rough = chf("roughness");      // 0.5  in 0 to 1\nfloat    atten = chf("attenuation");    // 1    in 0 to 1\n\n// noise FUNCTION\n\nfloat       ox = 1.23;\nfloat       oy = 2.34;\nfloat     time = @Time;\nfloat       px = @uv.x;   //\nfloat       py = @rest.y; //@uv.y  @P.y\n\nfloat    noise = noise_fanim ( px, py, f, sx, sy, ox, oy, time, turb, rough, atten, amp );'
+aS'// noise UI\n\n//---\nfloat      amp = chf("amplitude");      // 3 in 0 to 5\nfloat        f = chf("frequency");      // 1 in 0 to 10\n//---\nint       turb = chi("turbulence");     // 1    in 0 to 5\nfloat    rough = chf("roughness");      // 0.5  in 0 to 1\nfloat    atten = chf("attenuation");    // 1    in 0 to 1\n\n\n// noise FUNCTION\n\nfloat   offset = 1.23;\nfloat      pos = dimension;\n\nfloat    noise = noise_fstat ( pos, f, offset, turb, rough, atten, amp );'
 p43
-aS'for (int i = 0; i < count; i++)\n{\n    \n}'
+aS'// noise UI\n\n//---\nfloat      amp = chf("amplitude");      // 3 in 0 to 5\nfloat        f = chf("frequency");      // 1 in 0 to 10\n//---\nfloat       sx = chf("speed_along");    // 1 in 0 to 10\nfloat       sy = chf("speed_cross");    // 1 in 0 to 10\n//----\nint       turb = chi("turbulence");     // 1    in 0 to 5\nfloat    rough = chf("roughness");      // 0.5  in 0 to 1\nfloat    atten = chf("attenuation");    // 1    in 0 to 1\n\n// noise FUNCTION\n\nfloat       ox = 1.23;\nfloat       oy = 2.34;\nfloat     time = @Time;\nfloat       px = @uv.x;   //\nfloat       py = @rest.y; //@uv.y  @P.y\n\nfloat    noise = noise_fanim ( px, py, f, sx, sy, ox, oy, time, turb, rough, atten, amp );'
 p44
-aS'if (  )\n{\n    \n}'
+aS'for (int i = 0; i < count; i++)\n{\n    \n}'
 p45
-aS'int pts[] = neighbours(0, @ptnum);\nforeach (float read; array[])\nforeach (int nb_ptnum; pts) {\n{\n    \n}'
+aS'if (  )\n{\n    \n}'
 p46
-aS'point(0, "P", @ptnum);'
+aS'int pts[] = neighbours(0, @ptnum);\nforeach (float read; array[])\nforeach (int nb_ptnum; pts) {\n{\n    \n}'
 p47
-aS'detail(0, "name");'
+aS'point(0, "P", @ptnum);'
 p48
-aS'prim(0, "name", primnum);'
+aS'detail(0, "name", 0);'
 p49
-aS'setpointattrib(0, "name", @ptnum, value, "set");'
+aS'@P = primuv(0, "P", @primnum, set(u,0,0));'
 p50
-aS'setprimattrib(0, "name", @primnum, value, "set");'
+aS'prim(0, "name", primnum);'
 p51
-aS'setdetailattrib(0, "name", value, "set");'
+aS'setpointattrib(0, "name", @ptnum, value, "set");'
 p52
-aS'vector center   = {0,0,1};\nfloat  maxangle = radians( chf("maxangle") ); // 45 in 0 to 90\nv@N             = sample_direction_cone( center, maxangle, rand(@ptnum) );'
+aS'setprimattrib(0, "name", @primnum, value, "set");'
 p53
-aS'float angle = radians( 90 );\nvector axis = {0,1,0};\nmatrix3 m   = ident();\nrotate(m, angle, axis);'
+aS'setdetailattrib(0, "name", value, "set");'
 p54
-aS'// consider to run over detail\n\nint ptnum   = addpoint (0, @pos );\nint primnum = addprim (0, "poly" ); //poly, polyline\nint vertnum = addvertex (0, primnum, ptnum);\nsetpointattrib(0, "name", ptnum, value, "set");'
+aS'vector center   = {0,0,1};\nfloat  maxangle = radians( chf("maxangle") ); // 45 in 0 to 90\nv@N             = sample_direction_cone( center, maxangle, rand(@ptnum) );'
 p55
-aS'// consider to run over detail\n\nint ptnum0   = addpoint (0, @pos );\nint ptnum1   = addpoint (0, @pos );\n\nint primnum = addprim (0, "poly" ); //poly, polyline\n\nint vertnum0 = addvertex (0, primnum, ptnum0);\nint vertnum1 = addvertex (0, primnum, ptnum1);\n\nsetpointattrib(0, "name", ptnum0, value, "set");\nsetpointattrib(0, "name", ptnum1, value, "set");'
+aS'float angle = radians( 90 );\nvector axis = {0,1,0};\nmatrix3 m   = ident();\nrotate(m, angle, axis);'
 p56
-aS'float x = getcomp( relbbox(0,@P) , 0 );'
+aS'// consider to run over detail\n\nint ptnum   = addpoint (0, @pos );\nint primnum = addprim (0, "poly" ); //poly, polyline\nint vertnum = addvertex (0, primnum, ptnum);\nsetpointattrib(0, "name", ptnum, value, "set");'
 p57
-aS'float maxdist = chf("maxdist"); // 1 in 0 to 2\nint maxpts    = chf("maxpts"); // 1 in 1 to 100\narray[]       = nearpoints(0, vector pt, maxdist, int maxpts);'
+aS'// consider to run over detail\n\nint ptnum0   = addpoint (0, @pos );\nint ptnum1   = addpoint (0, @pos );\n\nint primnum = addprim (0, "poly" ); //poly, polyline\n\nint vertnum0 = addvertex (0, primnum, ptnum0);\nint vertnum1 = addvertex (0, primnum, ptnum1);\n\nsetpointattrib(0, "name", ptnum0, value, "set");\nsetpointattrib(0, "name", ptnum1, value, "set");'
 p58
-aS'removepoint(0, @ptnum);'
+aS'float x = getcomp( relbbox(0,@P) , 0 );'
 p59
-aS'removeprim(0, @primnum, andpoints);'
+aS'float maxdist = chf("maxdist"); // 1 in 0 to 2\nint maxpts    = chf("maxpts"); // 1 in 1 to 100\narray[]       = nearpoints(0, vector pt, maxdist, int maxpts);'
 p60
-aS'volumesample(0, primnum, pos);'
+aS'removepoint(0, @ptnum);'
 p61
-aS'xyzdist(0, pos, int &prim, vector &uv, float maxdist);'
+aS'removeprim(0, @primnum, andpoints);'
 p62
-aS'float value;\nfloat omin = chf("old_min"); // 0 in 0 to 1\nfloat omax = chf("old_max"); // 1 in 0 to 1\nfloat nmin = chf("new_min"); // 0 in 0 to 1\nfloat nmax = chf("new_max"); // 1 in 0 to 1\nvalue = fit(value, omin, omax, nmin, nmax);'
+aS'volumesample(0, primnum, pos);'
 p63
-aS'float value;\nfloat omin    = chf("old_min"); // 0 in 0 to 1\nfloat omax    = chf("old_max"); // 1 in 0 to 1\nfloat rolloff = chf("rolloff"); // 1 in 0 to 1\nvalue = smooth(omin, omax, value, float rolloff); '
+aS'xyzdist(0, pos, int &prim, vector &uv, float maxdist);'
 p64
-aS'vector from;\nvector to;\nfloat amount = 0;\nvector result = lerp(from, to, amount);'
+aS'vector value;\nvector nmax = chf("new_max"); // 0.5 in 0 to 10; \nvector nmin = -nmax;\nvalue = fit01(value, nmin, nmax);'
 p65
-aS'vector from;\nvector to;\nvector up;\nmatrix3 mrot = lookat(from, to, up);'
+aS'float value;\nfloat nmax = chf("new_max"); //  0.5 in 0 to 10\nfloat nmin = -nmax; \nvalue = fit01(value, nmin, nmax);'
 p66
-aS'float radius = chf("radius"); // 1 in 0 to 2\nint maxpts = chi("maxpts"); // 1 in 1 to 100\nint handle = pcopen(0, "P", @P, radius, maxpts);\nwhile(pciterate(handle))\n{\n    float imp_pressure = pcfilter(handle, "pressure");\n\n    pcimport(handle, "Cd", col);\n    pcimport(handle, "point.distance", dist);\n    pcimport(handle, "point.number", num);\n\n    eval += imp_pressure*(1-dist/radius);\n    pt_count++;\n}\neval = eval/pt_count;\npcclose(handle);'
+aS'float value;\nfloat nmin = chf("new_min"); // -1 in -1 to 1\nfloat nmax = chf("new_max"); //  1 in -1 to 1\nvalue = fit01(value, nmin, nmax);'
 p67
-aS'float radius = chf("radius"); // 1 in 0 to 2\nint maxpts   = chf("maxpts"); // 1 in 1 to 100\nint handle   = pcopen(0, "P", @P, radius, maxpts);\nvector value = pcfilter(handle, "P");'
+aS'float value;\nfloat omin = chf("old_min"); // 0 in 0 to 1\nfloat omax = chf("old_max"); // 1 in 0 to 1\nfloat nmin = chf("new_min"); // 0 in 0 to 1\nfloat nmax = chf("new_max"); // 1 in 0 to 1\nvalue = fit(value, omin, omax, nmin, nmax);'
 p68
-aS'printf("OUT=%f; ", out); //  %s string,   %i integer\nprintf("\\n");'
+aS'float value;\nfloat omin    = chf("old_min"); // 0 in 0 to 1\nfloat omax    = chf("old_max"); // 1 in 0 to 1\nfloat rolloff = chf("rolloff"); // 1 in 0 to 1\nvalue = smooth(omin, omax, value, float rolloff); '
 p69
-aS'#include "qq.vfl"'
+aS'vector from;\nvector to;\nfloat amount = 0;\nvector result = lerp(from, to, amount);'
 p70
+aS'vector from;\nvector to;\nvector up;\nmatrix3 mrot = lookat(from, to, up);'
+p71
+aS'float radius = chf("radius"); // 1 in 0 to 2\nint maxpts = chi("maxpts"); // 1 in 1 to 100\nint handle = pcopen(0, "P", @P, radius, maxpts);\nwhile(pciterate(handle))\n{\n    float imp_pressure = pcfilter(handle, "pressure");\n\n    pcimport(handle, "Cd", col);\n    pcimport(handle, "point.distance", dist);\n    pcimport(handle, "point.number", num);\n\n    eval += imp_pressure*(1-dist/radius);\n    pt_count++;\n}\neval = eval/pt_count;\npcclose(handle);'
+p72
+aS'float radius = chf("radius"); // 1 in 0 to 2\nint maxpts   = chf("maxpts"); // 1 in 1 to 100\nint handle   = pcopen(0, "P", @P, radius, maxpts);\nvector value = pcfilter(handle, "P");'
+p73
+aS'printf("OUT=%f; ", out); //  %s string,   %i integer\nprintf("\\n");'
+p74
+aS'@N  = {0,0,1};\n@up = {0,1,0};'
+p75
+aS'#include "qq.vfl"'
+p76
 a.

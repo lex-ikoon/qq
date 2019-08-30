@@ -1,6 +1,140 @@
+import os
 import hou
+import math
+import bisect
 import toolutils
 import wf_selection
+
+
+#####################
+###     resim     ###
+#####################
+
+# return the current dopnet node
+def sim_dopnet () :
+    dopnet = hou.currentDopNet()
+    if dopnet == None :
+        cache_on       = 0
+        cache_name     = None
+        cache_substeps = 1
+        cache_start    = 1
+        cache_spacing  = 1
+    else :
+        cache_on       = dopnet.parm("explicitcache").eval()
+        cache_name     = dopnet.parm("explicitcachename").rawValue()
+        cache_substeps = dopnet.parm("substep").eval()
+        cache_start    = dopnet.parm("startframe").eval()
+        cache_spacing  = dopnet.parm("explicitcachecheckpointspacing").eval()
+    return [dopnet, cache_on, cache_name, cache_substeps, cache_start, cache_spacing]
+
+
+# list of all $SF that may be cached with current dopnet settings
+# and list of appropriate $F frames
+def sim_cache_framelists() :
+    dopnet, cache_on, cache_name, cache_substeps, cache_start, cache_spacing = sim_dopnet()
+    framerange_end = hou.playbar.frameRange()[1]
+
+    candidate_sf = 0
+    candidate_f  = cache_start
+    list_sf      = [candidate_sf]
+    list_f       = [candidate_f]
+
+    while candidate_f <= framerange_end :
+        candidate_sf  += cache_spacing
+        candidate_f   = math.floor((candidate_sf-1) / cache_substeps) + cache_start
+        list_sf.append(candidate_sf) 
+        list_f.append (candidate_f) 
+
+    return list_sf, list_f
+
+
+# find the given frame's precedent cached $F
+def sim_cache_precedent_index ( frame ) :
+    list_sf, list_f = sim_cache_framelists()
+    precedent_index = bisect.bisect_right(list_f,frame)
+    precedent_index = max (precedent_index - 1, 0)
+    return precedent_index
+
+
+# delete the .sim cache files in the playrange
+# but don't delete the first one, we want to built on it
+def sim_cache_delete_playrange () :
+    dopnet, cache_on, cache_name, cache_substeps, cache_start, cache_spacing = sim_dopnet()
+    hou.cd(dopnet.path()) # to expandString() correctly
+    list_sf, list_f = sim_cache_framelists()
+    index = 1 + sim_cache_precedent_index(  hou.playbar.playbackRange()[0]  )
+
+    candidate_frames = list_sf[index:]
+    
+    # try to delete the files, if they exist
+    for frame in candidate_frames :
+        file_path = cache_name.replace("$SF",str(frame))
+        file_path = hou.expandString(file_path)
+        file_path = file_path.replace("*","_")
+
+        if file_path.endswith(".sim") :
+            try :
+                os.remove(file_path)
+            except :
+                frame_was_not_cached = 1
+
+
+# hotkey: F5
+# reset the sim
+def sim_cache_reset () :
+    dopnet, cache_on, cache_name, cache_substeps, cache_start, cache_spacing = sim_dopnet()
+
+    if cache_on:
+        # delete .sim files
+        message = "Delete .sim files in playback range? \n\n" + str(dopnet.path())
+        if hou.ui.displayMessage(message, buttons=("OK", "Cancel")) == 0:
+            sim_cache_delete_playrange()
+
+    if dopnet:
+        dopnet.parm("resimulate").pressButton()
+
+    hou.setFrame(hou.playbar.playbackRange()[0]) 
+
+
+# hotkey: /
+# trim the playback start to the playhead's precedent cached .sim file
+def playrange_to_precedent () :
+    list_sf, list_f = sim_cache_framelists()
+    index = sim_cache_precedent_index(  hou.intFrame()  )
+
+    frame_start = list_f[index]
+    frame_end   = hou.playbar.playbackRange()[1]
+    hou.playbar.setPlaybackRange( frame_start, frame_end )
+
+
+# hotkeys: . ,
+# add or remove one cached spacing in playrange
+def playrange_extend_spacing (direction) :
+    # list_sf, list_f = sim_cache_framelists()
+    # index = sim_cache_precedent_index(  hou.playbar.playbackRange()[0]  )
+    # index = max (index + direction, 0)
+
+    # frame_start = list_f[index]
+    # frame_end   = hou.playbar.playbackRange()[1]
+    # hou.playbar.setPlaybackRange( frame_start, frame_end )
+
+    if direction == -1 :
+        frame_start = hou.frame()
+        frame_end   = hou.playbar.playbackRange()[1]
+
+    if direction == 1 :
+        frame_end   = hou.playbar.playbackRange()[0]
+        frame_start = hou.frame()
+
+
+    hou.playbar.setPlaybackRange( frame_start, frame_end )
+
+
+
+#####################
+###   resim end   ###
+#####################
+
 
 
 def play_backward () :
@@ -10,8 +144,10 @@ def play_backward () :
     #else :
     #    hou.playbar.reverse()
 
+
 def play_forward () :
     hou.playbar.play()
+
 
 def play_scrub (multiplier) :
     import time
@@ -44,7 +180,6 @@ def play_scrub (multiplier) :
     hou.putenv("time", str(time_now))
 
 
-
 def toggle_realtime () :
     hou.playbar.setRealTime(not hou.playbar.isRealTime())
     hou.playbar.setRealTimeSkipping(hou.playbar.isRealTime())
@@ -58,7 +193,21 @@ def toggle_manualupdate () :
         hou.setUpdateMode(hou.updateMode.AutoUpdate)
 
 
-def framerange_from_name () :
+def playrange_from_name () :
+
+    def name_range(name_whole) :
+        name_list = name_whole.split("_")
+        if len(name_list) == 3 :
+            range_valid = True
+            range_start = float( name_list[1] )
+            range_end   = float( name_list[2] )
+        else:
+            range_valid = False
+            range_start = globalstart
+            range_end   = globalend
+        return range_valid, range_start, range_end
+
+
     #local playback range
     start  = hou.playbar.playbackRange()[0]
     end    = hou.playbar.playbackRange()[1]
@@ -68,26 +217,30 @@ def framerange_from_name () :
     globalstart  = hou.playbar.timelineRange()[0]
     globalend    = hou.playbar.timelineRange()[1]
 
-    # container name
+    # selected node
+    try :
+        selectedname  = hou.selectedNodes()[0].name()
+    except:
+        selectedname  = ""
+
+    # container
     containername = wf_selection.container().name()
-    # active_pane = toolutils.activePane(kwargs)
-    # if active_pane is not None and active_pane.type() == hou.paneTabType.NetworkEditor:
-    #     containername = active_pane.pwd().name()
-        
-    if containername == "obj":
-        # range from global
+
+    # range from selected
+    if name_range(selectedname)[0] :
+        cont_start = name_range(selectedname)[1];
+        cont_end   = name_range(selectedname)[2];
+        hou.playbar.setPlaybackRange( cont_start, cont_end )
+
+    # range from container
+    elif name_range(containername)[0] :
+        cont_start = name_range(containername)[1];
+        cont_end   = name_range(containername)[2];
+        hou.playbar.setPlaybackRange( cont_start, cont_end )
+
+    # range from global
+    elif containername == "obj":
         cont_start = globalstart;
         cont_end   = globalend;
+        hou.playbar.setPlaybackRange( cont_start, cont_end )
 
-    else:
-        # range from name
-        name = containername.split("_")
-        if len(name) == 3 :
-            cont_start = float( name[1] )
-            cont_end   = float( name[2] )
-        else:
-            cont_start = globalstart
-            cont_end   = globalend
-        
-    # set range
-    hou.playbar.setPlaybackRange( cont_start, cont_end )

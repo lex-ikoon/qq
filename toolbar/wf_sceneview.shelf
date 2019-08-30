@@ -21,6 +21,7 @@
     <memberTool name="toggle_pointnumbers"/>
     <memberTool name="toggle_primnumbers"/>
     <memberTool name="toggle_grid"/>
+    <memberTool name="toggle_maskoverlay"/>
   </toolshelf>
 
   <tool name="frame_selected" label="frame_selected" icon="PLASMA_App">
@@ -60,7 +61,7 @@ wf_sceneview.toggle_trails()]]></script>
 
   <tool name="toggle_ghostother" label="toggle_ghostother" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-#reload(wf_sceneview)
+reload(wf_sceneview)
 wf_sceneview.toggle_ghostother()]]></script>
   </tool>
 
@@ -84,7 +85,7 @@ wf_sceneview.toggle_wireover()]]></script>
 
   <tool name="toggle_objectselection" label="toggle_objectselection" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-#reload(wf_sceneview)
+reload(wf_sceneview)
 wf_sceneview.toggle_objectselection()]]></script>
   </tool>
 
@@ -116,5 +117,13 @@ wf_sceneview.toggle_primnumbers()]]></script>
     <script scriptType="python"><![CDATA[import wf_sceneview
 reload(wf_sceneview)
 wf_sceneview.toggle_grid()]]></script>
+  </tool>
+
+  <tool name="toggle_maskoverlay" label="toggle_maskoverlay" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_sceneview
+reload(wf_sceneview)
+wf_sceneview.toggle_maskoverlay()
+
+]]></script>
   </tool>
 </shelfDocument>

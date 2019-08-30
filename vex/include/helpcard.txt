@@ -17,6 +17,7 @@ distort_shrink
 distort_segment
 ----------------
 coord_midi
+coord_music
 ----------------
 fill_to_coord
 ----------------
@@ -59,6 +60,7 @@ if
 feach
 pt
 det
+primuv
 prim
 setpt
 setprim
@@ -73,6 +75,9 @@ rempt
 remprim
 volsamp
 xyzdist
+fit01vs
+fit01s
+fit01
 fit
 smooth
 lerp
@@ -80,6 +85,7 @@ lookat
 pc
 pcfilter
 printf
+nup
 ----------------
 inc
 ----------------

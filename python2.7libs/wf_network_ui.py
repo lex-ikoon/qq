@@ -5,6 +5,16 @@ import wf_selection
 import wf_midi
 reload (wf_midi)
 
+# def node_snippet (node) :
+#     parm_
+#     no_snippet = 1
+#     try :
+#         snippet = node.parm("snippet")
+#     except :
+#         nosnippet = 1
+#     actualcode = snippet.unexpandedString()
+#     return snippet
+
 def node_global () :
     color = hou.Color(0.0, 0.0, 0.0)
     path = "/obj/global"
@@ -44,6 +54,14 @@ def opmultiparm_ramp (node_channel, node_source, ramp_name, color) :
 
     hou.hscript(hscript)
 
+
+def parm_ramp_string_lib (node, parm) :
+    parm_ramp_name = parm.name()[:-4] # trim from end "_lib"
+    parm_ramp_ramplib = parm.eval()
+    parm_update (node,
+        type = "rampfloat",
+        name = parm_ramp_name,
+        ramplib = parm_ramp_ramplib)
 
 
 def parm_ref_parm_ramp (node_channel, node_source, ramp_name) :
@@ -309,16 +327,12 @@ def line_parse (node, line, linenum) :
 
 
 
-def qq_expand () :
+def qq_expand (node,parm_code) :
     ###################################################
     #######     qqr qqi qqf //  +  interface    #######
     ###################################################
 
-    parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
-    node = parm_pane.currentNode()
-
-    snippet = node.parm("snippet")
-    actualcode = snippet.unexpandedString()
+    actualcode = parm_code.unexpandedString()
     lines = actualcode.split('\n')
 
     for line in lines:
@@ -335,7 +349,7 @@ def qq_expand () :
             
         if line.startswith("qqr."):
             qq,var = line.split('.')        
-            newline = var + ' = chramp("' + var + '",' + var + '); //' + var
+            newline = 'float ' + var + ' = chramp("' + var + '",' + var + '); //' + var
             found = 1
 
         if line.startswith("qqs."):
@@ -414,7 +428,7 @@ def qq_expand () :
         if found:
             actualcode = actualcode.replace(line,newline,1) # only the first occurrence
 
-    snippet.set(actualcode)
+    parm_code.set(actualcode)
 
     ##############################################
     #######         read library         #########
@@ -422,8 +436,8 @@ def qq_expand () :
 
     import pickle
 
-    path_shortcuts = hou.getenv("HOUDINI_USER_PREF_DIR") + "/vex/include/triggers.db"
-    path_snippets  = hou.getenv("HOUDINI_USER_PREF_DIR") + "/vex/include/snippets.db"
+    path_shortcuts = hou.getenv("HOUDINI_UBER_PATH") + "/vex/include/triggers.db"
+    path_snippets  = hou.getenv("HOUDINI_UBER_PATH") + "/vex/include/snippets.db"
 
     with open(path_shortcuts, 'r') as f:
         src = pickle.load(f)
@@ -436,23 +450,19 @@ def qq_expand () :
     #######        replace library        ########
     ##############################################
 
-    snippet = node.parm("snippet")
-    actualcode = snippet.unexpandedString()
     index = 0
     for src_item in src:
         rep_item = rep[index]
         if src_item in actualcode:
             newcode = actualcode.replace(src_item,rep_item)
-            snippet.set(newcode)
+            parm_code.set(newcode)
             actualcode = newcode
         index = index+1
 
 
 
-def parm_generate () :
-    node = wf_selection.parmnode()
-    parm = node.parm("snippet")
-    snippet = parm.unexpandedString()
+def parm_generate (node,parm_code) :
+    snippet = parm_code.unexpandedString()
     snippet_updated = ''
     lines = snippet.split('\n')
 
@@ -464,7 +474,7 @@ def parm_generate () :
         snippet_updated += line_updated
         if linenum < len(lines)-1 : snippet_updated += '\n'
 
-    node.parm("snippet").set(snippet_updated)
+    parm_code.set(snippet_updated)
 
 
 def parm_clean () :
@@ -479,7 +489,7 @@ def qq_parse_uberfile () :
 
     import pickle
 
-    path_VEX  = hou.getenv("HOUDINI_USER_PREF_DIR") + "/vex/include/"
+    path_VEX  = hou.getenv("HOUDINI_UBER_PATH") + "/vex/include/"
     path_uber = path_VEX + "uber.vfl"
     file_uber = open( path_uber )
     uber_data = file_uber.read()

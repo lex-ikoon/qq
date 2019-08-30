@@ -43,6 +43,12 @@ clamp01(val);
     value = clamp(value,0,1);    
 }
 
+--float clamp01(float value)
+{
+    return clamp(value,0,1);    
+}
+
+
 ///------------------------------------------------------------------------------------------------
 
 
@@ -237,7 +243,7 @@ qq noise_fstat
 
 distort_noise(@dim_falloff, noise, limit_impact, "where_the_noise");
 
---void distort_noise(float dimension, noise, limit_impact; string channel)
+--void distort_noise(float dimension, noise; int limit_impact; string channel)
 {
     float impact = chramp(channel, dimension);
 
@@ -357,6 +363,29 @@ int    pitch = 0;
     return result;
 }
 
+///------------------------------------------------------------------------------------------------
+
+string track = "beat";
+string array = "posamp"; //preamp, poslin, prelin
+int    pitch = 0;
+int    clone = 0;
+int    frame = int(@Frame);
+
+float amp = coord_music(track, array, pitch, clone, frame);
+@Cd *= amp;
+
+--float coord_music(string track, array; int pitch, clone, frame)
+{
+    float  amp;
+    string path    = "op:/obj/music/tracks/" + track + "/vex/" + array;
+    int    pitches = detail(path,"track_pitches",0);
+    int    first   = detail(path,"array_frame_first",0);
+    int    prim    = pitch + (clone * pitches);
+    vector vertex  = vertex(path, "P", prim, frame-first);
+           amp     = vertex[1];
+    return amp;
+}
+
 
 ///------------------------------------------------------------------------------------------------
 ///////////////////////////////////////////////////////////////////////////////////////////////////
@@ -414,6 +443,11 @@ float u = geo_line_u (0, @ptnum);
 --float geo_line_u (int geometry, ptnum)
 {
     
+    // TODO
+    // int vtx = vertexprimindex(0, @vtxnum);
+    // int nvtx = primvertexcount(0, @primnum);
+    // f@u = (float)vtx/(@numvtx-1);
+
     int linvert   = pointvertex (geometry, ptnum);
     int vertex    = vertexprimindex (geometry, linvert);
     int primnum[] = pointprims (geometry, ptnum);
@@ -432,21 +466,22 @@ int primnum  = @primnum;
 float u      = (@Time*0.1*random(@primnum)+random(@primnum)) %1;
 
 // reads and sets N, up
+// sets f@u
+
 geo_carve_point (geometry, primnum, u);
 
 --void geo_carve_point (int geometry, primnum; float u)
 {
     int oldprim = primnum;
-    int newprim = addprim(geometry, "polyline");
     vector pos  = primuv(0, "P", primnum, set(u,0,0));
     vector N    = primuv(0, "N", primnum, set(u,0,0));
     vector up   = primuv(0, "up", primnum, set(u,0,0));
     
-    int ptnum   = addpoint(newprim, pos);
-    int vertex  = addvertex(0, newprim, ptnum);
+    int ptnum   = addpoint(0, pos);
 
     setpointattrib(0, "N", ptnum, N, "set");
     setpointattrib(0, "up", ptnum, up, "set");
+    setpointattrib(0, "u", ptnum, u, "set");
     
     removeprim  (geometry, oldprim, 1);
 }
@@ -496,7 +531,8 @@ geo_carve_line (geometry, primnum, start, end);
     if (start<end){
     
         int newprim = addprim(geometry, "polyline");
-        
+        setprimattrib(0, "newprim", newprim, primnum, "set");        
+
         //new point at start
         createpoint(newprim, getlinepos(oldprim, start));
                 
@@ -524,8 +560,10 @@ geo_carve_line (geometry, primnum, start, end);
 
     if (start>end){
 
-        int newprim;
-        newprim = addprim(geometry, "polyline");
+
+
+        int newprim_beg = addprim(geometry, "polyline");
+        setprimattrib(0, "newprim", newprim_beg, primnum, "set");
         
         //from prim
         int startvert, endvert;
@@ -536,15 +574,17 @@ geo_carve_line (geometry, primnum, start, end);
         for (int i = 0; i < endvert; i++)
         {
             vector vertpos = vertex(geometry, "P", oldprim, i);
-            createpoint(newprim, vertpos);
+            createpoint(newprim_beg, vertpos);
         }
         
         //new point at end
-        createpoint(newprim, getlinepos(oldprim, end));
+        createpoint(newprim_beg, getlinepos(oldprim, end));
         
         //new point at start
-        newprim = addprim(geometry, "polyline");
-        createpoint(newprim, getlinepos(oldprim, start));
+        int newprim_end = addprim(geometry, "polyline");
+        setprimattrib(0, "newprim", newprim_end, primnum, "set");
+
+        createpoint(newprim_end, getlinepos(oldprim, start));
         
         //from prim
         for (int i = startvert; i <= segments; i++)
@@ -558,7 +598,7 @@ geo_carve_line (geometry, primnum, start, end);
                 // usual point
                 vertpos = vertex(geometry, "P", oldprim, i);
             }
-            createpoint(newprim, vertpos);
+            createpoint(newprim_end, vertpos);
         }
     }
 
@@ -567,12 +607,11 @@ geo_carve_line (geometry, primnum, start, end);
 
     removeprim(geometry, oldprim, 1);
 
+    //return newprim;
+
 }
 
-
-
 ///------------------------------------------------------------------------------------------------
-
 
 int geometry = 0;
 
@@ -825,9 +864,9 @@ vector y = {0,1,0};
 ///------------------------------------------------------------------------------------------------
 
 
-vector  amount = {0,0,0};   // rotiation in degrees
-vector  pivot  = {0,0,0};   // pivot position
-vector4 orient = {0,0,0,1}; // pivot rotation
+vector  amount = set(0,0,0);   // rotiation in degrees
+vector  pivot  = set(0,0,0);   // pivot position
+vector4 orient = set(0,0,0,1); // pivot rotation
 
 matrix xmat = xmat(amount, pivot, orient, "rotate"); // "scale"  "translate"
 
@@ -971,14 +1010,14 @@ float value = time_snap(frame_current, frame_snap, smooth_frames, value_at_snap,
     {
         range_start = frame_snap;
         range_end   = min(frame_current, frame_1);
-        sign        = 1;
+        sign        = 1.0;
     }
 
     if (frame_current < frame_snap && smooth_frames < 0)
     {
         range_start = max(frame_current, frame_0);
         range_end   = frame_snap;
-        sign        = -1;
+        sign        = -1.0;
     }
 
     float distance_smooth = 0;
@@ -1439,8 +1478,7 @@ float      pos = dimension;
 
 float    noise = noise_fstat ( pos, f, offset, turb, rough, atten, amp );
 
-
---float noise_fstat ( float pos, f, offset, turb, rough, atten, amp )
+--float noise_fstat ( float pos, f, offset; int turb; float rough, atten, amp )
 {
 
     float sample = pos * f - offset;
@@ -1541,8 +1579,14 @@ point(0, "P", @ptnum);
 
 ///------------------------------------------------------------------------------------------------
 
-detail(0, "name");
+detail(0, "name", 0);
 --dontinc det()
+
+
+///------------------------------------------------------------------------------------------------
+
+@P = primuv(0, "P", @primnum, set(u,0,0));
+--dontinc primuv()
 
 ///------------------------------------------------------------------------------------------------
 
@@ -1646,6 +1690,33 @@ xyzdist(0, pos, int &prim, vector &uv, float maxdist);
 
 ///------------------------------------------------------------------------------------------------
 
+vector value;
+vector nmax = chf("new_max"); // 0.5 in 0 to 10; 
+vector nmin = -nmax;
+value = fit01(value, nmin, nmax);
+
+--dontinc fit01vs()
+
+///------------------------------------------------------------------------------------------------
+
+float value;
+float nmax = chf("new_max"); //  0.5 in 0 to 10
+float nmin = -nmax; 
+value = fit01(value, nmin, nmax);
+
+--dontinc fit01s()
+
+///------------------------------------------------------------------------------------------------
+
+float value;
+float nmin = chf("new_min"); // -1 in -1 to 1
+float nmax = chf("new_max"); //  1 in -1 to 1
+value = fit01(value, nmin, nmax);
+
+--dontinc fit01()
+
+///------------------------------------------------------------------------------------------------
+
 float value;
 float omin = chf("old_min"); // 0 in 0 to 1
 float omax = chf("old_max"); // 1 in 0 to 1
@@ -1721,6 +1792,12 @@ printf("\n");
 
 --dontinc printf()
 
+
+///------------------------------------------------------------------------------------------------
+
+@N  = {0,0,1};
+@up = {0,1,0};
+--dontinc nup()
 
 ///------------------------------------------------------------------------------------------------
 ///////////////////////////////////////////////////////////////////////////////////////////////////

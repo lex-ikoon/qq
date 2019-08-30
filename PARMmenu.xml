@@ -3,20 +3,100 @@
     <menu>
     
 
+    <subMenu id="ikoon_expression_library">
+        <label><![CDATA[ > ikoon.expression.library]]></label> 
+        <insertAfter /> 
+        <context>
+            <expression>len(kwargs["parms"]) > 0 and kwargs["parms"][0].parmTemplate().type().name() == "String"</expression> 
+        </context>
 
 
 
+        <scriptItem id="filecache_parent_this">
+            <label>filecache_parent_this</label> 
+            <scriptCode>
+<![CDATA[ 
+expression = '''`{
+    string parentname = opname("..");
+    string thisname = opname(".");
+    string filename = parentname + "_" + thisname;
+    string output = "$HIP/_cache/" + filename + "/" + filename + "_$F5.bgeo.sc";
+    return output;
+}`'''
+parm = kwargs["parms"][0]
+parm.set(expression)
+]]> 
+            </scriptCode>
+        </scriptItem>
 
-    <scriptItem id="ikoon.parm.PREview">
+
+
+        <scriptItem id="cache_sim">
+            <label>cache_sim</label> 
+            <scriptCode>
+<![CDATA[ 
+expression = "$HIP/_cache_sim/$OS/cache.$OS.$SF.sim"
+parm = kwargs["parms"][0]
+parm.set(expression)
+]]> 
+            </scriptCode>
+        </scriptItem>
+
+
+
+    </subMenu>
+
+
+
+    <subMenu id="ikoon_UI">
+        <label><![CDATA[ > ikoon.UI]]></label> 
+        <insertAfter /> 
+        <context>
+            <expression>len(kwargs["parms"]) > 0 and kwargs["parms"][0].parmTemplate().type().name() == "String"</expression>
+        </context>
+
+
+
+        <scriptItem id="ikoon_qq_expand">
+            <label>ikoon_qq_expand</label> 
+            <scriptCode><![CDATA[ 
+import wf_network_ui
+reload(wf_network_ui)
+parm_code = kwargs["parms"][0]
+node = parm_code.node()
+wf_network_ui.qq_expand(node,parm_code)
+]]> 
+            </scriptCode>
+        </scriptItem>
+
+
+        <scriptItem id="ikoon_ui_generate">
+            <label>ikoon_ui_generate</label> 
+            <scriptCode><![CDATA[ 
+import wf_network_ui
+reload(wf_network_ui)
+parm_code = kwargs["parms"][0]
+node = parm_code.node()
+wf_network_ui.parm_generate(node,parm_code)
+]]> 
+            </scriptCode>
+        </scriptItem>
+
+    </subMenu>
+
+
+
+    <scriptItem id="ikoon_parm_PREview">
         <label>ikoon.parm.PREview</label>
         <parent>root_menu</parent>
         <insertAfter/>
         <scriptCode><![CDATA[
 
-import wf_network_kwargs as qq
+import wf_network_kwargs
+reload(wf_network_kwargs)
 parms     = kwargs['parms']
 node_app  = parms[0].node()
-qq.parmmenu_pre (node_app, parms)
+wf_network_kwargs.parmmenu_pre (node_app, parms)
 
             ]]>
         </scriptCode>
@@ -26,38 +106,113 @@ qq.parmmenu_pre (node_app, parms)
 
 
 
-
-    <scriptItem id="ikoon.parm.REF">
-        <label>ikoon.parm.REFerence</label>
+    <scriptItem id="ikoon_parm_REF_peer">
+        <label>ikoon.parm.REF.peer</label>
         <parent>root_menu</parent>
         <insertAfter/>
         <scriptCode><![CDATA[
 
-import wf_network_kwargs as qq
+import wf_network_kwargs
+reload(wf_network_kwargs)
 parms     = kwargs['parms']
 node_app  = parms[0].node()
-qq.parmmenu_ref (node_app, parms)
+wf_network_kwargs.parmmenu_ref_peer (node_app, parms)
 
             ]]>
         </scriptCode>
     </scriptItem>
 
 
-<scriptItem id="ikoon.parm.MIXer">
-        <label>ikoon.parm.MIXer</label>
+
+
+    <scriptItem id="ikoon_parm_REF_parent">
+        <label>ikoon.parm.REF.parent</label>
         <parent>root_menu</parent>
         <insertAfter/>
         <scriptCode><![CDATA[
 
-import wf_network_kwargs as qq
+import wf_network_kwargs
+reload(wf_network_kwargs)
 parms     = kwargs['parms']
 node_app  = parms[0].node()
-qq.parmmenu_ref (node_app, parms)
+wf_network_kwargs.parmmenu_ref_parent (node_app, parms)
 
             ]]>
         </scriptCode>
     </scriptItem>
 
+
+
+
+    <scriptItem id="ikoon_parm_find">
+        <label>ikoon.parm.find</label>
+        <parent>root_menu</parent>
+        <insertAfter/>
+        <scriptCode><![CDATA[
+
+
+import wf_network_utils
+reload(wf_network_utils)
+parms = kwargs['parms']
+parm = parms[0]
+wf_network_utils.find_parm(parm.name())
+
+            ]]>
+        </scriptCode>
+    </scriptItem>
+
+
+    <scriptItem id="ikoon_parm_go">
+        <label>ikoon.parm.go</label>
+        <parent>root_menu</parent>
+        <insertAfter/>
+        <scriptCode><![CDATA[
+
+
+import wf_network_utils
+reload(wf_network_utils)
+parms = kwargs['parms']
+parm = parms[0]
+node = parm.node()
+wf_network_utils.go_parm(node,parm)
+
+            ]]>
+        </scriptCode>
+    </scriptItem>
+
+
+    <scriptItem id="parm_relative_to_absolute_all">
+        <label>ikoon.parm.relative_to_absolute.all</label>
+        <parent>root_menu</parent>
+        <insertAfter/>
+        <scriptCode><![CDATA[
+
+import wf_network_utils
+reload(wf_network_utils)
+parms = kwargs['parms']
+parm = parms[0]
+node = parm.node()
+wf_network_utils.parm_relative_to_absolute_all(node)
+
+            ]]>
+        </scriptCode>
+    </scriptItem>
+
+
+    <scriptItem id="round">
+        <label>ikoon.parm.round</label>
+        <parent>root_menu</parent>
+        <insertAfter/>
+        <scriptCode><![CDATA[
+
+import wf_network_utils
+reload(wf_network_utils)
+parms = kwargs['parms']
+wf_network_utils.parm_round(parms)
+
+            ]]>
+        </scriptCode>
+    </scriptItem>
 
 
     </menu>

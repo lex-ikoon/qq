@@ -2,14 +2,50 @@ import hou
 import toolutils
 import wf_selection
 
+def flag_template_all_off () :
+    parmnode = wf_selection.parmnode()
+    container = parmnode.parent()
+    for node in container.children():
+        try:
+            node.setTemplateFlag(False)
+            node.setSelectableTemplateFlag(False)
+        except:
+            has_no_flag = 1
+
+
+def light_link () :
+    parm_names = ["light_enabled","light_enable","ogl_enablelight"]
+    expression = '''flag_parent = hou.pwd().parent().isGenericFlagSet(hou.nodeFlag.Display)
+flag_this   = hou.pwd().isGenericFlagSet(hou.nodeFlag.Display)
+if flag_parent and flag_this :
+    return 1
+else :
+    return 0'''
+
+    for light in hou.selectedNodes() :
+        for parm_name in parm_names :
+            try :
+                parm = light.parm(parm_name)
+                parm.setExpression(expression, language=hou.exprLanguage.Python) 
+                light.setUserData("nodeshape", "light")
+            except:
+                parm_doesnt_exist = 1
+
+
 def flag_render () :
     for node in hou.selectedNodes():
         node.setRenderFlag(not node.isRenderFlagSet())
 
 
+def hda_unlock () :
+    parmnode = wf_selection.parmnode()
+    parmnode.allowEditingOfContents(propagate=True)
+
+
 def flag_display () :
     parmnode = wf_selection.parmnode()
     containername = parmnode.parent().name()
+
     nodetype = "multiflag"
 
     if hou.sopNodeTypeCategory() == parmnode.parent().childTypeCategory():

@@ -12,6 +12,9 @@
     <memberTool name="flag_template"/>
     <memberTool name="wf_network_parm_autoscope_off"/>
     <memberTool name="wf_network_parm_opencl_container"/>
+    <memberTool name="light_link"/>
+    <memberTool name="flag_template_all_off"/>
+    <memberTool name="hda_unlock"/>
   </toolshelf>
 
   <tool name="flag_render" label="flag_render" icon="PLASMA_App">
@@ -78,5 +81,27 @@ wf_network_parm.opencl_container()]]></script>
     <script scriptType="python"><![CDATA[import wf_network_parm
 #reload(wf_network_parm)
 wf_network_parm.autoscope_off()]]></script>
+  </tool>
+
+  <tool name="light_link" label="qq light link" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>_workflow</toolSubmenu>
+    <script scriptType="python"><![CDATA[import wf_network_parm
+reload(wf_network_parm)
+wf_network_parm.light_link()]]></script>
+  </tool>
+
+  <tool name="flag_template_all_off" label="flag_template_all_off" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_parm
+reload(wf_network_parm)
+wf_network_parm.flag_template_all_off()]]></script>
+  </tool>
+
+  <tool name="hda_unlock" label="hda_unlock" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_parm
+reload(wf_network_parm)
+wf_network_parm.hda_unlock()]]></script>
   </tool>
 </shelfDocument>

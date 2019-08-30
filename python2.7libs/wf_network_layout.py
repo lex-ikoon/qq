@@ -1,6 +1,7 @@
 import hou
 import toolutils
 import wf_selection
+reload(wf_selection)
 
 def pin () :
     for node in hou.selectedNodes():
@@ -55,6 +56,10 @@ def node_prefixes () :
     node_prefixes.append( 'PRE' )
     node_prefixes.append( 'QQPRE' )
 
+    node_prefixes.append( '' )
+    node_prefixes.append( '' )
+    node_prefixes.append( '' )
+
     return node_prefixes
     
 
@@ -62,8 +67,10 @@ def node_prefixes () :
 def lay () :
 
 
+
     parm_pane = wf_selection.pane_linkGroup( hou.paneTabType.NetworkEditor )
     containernode = parm_pane.currentNode().parent()
+    containerpath = containernode.path()
 
 
     ################################
@@ -121,15 +128,12 @@ def lay () :
 
        
     ################################
-    #######   net  to  set  ########
+    #######   dat  to  app  ########
     ################################
 
     # define offset
     offsetx = 3
     offsety = 0
-
-    containerpath = containernode.path()
-
     prefixes = node_prefixes()
 
     for prefix in prefixes :
@@ -150,9 +154,20 @@ def lay () :
                 node_dat = hou.node(path_dat)    
                 node_app = hou.node(path_app)
 
+
+
                 # get pos
                 posx = node_app.position()[0] + offsetx
                 posy = node_app.position()[1] + offsety
+
+                # check collisions
+                tolerance = 2.0;
+                for check in containernode.children() :
+                    distance = hou.Vector2.length(   check.position()-hou.Vector2([posx,posy])   )
+                    # print distance
+                    if distance < tolerance and check != node_dat:
+                        posx = posx - 2*offsetx
+                        break
 
                 # set pos
                 if node_dat.comment() != "`" :
