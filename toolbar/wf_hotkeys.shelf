@@ -14,6 +14,8 @@
     <memberTool name="hk_pgup_shift"/>
     <memberTool name="hk_pgdn_ctrl"/>
     <memberTool name="hk_pgdn_shift"/>
+    <memberTool name="hk_pgup_ctrl_shift"/>
+    <memberTool name="hk_pgdn_ctrl_shift"/>
     <memberTool name="hk_del_ctrl"/>
     <memberTool name="hk_enter_alt"/>
     <memberTool name="hk_enter_ctrl_shift"/>
@@ -73,6 +75,18 @@ wf_hotkeys.hotkey_pgup_ctrl()]]></script>
     <script scriptType="python"><![CDATA[import wf_hotkeys
 reload(wf_hotkeys)
 wf_hotkeys.hotkey_pgdn_ctrl()]]></script>
+  </tool>
+
+  <tool name="hk_pgup_ctrl_shift" label="hk_pgup_ctrl_shift" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_pgup_ctrl_shift()]]></script>
+  </tool>
+
+  <tool name="hk_pgdn_ctrl_shift" label="hk_pgdn_ctrl_shift" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys
+reload(wf_hotkeys)
+wf_hotkeys.hotkey_pgdn_ctrl_shift()]]></script>
   </tool>
 
   <tool name="hk_enter_alt" label="hk_enter_alt" icon="PLASMA_App">

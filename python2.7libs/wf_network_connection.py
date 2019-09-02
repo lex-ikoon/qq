@@ -31,11 +31,12 @@ def selection_find ( current, direction, candidates ) :
     return closest[0]
 
 
-def selection_go( direction ) :
+def selection_go( direction, parent ) :
     parm_pane = wf_selection.pane_linkGroup( hou.paneTabType.NetworkEditor )
-    current   = parm_pane.currentNode()
-    target    = current
+    if parent == True   :   current   = parm_pane.currentNode().parent()
+    else                :   current   = parm_pane.currentNode()
 
+    target        = current
     inputs        = current.inputs()
     outputs       = current.outputs()
     inputs_count  = len(inputs)
@@ -54,7 +55,8 @@ def selection_go( direction ) :
         if len(siblings) == 0 :   target = selection_find(current, direction, current.parent().children())
         else                  :   target = selection_find(current, direction, siblings)
 
-    parm_pane.setCurrentNode(target)
+    if parent == True   :   parm_pane.cd(target.path())
+    else                :   parm_pane.setCurrentNode(target)
 
 
 

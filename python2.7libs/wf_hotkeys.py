@@ -80,7 +80,7 @@ def hotkey_pgup() :
     if cursor_over_music() :
         wf_music.tracks_activate(1)
     else :
-        wf_network_connection.selection_go([0,1])
+        wf_network_connection.selection_go([0,1],False)
 
 
 
@@ -88,7 +88,7 @@ def hotkey_pgdn() :
     if cursor_over_music() :
         wf_music.tracks_activate(-1)
     else :
-        wf_network_connection.selection_go([0,-1])
+        wf_network_connection.selection_go([0,-1],False)
 
 
 
@@ -108,6 +108,26 @@ def hotkey_pgup_ctrl() :
 def hotkey_pgdn_ctrl() :
     print "music"
     # select track
+
+
+
+def hotkey_pgup_ctrl_shift() :
+    if cursor_over_music() :
+        print "music"
+    else :
+        wf_network_connection.selection_go([0,1],True)
+
+
+
+def hotkey_pgdn_ctrl_shift() :
+    if cursor_over_music() :
+        print "music"
+    else :
+        wf_network_connection.selection_go([0,-1],True)
+
+
+
+
 
 #####################
 #####################
