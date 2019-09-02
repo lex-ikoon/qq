@@ -5,5 +5,5 @@
  Note, that two definitions of the same element are not allowed in
  a single file. -->
 
-  <toolshelf name="wf_selected" label="wf_selected"/>
+  <toolshelf name="wf_selection" label="wf_selection"/>
 </shelfDocument>

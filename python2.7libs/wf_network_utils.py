@@ -253,3 +253,36 @@ def recook_container () :
     nodes = container.allSubChildren()
     for node in nodes :
         node.cook(force=True)
+
+
+
+
+def fc_list_print (filecaches) :
+    import wf_network_ui
+    reload(wf_network_ui)
+
+    # remove duplicates
+    filecaches = list(dict.fromkeys(filecaches))
+
+    # create search pattern
+    print '\n-------    found:  -------'
+    pattern       = ''
+    pattern_count = 0
+
+    for fc in filecaches :
+        # set session Id
+        session_id = fc.sessionId()
+        wf_network_ui.parm_create (fc, "integer", "session_id", "session_id")
+        wf_network_ui.parm_update (fc, "integer", "session_id", hidden="True")
+        fc.parm("session_id").set(session_id)
+
+        # create search pattern
+        if pattern_count > 0 :
+            pattern   += ' | '
+        pattern       += "session_id" + '=' + str(session_id) + ''
+        pattern_count += 1
+        print 'FILECACHE: ' + str(fc.path()) + ''
+
+    hou.ui.copyTextToClipboard(pattern)
+    print '--------------------------'
+

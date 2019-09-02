@@ -60,7 +60,6 @@ def xml_for_wordpress ():
             data_html = data_html + data_py
             data_html = data_html + py_end
 
-
         file_html.write(data_html)
 
 

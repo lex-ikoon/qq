@@ -19,6 +19,8 @@
     <memberTool name="batch create geo"/>
     <memberTool name="selection_switch"/>
     <memberTool name="qrender hqueue render"/>
+    <memberTool name="qfc_search_below_True"/>
+    <memberTool name="qfc_search_below_False"/>
   </toolshelf>
 
   <tool name="recook_container" label="qq recook container" icon="PLASMA_App">
@@ -145,5 +147,111 @@ wf_network_utils.selection_switch()]]></script>
     <script scriptType="python"><![CDATA[import wf_network_utils
 reload(wf_network_utils)
 wf_network_utils.create_hqueue_render()]]></script>
+  </tool>
+
+  <tool name="qfc_search_below_True" label="qfc_search_below_True" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[import wf_network_utils
+reload(wf_network_utils)
+
+# -------------------
+# iteration
+def fc_iterate_downstream (node,go_below_fc) :
+    global dependents
+    global filecaches
+    candidates = list(set(  node.outputs() + node.dependents()  ))
+
+    for candidate in candidates :
+        if candidate not in dependents :
+            dependents.append(candidate)
+
+            # candidate is filecache
+            if candidate.type().name() == "filecache" :
+                filecaches.append(candidate)
+
+                # go below this filecache
+                if go_below_fc == True :
+                    fc_iterate_downstream(candidate,go_below_fc)
+
+            # candidate is not a filecache
+            else:
+                fc_iterate_downstream(candidate,go_below_fc)
+
+        # If candidate's parent is a dopnet, check also dopnet,
+        # because Dop I/O is dependent on Dop Object,
+        # which is often independent.
+        parent = candidate.parent()
+        if parent.type().name() == "dopnet" :
+            if parent not in dependents :
+                dependents.append(parent)
+                fc_iterate_downstream(parent,go_below_fc)
+# -------------------
+
+# init lists
+dependents  = []
+filecaches  = []
+node        = hou.selectedNodes()[0]
+go_below_fc = True
+
+# iterate
+fc_iterate_downstream(node, go_below_fc)
+
+# print list and copy to clipboard
+wf_network_utils.fc_list_print(filecaches)]]></script>
+  </tool>
+
+  <tool name="qfc_search_below_False" label="qfc_search_below_False" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[import wf_network_utils
+reload(wf_network_utils)
+
+# -------------------
+# iteration
+def fc_iterate_downstream (node,go_below_fc) :
+    global dependents
+    global filecaches
+    candidates = list(set(  node.outputs() + node.dependents()  ))
+
+    for candidate in candidates :
+        if candidate not in dependents :
+            dependents.append(candidate)
+
+            # candidate is filecache
+            if candidate.type().name() == "filecache" :
+                filecaches.append(candidate)
+
+                # go below this filecache
+                if go_below_fc == True :
+                    fc_iterate_downstream(candidate,go_below_fc)
+
+            # candidate is not a filecache
+            else:
+                fc_iterate_downstream(candidate,go_below_fc)
+
+        # If candidate's parent is a dopnet, check also dopnet,
+        # because Dop I/O is dependent on Dop Object,
+        # which is often independent.
+        parent = candidate.parent()
+        if parent.type().name() == "dopnet" :
+            if parent not in dependents :
+                dependents.append(parent)
+                fc_iterate_downstream(parent,go_below_fc)
+# -------------------
+
+# init lists
+dependents  = []
+filecaches  = []
+node        = hou.selectedNodes()[0]
+go_below_fc = False
+
+# iterate
+fc_iterate_downstream(node, go_below_fc)
+
+# print list and copy to clipboard
+wf_network_utils.fc_list_print(filecaches)]]></script>
   </tool>
 </shelfDocument>
