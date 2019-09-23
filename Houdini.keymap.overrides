@@ -1,4 +1,3 @@
-h.tool:hk_pgdn_ctrl_shift	hk_pgdn_ctrl_shift	"Shelf Tool: hk_pgdn_ctrl_shift"	 Ctrl+Shift+PageDown
 h.pane.gview.state.view.to_front	"Front Viewport"	"Change viewport type to Front"	 Ctrl+F7
 h.reload_desktop	"Reload Current Desktop"	"Reload the current desktop"	 Alt+Ctrl+Pad0
 h.desktop06	"Desktop 6"	"Switch to Desktop 6"	 Alt+Ctrl+Pad3
@@ -43,7 +42,9 @@ h.tool:toggle_ghostother	toggle_ghostother	"Shelf Tool: toggle_ghostother"	 Y
 h.pane.parms.copy_parm	"Copy Parameter"	"Copy parameter"	 Alt+C
 h.pane.gview.state.sop.sidefx_bend.bend	Bending	"Modulate bend parameter with mouse wheel"	 1
 h.pane.wsheet.align_horizontal	"Align Nodes Horizontally"	"Align the selected nodes horizontally"	 E
-h.tool:hk_z_shift	hk_z_shift	"Shelf Tool: hk_z_shift"	 Shift+Z
+h.tool:hk_ins	hk_ins	"Shelf Tool: hk_ins"	 Insert
+h.pane.wsheet.flag3_mode	"Set Third Flag"	"Hold this key and select a node to toggle a third flag value"	
+h.tool:hk_pgdn_ctrl_shift	hk_pgdn_ctrl_shift	"Shelf Tool: hk_pgdn_ctrl_shift"	 Ctrl+Shift+PageDown
 h.tool:hk_del_ctrl	hk_del_ctrl	"Shelf Tool: hk_del_ctrl"	 Ctrl+Del
 h.tool:hk_z	hk_z	"Shelf Tool: hk_z"	 Z
 h.pane.gview.decrease_handle_size	"Decrease Handle Size"	"Decrease handle size"	 Shift+PadStar
@@ -74,22 +75,22 @@ h.tool:toggle_points	toggle_points	"Shelf Tool: toggle_points"	 Alt+W
 h.tool:toggle_realtime	toggle_realtime	"Shelf Tool: toggle_realtime"	 Alt+T
 h.pane.perfmon.delete_profile	"Delete Profile"	"Remove the current profile from the performance monitor."	 Alt+Ctrl+Shift+D Del
 h.tool:render_kill	render_kill	"Shelf Tool: render_kill"	 F11
-h.tool:go_right	go_right	"Shelf Tool: go_right"	 Shift+PageDown
 h.tool:hda_unlock	hda_unlock	"Shelf Tool: hda_unlock"	 Ctrl+U
+h.tool:go_right	go_right	"Shelf Tool: go_right"	 Shift+PageDown
 h.tool:sim_cache_reset	sim_cache_reset	"Shelf Tool: sim_cache_reset"	 Alt+R F5
 h.pane.chedit.toggle_list	"Toggle Channel List"	"Toggle channel list"	 Tab
 h.pane.gview.state.sop.sidefx_bend.twist	Twisting	"Modulate twist parameter with mouse wheel"	 2
 h.pane.gview.state.view.to_right	"Right Viewport"	"Change viewport type to Right"	 Ctrl+Shift+F7
-h.pane.gview.state.sop.sidefx_bend.squish	Squishing	"Modulate squish parameter with mouse wheel"	 5
 h.pane.gview.selectstylebrush	"Brush Selection"	"Switch to brush selection"	 Shift+Q
+h.pane.gview.state.sop.sidefx_bend.squish	Squishing	"Modulate squish parameter with mouse wheel"	 5
 HCONTEXT	h.pane.gview.state.lop.sidefx_lop_edit	"sidefx_lop_edit Operation"	"These keys apply to the sidefx_lop_edit operation."
 h.pane.gview.state.lop.sidefx_lop_edit.trace	"Trace callbacks"	"Enable trace for callbacks"	 6
 h.pane.gview.state.sop.sidefx_stroke.debug_msg	"Debug messages"	"Enable debug messages"	 7
-h.pane.take.list.insert	"Insert New Take"	"Insert New Take"	
 HCONTEXT	h.pane.gview.state.sop.sidefx_rbdpaintstroke	sidefx_rbdpaintstroke	""
 HCONTEXT	h.pane.gview.state.sop.sidefx_rbdpaintstroke.pystate	"sidefx_rbdpaintstroke.pystate Operation"	"These keys apply to the sidefx_rbdpaintstroke.pystate operation."
 h.pane.gview.state.sop.sidefx_rbdpaintstroke.pystate.realtime_mode	realtime	"Enable realtime mode"	 0
 h.tool:toggle_primnumbers	toggle_primnumbers	"Shelf Tool: toggle_primnumbers"	 Alt+P
+h.pane.take.list.insert	"Insert New Take"	"Insert New Take"	
 h.pane.gview.toggle_wireshaded	"Toggle Wireframe/Shaded"	"Toggle wireframe/shaded"	
 HCONTEXT	h.pane.gview.state.sop.sidefx_rbdconstraintsfromlines	sidefx_rbdconstraintsfromlines	""
 HCONTEXT	h.pane.gview.state.sop.sidefx_rbdconstraintsfromlines.pystate	"sidefx_rbdconstraintsfromlines.pystate Operation"	"These keys apply to the sidefx_rbdconstraintsfromlines.pystate operation."
@@ -103,37 +104,29 @@ h.tool:hk_enter_ctrl_shift	hk_enter_ctrl_shift	"Shelf Tool: hk_enter_ctrl_shift"
 h.pane.wsheet.flag4_mode	"Set Fourth Flag"	"Hold this key and select a node to toggle a fourth flag value"	
 h.tool:play_scrub	play_scrub	"Shelf Tool: play_scrub"	 F8
 h.pane.take.list.showcontents	"Show Take Contents"	"Show Take Contents"	
+h.pane.gview.model.sel.patternrighttoend	"Expand Pattern Right to End"	"Expand pattern right to end"	
+h.pane.gview.top	"Move To First Operation"	"Move to first operation"	
 gplay.quick_quit	"Quick Quit"	"Quick Quit"	
 h.pane.wsheet.open_treeview	"Show Tree Viewer"	"Open OP tree view"	 Alt+L
-h.pane.gview.state.view.to_top	"Top Viewport"	"Change viewport type to Top"	 Shift+F7
 h.tool:toggle_normals	toggle_normals	"Shelf Tool: toggle_normals"	 Alt+N
 h.pane.wsheet.updir	"Jump Up"	"Jump up to parent network"	 U Ctrl+PageUp
 h.pane.gview.selectstylebox	"Box Selection"	"Switch to box selection"	
 h.pane.wsheet.up	"Set Current Above"	"Set current above"	
+h.pane.gview.model.sel.patternlefttoend	"Expand Pattern Left to End"	"Expand pattern left to end"	
+h.pane.editpathastext	"Edit Path As Text"	"Edit the current path in text mode"	
 h.pane.projectm.new_folder	"Add New Folder"	"Add New Folder"	
 HCONTEXT	h.pane.gview.state.lop.stagemanager	"stagemanager Operation"	"These keys apply to the stagemanager operation."
 h.pane.gview.state.lop.stagemanager.log_state	"Log state"	"Log state attributes"	 8
 h.pane.gview.state.lop.sidefx_lop_edit.start_prim_selector	start_prim_selector	start_prim_selector	 1
 h.pane.wsheet.home_selected	"Home Selected"	"Home selected OP tiles"	 Shift+H F
-h.pane.gview.repeat_current	"Repeat Current Operation"	"Quick-repeat current operation"	
-h.pane.wsheet.left	"Set Current Left"	"Set Current left"	
-h.pane.gview.state.sop.sidefx_bend.length	"Length Scaling"	"Modulate length scale parameter with mouse wheel"	 3
+h.pane.gview.repeat_current_branch	"Repeat Current Operation Branched"	"Quick-repeat current operation branched"	
+h.reset_sim	"Reset Simulations"	"Recook simulations in open viewers"	 Alt+Ctrl+S
+h.tool:hk_z_shift	hk_z_shift	"Shelf Tool: hk_z_shift"	 Shift+Z
 h.pane.gview.state.lop.sidefx_lop_edit.collisions	Collisions	"Collide Against Other Primitives"	 Shift+C
 h.tool:folders_tab_go_l	folders_tab_go_l	"Shelf Tool: folders_tab_go_l"	 Alt+PageUp
 h.pane.gview.toggle_wireover	"Toggle Shaded/Wire-over-shaded"	"Toggle shaded/Wire-over-shaded"	
 h.pane.gview.state.floor.z_normal_center	"Center C-Plane Around World Z Axis"	"Center construction plane around world Z axis"	
-h.tool:toggle_objectselection	toggle_objectselection	"Shelf Tool: toggle_objectselection"	 Alt+O
-h.pane.gview.state.sop.sidefx_rbdpaintstroke.pystate.log_state	"Log state"	"Log state attributes"	 8
-h.pane.gview.handle.agentconfigurejoints.twisthandle	"Twist Handle"	"Display the twist handle"	
-h.tool:toggle_maskoverlay	toggle_maskoverlay	"Shelf Tool: toggle_maskoverlay"	 Alt+H
-h.pane.imgui.colorpick	"Enter Color Pick State"	"Enter color pick state"	
-h.pane.gview.state.sop.sidefx_rbdpaintstroke.pystate.set_wireframe_brush	"Set wireframe brush"	"Set wireframe brush"	 2
-h.pane.chview.handle	Handles	Handles	 Tab
-h.pane.wsheet.tool:lay	lay	"Shelf Tool: lay"	 L
-h.pane.wsheet.visualize_mode	"Visualize Output"	"Hold this key and select a node or output connector to visualize the output"	
-h.perf_monitor	"Performance Monitor"	"Open performace monitor"	
-h.merge	Merge	"Merge with a file"	
-h.pane.editpathastext	"Edit Path As Text"	"Edit the current path in text mode"	
+h.pane.wsheet.left	"Set Current Left"	"Set Current left"	
 h.pane.wsheet.tool:pin	pin	"Shelf Tool: pin"	 Ctrl+L
 h.pane.gview.state.lop.sidefx_lop_edit.log_state	"Log state"	"Log state attributes"	 8
 h.pane.gview.state.sop.sidefx_rbdconstraintsfromlines.pystate.toggle_enable	"Toggle Enable Line"	"Toggle Enable Line"	 3
@@ -141,18 +134,29 @@ h.pane.linkeditor.open_sheet	"Open Parameter Sheet"	"Open parameter sheet"
 mplay.fullscreen	Fullscreen	"Full screen"	 Ctrl+F
 h.audio_panel	"Audio Panel"	"Open audio panel"	 Alt+I Alt+Shift+A
 h.pane.gview.state.volatile_view	"Volatile View Operation"	"Volatile viewing operation"	 Space F6
-h.pane.gview.repeat_current_branch	"Repeat Current Operation Branched"	"Quick-repeat current operation branched"	
-h.reset_sim	"Reset Simulations"	"Recook simulations in open viewers"	 Alt+Ctrl+S
-h.pane.gview.top	"Move To First Operation"	"Move to first operation"	
-h.pane.gview.model.sel.patternlefttoend	"Expand Pattern Left to End"	"Expand pattern left to end"	
-h.pane.gview.model.sel.patternrighttoend	"Expand Pattern Right to End"	"Expand pattern right to end"	
+h.pane.gview.repeat_current	"Repeat Current Operation"	"Quick-repeat current operation"	
+h.tool:toggle_objectselection	toggle_objectselection	"Shelf Tool: toggle_objectselection"	 Alt+O
+h.pane.gview.state.sop.sidefx_rbdpaintstroke.pystate.log_state	"Log state"	"Log state attributes"	 8
+h.pane.gview.handle.agentconfigurejoints.twisthandle	"Twist Handle"	"Display the twist handle"	
+h.tool:toggle_maskoverlay	toggle_maskoverlay	"Shelf Tool: toggle_maskoverlay"	 Alt+H
+h.pane.gview.selectstylelaser	"Laser Selection"	"Switch to laser selection"	
+h.pane.gview.state.sop.sidefx_stroke.set_wireframe_brush	"Set wireframe brush"	"Set wireframe brush"	 2
+h.pane.imgui.colorpick	"Enter Color Pick State"	"Enter color pick state"	
+h.pane.gview.state.sop.sidefx_rbdpaintstroke.pystate.set_wireframe_brush	"Set wireframe brush"	"Set wireframe brush"	 2
+h.pane.chview.handle	Handles	Handles	 Tab
+h.pane.wsheet.tool:lay	lay	"Shelf Tool: lay"	 L
+h.pane.gview.state.view.to_top	"Top Viewport"	"Change viewport type to Top"	 Shift+F7
+h.perf_monitor	"Performance Monitor"	"Open performace monitor"	
+h.merge	Merge	"Merge with a file"	
 h.pane.gview.state.volatile_chmodify	"Volatile Modify Channels Operation"	"Volatile modify channels operation"	
+h.pane.wsheet.visualize_mode	"Visualize Output"	"Hold this key and select a node or output connector to visualize the output"	
+h.tool:sim_cache_reset_nosetframe	sim_cache_reset_nosetframe	"Shelf Tool: sim_cache_reset_nosetframe"	 Shift+F5
+h.pane.gview.state.sop.sidefx_bend.length	"Length Scaling"	"Modulate length scale parameter with mouse wheel"	 3
+h.pane.wsheet.tool:create_node_blast	create_node_blast	"Shelf Tool: create_node_blast"	 B
 h.pane.gview.state.sop.sidefx_stroke.set_viewport_brush	"Set viewport brush"	"Set viewport brush"	 3
 h.pane.wsheet.tool:create_node_switch	create_node_switch	"Shelf Tool: create_node_switch"	 S
 h.pane.textport.pageup	"Page Up"	"Page up"	
 h.pane.parmsheet.open_tree	"Open Operator Tree"	"Open operator tree"	
-h.pane.wsheet.flag3_mode	"Set Third Flag"	"Hold this key and select a node to toggle a third flag value"	
-h.tool:hk_ins	hk_ins	"Shelf Tool: hk_ins"	 Insert
 HCONTEXT	h.pane.gview.state.sop.sidefx_rbdconstraintsfromrules	sidefx_rbdconstraintsfromrules	""
 HCONTEXT	h.pane.gview.state.sop.sidefx_rbdconstraintsfromrules.pystate	"sidefx_rbdconstraintsfromrules.pystate Operation"	"These keys apply to the sidefx_rbdconstraintsfromrules.pystate operation."
 h.pane.gview.state.sop.sidefx_rbdconstraintsfromrules.pystate.show_hinge_edit	"Toggle Transform Handle"	"Toggle Transform Handle"	 2
@@ -194,8 +198,8 @@ h.pane.gview.nextcamera	"Next Camera"	"Look through the next camera in the list"
 h.pane.gview.redoselection	"Restart Selecting"	"Restart selecting"	 Alt+Ctrl+R
 h.pane.gview.secureselection	"Secure Selection"	"Secure selection"	
 h.tool:hk_left_ctrl_shift	hk_left_ctrl_shift	"Shelf Tool: hk_left_ctrl_shift"	 Ctrl+Shift+LeftArrow
-h.pane.gview.state.sop.sidefx_rbdpaintstroke.pystate.reload_state	"Reload state"	"Reload state"	 9
 h.pane.gview.handle.edit.pivot_mode	"Pivot Mode"	"Toggle pivot mode"	 Ctrl+Enter
+h.pane.gview.state.sop.sidefx_rbdpaintstroke.pystate.reload_state	"Reload state"	"Reload state"	 9
 h.pane.gview.state.sop.sidefx_bend.debug_msg	"Debug messages"	"Enable debug messages"	 7
 h.pane.textport.selectpagedown	"Page Down"	"Select Page down"	
 h.pane.gview.state.lop.stagemanager.reload_state	"Reload state"	"Reload state"	 9
@@ -218,8 +222,8 @@ h.pane.parmsheet.selectnone	"Select None"	"Select none"
 h.pane.wsheet.create_channel_groups	"Create Nested Channel Groups"	"Create nested channel groups that correspond to parameter folders"	 Ctrl+Shift+A
 h.pane.gview.tool:hk_j	hk_j	"Shelf Tool: hk_j"	 J
 h.pane.gview.state.sop.sidefx_bend.log_state	"Log state"	"Log state attributes"	 8
-h.pane.imgui.enablelut	"Enable LUT"	"Enable LUT"	
 h.pane.wsheet.select_mode	"Select Mode"	"Hold this key to enter select mode"	
+h.pane.imgui.enablelut	"Enable LUT"	"Enable LUT"	
 h.pane.gview.state.view.set_pivot	"Set Pivot"	"Set pivot to geometry under the cursor"	 Alt+Z
 h.tool:toggle_velocities	toggle_velocities	"Shelf Tool: toggle_velocities"	 Alt+V
 h.pane.gview.state.sop.sidefx_rbdconstraintsfromrules.pystate.toggle	"Toggle Handles"	"Toggle Handles"	 Z
@@ -228,31 +232,29 @@ h.pane.wsheet.add_postit	"Add Sticky Note"	"Adds a sticky node to the current ne
 h.pane.gview.state.sop.sidefx_rbdpaintstroke.pystate.trace	"Trace callbacks"	"Enable trace for callbacks"	 6
 h.pane.nexttab	"Next Tab"	"Next pane tab"	 Ctrl+Tab
 h.pane.wsheet.layout_mode	"Layout Mode"	"Hold this key and swipe nodes with the mouse to layout or align"	 Shift+A
-h.pane.wsheet.tool:create_node_awrangle	create_node_awrangle	"Shelf Tool: create_node_awrangle"	 A
 h.pane.playbar	"Move Playbar Here"	"Move playbar to this pane"	
+h.pane.wsheet.tool:create_node_awrangle	create_node_awrangle	"Shelf Tool: create_node_awrangle"	 A
 h.play_fwd	"Play Forward"	"Playback forward"	 RightArrow
 h.tool:hk_f_alt	hk_f_alt	"Shelf Tool: hk_f_alt"	 Alt+F
 h.pane.gview.state.lop.stagemanager.debug_msg	"Debug messages"	"Enable debug messages"	 7
 h.next_key	"Jump To Next Keyframe"	"Jump to next keyframe"	 Ctrl+UpArrow
-h.pane.maximize_split	"Maximize in Split Direction"	"Toggle pane full size horizontally or vertically"	 \"
 h.prev_frame	"Step Backward One Frame"	"Step backward one frame"	 DownArrow
+h.pane.maximize_split	"Maximize in Split Direction"	"Toggle pane full size horizontally or vertically"	 \"
 h.pane.jump_back	"Jump Back"	"Jump back one step"	 Alt+LeftArrow Backspace Alt+DownArrow
 h.desktop09	"Desktop 9"	"Switch to Desktop 9"	 Alt+Ctrl+Pad6
 h.pane.wsheet.add_image	"Add Background Image"	"Adds a new background image"	
 h.desktop07	"Desktop 7"	"Switch to Desktop 7"	 Alt+Ctrl+Pad4
 h.pane.wsheet.opmenu.parameters	Parameters	"Open a Parameters window for the node"	 P
 h.textport	Textport	"Open texport"	
-h.floatpanel	"Floating Panel"	"New floating panel"	
 h.pane.gview.operator_menu	"Toolbar Menu"	"Pop up toolbar menu"	 Tab
+h.floatpanel	"Floating Panel"	"New floating panel"	
 h.tool:hk_pgup_ctrl_shift	hk_pgup_ctrl_shift	"Shelf Tool: hk_pgup_ctrl_shift"	 Ctrl+Shift+PageUp
 h.pane.gview.state.lop.stagemanager.trace	"Trace callbacks"	"Enable trace for callbacks"	 6
-h.pane.wsheet.batch_rename	"Rename Nodes"	"Search and replace in all node names in this network"	
 h.pane.gview.state.sop.agentcollisionlayer.mode	"Cycle Collision Shape"	"Cycle collision shape through box, capsule and sphere"	
-h.pane.wsheet.bypass_mode	"Set Bypass Flag"	"Hold this key and select a node to toggle the bypass flag value"	 B
-h.pane.gview.selectstylelaser	"Laser Selection"	"Switch to laser selection"	
-h.pane.gview.state.sop.sidefx_stroke.set_wireframe_brush	"Set wireframe brush"	"Set wireframe brush"	 2
-h.pane.gview.state.new_view	"View Tool"	"Invoke the view tool"	 `
+h.pane.wsheet.batch_rename	"Rename Nodes"	"Search and replace in all node names in this network"	
+h.pane.wsheet.bypass_mode	"Set Bypass Flag"	"Hold this key and select a node to toggle the bypass flag value"	
 h.pane.parms.paste_rel_refs	"Paste Copied Relative Refs"	"Paste copied relative refs"	 Alt+V
+h.pane.gview.state.new_view	"View Tool"	"Invoke the view tool"	 `
 h.desktop05	"Desktop 5"	"Switch to Desktop 5"	 Alt+Ctrl+Pad1
 h.play_stop	"Play Stop"	"Playback stop"	 LeftArrow
 h.range_end	"Jump To End Of Range"	"Jump to end of range"	 Ctrl+RightArrow

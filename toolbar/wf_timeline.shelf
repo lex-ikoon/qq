@@ -17,6 +17,7 @@
     <memberTool name="playrange_extend_spacing_before"/>
     <memberTool name="playrange_extend_spacing_after"/>
     <memberTool name="sim_cache_reset"/>
+    <memberTool name="sim_cache_reset_nosetframe"/>
   </toolshelf>
 
   <tool name="play_backward" label="play_backward" icon="PLASMA_App">
@@ -70,7 +71,7 @@ wf_timeline.playrange_to_precedent()]]></script>
   <tool name="sim_cache_reset" label="sim_cache_reset" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_timeline
 reload(wf_timeline)
-wf_timeline.sim_cache_reset()]]></script>
+wf_timeline.sim_cache_reset(set_frame=True)]]></script>
   </tool>
 
   <tool name="playrange_from_name" label="playrange_from_name" icon="PLASMA_App">
@@ -83,5 +84,11 @@ wf_timeline.playrange_from_name()]]></script>
     <script scriptType="python"><![CDATA[import wf_timeline
 #reload(wf_timeline)
 wf_timeline.toggle_realtime()]]></script>
+  </tool>
+
+  <tool name="sim_cache_reset_nosetframe" label="sim_cache_reset_nosetframe" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_timeline
+reload(wf_timeline)
+wf_timeline.sim_cache_reset(set_frame=False)]]></script>
   </tool>
 </shelfDocument>

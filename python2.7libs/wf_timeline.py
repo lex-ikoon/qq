@@ -81,7 +81,7 @@ def sim_cache_delete_playrange () :
 
 # hotkey: F5
 # reset the sim
-def sim_cache_reset () :
+def sim_cache_reset (set_frame) :
     dopnet, cache_on, cache_name, cache_substeps, cache_start, cache_spacing = sim_dopnet()
 
     if cache_on:
@@ -93,7 +93,9 @@ def sim_cache_reset () :
     if dopnet:
         dopnet.parm("resimulate").pressButton()
 
-    hou.setFrame(hou.playbar.playbackRange()[0]) 
+    if set_frame :
+        hou.setFrame(hou.playbar.playbackRange()[0]) 
+
 
 
 # hotkey: /

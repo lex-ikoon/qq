@@ -144,7 +144,7 @@ def create_node(type) :
                 node_create.setNextInput(node)
             node_create.moveToGoodPosition(relative_to_inputs=True, move_inputs=False, move_outputs=True, move_unconnected=False)
     
-        if type == 'null' or type == 'xform' or type == 'attribwrangle' or type == 'geo':
+        if type == 'null' or type == 'xform' or type == 'attribwrangle' or type == 'geo' or type == 'blast':
             # multiple nodes, one input
             
             for node in nodes:

@@ -21,6 +21,7 @@
     <memberTool name="qrender hqueue render"/>
     <memberTool name="qfc_search_below_True"/>
     <memberTool name="qfc_search_below_False"/>
+    <memberTool name="create_node_blast"/>
   </toolshelf>
 
   <tool name="recook_container" label="qq recook container" icon="PLASMA_App">
@@ -253,5 +254,11 @@ fc_iterate_downstream(node, go_below_fc)
 
 # print list and copy to clipboard
 wf_network_utils.fc_list_print(filecaches)]]></script>
+  </tool>
+
+  <tool name="create_node_blast" label="create_node_blast" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_utils
+reload(wf_network_utils)
+wf_network_utils.create_node('blast')]]></script>
   </tool>
 </shelfDocument>
