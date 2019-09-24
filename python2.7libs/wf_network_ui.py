@@ -612,43 +612,63 @@ def folders_trygo (node, name, count, dir) :
     
 def folders_tab_go (dir) :
     node = wf_selection.parmnode()
-    A = node.parmTemplateGroup()
-    A_names, A_counts = names_counts_in (node, A)
 
-    for (iA,A_name) in enumerate(A_names) :
+    if node.type() == hou.nodeType("Sop/switch") :
+        ########################
+        #######  switch  #######
+        ninputs = len(node.inputs())
+        parm    = node.parm("input")
+        if parm.eval()+dir > ninputs-1 : 
+            parm.set( 0 )
+        elif parm.eval()+dir < 0 : 
+            parm.set( ninputs-1 )
+        else:
+            parm.set( parm.eval()+dir )
+        ########################
 
-        A_went = 0
-        B_went = 0
-        C_went = 0
-        
-        A_actual = node.parm(A_name+"1").eval()
-        A_count = A_counts[iA]
-        pt_name = A_name 
-        
-        if A_actual > 0:
-            pt_name += "_" + str(A_actual)
+    else:
+        ########################
+        ########  tabs  ########
+        A = node.parmTemplateGroup()
+        A_names, A_counts = names_counts_in (node, A)
+
+        for (iA,A_name) in enumerate(A_names) :
+
+            A_went = 0
+            B_went = 0
+            C_went = 0
             
-        B = node.parmTemplateGroup().find(pt_name)
-        B_names, B_counts = names_counts_in (node, B)
-        
-        for (iB,B_name) in enumerate(B_names) :
-            B_actual = node.parm(B_name+"1").eval()
-            B_count = B_counts[iB]
-            pt_name = B_name 
-            if B_actual > 0:
-                pt_name += "_" + str(B_actual)
-                
-            C = node.parmTemplateGroup().find(pt_name)
-            C_names, C_counts = names_counts_in (node, C)
+            A_actual = node.parm(A_name+"1").eval()
+            A_count = A_counts[iA]
+            pt_name = A_name 
             
-            for (iC,C_name) in enumerate(C_names):
-                C_count = C_counts[iC]
-                C_went = folders_trygo(node, C_name, C_count , dir)
+            if A_actual > 0:
+                pt_name += "_" + str(A_actual)
                 
+            B = node.parmTemplateGroup().find(pt_name)
+            B_names, B_counts = names_counts_in (node, B)
+            
+            for (iB,B_name) in enumerate(B_names) :
+                B_actual = node.parm(B_name+"1").eval()
+                B_count = B_counts[iB]
+                pt_name = B_name 
+                if B_actual > 0:
+                    pt_name += "_" + str(B_actual)
                     
-            if C_went == 0:
-                B_went = folders_trygo(node, B_name, B_count , dir)
+                C = node.parmTemplateGroup().find(pt_name)
+                C_names, C_counts = names_counts_in (node, C)
+                
+                for (iC,C_name) in enumerate(C_names):
+                    C_count = C_counts[iC]
+                    C_went = folders_trygo(node, C_name, C_count , dir)
+                    
+                        
+                if C_went == 0:
+                    B_went = folders_trygo(node, B_name, B_count , dir)
 
 
-        if B_went == 0 and C_went == 0:
-            A_went = folders_trygo(node, A_name, A_count , dir)
+            if B_went == 0 and C_went == 0:
+                A_went = folders_trygo(node, A_name, A_count , dir)
+
+        ########  tabs  ########
+        ########################

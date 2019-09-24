@@ -51,13 +51,13 @@ wf_network_ui.parm_clean()]]></script>
 
   <tool name="folders_tab_go_r" label="folders_tab_go_r" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_ui
-#reload(wf_network_ui)
+reload(wf_network_ui)
 wf_network_ui.folders_tab_go(1)]]></script>
   </tool>
 
   <tool name="folders_tab_go_l" label="folders_tab_go_l" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_ui
-#reload(wf_network_ui)
+reload(wf_network_ui)
 wf_network_ui.folders_tab_go(-1)]]></script>
   </tool>
 
