@@ -53,12 +53,19 @@ def pane_linkGroup( panetype ) :
             if pane.linkGroup() == cursor_group :
                 return pane
 
-    # if none found, then Group1
-    cursor_group = hou.paneLinkType.Group1
+    # if none found, then first
     for pane in current_desktop.paneTabs() :
         if pane.type() == panetype :
-            if pane.linkGroup() == cursor_group :
+            if pane.isCurrentTab() :
                 return pane
+
+
+    # if none found, then Group1
+    # cursor_group = hou.paneLinkType.Group1
+    # for pane in current_desktop.paneTabs() :
+    #     if pane.type() == panetype :
+    #         if pane.linkGroup() == cursor_group :
+    #             return pane
 
 
 
