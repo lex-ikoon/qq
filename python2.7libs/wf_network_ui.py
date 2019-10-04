@@ -6,15 +6,6 @@ import wf_selection
 import wf_midi
 reload (wf_midi)
 
-# def node_snippet (node) :
-#     parm_
-#     no_snippet = 1
-#     try :
-#         snippet = node.parm("snippet")
-#     except :
-#         nosnippet = 1
-#     actualcode = snippet.unexpandedString()
-#     return snippet
 
 
 def panetab_network_pane() :
@@ -29,13 +20,42 @@ def panetab_restore() :
     if panetab_cursor.type() == hou.paneTabType.SceneViewer:
         # sceneview panetabs
         panetab_cursor.enterViewState()
-    else:
-        # other panetabs
-        index_prev = hou.getenv("panetab_network_prev", "0")
-        index_actual = panetab_get()
-        hou.putenv("panetab_network_prev", str(index_actual))
-        panetab_set(string.atoi(index_prev)+1)
-        
+
+    
+    else :
+
+        pe_1 = hou.ui.curDesktop().findPaneTab("pt_parmeditor_1").pane()
+        pe_2 = hou.ui.curDesktop().findPaneTab("pt_parmeditor_2").pane()
+        nw_1 = hou.ui.curDesktop().findPaneTab("pt_network_1").pane()
+        nw_2 = hou.ui.curDesktop().findPaneTab("pt_network_2").pane()
+
+        if not pe_1.isSplitMaximized() :
+
+            #### order: MAX 1
+            pe_1.setIsSplitMaximized( True )
+            pe_2.setIsSplitMaximized( False )
+
+            nw_1.setIsSplitMaximized( True )
+            nw_2.setIsSplitMaximized( False )
+
+
+        else :
+            #### order: EVEN
+            pe_1.setIsSplitMaximized( False )
+            pe_2.setIsSplitMaximized( True )
+
+            nw_1.setIsSplitMaximized( False )
+            nw_2.setIsSplitMaximized( True )
+
+        #print ismaximized
+        # print pe_1.isSplitMaximized()
+        # print pe_2.isSplitMaximized()
+        # print pe_1.isSplitMinimized()
+        # print pe_2.isSplitMinimized()
+        # print pe_1.tabs()
+        # print pe_2.tabs()
+        # print("--------")
+
 
 
 def panetab_get() :
@@ -51,66 +71,55 @@ def panetab_get() :
 
 
 def panetab_set(number) :
-    # store actual before setting new
-    index_to_set = number-1
-    index_actual = panetab_get()
+    pe_1 = hou.ui.curDesktop().findPaneTab("pt_parmeditor_1").pane()
+    pe_2 = hou.ui.curDesktop().findPaneTab("pt_parmeditor_2").pane()
+    nw_1 = hou.ui.curDesktop().findPaneTab("pt_network_1").pane()
+    nw_2 = hou.ui.curDesktop().findPaneTab("pt_network_2").pane()
 
-    # set new panetab
-    if index_actual != index_to_set :
-        hou.putenv("panetab_network_prev", str(index_actual))
 
-        network_pane = panetab_network_pane()
+    if number == 1 :
 
-        current_desktop = hou.ui.curDesktop()
-        panetab_actual = network_pane.tabs()[index_actual]
-        panetab_to_set = network_pane.tabs()[index_to_set]
- 
-        # pin all
-        for panetab in network_pane.tabs() :
-            panetab.setLinkGroup(hou.paneLinkType.Pinned)
+        #### order: MAX 1
+        pe_1.setIsSplitMaximized( True )
+        pe_2.setIsSplitMaximized( False )
 
-        # save all paths
-        for panetab in network_pane.tabs() :
-            hou.putenv(panetab.name(), panetab.currentNode().path())
+        nw_1.setIsSplitMaximized( True )
+        nw_2.setIsSplitMaximized( False )
 
-        # set network panetab
-        panetab_to_set.setIsCurrentTab()
 
-        # unpin new panetab
-        panetab_to_set.setLinkGroup(hou.paneLinkType.FollowSelection)
+    if number == 2 :
 
-        # restore parmeditor
-        restore_node = hou.node(   hou.getenv(panetab_to_set.name(), "0")   )
-        hou.ui.curDesktop().findPaneTab("pt_parmeditor_1").setCurrentNode(  restore_node  )
+        #### order: MAX 2
+        pe_2.setIsSplitMaximized( True )
+        pe_1.setIsSplitMaximized( False )
 
-        # panetab_to_set.currentNode().setSelected(True,True)
-        # print panetab_to_set.name()
-        # print panetab_to_set.pwd()
-        # print panetab_to_set.currentNode()
-        # print "-------"
+        nw_2.setIsSplitMaximized( True )
+        nw_1.setIsSplitMaximized( False )
 
 
 def panetab_clone(number) :
-    # from panetab to panetab
-    index_from = panetab_get()
-    index_to   = number-1
+    pass
+    # TODO
+    # # from panetab to panetab
+    # index_from = panetab_get()
+    # index_to   = number-1
 
-    network_pane = panetab_network_pane()
-    panetab_from    = network_pane.tabs()[index_from]
-    panetab_to      = network_pane.tabs()[index_to]
+    # network_pane = panetab_network_pane()
+    # panetab_from    = network_pane.tabs()[index_from]
+    # panetab_to      = network_pane.tabs()[index_to]
 
-    # remember pwd, node, bounds
-    remember_pwd  = panetab_from.pwd()
-    remember_node = panetab_from.currentNode()
-    remember_bounds = panetab_from.visibleBounds()
+    # # remember pwd, node, bounds
+    # remember_pwd  = panetab_from.pwd()
+    # remember_node = panetab_from.currentNode()
+    # remember_bounds = panetab_from.visibleBounds()
 
-    # set scope
-    panetab_set(index_to+1)
+    # # set scope
+    # panetab_set(index_to+1)
 
-    # set remembered
-    panetab_to.setPwd(remember_pwd)
-    remember_node.setSelected(True,True)
-    panetab_to.setVisibleBounds(remember_bounds)
+    # # set remembered
+    # panetab_to.setPwd(remember_pwd)
+    # remember_node.setSelected(True,True)
+    # panetab_to.setVisibleBounds(remember_bounds)
 
     
 def node_global () :
