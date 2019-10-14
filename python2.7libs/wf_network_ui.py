@@ -23,29 +23,66 @@ def panetab_restore() :
 
     
     else :
-
+        # do the network
         pe_1 = hou.ui.curDesktop().findPaneTab("pt_parmeditor_1").pane()
         pe_2 = hou.ui.curDesktop().findPaneTab("pt_parmeditor_2").pane()
         nw_1 = hou.ui.curDesktop().findPaneTab("pt_network_1").pane()
         nw_2 = hou.ui.curDesktop().findPaneTab("pt_network_2").pane()
 
-        if not pe_1.isSplitMaximized() :
 
-            #### order: MAX 1
-            pe_1.setIsSplitMaximized( True )
-            pe_2.setIsSplitMaximized( False )
+        if pe_1.isSplitMaximized() == False and pe_2.isSplitMaximized() == False :
+            # was EVEN
 
-            nw_1.setIsSplitMaximized( True )
-            nw_2.setIsSplitMaximized( False )
+            if panetab_cursor.linkGroup() == hou.paneLinkType.Group2 :
+                # maximize 2 only when hovering over 2
+                # print "B"
+                #### order: MAX 2
+                pe_2.setIsSplitMaximized( True )
+                pe_1.setIsSplitMaximized( False )
+
+                nw_2.setIsSplitMaximized( True )
+                nw_1.setIsSplitMaximized( False )
+
+            else :
+                # maximize 1 in all other cases
+                # print "A"
+                #### order: MAX 1
+                pe_1.setIsSplitMaximized( True )
+                pe_2.setIsSplitMaximized( False )
+
+                nw_1.setIsSplitMaximized( True )
+                nw_2.setIsSplitMaximized( False )
 
 
         else :
-            #### order: EVEN
-            pe_1.setIsSplitMaximized( False )
-            pe_2.setIsSplitMaximized( True )
+            if pe_1.isSplitMaximized() == True :
+                # print "C"
+                #### order: EVEN from 1
+                pe_1.setIsSplitMaximized( False )
+                pe_2.setIsSplitMaximized( True )
 
-            nw_1.setIsSplitMaximized( False )
-            nw_2.setIsSplitMaximized( True )
+                nw_1.setIsSplitMaximized( False )
+                nw_2.setIsSplitMaximized( True )
+
+            if pe_2.isSplitMaximized() == True :
+                # print "D"
+                #### order: MAX 1
+                pe_1.setIsSplitMaximized( True )
+                pe_2.setIsSplitMaximized( False )
+
+                nw_1.setIsSplitMaximized( True )
+                nw_2.setIsSplitMaximized( False )
+
+                #### order: EVEN from 2
+                pe_1.setIsSplitMaximized( False )
+                pe_2.setIsSplitMaximized( True )
+
+                nw_1.setIsSplitMaximized( False )
+                nw_2.setIsSplitMaximized( True )
+
+
+
+
 
         #print ismaximized
         # print pe_1.isSplitMaximized()
@@ -78,7 +115,7 @@ def panetab_set(number) :
 
 
     if number == 1 :
-
+        print "A1"
         #### order: MAX 1
         pe_1.setIsSplitMaximized( True )
         pe_2.setIsSplitMaximized( False )

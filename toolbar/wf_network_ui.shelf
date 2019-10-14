@@ -16,12 +16,8 @@
     <memberTool name="panetab_restore"/>
     <memberTool name="panetab_set_1"/>
     <memberTool name="panetab_set_2"/>
-    <memberTool name="panetab_set_3"/>
-    <memberTool name="panetab_set_4"/>
     <memberTool name="panetab_clone_1"/>
     <memberTool name="panetab_clone_2"/>
-    <memberTool name="panetab_clone_3"/>
-    <memberTool name="panetab_clone_4"/>
   </toolshelf>
 
   <tool name="qq_expand" label="qq_expand" icon="PLASMA_App">
@@ -124,18 +120,6 @@ reload(wf_network_ui)
 wf_network_ui.panetab_restore()]]></script>
   </tool>
 
-  <tool name="panetab_set_3" label="panetab_set_3" icon="PLASMA_App">
-    <script scriptType="python"><![CDATA[import wf_network_ui
-reload(wf_network_ui)
-wf_network_ui.panetab_set(3)]]></script>
-  </tool>
-
-  <tool name="panetab_set_4" label="panetab_set_4" icon="PLASMA_App">
-    <script scriptType="python"><![CDATA[import wf_network_ui
-reload(wf_network_ui)
-wf_network_ui.panetab_set(4)]]></script>
-  </tool>
-
   <tool name="panetab_clone_2" label="panetab_clone_2" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_ui
 reload(wf_network_ui)
@@ -146,17 +130,5 @@ wf_network_ui.panetab_clone(2)]]></script>
     <script scriptType="python"><![CDATA[import wf_network_ui
 reload(wf_network_ui)
 wf_network_ui.panetab_clone(1)]]></script>
-  </tool>
-
-  <tool name="panetab_clone_3" label="panetab_clone_3" icon="PLASMA_App">
-    <script scriptType="python"><![CDATA[import wf_network_ui
-reload(wf_network_ui)
-wf_network_ui.panetab_clone(3)]]></script>
-  </tool>
-
-  <tool name="panetab_clone_4" label="panetab_clone_4" icon="PLASMA_App">
-    <script scriptType="python"><![CDATA[import wf_network_ui
-reload(wf_network_ui)
-wf_network_ui.panetab_clone(4)]]></script>
   </tool>
 </shelfDocument>
