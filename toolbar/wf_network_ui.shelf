@@ -18,6 +18,7 @@
     <memberTool name="panetab_set_2"/>
     <memberTool name="panetab_clone_1"/>
     <memberTool name="panetab_clone_2"/>
+    <memberTool name="panetab_ctrl"/>
   </toolshelf>
 
   <tool name="qq_expand" label="qq_expand" icon="PLASMA_App">
@@ -130,5 +131,11 @@ wf_network_ui.panetab_clone(2)]]></script>
     <script scriptType="python"><![CDATA[import wf_network_ui
 reload(wf_network_ui)
 wf_network_ui.panetab_clone(1)]]></script>
+  </tool>
+
+  <tool name="panetab_ctrl" label="panetab_ctrl" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_ui
+reload(wf_network_ui)
+wf_network_ui.panetab_ctrl()]]></script>
   </tool>
 </shelfDocument>
