@@ -13,7 +13,7 @@
     <memberTool name="create_node_transform"/>
     <memberTool name="create_node_awrangle"/>
     <memberTool name="create_node_merge"/>
-    <memberTool name="create_geo"/>
+    <memberTool name="create_g"/>
     <memberTool name="collect_by_name"/>
     <memberTool name="find_parm"/>
     <memberTool name="batch create geo"/>
@@ -127,12 +127,6 @@ for name_mrg in array :
     hou.node('/obj').createNode('geo',name_mrg)
 
 ]]></script>
-  </tool>
-
-  <tool name="create_geo" label="create_geo" icon="PLASMA_App">
-    <script scriptType="python"><![CDATA[import wf_network_utils
-reload(wf_network_utils)
-wf_network_utils.create_node('geo')]]></script>
   </tool>
 
   <tool name="selection_switch" label="selection_switch" icon="PLASMA_App">
@@ -260,5 +254,11 @@ wf_network_utils.fc_list_print(filecaches)]]></script>
     <script scriptType="python"><![CDATA[import wf_network_utils
 reload(wf_network_utils)
 wf_network_utils.create_node('blast')]]></script>
+  </tool>
+
+  <tool name="create_g" label="create_g" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_network_utils
+reload(wf_network_utils)
+wf_network_utils.create_node('g')]]></script>
   </tool>
 </shelfDocument>

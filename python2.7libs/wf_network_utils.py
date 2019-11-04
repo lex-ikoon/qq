@@ -137,6 +137,13 @@ def create_node(type) :
     connections = hou.selectedConnections()
     
     if nodes :
+
+        if type == 'g' and nodes[0].type().category() == hou.objNodeTypeCategory() :
+            type = 'geo'
+
+        if type == 'g' and nodes[0].type().category() == hou.sopNodeTypeCategory() :
+            type = 'group'
+
         if type == 'merge' or type == 'switch' :
             # one node, multiple inputs
             node_create = nodes[0].parent().createNode( type )
@@ -144,7 +151,7 @@ def create_node(type) :
                 node_create.setNextInput(node)
             node_create.moveToGoodPosition(relative_to_inputs=True, move_inputs=False, move_outputs=True, move_unconnected=False)
     
-        if type == 'null' or type == 'xform' or type == 'attribwrangle' or type == 'geo' or type == 'blast':
+        if type == 'null' or type == 'xform' or type == 'attribwrangle' or type == 'geo' or type == 'blast' or type == 'group':
             # multiple nodes, one input
             
             for node in nodes:
@@ -159,6 +166,14 @@ def create_node(type) :
 
             
     if connections :
+
+        if type == 'g' and connections[0].inputNode().type().category() == hou.objNodeTypeCategory() :
+            type = 'geo'
+
+        if type == 'g' and connections[0].inputNode().type().category() == hou.sopNodeTypeCategory() :
+            type = 'group'
+
+
         for connection in connections :
             node_up = connection.inputNode()
             node_dn = connection.outputNode()
