@@ -6,6 +6,8 @@ import PyTake2
 def create_ogl_rop () :
     obj_nodes = hou.selectedNodes()
     ogl_container = hou.node("/obj/rop_OGL")
+    if not ogl_container :
+        ogl_container = hou.node("/obj").createNode("ropnet", "rop_OGL") 
 
 
     for obj_node in obj_nodes :
