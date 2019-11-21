@@ -61,28 +61,41 @@ def toggle_ghostother () :
 
     #script = "vieweroption -a " + view_ghost + " %s`run('viewls -n')`"
     script = "vieweroption -a " + view_ghost + " `run('viewls -n')`"
-    #print script
     hou.hscript(script)
 
 
 def toggle_maskoverlay () :
-
     view_maskoverlay = hou.getenv("view_maskoverlay", "1.0")
     if view_maskoverlay == "1.0": view_maskoverlay = "0.4"
     else:            view_maskoverlay = "1.0"
     hou.putenv("view_maskoverlay", view_maskoverlay)
 
-    # hou.hscript('viewmaskoverlay -o 1.0 *')
     script = "viewmaskoverlay -o " + view_maskoverlay + " *"
     hou.hscript(script)  
 
+
+def toggle_objkinoverride () :
+    view_objkinoverride = hou.getenv("view_objkinoverride", "none")
+    if view_objkinoverride == "none": view_objkinoverride = "capture"
+    else:            view_objkinoverride = "none"
+    hou.putenv("view_objkinoverride", view_objkinoverride)
+
+    script = "objkinoverride " + view_objkinoverride
+    hou.hscript(script)
+
+    paneTabs = hou.ui.currentPaneTabs()
+    for paneTab in paneTabs:
+        if paneTab.type().name() == 'SceneViewer':
+            paneTab.curViewport().draw()
+
+
 def toggle_objectselection () :
-    panes = hou.ui.currentPaneTabs()
-    for pane in panes:
-        if pane.type().name() == 'SceneViewer':
+    paneTabs = hou.ui.currentPaneTabs()
+    for paneTabs in paneTabss:
+        if paneTabs.type().name() == 'SceneViewer':
             guide = hou.viewportGuide.ObjectSelection
-            val = pane.curViewport().settings().guideEnabled(guide)
-            pane.curViewport().settings().enableGuide(guide, not val)
+            val = paneTabs.curViewport().settings().guideEnabled(guide)
+            paneTabs.curViewport().settings().enableGuide(guide, not val)
             # just a test:
             # pane.curViewport().settings().setVisibleObjects("name*")
 

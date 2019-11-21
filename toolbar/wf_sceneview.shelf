@@ -22,6 +22,7 @@
     <memberTool name="toggle_primnumbers"/>
     <memberTool name="toggle_grid"/>
     <memberTool name="toggle_maskoverlay"/>
+    <memberTool name="toggle_objkinoverride"/>
   </toolshelf>
 
   <tool name="frame_selected" label="frame_selected" icon="PLASMA_App">
@@ -125,5 +126,11 @@ reload(wf_sceneview)
 wf_sceneview.toggle_maskoverlay()
 
 ]]></script>
+  </tool>
+
+  <tool name="toggle_objkinoverride" label="toggle_objkinoverride" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_sceneview
+reload(wf_sceneview)
+wf_sceneview.toggle_objkinoverride()]]></script>
   </tool>
 </shelfDocument>
