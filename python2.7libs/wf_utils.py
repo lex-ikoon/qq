@@ -112,6 +112,7 @@ def collect_for_github() :
     files.append ("network_ui_ramp_lib")
     files.append ("network_utils")
     files.append ("render")
+    files.append ("rigging")
     files.append ("sceneview")
     files.append ("selection")
     files.append ("timeline")

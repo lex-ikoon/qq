@@ -15,6 +15,7 @@
     <memberTool name="light_link"/>
     <memberTool name="flag_template_all_off"/>
     <memberTool name="hda_unlock"/>
+    <memberTool name="hda_extract"/>
   </toolshelf>
 
   <tool name="flag_render" label="flag_render" icon="PLASMA_App">
@@ -103,5 +104,10 @@ wf_network_parm.flag_template_all_off()]]></script>
     <script scriptType="python"><![CDATA[import wf_network_parm
 reload(wf_network_parm)
 wf_network_parm.hda_unlock()]]></script>
+  </tool>
+
+  <tool name="hda_extract" label="hda_extract" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[n = hou.selectedNodes()[0]
+n.extractAndDelete()]]></script>
   </tool>
 </shelfDocument>

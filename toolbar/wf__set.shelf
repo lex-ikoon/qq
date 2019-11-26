@@ -19,5 +19,6 @@
     <memberToolshelf name="wf_timeline"/>
     <memberToolshelf name="wf_utils"/>
     <memberToolshelf name="wf_hotkeys"/>
+    <memberToolshelf name="wf_rigging"/>
   </shelfSet>
 </shelfDocument>
