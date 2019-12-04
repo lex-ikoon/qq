@@ -2,9 +2,9 @@ import hou
 
 
 def promote_to_HDA () :
-    selectedNodes = hou.selectedNodes()
-    hdanode       = selectedNodes[0].parent()
-    hda_definition    = hdanode.type().definition()
+    selectedNodes  = hou.selectedNodes()
+    hdanode        = selectedNodes[0].parent()
+    hda_definition = hdanode.type().definition()
 
 
     ptg = hda_definition.parmTemplateGroup()
@@ -24,8 +24,8 @@ def promote_to_HDA () :
     ## create parms ##
 
     for selectedNode in selectedNodes :
-        parm_names = promote_to_HDA_parm_names(selectedNode)
-        for parm_name in parm_names :
+        parm_list = promote_to_HDA_parm_list(selectedNode)
+        for parm_name in parm_list :
             # new template
             new_template = selectedNode.parmTuple(parm_name).parmTemplate()
             new_name     = selectedNode.name() + "_" + parm_name
@@ -60,3 +60,35 @@ def promote_to_HDA_parm_list (node) :
         parm_list = ["r", "length"]
 
     return parm_list
+
+
+def yoga_save_pose() :
+    # parm_store.deleteAllKeyframes()
+    node_edit  = hou.node("/obj/edit")
+    node_store = hou.node("/obj/store")
+    parms      = node_edit.parms()
+
+    for parm in parms :
+        name       = parm.name()
+        parm_store = node_store.parm(name)
+
+        if len(parm_store.keyframes()) > 0 :
+            value      = parm.eval()
+            key        = hou.Keyframe(value)
+            parm_store.setKeyframe(key)
+
+
+
+
+
+def yoga_load_pose() :
+    node_edit  = hou.node("/obj/edit")
+    node_store = hou.node("/obj/store")
+    parms      = node_store.parms()
+
+    for parm in parms :
+        if len(parm.keyframes()) > 0 :
+            name       = parm.name()
+            value      = parm.eval()
+            parm_edit  = node_edit.parm(name)
+            parm_edit.set(value)

@@ -10,6 +10,9 @@
   </toolshelf>
 
   <tool name="promote_to_HDA" label="promote_to_HDA" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+    </toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_rigging
 reload(wf_rigging)
 wf_rigging.promote_to_HDA()]]></script>

@@ -91,7 +91,7 @@ def toggle_objkinoverride () :
 
 def toggle_objectselection () :
     paneTabs = hou.ui.currentPaneTabs()
-    for paneTabs in paneTabss:
+    for paneTabs in paneTabs:
         if paneTabs.type().name() == 'SceneViewer':
             guide = hou.viewportGuide.ObjectSelection
             val = paneTabs.curViewport().settings().guideEnabled(guide)

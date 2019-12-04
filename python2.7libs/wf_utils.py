@@ -1,6 +1,67 @@
-from shutil import copyfile
 import mistune
+import hou
+from shutil import copyfile
 
+
+def panetab_name_state (name) :
+    state = 0
+    if name == "pt_chaneditor"   : state = 1
+    if name == "pt_channelview"  : state = 4
+    if name == "pt_details"      : state = 1
+    if name == "pt_network_1"    : state = 6
+    if name == "pt_network_2"    : state = 6
+    if name == "pt_parmeditor_1" : state = 5
+    if name == "pt_parmeditor_2" : state = 5
+    if name == "pt_perfmon"      : state = 6
+    if name == "pt_sceneview_1"  : state = 4
+    if name == "pt_sceneview_2"  : state = 1
+    if name == "pt_takelist"     : state = 6
+    return state
+
+
+def maximize_pane ():
+
+    panetab_cursor = hou.ui.curDesktop().paneTabUnderCursor()
+    name           = panetab_cursor.name()
+    state          = panetab_name_state(name)
+
+    split_view_under = hou.ui.curDesktop().findPaneTab("pt_sceneview_1").pane()
+    split_view_right = hou.ui.curDesktop().findPaneTab("pt_sceneview_1").pane().getSplitParent()
+    split_parm_net   = hou.ui.curDesktop().findPaneTab("pt_network_1").pane().getSplitParent()
+
+
+    if state == 4 or state == 1 :
+        
+        # big left
+        hou.ui.curDesktop().shelfDock().show(False)
+        split_view_right.setSplitFraction(0.65)
+        split_parm_net.setSplitFraction(0.5)
+
+        # big top
+        if state == 4 : split_view_under.setSplitFraction(0.35)
+        # big bottom    
+        if state == 1 : split_view_under.setSplitFraction(0.7)
+
+
+    if state == 5 :
+        # big parms
+        hou.ui.curDesktop().shelfDock().show(True)
+        split_view_under.setSplitFraction(0.5)
+        split_view_right.setSplitFraction(0.3)
+        split_parm_net.setSplitFraction(0.6)
+
+
+    if state == 6 :
+        # default
+        hou.ui.curDesktop().shelfDock().show(True)
+        split_view_under.setSplitFraction(0.5)
+        split_view_right.setSplitFraction(0.36)
+        split_parm_net.setSplitFraction(0.34)
+
+
+
+
+    
 
 def xml_for_wordpress ():
 
@@ -92,7 +153,7 @@ def collect_for_github() :
 
     from shutil import copyfile
 
-    root       = "Q:/_houdini17.5/"
+    root       = "Q:/_houdini18.0/"
     git        = "_git/qq/"
 
     src_py     = "python2.7libs/"
@@ -145,26 +206,26 @@ def collect_for_github() :
     files_src = []
     files_dst = []
 
-    files_src.append ("Q:/_houdini17.5/vex/include/helpcard.txt")
-    files_dst.append ("Q:/_houdini17.5/_git/qq/vex/include/helpcard.txt")
+    files_src.append (root + "vex/include/helpcard.txt")
+    files_dst.append (root + "_git/qq/vex/include/helpcard.txt")
 
-    files_src.append ("Q:/_houdini17.5/vex/include/qq.vfl")
-    files_dst.append ("Q:/_houdini17.5/_git/qq/vex/include/qq.vfl")
+    files_src.append (root + "vex/include/qq.vfl")
+    files_dst.append (root + "_git/qq/vex/include/qq.vfl")
 
-    files_src.append ("Q:/_houdini17.5/vex/include/snippets.db")
-    files_dst.append ("Q:/_houdini17.5/_git/qq/vex/include/snippets.db")
+    files_src.append (root + "vex/include/snippets.db")
+    files_dst.append (root + "_git/qq/vex/include/snippets.db")
 
-    files_src.append ("Q:/_houdini17.5/vex/include/triggers.db")
-    files_dst.append ("Q:/_houdini17.5/_git/qq/vex/include/triggers.db")
+    files_src.append (root + "vex/include/triggers.db")
+    files_dst.append (root + "_git/qq/vex/include/triggers.db")
 
-    files_src.append ("Q:/_houdini17.5/vex/include/uber.vfl")
-    files_dst.append ("Q:/_houdini17.5/_git/qq/vex/include/uber.vfl")
+    files_src.append (root + "vex/include/uber.vfl")
+    files_dst.append (root + "_git/qq/vex/include/uber.vfl")
 
-    files_src.append ("Q:/_houdini17.5/PARMmenu.xml")
-    files_dst.append ("Q:/_houdini17.5/_git/qq/PARMmenu.xml")
+    files_src.append (root + "PARMmenu.xml")
+    files_dst.append (root + "_git/qq/PARMmenu.xml")
 
-    files_src.append ("C:/Users/info/OneDrive/Documents/houdini17.5/Houdini.keymap.overrides")
-    files_dst.append ("Q:/_houdini17.5/_git/qq/Houdini.keymap.overrides")
+    files_src.append ("C:/Users/info/OneDrive/Documents/houdini18.0/Houdini.keymap.overrides")
+    files_dst.append (root + "_git/qq/Houdini.keymap.overrides")
 
 
 

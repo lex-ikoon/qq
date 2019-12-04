@@ -8,6 +8,7 @@
   <toolshelf name="wf_utils" label="wf_utils">
     <memberTool name="collect_for_github"/>
     <memberTool name="xml_for_wordpress"/>
+    <memberTool name="maximize_pane"/>
   </toolshelf>
 
   <tool name="xml_for_wordpress" label="xml_for_wordpress" icon="PLASMA_App">
@@ -20,5 +21,11 @@ wf_utils.xml_for_wordpress()]]></script>
     <script scriptType="python"><![CDATA[import wf_utils
 reload(wf_utils)
 wf_utils.collect_for_github()]]></script>
+  </tool>
+
+  <tool name="maximize_pane" label="maximize_pane" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_utils
+reload(wf_utils)
+wf_utils.maximize_pane()]]></script>
   </tool>
 </shelfDocument>
