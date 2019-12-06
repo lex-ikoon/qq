@@ -47,8 +47,8 @@ def maximize_pane ():
         # big parms
         hou.ui.curDesktop().shelfDock().show(True)
         split_view_under.setSplitFraction(0.5)
-        split_view_right.setSplitFraction(0.3)
-        split_parm_net.setSplitFraction(0.6)
+        split_view_right.setSplitFraction(0.25)
+        split_parm_net.setSplitFraction(0.7)
 
 
     if state == 6 :

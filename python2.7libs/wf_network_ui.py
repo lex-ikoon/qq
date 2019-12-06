@@ -45,7 +45,16 @@ def panetab_restore() :
                 nw_1.setIsSplitMaximized( True )
                 nw_2.setIsSplitMaximized( False )
 
+                ### UNLINK 1
+                hou.ui.curDesktop().findPaneTab("pt_parmeditor_1").setLinkGroup(hou.paneLinkType.FollowSelection)
+                hou.ui.curDesktop().findPaneTab("pt_network_1").setLinkGroup(hou.paneLinkType.FollowSelection)
+
         else :
+            # was split
+            ### LINK 1
+            hou.ui.curDesktop().findPaneTab("pt_parmeditor_1").setLinkGroup(hou.paneLinkType.Group1)
+            hou.ui.curDesktop().findPaneTab("pt_network_1").setLinkGroup(hou.paneLinkType.Group1)
+
             if pe_1.isSplitMaximized() == True :
                 # print "C"
                 #### order: EVEN from 1
