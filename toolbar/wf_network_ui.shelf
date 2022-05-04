@@ -13,17 +13,14 @@
     <memberTool name="wf_network_ui_ramp_lib_get"/>
     <memberTool name="folders_tab_go_l"/>
     <memberTool name="folders_tab_go_r"/>
-    <memberTool name="panetab_restore"/>
-    <memberTool name="panetab_set_1"/>
-    <memberTool name="panetab_set_2"/>
-    <memberTool name="panetab_clone_1"/>
-    <memberTool name="panetab_clone_2"/>
-    <memberTool name="panetab_ctrl"/>
+    <memberTool name="wf_network_ui_parse_tab_vex"/>
+    <memberTool name="qw_edit"/>
   </toolshelf>
 
   <tool name="qq_expand" label="qq_expand" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_ui
-reload(wf_network_ui)
+#import imp
+#imp.reload(wf_network_ui)
 
 parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
 node = parm_pane.currentNode()
@@ -37,7 +34,8 @@ for parm_code in node.parms() :
 
   <tool name="parm_generate" label="parm_generate" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_ui
-reload(wf_network_ui)
+#import imp
+#imp.reload(wf_network_ui)
 
 parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
 node = parm_pane.currentNode()
@@ -51,37 +49,33 @@ for parm_code in node.parms() :
 
   <tool name="parm_clean" label="parm_clean" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_ui
-#reload(wf_network_ui)
+#import imp
+#imp.reload(wf_network_ui)
 wf_network_ui.parm_clean()]]></script>
   </tool>
 
   <tool name="folders_tab_go_r" label="folders_tab_go_r" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_ui
-reload(wf_network_ui)
+import imp
+imp.reload(wf_network_ui)
 wf_network_ui.folders_tab_go(1)]]></script>
   </tool>
 
   <tool name="folders_tab_go_l" label="folders_tab_go_l" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_ui
-reload(wf_network_ui)
+import imp
+imp.reload(wf_network_ui)
 wf_network_ui.folders_tab_go(-1)]]></script>
   </tool>
 
   <tool name="wf_network_ui_qq_parse_uberfile" label="wf network ui parse uberfile" icon="PLASMA_App">
     <toolMenuContext name="network">
       <contextNetType>OBJ</contextNetType>
-      <contextNetType>SOP</contextNetType>
-      <contextNetType>CHOP</contextNetType>
-      <contextNetType>ROP</contextNetType>
-      <contextNetType>SHOP</contextNetType>
-      <contextNetType>COP2</contextNetType>
-      <contextNetType>VOP</contextNetType>
-      <contextNetType>VOPNET</contextNetType>
-      <contextNetType>DOP</contextNetType>
     </toolMenuContext>
     <toolSubmenu>_workflow</toolSubmenu>
     <script scriptType="python"><![CDATA[import wf_network_ui
-reload(wf_network_ui)
+#import imp
+#imp.reload(wf_network_ui)
 wf_network_ui.qq_parse_uberfile()]]></script>
   </tool>
 
@@ -99,43 +93,33 @@ wf_network_ui.qq_parse_uberfile()]]></script>
     </toolMenuContext>
     <toolSubmenu>_workflow</toolSubmenu>
     <script scriptType="python"><![CDATA[import wf_network_ui_ramp_lib
-#reload(wf_network_ui_ramp_lib)
+#import imp
+#imp.reload(wf_network_ui_ramp_lib)
 wf_network_ui_ramp_lib.ramp_lib_get()]]></script>
   </tool>
 
-  <tool name="panetab_set_1" label="panetab_set_1" icon="PLASMA_App">
-    <script scriptType="python"><![CDATA[import wf_network_ui
-reload(wf_network_ui)
-wf_network_ui.panetab_set(1)]]></script>
+  <tool name="wf_network_ui_parse_tab_vex" label="qw // parse vex" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+      <contextNetType>SOP</contextNetType>
+      <contextNetType>DOP</contextNetType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
+import imp
+imp.reload(wf_network_ui_parse_tab)
+wf_network_ui_parse_tab.parse_tab_vex()]]></script>
   </tool>
 
-  <tool name="panetab_set_2" label="panetab_set_2" icon="PLASMA_App">
-    <script scriptType="python"><![CDATA[import wf_network_ui
-reload(wf_network_ui)
-wf_network_ui.panetab_set(2)]]></script>
-  </tool>
+  <tool name="qw_edit" label="qw // edit" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>SOP</contextNetType>
+      <contextNetType>DOP</contextNetType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[node = hou.selectedNodes()[0]
 
-  <tool name="panetab_restore" label="panetab_restore" icon="PLASMA_App">
-    <script scriptType="python"><![CDATA[import wf_network_ui
-reload(wf_network_ui)
-wf_network_ui.panetab_restore()]]></script>
-  </tool>
-
-  <tool name="panetab_clone_2" label="panetab_clone_2" icon="PLASMA_App">
-    <script scriptType="python"><![CDATA[import wf_network_ui
-reload(wf_network_ui)
-wf_network_ui.panetab_clone(2)]]></script>
-  </tool>
-
-  <tool name="panetab_clone_1" label="panetab_clone_1" icon="PLASMA_App">
-    <script scriptType="python"><![CDATA[import wf_network_ui
-reload(wf_network_ui)
-wf_network_ui.panetab_clone(1)]]></script>
-  </tool>
-
-  <tool name="panetab_ctrl" label="panetab_ctrl" icon="PLASMA_App">
-    <script scriptType="python"><![CDATA[import wf_network_ui
-reload(wf_network_ui)
-wf_network_ui.panetab_ctrl()]]></script>
+import wf_network_ui_parse_tab
+#import imp
+#imp.reload(wf_network_ui_parse_tab)
+wf_network_ui_parse_tab.tab_vex_edit (node)]]></script>
   </tool>
 </shelfDocument>

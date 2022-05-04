@@ -11,7 +11,7 @@
     <memberTool name="play_scrub"/>
     <memberTool name="toggle_realtime"/>
     <memberTool name="toggle_manualupdate"/>
-    <memberTool name="playrange_from_name"/>
+    <memberTool name="playrange_from_job"/>
     <memberTool name="play_scrub_fast"/>
     <memberTool name="playrange_to_precedent"/>
     <memberTool name="playrange_extend_spacing_before"/>
@@ -22,73 +22,85 @@
 
   <tool name="play_backward" label="play_backward" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_timeline
-#reload(wf_timeline)
+#import imp
+#imp.reload(wf_timeline)
 wf_timeline.play_backward()]]></script>
   </tool>
 
   <tool name="play_forward" label="play_forward" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_timeline
-#reload(wf_timeline)
+#import imp
+#imp.reload(wf_timeline)
 wf_timeline.play_forward()]]></script>
   </tool>
 
   <tool name="play_scrub" label="play_scrub" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_timeline
-#reload(wf_timeline)
+#import imp
+#imp.reload(wf_timeline)
 wf_timeline.play_scrub(1)]]></script>
   </tool>
 
   <tool name="toggle_manualupdate" label="toggle_manualupdate" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_timeline
-#reload(wf_timeline)
+#import imp
+#imp.reload(wf_timeline)
 wf_timeline.toggle_manualupdate()]]></script>
   </tool>
 
   <tool name="play_scrub_fast" label="play_scrub_fast" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_timeline
-#reload(wf_timeline)
+#import imp
+#imp.reload(wf_timeline)
 wf_timeline.play_scrub(5)]]></script>
   </tool>
 
   <tool name="playrange_extend_spacing_before" label="playrange_extend_spacing_before" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_timeline
-reload(wf_timeline)
+#import imp
+#imp.reload(wf_timeline)
 wf_timeline.playrange_extend_spacing(-1)]]></script>
   </tool>
 
   <tool name="playrange_extend_spacing_after" label="playrange_extend_spacing_after" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_timeline
-reload(wf_timeline)
+#import imp
+#imp.reload(wf_timeline)
 wf_timeline.playrange_extend_spacing(1)]]></script>
   </tool>
 
   <tool name="playrange_to_precedent" label="playrange_to_precedent" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_timeline
-reload(wf_timeline)
+#import imp
+#imp.reload(wf_timeline)
 wf_timeline.playrange_to_precedent()]]></script>
   </tool>
 
   <tool name="sim_cache_reset" label="sim_cache_reset" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_timeline
-reload(wf_timeline)
+#import imp
+#imp.reload(wf_timeline)
 wf_timeline.sim_cache_reset(set_frame=True)]]></script>
   </tool>
 
-  <tool name="playrange_from_name" label="playrange_from_name" icon="PLASMA_App">
+  <tool name="playrange_from_job" label="playrange_from_job" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_timeline
-reload(wf_timeline)
-wf_timeline.playrange_from_name()]]></script>
+#import imp
+#imp.reload(wf_timeline)
+wf_timeline.playrange_from_job()]]></script>
   </tool>
 
   <tool name="toggle_realtime" label="toggle_realtime" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_timeline
-#reload(wf_timeline)
+#import imp
+#imp.reload(wf_timeline)
 wf_timeline.toggle_realtime()]]></script>
   </tool>
 
   <tool name="sim_cache_reset_nosetframe" label="sim_cache_reset_nosetframe" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_timeline
-reload(wf_timeline)
+#import imp
+#imp.reload(wf_timeline)
 wf_timeline.sim_cache_reset(set_frame=False)]]></script>
   </tool>
 </shelfDocument>

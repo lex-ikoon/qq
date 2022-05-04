@@ -17,8 +17,12 @@
     <memberToolshelf name="wf_sceneview"/>
     <memberToolshelf name="wf_selection"/>
     <memberToolshelf name="wf_timeline"/>
+    <memberToolshelf name="wf_ui_panetab"/>
     <memberToolshelf name="wf_utils"/>
     <memberToolshelf name="wf_hotkeys"/>
+    <memberToolshelf name="wf_hotkeys_job"/>
     <memberToolshelf name="wf_rigging"/>
+    <memberToolshelf name="wf_job"/>
+    <memberToolshelf name="wf_vex"/>
   </shelfSet>
 </shelfDocument>

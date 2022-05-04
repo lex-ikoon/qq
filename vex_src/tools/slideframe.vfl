@@ -1,0 +1,62 @@
+///------------------------------------------------------------------------------------------------
+/// curve - slideframe up
+
+int vertices[] = primvertices(0, @primnum);
+int ptnum_0    = vertexpoint(0, vertices[0]);
+int count      = len(vertices);
+
+vector p0 = point(0, "P", ptnum_0);
+vector t0 = point(0, "N", ptnum_0);
+vector u0 = {0, 1, 0};
+
+setpointattrib(0, "up", ptnum_0, u0);
+
+for(int i = 1; i < count ; i++)
+{
+    int    pt = vertexpoint(0, vertices[i]);
+    vector p1 = point(0, "P", pt);
+    vector t1 = point(0, "N", pt);
+    vector u1 = slideframe(p0, t0, u0, p1, t1);
+
+    setpointattrib(0, "up", pt, u1);
+
+    p0 = p1;
+    t0 = t1;
+    u0 = u1;
+}
+
+
+///------------------------------------------------------------------------------------------------
+/// curve - slideframe up - rotate
+
+int vertices[] = primvertices(0, @primnum);
+int ptnum_0    = vertexpoint(0, vertices[0]);
+int count      = len(vertices);
+
+vector p0 = point(0, "P", ptnum_0);
+vector t0 = point(0, "N", ptnum_0);
+vector u0 = {0, 1, 0};
+
+float angle = radians(   chf("angle")  )  ; // 0.5 in 0.0 to 30
+
+setpointattrib(0, "up", ptnum_0, u0);
+
+for(int i = 1; i < count ; i++)
+{
+    int    pt = vertexpoint(0, vertices[i]);
+    vector p1 = point(0, "P", pt);
+    vector t1 = point(0, "N", pt);
+    vector u1 = slideframe(p0, t0, u0, p1, t1);
+        
+    matrix3 m = ident();
+    rotate(m, angle, t0);
+    u1 = u1 * m;
+    
+    setpointattrib(0, "up", pt, u1);
+
+    p0 = p1;
+    t0 = t1;
+    u0 = u1;
+}
+
+///------------------------------------------------------------------------------------------------

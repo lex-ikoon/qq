@@ -1,0 +1,52 @@
+///------------------------------------------------------------------------------------------------
+/// geo line u Cd
+#include "qq.vfl"
+float u = geo_line_u (0, @ptnum);
+
+@Cd = chramp("Cd",u); //dn_l
+
+
+///------------------------------------------------------------------------------------------------
+/// geo carve point
+#include "qq.vfl"
+int geometry = 0;
+int primnum  = @primnum;
+float u      = (@Time*0.1*random(@primnum)+random(@primnum)) %1;
+
+geo_carve_point (geometry, primnum, u);
+
+///------------------------------------------------------------------------------------------------
+/// geo carve line random
+#include "qq.vfl"
+int geometry = 0;
+int primnum  = @primnum;
+
+float speed  = chf("speed");  // 0.5 in 0.0 to 1.0
+float length = chf("length"); // 0.5 in 0.0 to 1.0
+
+speed  *= rand (primnum + 0.1);
+length *= rand (primnum + 0.12);
+
+float offset = speed * (@Time + 100*rand(primnum + 0.123));
+float start  = (0.0 + offset) %1;
+float end    = (length + offset) %1;
+
+
+geo_carve_line (geometry, primnum, start, end);
+
+
+///------------------------------------------------------------------------------------------------
+/// geo carve line
+#include "qq.vfl"
+int geometry = 0;
+int primnum  = @primnum;
+
+float offset = @Time;
+float start  = (0.0 + offset) %1;
+float end    = (0.1 + offset) %1;
+
+
+geo_carve_line (geometry, primnum, start, end);
+
+
+///------------------------------------------------------------------------------------------------

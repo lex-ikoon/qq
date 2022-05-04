@@ -1,0 +1,28 @@
+///------------------------------------------------------------------------------------------------
+/// extend polyline normal direction
+float distance       = chf("distance");        // 0.5 in 0.0 to 1.0
+int   segments       = chi("segments");        // 1 in 1 to 100
+int   reverse_normal = chi("reverse_normal");  // toggle
+float normal_mult    = 1;
+
+if ( reverse_normal == 1 )
+    normal_mult = -1;
+
+int    vertices [] = primvertices(0, @primnum);
+int    vertex      = vertices[-1];
+int    point       = vertexpoint(0, vertex);
+vector pos = vertex(0, "P", vertex);
+vector nor = point(0, "N", point);
+
+for (int i = 1; i < segments+1; i++)
+{
+    float  dist    = distance / float(segments);
+    vector offset  = i * dist * normal_mult * nor;
+    int    ptnum   = addpoint (0, pos + offset);
+    int    vertnum = addvertex (0, @primnum, ptnum);
+}
+
+
+
+
+///------------------------------------------------------------------------------------------------

@@ -1,0 +1,36 @@
+///------------------------------------------------------------------------------------------------
+/// angle between edges, detect corners
+
+// primitive wrangle
+
+int pts[] = primpoints(0, @primnum);
+
+for (int i=0; i<len(pts); i++) {
+    vector thispos = point(0, "P", i);
+    
+    vector nextpos;
+    if (i==len(pts) - 1) {
+        nextpos = point(0, "P", 0);
+    } else {
+        nextpos = point(0, "P", i+1);
+    }
+    
+    vector prevpos;
+    if (i==0) {
+        prevpos = point(0, "P", len(pts));
+    } else {
+        prevpos = point(0, "P", i-1);
+    }
+    
+    vector nextdir = normalize(nextpos - thispos);
+    vector prevdir = normalize(thispos - prevpos);
+    
+    float thr = chf("threshold"); // 0 in -1 to 1
+    
+    if (dot(nextdir, prevdir) < thr) {
+        setpointgroup(0, "corner", i, 1);
+    }
+
+}
+
+///------------------------------------------------------------------------------------------------

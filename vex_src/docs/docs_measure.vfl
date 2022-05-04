@@ -1,0 +1,54 @@
+///------------------------------------------------------------------------------------------------
+/// planepointdistance
+// distance and closest point
+
+vector plane_pos;
+vector plane_normal;
+vector point_pos = @P;
+
+vector intersect_pos; // is written to
+
+float distance = planepointdistance(plane_pos, plane_normal, point_pos, intersect_pos);
+
+///------------------------------------------------------------------------------------------------
+/// surfacedist - along the surface/edge
+
+string ptgroup         = "group1";   // empty strings will match all points
+string P_attribute     = "P";        // using "P" will give the world distance along the surface
+int    search_pt       = @ptnum;     // point to measure the distance for
+string distance_metric = "surface";  // or "edge"
+int    closest_pt;                   // gets overwritten
+
+float  distance        = surfacedist(0, ptgroup, P_attribute, search_pt, closest_pt, distance_metric);
+
+///------------------------------------------------------------------------------------------------
+/// uvdist - dart throwing
+
+int    primid;
+vector primuv;
+vector pos_uvw = rand(@Time) * {1, 1, 0};
+float  dist_uv = uvdist(1, "uv", pos_uvw, primid, primuv);
+
+if( dist_uv < 1e-5 ){
+    vector pos_geo = primuv(1, "P", primid, primuv);
+    float  rad_pt  = fit01( rand(@Time + 45), 0.02, 0.1 );
+    
+    int pts_close[] = pcfind_radius(0, "P", "pscale", 1, pos_geo, rad_pt, 1);
+    
+    if( len(pts_close) == 0){
+        int pt_add = addpoint(0, pos_geo);
+        setpointattrib(0, "pscale", pt_add, rad_pt, "set");
+    }
+}
+
+///------------------------------------------------------------------------------------------------
+/// xyzdist - on surface
+
+vector origin = point(1,"P",0);
+int    prim;     // gets overwritten
+vector uv;       // gets overwritten
+
+float  distance = xyzdist(0, origin, prim, uv);
+vector position = primuv(0, "P", prim, uv);
+
+///------------------------------------------------------------------------------------------------

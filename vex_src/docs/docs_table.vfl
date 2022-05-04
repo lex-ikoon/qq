@@ -1,0 +1,84 @@
+///------------------------------------------------------------------------------------------------
+/// pointprims - point >> array of primnums
+int ptnum      = @ptnum;
+int primnums[] = pointprims(0, int ptnum);
+
+///------------------------------------------------------------------------------------------------
+/// pointvertex - point >> linvert
+// more vertices can share a point
+// this function return only the firts vertex
+int ptnum   = @ptnum;
+int linvert = pointvertex(0, ptnum);
+
+///------------------------------------------------------------------------------------------------
+/// pointvertices - point >> array of linvert
+int ptnum     = @ptnum;
+int linvert[] = pointvertices(0, ptnum);
+
+///------------------------------------------------------------------------------------------------
+/// primpoint - primnum + vertex >> point
+int primnum = @primnum;
+int vertex  = 0; // not linvert, but first vertex in a primnum
+int ptnum   = primpoint(0, primnum, vertex);
+
+///------------------------------------------------------------------------------------------------
+/// primpoints - primnum >> array of points
+int primnum  = @primnum;
+int points[] = primpoints(0, primnum);
+
+///------------------------------------------------------------------------------------------------
+/// primvertex - primnum + vertex >> linvert
+// same as vertexindex
+int primnum = @primnum;
+int vertex  = 0; // not linvert, but first vertex in a primnum
+int linvert = primvertex(0, primnum, vertex);
+
+///------------------------------------------------------------------------------------------------
+/// primvertexcount - primnum >> vertex count
+int primnum   = @primnum;
+int vertcount = primvertexcount(0, primnum);
+
+///------------------------------------------------------------------------------------------------
+/// primvertices - primnum >> array of vertices
+int primnum    = @primnum;
+int vertices[] = primvertices(0, primnum);
+
+///------------------------------------------------------------------------------------------------
+/// vertexindex - primnum + vertex >> linvert
+// same as primvertex
+int primnum = @primnum;
+int vertex  = 0; // not linvert, but first vertex in a primnum
+int linvert = vertexindex(0, primnum, vertex);
+
+///------------------------------------------------------------------------------------------------
+/// vertexnext - linvert >> next linvert
+// next linvert in the same point
+// returns -1 if the vertex has no later shared vertices
+int linvert      = @vtxnum;
+int linvert_next = vertexnext(0, linvert);
+
+///------------------------------------------------------------------------------------------------
+/// vertexpoint - linvert >> point
+int linvert = @vtxnum;
+int ptnum   = vertexpoint(0, linvert);
+
+///------------------------------------------------------------------------------------------------
+/// vertexprev - linvert >> prev linvert
+// prev linvert in the same point
+// returns -1 if the vertex has no later shared vertices
+int linvert      = @vtxnum;
+int linvert_prev = vertexprev(0, linvert);
+
+///------------------------------------------------------------------------------------------------
+/// vertexprim - linvert >> primnum + index 5:3
+// linvert to 5:3
+int linvert   = @vtxnum;
+int primnum   = vertexprim(0, linvert);
+int vertindex = vertexprimindex(0, linvert);
+
+///------------------------------------------------------------------------------------------------
+/// polyneighbours - primnum >> neighbours
+int primnum    = @primnum;
+int primnums[] = polyneighbours(0, primnum);
+
+///------------------------------------------------------------------------------------------------

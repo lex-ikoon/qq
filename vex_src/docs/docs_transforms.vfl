@@ -1,0 +1,142 @@
+///------------------------------------------------------------------------------------------------
+/// sample direction cone
+
+vector  center_dir = {0,1,0};
+float   maxangle   = radians( chf("maxangle") );  // 45 in 0 to 90
+vector2 uv         = rand(@ptnum);
+// vector2 uv         = set(u, v);
+
+v@N = sample_direction_cone( center_dir, maxangle, uv );
+
+
+
+///------------------------------------------------------------------------------------------------
+/// sample orientation cone
+ 
+vector center_dir = {0,1,0};
+float  maxangle   = radians( chf("maxangle") );  // 45 in 0 to 90
+vector uvw        = rand(@ptnum);
+// vector uvw         = set(u, v, w);
+
+p@orient = sample_orientation_cone( center_dir, maxangle, uvw );
+
+
+
+///------------------------------------------------------------------------------------------------
+/// dihedral - rotate a >> b - matrix3
+matrix3 xform = dihedral(from, to);
+
+// tip:
+// rotate(xform, amount, axis);
+
+// apply:
+// @orient = quaternion(xform);
+
+///------------------------------------------------------------------------------------------------
+/// dihedral - rotate a >> b - quaternion
+vector4 q = dihedral(from, to);
+
+// apply:
+// @N = qrotate(q,@N);
+
+///------------------------------------------------------------------------------------------------
+/// quaternion - matrix3 >> quaternion
+matrix3 m = ident();
+@orient = quaternion(m);
+
+
+///------------------------------------------------------------------------------------------------
+/// NDC - camera space
+// x: 0 to 1
+// y: 0 to 1
+// z: distance from camera (houdini units)
+// z: negative is in front of camera
+// z: remains perpendicular to cam
+
+string cam = chs("cam");  // node
+
+@P   = toNDC(cam, @P);
+@P.z = chf("depth");      // -1 in -10 to 0
+@P   = fromNDC(cam, @P);
+
+///------------------------------------------------------------------------------------------------
+/// rotate - matrix around axis
+float   angle = radians( chf("angle") );  // 45 in 0 to 90
+vector  axis  = {0,1,0};
+matrix3 m     = ident();
+rotate(m, angle, axis);
+
+
+///------------------------------------------------------------------------------------------------
+/// lookat
+
+vector from;
+vector to;
+vector up;
+float  roll;
+
+matrix3 m = lookat(from, to);
+matrix3 m = lookat(from, to, roll);
+matrix3 m = lookat(from, to, up);
+
+@P *= -m;
+
+
+///------------------------------------------------------------------------------------------------
+/// matrix instance
+
+vector  P;
+vector  N;
+vector  scale;
+vector4 rotate;
+vector4 orient;
+vector  pivot;
+
+matrix m = instance(P, N);
+matrix m = instance(P, N, scale);
+matrix m = instance(P, N, scale, pivot);
+matrix m = instance(P, N, scale, rotate, up);
+matrix m = instance(P, N, scale, rotate, up, pivot);
+matrix m = instance(P, N, scale, rotate, orient);
+matrix m = instance(P, N, scale, rotate, orient, pivot);
+
+
+///------------------------------------------------------------------------------------------------
+/// qrotate - rotate vector by quaternion
+vector4 quaternion;
+vector v;
+v = qrotate(quaternion, v);
+
+
+///------------------------------------------------------------------------------------------------
+/// cracktransform - quaternion >> euler
+vector4 quaternion = @orient;
+matrix  m          = matrix( qconvert( quaternion ) );
+vector  euler      = cracktransform(0, 0, 1, {0,0,0}, m);
+
+///------------------------------------------------------------------------------------------------
+/// maketransform - N + up >> quaternion
+vector  z      = @N;
+vector  y      = {0,1,0};
+matrix3 m      = maketransform(z, y);
+vector4 orient = quaternion(m);
+
+///------------------------------------------------------------------------------------------------
+/// makebasis - N + up >> orthonormal
+
+vector xaxis;  // gets overwritten
+vector yaxis;  // gets overwritten
+vector zaxis = point(1,"N",0);  // camera Z direction 
+vector up    = {0,-1,0};
+
+makebasis(xaxis, yaxis, zaxis, up);
+matrix3 xform  = maketransform(zaxis, yaxis);
+        @P    *= xform;
+
+///------------------------------------------------------------------------------------------------
+/// qmultiply - rotate quaternion by quaternion
+
+vector4 rotate;
+@orient = qmultiply(@orient, rotate);
+
+///------------------------------------------------------------------------------------------------

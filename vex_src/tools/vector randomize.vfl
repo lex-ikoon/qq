@@ -1,0 +1,24 @@
+///------------------------------------------------------------------------------------------------
+/// vector randomize direction and length
+
+float amount = chf("amount"); // 1 in 0 to 1
+vec = vec_dir_randomize(vec, amount, seed);
+
+vector vec_dir_randomize(vector vec; float amount, seed) {
+
+    vector vec_rand;
+    float length_orig = length(vec);
+
+    // getting different random value for each axis, scaling to [-1..1] range
+    // thanks to Juraj Tomori for this script
+    vec_rand.x = rand(seed * 684.49848) * 2 - 1;
+    vec_rand.y = rand(seed * 178.46548) * 2 - 1;
+    vec_rand.z = rand(seed * 489.49856) * 2 - 1;
+    
+    vec_rand = lerp(vec, vec_rand, amount);
+    vec_rand = normalize(vec_rand) * length_orig;
+
+    return vec_rand;
+}
+
+///------------------------------------------------------------------------------------------------

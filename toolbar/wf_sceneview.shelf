@@ -23,29 +23,37 @@
     <memberTool name="toggle_grid"/>
     <memberTool name="toggle_maskoverlay"/>
     <memberTool name="toggle_objkinoverride"/>
+    <memberTool name="bring_center_to_view"/>
+    <memberTool name="toggle_points_discs"/>
+    <memberTool name="toggle_opencurves"/>
+    <memberTool name="toggle_opencurves_geo"/>
   </toolshelf>
 
   <tool name="frame_selected" label="frame_selected" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-reload(wf_sceneview)
+#import imp
+#imp.reload(wf_sceneview)
 wf_sceneview.frame_selected()]]></script>
   </tool>
 
   <tool name="frame_all" label="frame_all" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-#reload(wf_sceneview)
+#import imp
+#imp.reload(wf_sceneview)
 wf_sceneview.frame_all()]]></script>
   </tool>
 
   <tool name="toggle_points" label="toggle_points" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-#reload(wf_sceneview)
+#import imp
+#imp.reload(wf_sceneview)
 wf_sceneview.toggle_points()]]></script>
   </tool>
 
   <tool name="toggle_normals" label="toggle_normals" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-reload(wf_sceneview)
+#import imp
+#imp.reload(wf_sceneview)
 wf_sceneview.toggle_normals()
 
 #import random
@@ -56,73 +64,85 @@ wf_sceneview.toggle_normals()
 
   <tool name="toggle_trails" label="toggle_trails" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-#reload(wf_sceneview)
+#import imp
+#imp.reload(wf_sceneview)
 wf_sceneview.toggle_trails()]]></script>
   </tool>
 
   <tool name="toggle_ghostother" label="toggle_ghostother" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-reload(wf_sceneview)
+#import imp
+#imp.reload(wf_sceneview)
 wf_sceneview.toggle_ghostother()]]></script>
   </tool>
 
   <tool name="toggle_constructionplane" label="toggle_constructionplane" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-reload(wf_sceneview)
+#import imp
+#imp.reload(wf_sceneview)
 wf_sceneview.toggle_constructionplane()]]></script>
   </tool>
 
   <tool name="toggle_wireframe" label="toggle_wireframe" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-reload(wf_sceneview)
+#import imp
+#imp.reload(wf_sceneview)
 wf_sceneview.toggle_wireframe()]]></script>
   </tool>
 
   <tool name="toggle_wireover" label="toggle_wireover" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-reload(wf_sceneview)
+#import imp
+#imp.reload(wf_sceneview)
 wf_sceneview.toggle_wireover()]]></script>
   </tool>
 
   <tool name="toggle_objectselection" label="toggle_objectselection" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-reload(wf_sceneview)
+#import imp
+#imp.reload(wf_sceneview)
 wf_sceneview.toggle_objectselection()]]></script>
   </tool>
 
   <tool name="toggle_velocities" label="toggle_velocities" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-#reload(wf_sceneview)
+#import imp
+#imp.reload(wf_sceneview)
 wf_sceneview.toggle_velocities()]]></script>
   </tool>
 
   <tool name="toggle_ups" label="toggle_ups" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-#reload(wf_sceneview)
+#import imp
+#imp.reload(wf_sceneview)
 wf_sceneview.toggle_ups()]]></script>
   </tool>
 
   <tool name="toggle_pointnumbers" label="toggle_pointnumbers" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-#reload(wf_sceneview)
+#import imp
+#imp.reload(wf_sceneview)
 wf_sceneview.toggle_pointnumbers()]]></script>
   </tool>
 
   <tool name="toggle_primnumbers" label="toggle_primnumbers" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-#reload(wf_sceneview)
+#import imp
+#imp.reload(wf_sceneview)
 wf_sceneview.toggle_primnumbers()]]></script>
   </tool>
 
   <tool name="toggle_grid" label="toggle_grid" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-reload(wf_sceneview)
+#import imp
+#imp.reload(wf_sceneview)
 wf_sceneview.toggle_grid()]]></script>
   </tool>
 
   <tool name="toggle_maskoverlay" label="toggle_maskoverlay" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-reload(wf_sceneview)
+#import imp
+#imp.reload(wf_sceneview)
 wf_sceneview.toggle_maskoverlay()
 
 ]]></script>
@@ -130,7 +150,40 @@ wf_sceneview.toggle_maskoverlay()
 
   <tool name="toggle_objkinoverride" label="toggle_objkinoverride" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_sceneview
-reload(wf_sceneview)
+#import imp
+#imp.reload(wf_sceneview)
 wf_sceneview.toggle_objkinoverride()]]></script>
+  </tool>
+
+  <tool name="bring_center_to_view" label="bring_center_to_view" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_sceneview
+#import imp
+#imp.reload(wf_sceneview)
+wf_sceneview.bring_center_to_view()]]></script>
+  </tool>
+
+  <tool name="toggle_points_discs" label="toggle_points_discs" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[import wf_sceneview
+#import imp
+#imp.reload(wf_sceneview)
+wf_sceneview.toggle_points_discs()]]></script>
+  </tool>
+
+  <tool name="toggle_opencurves" label="toggle_opencurves" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_sceneview
+#import imp
+#imp.reload(wf_sceneview)
+wf_sceneview.toggle_opencurves()]]></script>
+  </tool>
+
+  <tool name="toggle_opencurves_geo" label="toggle_opencurves_geo" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_sceneview
+import imp
+imp.reload(wf_sceneview)
+wf_sceneview.toggle_opencurves_geo()]]></script>
   </tool>
 </shelfDocument>

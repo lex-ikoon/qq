@@ -1,0 +1,46 @@
+///------------------------------------------------------------------------------------------------
+/// intrinsics - set matrix3
+
+matrix xform = 4@xform;
+
+matrix3 transform  = primintrinsic(0, "transform", @primnum);
+        transform *= matrix3 (xform);
+setprimintrinsic(0,"transform", @primnum, transform);
+
+
+///------------------------------------------------------------------------------------------------
+/// intrinsics - set packed matrix4
+
+matrix xform = 4@xform;
+
+matrix transform  = getpackedtransform(0, @primnum);
+       transform *= xform;
+setpackedtransform(0, @primnum, transform);
+
+
+///------------------------------------------------------------------------------------------------
+/// intrinsics - packed disk sequence
+setprimintrinsic(0, "unexpandedfilename", @primnum, s@path);
+
+setprimintrinsic(0, "index", @primnum, f@seqnum);
+setprimintrinsic(0, "wrap",  @primnum, "mirror"); // "clamp", "cycle", "mirror" or "strict"
+setprimintrinsic(0, "abcframe", @primnum, f@time);
+
+///------------------------------------------------------------------------------------------------
+/// intrinsics - bounds
+float bounds[] = primintrinsic(0, "bounds", @primnum);
+
+v@size[0] = bounds[1] - bounds[0];
+v@size[1] = bounds[3] - bounds[2];
+v@size[2] = bounds[5] - bounds[4];
+
+f@diameter = length(v@size);
+///------------------------------------------------------------------------------------------------
+
+
+CEE COUNTRY MANAGERS MEETING
+Virtual meeting
+July 1st - 2nd, 2020
+
+
+

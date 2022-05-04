@@ -61,7 +61,8 @@ parm.set(expression)
             <label>ikoon_qq_expand</label> 
             <scriptCode><![CDATA[ 
 import wf_network_ui
-reload(wf_network_ui)
+#import imp
+#imp.reload(wf_network_ui)
 parm_code = kwargs["parms"][0]
 node = parm_code.node()
 wf_network_ui.qq_expand(node,parm_code)
@@ -74,7 +75,8 @@ wf_network_ui.qq_expand(node,parm_code)
             <label>ikoon_ui_generate</label> 
             <scriptCode><![CDATA[ 
 import wf_network_ui
-reload(wf_network_ui)
+#import imp
+#imp.reload(wf_network_ui)
 parm_code = kwargs["parms"][0]
 node = parm_code.node()
 wf_network_ui.parm_generate(node,parm_code)
@@ -93,7 +95,8 @@ wf_network_ui.parm_generate(node,parm_code)
         <scriptCode><![CDATA[
 
 import wf_network_kwargs
-reload(wf_network_kwargs)
+#import imp
+#imp.reload(wf_network_kwargs)
 parms     = kwargs['parms']
 node_app  = parms[0].node()
 wf_network_kwargs.parmmenu_pre (node_app, parms)
@@ -113,7 +116,8 @@ wf_network_kwargs.parmmenu_pre (node_app, parms)
         <scriptCode><![CDATA[
 
 import wf_network_kwargs
-reload(wf_network_kwargs)
+#import imp
+#imp.reload(wf_network_kwargs)
 parms     = kwargs['parms']
 node_app  = parms[0].node()
 wf_network_kwargs.parmmenu_ref_peer (node_app, parms)
@@ -132,7 +136,8 @@ wf_network_kwargs.parmmenu_ref_peer (node_app, parms)
         <scriptCode><![CDATA[
 
 import wf_network_kwargs
-reload(wf_network_kwargs)
+#import imp
+#imp.reload(wf_network_kwargs)
 parms     = kwargs['parms']
 node_app  = parms[0].node()
 wf_network_kwargs.parmmenu_ref_parent (node_app, parms)
@@ -152,15 +157,34 @@ wf_network_kwargs.parmmenu_ref_parent (node_app, parms)
 
 
 import wf_network_utils
-reload(wf_network_utils)
+#import imp
+#imp.reload(wf_network_utils)
 parms = kwargs['parms']
 parm = parms[0]
-wf_network_utils.find_parm(parm.name())
+wf_network_utils.find_parm(parm,False)
 
             ]]>
         </scriptCode>
     </scriptItem>
 
+
+    <scriptItem id="ikoon_parm_find_paths">
+        <label>ikoon.parm.find_paths</label>
+        <parent>root_menu</parent>
+        <insertAfter/>
+        <scriptCode><![CDATA[
+
+
+import wf_network_utils
+#import imp
+#imp.reload(wf_network_utils)
+parms = kwargs['parms']
+parm = parms[0]
+wf_network_utils.find_parm(parm,True)
+
+            ]]>
+        </scriptCode>
+    </scriptItem>
 
     <scriptItem id="ikoon_parm_go">
         <label>ikoon.parm.go</label>
@@ -170,7 +194,8 @@ wf_network_utils.find_parm(parm.name())
 
 
 import wf_network_utils
-reload(wf_network_utils)
+#import imp
+#imp.reload(wf_network_utils)
 parms = kwargs['parms']
 parm = parms[0]
 node = parm.node()
@@ -188,7 +213,8 @@ wf_network_utils.go_parm(node,parm)
         <scriptCode><![CDATA[
 
 import wf_network_utils
-reload(wf_network_utils)
+#import imp
+#imp.reload(wf_network_utils)
 parms = kwargs['parms']
 parm = parms[0]
 node = parm.node()
@@ -206,9 +232,29 @@ wf_network_utils.parm_relative_to_absolute_all(node)
         <scriptCode><![CDATA[
 
 import wf_network_utils
-reload(wf_network_utils)
+#import imp
+#imp.reload(wf_network_utils)
 parms = kwargs['parms']
 wf_network_utils.parm_round(parms)
+
+            ]]>
+        </scriptCode>
+    </scriptItem>
+
+
+    <scriptItem id="parm_go_down">
+        <label>ikoon.parm.go_down</label>
+        <parent>root_menu</parent>
+        <insertAfter/>
+        <scriptCode><![CDATA[
+
+import wf_hotkeys_enter
+import imp
+imp.reload(wf_hotkeys_enter)
+parms = kwargs['parms']
+parm = parms[0]
+node = parm.node()
+wf_hotkeys_enter.network_set("pt_network_2", node, parm.name())
 
             ]]>
         </scriptCode>

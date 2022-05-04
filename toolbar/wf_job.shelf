@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="wf_job" label="wf_job">
+    <memberTool name="wf_job_data"/>
+    <memberTool name="wf_jobify"/>
+  </toolshelf>
+
+  <tool name="wf_job_data" label="wf job data" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>SOP</contextNetType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[import wf_job
+import imp
+imp.reload(wf_job)
+wf_job.create_job_geo_data_from_nulls()]]></script>
+  </tool>
+
+  <tool name="wf_jobify" label="wf jobify" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[import wf_job
+import imp
+imp.reload(wf_job)
+wf_job.jobify()]]></script>
+  </tool>
+</shelfDocument>

@@ -1,0 +1,10 @@
+///------------------------------------------------------------------------------------------------
+/// extract axes from quaternion
+
+matrix3 m = qconvert(p@orient);
+
+vector xaxis = set(m.xx, m.xy, m.xz);    
+vector yaxis = set(m.yx, m.yy, m.yz);
+vector zaxis = set(m.zx, m.zy, m.zz);
+
+///------------------------------------------------------------------------------------------------

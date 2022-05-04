@@ -1,0 +1,56 @@
+///------------------------------------------------------------------------------------------------
+/// distort bias
+#include "qq.vfl"
+
+float bias = chf("bias"); // 0.5 in 0 to 1
+value = distort_bias(value, bias);
+
+float bias_mirrored = chf("bias_mirrored"); // 0.5 in 0 to 1
+value = distort_bias_mirrored(value, bias);
+
+///------------------------------------------------------------------------------------------------
+/// distort noise
+
+float value           = @dim;
+float noise           = f@noise;
+float value_clamped   = clamp(value, 0, 1);
+float where_the_noise = chramp("where_the_noise", value_clamped);  //quad
+float noise_mult      = chf("noise_mult");                         // 0.5 in 0.0 to 1.0
+
+value = value + where_the_noise * noise_mult * noise ;
+@dim  = value;
+
+// normalize in next wrangles
+
+
+///------------------------------------------------------------------------------------------------
+/// distort shrink random
+
+
+float bite_zero = chf("bite_zero");  // 0 in 0 to 1
+float bite_one  = chf("bite_one");   // 1 in 0 to 1
+
+bite_zero = fit01(  rand(@ptnum + 0.123)  , 0 , bite_zero );
+bite_one  = fit01(  rand(@ptnum + 0.456 ) , bite_one , 1  );
+
+value = fit(value, bite_zero, bite_one, 0, 1);
+
+
+///------------------------------------------------------------------------------------------------
+/// distort segment
+
+
+//----
+string segment_attname = chs("name"); // letters etc.
+string segment_maxname = chs("name") + "_max";
+//----
+float offset_0  = chf("offset_0"); // 0 in 0 to 1
+float offset_1  = chf("offset_1"); // 1 in 0 to 1
+int enable_gaps = chi("enable_gaps"); // toggle
+
+//get segment_rel
+int primitives[]  = pointprims(0, @ptnum);
+int segment       =   prim(0, segment_attname, primitives[0]);
+int segment_max   = detail(0, segment_maxname) ;
+
+@dim = distort_segment(@dim, segment, segment_max, offset_0, offset_1, enable_gaps);

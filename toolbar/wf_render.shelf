@@ -8,42 +8,23 @@
   <toolshelf name="wf_render" label="wf_render">
     <memberTool name="render_start"/>
     <memberTool name="render_kill"/>
-    <memberTool name="wf_render_take_from_name"/>
-    <memberTool name="wf_create_ogl_rop"/>
+    <memberTool name="wf_create_rop_GL"/>
     <memberTool name="wf_batch_script_rop"/>
-    <memberTool name="wf_create_rs_rop"/>
+    <memberTool name="wf_create_rop_RS"/>
   </toolshelf>
-
-  <tool name="wf_render_take_from_name" label="wf render take from name" icon="PLASMA_App">
-    <toolMenuContext name="network">
-      <contextNetType>OBJ</contextNetType>
-    </toolMenuContext>
-    <toolSubmenu>_workflow</toolSubmenu>
-    <script scriptType="python"><![CDATA[import wf_render
-#reload(wf_render)
-wf_render.take_from_name()]]></script>
-  </tool>
 
   <tool name="render_kill" label="render_kill" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_render
-#reload(wf_render)
+#import imp
+#imp.reload(wf_render)
 wf_render.kill()]]></script>
   </tool>
 
   <tool name="render_start" label="render_start" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_render
-#reload(wf_render)
+#import imp
+#imp.reload(wf_render)
 wf_render.start()]]></script>
-  </tool>
-
-  <tool name="wf_create_ogl_rop" label="wf create ogl rop" icon="PLASMA_App">
-    <toolMenuContext name="network">
-      <contextNetType>OBJ</contextNetType>
-    </toolMenuContext>
-    <toolSubmenu>_workflow</toolSubmenu>
-    <script scriptType="python"><![CDATA[import wf_render
-reload(wf_render)
-wf_render.create_ogl_rop()]]></script>
   </tool>
 
   <tool name="wf_batch_script_rop" label="wf batch script rop" icon="PLASMA_App">
@@ -52,17 +33,36 @@ wf_render.create_ogl_rop()]]></script>
     </toolMenuContext>
     <toolSubmenu>_workflow</toolSubmenu>
     <script scriptType="python"><![CDATA[import wf_render
-reload(wf_render)
+import imp
+imp.reload(wf_render)
 wf_render.batch_script_rop()]]></script>
   </tool>
 
-  <tool name="wf_create_rs_rop" label="wf create rs rop" icon="PLASMA_App">
+  <tool name="wf_create_rop_GL" label="wf create rop GL" icon="PLASMA_App">
     <toolMenuContext name="network">
       <contextNetType>OBJ</contextNetType>
     </toolMenuContext>
     <toolSubmenu>_workflow</toolSubmenu>
-    <script scriptType="python"><![CDATA[import wf_render
-reload(wf_render)
-wf_render.create_rs_rop()]]></script>
+    <script scriptType="python"><![CDATA[import wf_job
+import imp
+imp.reload(wf_job)
+
+obj_nodes = hou.selectedNodes()
+for obj_node in obj_nodes :
+    wf_job.create_rop_gl (obj_node)]]></script>
+  </tool>
+
+  <tool name="wf_create_rop_RS" label="wf create rop RS" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>_workflow</toolSubmenu>
+    <script scriptType="python"><![CDATA[import wf_job
+import imp
+imp.reload(wf_job)
+
+obj_nodes = hou.selectedNodes()
+for obj_node in obj_nodes :
+    wf_job.create_rop_rs (obj_node)]]></script>
   </tool>
 </shelfDocument>

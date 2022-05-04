@@ -1,0 +1,52 @@
+///------------------------------------------------------------------------------------------------
+/// setattribtypeinfo
+setattribtypeinfo(0, "point", "name", "vector");
+// "point"   - Apply scales, rotations, and transformations.
+// "vector"  - Apply scales and rotations, but not transformations.
+// "normal"  - Apply rotations, apply scales with inverse-transpose.
+// "color"   - Don’t transform.
+
+///------------------------------------------------------------------------------------------------
+/// findattribval
+// finds a primitive/point/vertex with value
+int which    = 1; // which match to return
+int index    = findattribval(0, "point", "name", value, which);
+int index[]  = findattribval(0, "point", "name", value);
+// value can be integer or string 
+
+///------------------------------------------------------------------------------------------------
+/// idtopoint idtoprim
+ptnum   = idtopoint(0, id);
+primnum = idtoprim(0, id);
+
+///------------------------------------------------------------------------------------------------
+/// nametopoint nametoprim
+ptnum   = nametopoint(0, "name");
+primnum = nametoprim(0, "name");
+
+///------------------------------------------------------------------------------------------------
+/// uniqueval nuniqueval
+int count = nuniqueval(0, "point", "foo");
+for (int i = 0; i < count; i++) {
+    string val = uniqueval(0, "point", "foo", i);
+    // ...do something with the value...
+}
+
+///------------------------------------------------------------------------------------------------
+/// primuv - value at uv intrinsic
+// to use UVs stored in UV attribute, use uvsample instead
+int sourceprim;
+vector sourceprimuv;
+@P = primuv(0, "P", sourceprim, sourceprimuv);
+
+///------------------------------------------------------------------------------------------------
+/// uvsample - value at uv attribute
+
+int geometry;
+string attr_name;
+string uv_attr_name;
+vector uvw;
+
+uvsample(geometry, attr_name, uv_attr_name, uvw);
+
+///------------------------------------------------------------------------------------------------

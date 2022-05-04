@@ -1,0 +1,25 @@
+///------------------------------------------------------------------------------------------------
+/// group if random threshold
+
+float thr  = chf("thr"); // 0.5 in 0.0 to 1.0
+float rand = rand(@ptnum + 0.654);
+
+if ( rand < thr)
+{
+    // @group_selected = 1;
+    removepoint(0, @ptnum);
+}
+
+///------------------------------------------------------------------------------------------------
+/// group if modulo range
+
+int select = chi("select");    // 1 in 0 to 100
+int of     = chi("of");        // 10 in 0 to 100
+int offset = chi("offset");    // 0 in 0 to 100
+int index  = @ptnum - offset;
+
+if (   (index % of) < select   )
+{
+    @group_selected = 1;
+}
+///------------------------------------------------------------------------------------------------

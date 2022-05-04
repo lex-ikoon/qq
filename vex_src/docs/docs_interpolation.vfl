@@ -1,0 +1,39 @@
+///------------------------------------------------------------------------------------------------
+/// smooth
+float min    = chf("min"); // 0 in 0 to 10
+float max    = chf("max"); // 1 in 0 to 10
+float sample;
+
+// returns 0 if sample is <= min
+// returns 1 if sample is >= max
+float sample_01 = smooth(min, max, sample);
+
+
+///------------------------------------------------------------------------------------------------
+/// smooth rolloff
+float min     = chf("min");      // 0 in 0 to 10
+float max     = chf("max");      // 0 in 0 to 10
+float rolloff = chf("rolloff");  // 0 in 0 to 10
+float sample;
+
+// returns 0 if sample is <= min
+// returns 1 if sample is >= max
+float sample_01 = smooth(min, max, sample, rolloff);
+
+
+///------------------------------------------------------------------------------------------------
+/// lerp float
+float from;
+float to;
+float amount = chf("amount");  // 0 in 0 to 1
+
+float result = lerp(from, to, amount);
+
+///------------------------------------------------------------------------------------------------
+/// lerp vector
+vector from;
+vector to;
+float  amount = chf("amount");  // 0 in 0 to 1
+
+vector result = lerp(from, to, amount);
+///------------------------------------------------------------------------------------------------

@@ -1,0 +1,15 @@
+///------------------------------------------------------------------------------------------------
+/// volume gradient
+vector gradient = volumegradient(0, primnum, @P);
+vector gradient = volumegradient(0, "name", @P);
+
+///------------------------------------------------------------------------------------------------
+/// volume sample
+float sample = volumesample(0, primnum, @P);
+float sample = volumesample(0, "name", @P);
+
+///------------------------------------------------------------------------------------------------
+/// volume samplev
+float samplev = volumesamplev(0, primnum, @P);
+float samplev = volumesamplev(0, "name", @P);
+///------------------------------------------------------------------------------------------------

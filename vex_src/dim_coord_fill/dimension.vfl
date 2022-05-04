@@ -1,0 +1,119 @@
+///------------------------------------------------------------------------------------------------
+/// dim falloff linear
+// vector A_from  = getbbox_center(1);
+
+vector A_from  = point(1, "P", 0);
+vector B_to    = point(1, "P", 1);
+
+vector AB_base             = normalize(B_to - A_from);
+vector AP_divergence       = @P - A_from;
+float  AB_length           = length(B_to - A_from);
+float  AP_projected_length = dot(AB_base, AP_divergence);
+
+float value;
+value = AP_projected_length / AB_length;
+
+
+addattrib(0, "detail", "value_max", -10000000.0);
+addattrib(0, "detail", "value_min",  10000000.0);
+
+setdetailattrib(0, "value_max", value, "max");
+setdetailattrib(0, "value_min", value, "min");
+
+@dim = value;
+@Cd  = value;
+
+
+///------------------------------------------------------------------------------------------------
+/// dim falloff radial
+
+vector A_center = getbbox_center(1);
+vector B_to     = point(1, "P", 1);
+float  radius   = length(B_to - A_center);
+
+float value;
+value = length(@P - A_center) / radius;
+
+addattrib(0, "detail", "value_max", -10000000.0);
+addattrib(0, "detail", "value_min",  10000000.0);
+
+setdetailattrib(0, "value_max", value, "max");
+setdetailattrib(0, "value_min", value, "min");
+
+@dim = value;
+@Cd  = value;
+
+///------------------------------------------------------------------------------------------------
+/// dim falloff normalize
+float value = @dim;
+float value_max = detail(0, "value_max", 0);
+float value_min = detail(0, "value_min", 0);
+float nmin  = 0;
+float nmax  = 1;
+value = fit(value, value_min, value_max, nmin, nmax);
+
+@dim = value;
+@Cd  = value;
+
+///------------------------------------------------------------------------------------------------
+/// dim falloff vdb
+
+// input1: vdb from polygons, fill interior
+float sample = volumesample(1,0,@P);
+
+
+float value;
+value = length(@P - center) / radius;
+
+@dim = value;
+@Cd  = value;
+
+///------------------------------------------------------------------------------------------------
+/// normalize 1) setdetailattrib
+float value = @dim;
+setdetailattrib(0, "value_max", value, "max");
+setdetailattrib(0, "value_min", value, "min");
+
+///------------------------------------------------------------------------------------------------
+/// normalize 2) fit
+
+float value = @dim;
+float value_max = detail(0, "value_max", 0);
+float value_min = detail(0, "value_min", 0);
+float nmin  = 0;
+float nmax  = 1;
+value = fit(value, value_min, value_max, nmin, nmax);
+
+@dim = value;
+@Cd  = value;
+
+///------------------------------------------------------------------------------------------------
+/// falloff bounding vector
+
+// run over detail
+
+int geometry = 0;
+
+vector A_from  = point(1,"P",0);
+vector B_to    = point(1,"P",1);
+
+int    npoints = npoints(geometry);
+vector AB_base = normalize(B_to - A_from);
+float  mindist = 1e10;
+float  maxdist = -1e10;
+
+for (int pt = 0; pt < npoints; pt++)
+{   
+    vector pos                 = point(geometry,"P",pt);
+    vector AP_divergence       = pos - A_from;
+    float  AP_projected_length = dot(AB_base, AP_divergence);
+
+    maxdist = max(AP_projected_length, maxdist);
+    mindist = min(AP_projected_length, mindist);
+}
+
+vector AC_divergence       = getbbox_center(geometry) - A_from;
+float  AC_projected_length = dot(AB_base,AC_divergence);
+
+v@bounding_to   = (maxdist - AC_projected_length) * AB_base + getbbox_center(geometry) ;
+v@bounding_from = (mindist - AC_projected_length) * AB_base + getbbox_center(geometry) ;

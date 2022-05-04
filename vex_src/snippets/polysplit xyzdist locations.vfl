@@ -1,0 +1,11 @@
+///-----------------------
+/// polysplit xyzdist locations
+
+// make a string suitable for polysplit from the position of point 0 on input1
+// detail wrangle
+
+int hitprim;
+vector hituv;
+xyzdist(0, point(1, "P", 0), hitprim, hituv);
+s@loc_1 = sprintf("%df:%f,%f", hitprim, hituv.x, hituv.y);
+///-----------------------

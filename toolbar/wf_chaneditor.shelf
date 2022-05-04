@@ -23,7 +23,8 @@
     </toolMenuContext>
     <toolSubmenu>_workflow</toolSubmenu>
     <script scriptType="python"><![CDATA[import wf_chaneditor
-#reload(wf_chaneditor)
+#import imp
+#imp.reload(wf_chaneditor)
 wf_chaneditor.scope_timedependent_container ()]]></script>
   </tool>
 </shelfDocument>

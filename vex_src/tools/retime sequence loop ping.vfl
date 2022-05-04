@@ -1,0 +1,18 @@
+///------------------------------------------------------------------------------------------------
+/// retime sequence loop ping 
+
+float current_frame = @Frame;
+float zero_at_frame = 0;
+float seq_length    = 100;     // 1 to get dimension 01
+float speed         = 1;       // -1 to before
+
+float seq_length_retimed = seq_length * speed;
+float relative_range     = (current_frame - zero_at_frame) / seq_length_retimed;
+
+relative_range = clamp(relative_range, 0, 1);       // once
+relative_range = relative_range % 1;                // loop
+relative_range = 1 - abs (relative_range % 2 - 1);  // ping
+
+float value              = relative_range * seq_length;
+
+///------------------------------------------------------------------------------------------------

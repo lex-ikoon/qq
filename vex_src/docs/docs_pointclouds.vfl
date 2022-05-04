@@ -1,0 +1,122 @@
+///------------------------------------------------------------------------------------------------
+/// pc - pciterate
+
+string Pchannel  = "P";
+vector P         = @P;
+float  radius    = chf("radius");     // search within radius
+int    maxpoints = npoints(1);
+
+int handle = pcopen(1, Pchannel, P, radius, maxpoints);
+
+// pcnumfound(handle);
+
+// input0: few points
+// input1: grid
+
+// function finds points on the grid and creates connections 
+
+while( pciterate(handle) == 1 ) // can compare && connections < 20
+{
+
+    float found_dist;
+    int found_ptnum;
+
+    pcimport(handle, "point.number", found_ptnum);
+    pcimport(handle, "point.distance", found_dist);
+
+    vector found_pos = point(1, "P", found_ptnum);
+    vector Cd        = 1/found_dist;
+
+    int new_prim  = addprim(0,"polyline");
+    int new_point = addpoint (0, found_pos );
+    int vert_old  = addvertex(0, new_prim, @ptnum);
+    int vert_new  = addvertex(0, new_prim, new_point);
+
+    setpointattrib(0, "Cd", new_point, Cd, "set"); 
+
+    // if something
+    // connections++
+
+}
+pcclose(handle);
+
+
+///------------------------------------------------------------------------------------------------
+/// pc - pcfilter
+
+float radius = chf("radius");                       // 1 in 0 to 2
+int   maxpts = chi("maxpts");                       // 1 in 1 to 100
+int   handle = pcopen(0, "P", @P, radius, maxpts);
+
+@P = pcfilter(handle, "P");
+
+
+///------------------------------------------------------------------------------------------------
+/// pc - for loop farthest
+
+vector sample_pos = point(0,"P",pt);
+
+int   count   = npoints(0);
+float maxdist = 0;
+vector position;
+
+for (int pt = 0; pt < count; pt++)
+{
+    float distance = length(sample_pos - farthest_point_from);
+    if (distance > maxdist) 
+    {
+        maxdist  = distance;
+        position = sample_pos;
+    }
+}
+
+///------------------------------------------------------------------------------------------------
+/// pc - pcfarthest point distance
+
+string Pchannel  = "P";
+vector P         = @P;
+float  radius    = chf("radius");         // search within radius
+int    maxpoints = npoints(0);
+
+pcopen(geometry, Pchannel, P, radius, maxpoints);
+int handle    = pcopen(0, "P", v@P, 1e5, num);
+    @distance = pcfarthest(handle);
+pcclose(handle);
+
+
+
+///------------------------------------------------------------------------------------------------
+/// pc - pcfind_radius attributetransfer
+
+
+int    geometry   = 1;
+string Pchannel   = "P";
+string RadChannel = "pscale";
+float  radscale   = 1.0;
+vector P          = @P;
+float  radius     = 0.0;
+int    maxpoints  = int(1e9);
+
+int pts[] = pcfind_radius(geometry, Pchannel, RadChannel, radscale, P, radius, maxpoints);
+
+
+@transfer = 0;
+
+foreach(int pt; pts){
+    float  pt_pscale = point(1, "pscale", pt);
+    float  pt_value  = point(1, "Cd", pt); // 
+    vector pt_P      = point(1, "P", pt);
+    float  dist      = distance(pt_P, v@P);
+        
+    float dist_far    = pt_pscale;
+    float dist_close  = 0;
+    float value_far   = 0;
+    float value_close = pt_value;  // can be also pt_pscale
+    float value       = fit(dist, dist_far, dist_close, value_far, value_close);
+
+    @transfer = max(f@transfer, value);
+}
+
+@Cd = @transfer;
+
+///------------------------------------------------------------------------------------------------

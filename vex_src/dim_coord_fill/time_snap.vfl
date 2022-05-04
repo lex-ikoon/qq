@@ -1,0 +1,155 @@
+///------------------------------------------------------------------------------------------------
+/// time snap one value
+
+//-----
+float value_at_snap = chf("value_at_snap");    // 0.5 in 0.0 to 1.0
+//-----
+int frame_snap      = chi("frame_snap");       // 100 in 0 to 500
+int smooth_frames   = chi("smooth_frames");    // 0 in -100 to 100
+//# negative smooth_frames means before snap
+//-----
+float speed_before  = chf("speed_before");     // 0 in 0.0 to 0.1
+float speed_after   = chf("speed_after");      // 0 in 0.0 to 0.1
+
+int frame_current   = int (rint(@Frame));
+
+float value = time_snap_one_value(frame_current, frame_snap, smooth_frames, value_at_snap, speed_before, speed_after);
+
+float time_snap_one_value(int frame_current, frame_snap, smooth_frames; float value_at_snap, speed_before, speed_after)
+
+{
+    int frame_0 = min(frame_snap,frame_snap + smooth_frames);
+    int frame_1 = max(frame_snap,frame_snap + smooth_frames);
+
+
+    // distance linear after
+    int     frames_lin_after  = max(0,  frame_current-frame_1  );
+    float distance_lin_after  = frames_lin_after * speed_after;
+
+
+    // distance linear before
+    int     frames_lin_before = min(0,  frame_current-frame_0  );
+    float distance_lin_before = frames_lin_before * speed_before;
+
+
+    // distance smooth
+    int range_start = 0;
+    int range_end   = 0;
+    float sign      = 0;
+
+    if (frame_current > frame_snap && smooth_frames > 0)
+    {
+        range_start = frame_snap;
+        range_end   = min(frame_current, frame_1);
+        sign        = 1.0;
+    }
+
+    if (frame_current < frame_snap && smooth_frames < 0)
+    {
+        range_start = max(frame_current, frame_0);
+        range_end   = frame_snap;
+        sign        = -1.0;
+    }
+
+    float distance_smooth = 0;
+
+    for (int f_in = range_start; f_in < range_end ; f_in++)
+    {
+            float speed     = smooth(frame_0, frame_1, f_in);
+            speed           = fit01(speed,speed_before,speed_after);
+            distance_smooth += sign * speed;
+    }
+
+    float distance;
+
+    distance = value_at_snap;
+    distance += distance_lin_before;
+    distance += distance_lin_after;
+    distance += distance_smooth;
+
+    return distance;
+}
+
+
+///------------------------------------------------------------------------------------------------
+/// time snap two values
+
+
+//-----
+int snapframe_0     = chi("snapframe_0");       // 100 in 0 to 500
+int snapframe_1     = chi("snapframe_1");       // 100 in 0 to 500
+//-----
+int frames_smooth_0 = chi("frames_smooth_0");    //  10 in 0 to 100
+int frames_smooth_1 = chi("frames_smooth_1");    // -10 in -100 to 0
+//# frames_smooth_1 has to be negative (before snapframe_1)
+
+//-----
+float value_0       = chf("value_0");     // 0 in 0.0 to 1
+float value_1       = chf("value_1");     // 0 in 0.0 to 1
+
+int frame_current   = int (rint(@Frame));
+
+float value = time_snap_two_values(frame_current, snapframe_0, snapframe_1, frames_smooth_0, frames_smooth_1, value_0, value_1);
+
+
+float time_snap_two_values(int frame_current, snapframe_0, snapframe_1, frames_smooth_0, frames_smooth_1; float value_0, value_1)
+
+{
+    int cur    = frame_current;
+
+    // check for overlaps
+    int snap_0 = min(snapframe_0,snapframe_1);
+    int snap_1 = max(snapframe_0,snapframe_1);
+
+    int range_total = snap_1 - snap_0;
+    int range_lin   = max (0, range_total - frames_smooth_0 + frames_smooth_1);
+    int range_0     = max (0, range_total - range_lin   + frames_smooth_1);
+    int range_1     = max (0, range_total - range_lin   - range_0);
+
+    // keyframes (range breaks)
+    int key_0 = snap_0;
+    int key_1 = snap_0 + range_0;
+    int key_2 = snap_1 - range_1;
+    int key_3 = snap_1;
+
+    // speed
+    float speed_normalized = float(range_0)/2 + float(range_1)/2 + float(range_lin);
+    float speed_mult       = (value_1 - value_0)  /  speed_normalized;
+    float speed;
+
+    float value = value_0;
+    
+
+    // distance in range 0
+    if(range_0 > 1)
+    {
+        for (int f_in = key_0; f_in < min(key_1,cur) ; f_in++)
+        {
+            speed  = speed_mult * smooth(key_0, key_1 - 1, f_in);
+            value += speed;
+        }
+    }
+
+    // distance in range linear
+    if(range_lin) 
+    {
+        for (int f_in = key_1; f_in < min(key_2,cur) ; f_in++)
+        {
+            speed  = speed_mult;
+            value += speed;
+        }
+    }
+
+    // distance in range 1
+    if(range_1 > 1) 
+    {
+        for (int f_in = key_2; f_in < min(key_3,cur) ; f_in++)
+        {
+            speed  = speed_mult * (   1 - smooth(key_2, key_3 - 1, f_in)   );
+            value += speed;
+        }
+    }
+
+    return value;
+    //return float(range_lin);
+}

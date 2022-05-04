@@ -14,7 +14,8 @@
       <contextNetType>OBJ</contextNetType>
     </toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_rigging
-reload(wf_rigging)
+#import imp
+#imp.reload(wf_rigging)
 wf_rigging.promote_to_HDA()]]></script>
   </tool>
 </shelfDocument>

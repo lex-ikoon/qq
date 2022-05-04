@@ -1,0 +1,133 @@
+///------------------------------------------------------------------------------------------------
+/// noise vector static
+#include "qq.vfl"
+//---
+float      amp = chf("amplitude");      // 3 in 0 to 5
+//---
+float        f = chf("frequency");      // 1 in 0 to 10
+float       fx = chf("frequency_x");    // 1 in 0 to 10
+float       fy = chf("frequency_y");    // 1 in 0 to 10
+float       fz = chf("frequency_z");    // 1 in 0 to 10
+//---
+int       turb = chi("turbulence");     // 1   in 0 to 5
+float    rough = chf("roughness");      // 0.5 in 0 to 1
+float    atten = chf("attenuation");    // 1   in 0 to 1
+
+// noise FUNCTION
+
+float       ox = 1.23;
+float       oy = 2.34;
+float       oz = 3.45;
+float       px = @rest.x; //@uv.x  @P.x
+float       py = @rest.y; //@uv.y  @P.y
+float       pz = @rest.z; //@uv.z  @P.z
+
+v@noise = noise_vstat ( px, py, pz , f, fx, fy, fz, ox, oy, oz, turb, rough, atten, amp );
+
+///------------------------------------------------------------------------------------------------
+/// noise vector animated
+#include "qq.vfl"
+//---
+float      amp = chf("amplitude");      // 3 in 0 to 5
+//---
+float        f = chf("frequency");      // 1 in 0 to 10
+float       fx = chf("frequency_x");    // 1 in 0 to 10
+float       fy = chf("frequency_y");    // 1 in 0 to 10
+float       fz = chf("frequency_z");    // 1 in 0 to 10
+//---
+float        s = chf("speed");          // 1 in 0 to 10
+float       sx = chf("speed_x");        // 1 in 0 to 1
+float       sy = chf("speed_y");        // 1 in 0 to 1
+float       sz = chf("speed_z");        // 1 in 0 to 1
+//----
+int       turb = chi("turbulence");     // 1    in 0 to 5
+float    rough = chf("roughness");      // 0.5  in 0 to 1
+float    atten = chf("attenuation");    // 1    in 0 to 1
+
+
+// noise FUNCTION
+
+float       ox = 1.23;
+float       oy = 2.34;
+float       oz = 3.45;
+float     time = @Time;
+float       px = @rest.x; //@uv.x  @P.x
+float       py = @rest.y; //@uv.y  @P.y
+float       pz = @rest.z; //@uv.z  @P.z
+
+v@noise = noise_vanim ( px, py, pz , f, fx, fy, fz, s, sx, sy, sz, ox, oy, oz, time, turb, rough, atten, amp );
+
+///------------------------------------------------------------------------------------------------
+/// noise vector curl
+#include "qq.vfl"
+//---
+float      amp = chf("amplitude");      // 3 in 0 to 5
+//---
+float        f = chf("frequency");      // 1 in 0 to 10
+float       fx = chf("frequency_x");    // 1 in 0 to 10
+float       fy = chf("frequency_y");    // 1 in 0 to 10
+float       fz = chf("frequency_z");    // 1 in 0 to 10
+//---
+float        s = chf("speed");          // 1 in 0 to 10
+float       sx = chf("speed_x");        // 1 in 0 to 1
+float       sy = chf("speed_y");        // 1 in 0 to 1
+float       sz = chf("speed_z");        // 1 in 0 to 1
+//---
+float       st = chf("speed_time");     // 1 in 0 to 1
+
+
+// noise FUNCTION
+
+float       ox = 1.23;
+float       oy = 2.34;
+float       oz = 3.45;
+float     time = @Time;
+float       px = @rest.x; //@uv.x  @P.x
+float       py = @rest.y; //@uv.y  @P.y
+float       pz = @rest.z; //@uv.z  @P.z
+
+v@v  = noise_vanim_curl ( px, py, pz , f, fx, fy, fz, s, sx, sy, sz, st, ox, oy, oz, time, amp );
+
+///------------------------------------------------------------------------------------------------
+/// noise float static
+#include "qq.vfl"
+//---
+float      amp = chf("amplitude");      // 3 in 0 to 5
+float        f = chf("frequency");      // 1 in 0 to 10
+//---
+int       turb = chi("turbulence");     // 1    in 0 to 5
+float    rough = chf("roughness");      // 0.5  in 0 to 1
+float    atten = chf("attenuation");    // 1    in 0 to 1
+
+
+// noise FUNCTION
+
+float   offset = 1.23;
+float      pos = dimension;
+
+f@noise = noise_fstat ( pos, f, offset, turb, rough, atten, amp );
+
+///------------------------------------------------------------------------------------------------
+/// noise vector from uv
+#include "qq.vfl"
+
+//---
+float      amp = chf("amplitude");      // 3 in 0 to 5
+float        f = chf("frequency");      // 1 in 0 to 10
+//---
+float       su = chf("speed_along");    // 1 in 0 to 10
+float       sv = chf("speed_cross");    // 1 in 0 to 10
+//----
+int       turb = chi("turbulence");     // 1    in 0 to 5
+float    rough = chf("roughness");      // 0.5  in 0 to 1
+float    atten = chf("attenuation");    // 1    in 0 to 1
+
+// noise FUNCTION
+
+float       ou = 1.23;
+float       ov = 2.34;
+float     time = @Time;
+float       u = @uv.x;   //
+float       v = @rest.y; //@uv.y  @P.y
+
+v@noise = noise_fanim_uv ( u, v, f, su, sv, ou, ov, time, turb, rough, atten, amp );

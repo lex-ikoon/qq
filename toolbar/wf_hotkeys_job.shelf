@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="wf_hotkeys_job" label="wf_hotkeys_job">
+    <memberTool name="enter_ctrl"/>
+  </toolshelf>
+
+  <tool name="enter_ctrl" label="enter_ctrl" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys_enter
+import imp
+imp.reload(wf_hotkeys_enter)
+node_selected = hou.selectedNodes()[0]
+ctrl  = True
+alt   = False
+shift = False
+wf_hotkeys_enter.enter_execute(node_selected, ctrl, alt, shift )]]></script>
+  </tool>
+</shelfDocument>

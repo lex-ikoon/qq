@@ -1,0 +1,70 @@
+///------------------------------------------------------------------------------------------------
+/// fit01 vector to symmetry 10
+vector value = v@noise;
+vector new_max = chf("new_max"); // 0.5 in 0 to 10; 
+value = fit01(value, -new_max, new_max);
+
+///------------------------------------------------------------------------------------------------
+/// fit01 float to symmetry 10
+float value   = v@noise[1];
+float new_max = chf("new_max");                   //  0.5 in 0 to 10
+value   = fit01(value, -new_max, new_max);
+
+
+///------------------------------------------------------------------------------------------------
+/// fit01 float to min max 0-1
+float value = v@noise[1];
+float nmin  = chf("new_min");            // 0.4 in 0 to 1
+float nmax  = chf("new_max");            // 0.6 in 0 to 1
+value = fit01(value, nmin, nmax);
+
+///------------------------------------------------------------------------------------------------
+/// fit01 float to min max 10
+float value = v@noise[1];
+float nmin  = chf("new_min");            // -1 in -10 to 0
+float nmax  = chf("new_max");            //  1 in 0   to 10
+value = fit01(value, nmin, nmax);
+
+///------------------------------------------------------------------------------------------------
+/// fit01 float to min max 10
+float value = v@noise[1];
+float nmin  = chf("new_min");            // -1 in -10 to 0
+float nmax  = chf("new_max");            //  1 in 0   to 10
+value = fit01(value, nmin, nmax);
+
+///------------------------------------------------------------------------------------------------
+/// fit01 vector to separate 360
+#include "qq.vfl"
+qqxx.value // 0 in 0 to 360
+
+///------------------------------------------------------------------------------------------------
+/// fit01 vector to separate 10
+#include "qq.vfl"
+qqxx.value // 0 in 0 to 10
+
+///------------------------------------------------------------------------------------------------
+/// vector value 0 in 0 to 10
+qqx.value // 0 in 0 to 10
+
+///------------------------------------------------------------------------------------------------
+/// vector value 0 in -1 to 1
+qqx.value // 0 in -1 to 1
+
+
+///------------------------------------------------------------------------------------------------
+/// fit float
+float value = v@noise[1];
+float omin = chf("old_min"); // 0 in 0 to 1
+float omax = chf("old_max"); // 1 in 0 to 1
+float nmin = chf("new_min"); // 0 in 0 to 1
+float nmax = chf("new_max"); // 1 in 0 to 1
+value = fit(value, omin, omax, nmin, nmax);
+
+///------------------------------------------------------------------------------------------------
+/// fit vector
+vector value = v@noise;
+vector omin = chf("old_min"); // 0 in 0 to 1
+vector omax = chf("old_max"); // 1 in 0 to 1
+vector nmin = chf("new_min"); // 0 in 0 to 1
+vector nmax = chf("new_max"); // 1 in 0 to 1
+value = fit(value, omin, omax, nmin, nmax);

@@ -1,0 +1,69 @@
+///------------------------------------------------------------------------------------------------
+/// matrix - xform - rotate scale translate
+#include "qq.vfl"
+
+// //
+
+// // amount:
+// vector  amount = set(0,0,0);    // rotation in degrees
+// vector  amount = set(1,1,1);    // scale
+
+// // pivot:
+// vector  pivot     = @P;                       // pivot position
+// vector4 orient    = @orient;                  // pivot rotation
+// vector  pivot_rot = euler_from_quat(orient);  // maketransform expects rotations in degrees
+
+// // xform {T} {R} {S} :
+// 4@xform = maketransform(0, 0, amount, {0,0,0}, {1,1,1},  pivot, pivot_rot);
+// 4@xform = maketransform(0, 0, {0,0,0}, amount, {1,1,1},  pivot, pivot_rot);
+// 4@xform = maketransform(0, 0, {0,0,0}, {0,0,0}, amount,  pivot, pivot_rot);
+
+
+
+///------------------------------------------------------------------------------------------------
+/// matrix - xform - rotate
+#include "qq.vfl"
+
+// ramp:
+float lut = chramp("lut", @fill); //quad
+
+// amount:
+//----
+float rot_x = chf("rot_x"); // 90 in 0 to 360
+float rot_y = chf("rot_y"); // 90 in 0 to 360
+float rot_z = chf("rot_z"); // 90 in 0 to 360
+
+vector  rot = lut * set(rot_x, rot_y, rot_z);
+
+// pivot:
+vector  pivot     = @P;                       // pivot position
+vector4 orient    = @orient;                  // pivot rotation
+vector  pivot_rot = euler_from_quat(orient);  // maketransform expects rotations in degrees
+
+// xform {T} {R} {S} :// xform {T} {R} {S} :
+4@xform = maketransform(0, 0, {0,0,0}, rot, {1,1,1},  pivot, pivot_rot);
+
+///------------------------------------------------------------------------------------------------
+/// matrix - xform - scale
+#include "qq.vfl"
+
+// ramp:
+float lut = chramp("lut", @fill); //quad
+
+// amount:
+//----
+float scale_x = chf("scale_x"); // 1 in 0 to 10
+float scale_y = chf("scale_y"); // 1 in 0 to 10
+float scale_z = chf("scale_z"); // 1 in 0 to 10
+
+vector  scale = lut * set(scale_x, scale_y, scale_z);
+
+//vector  amount = set(1,1,1);    // scale
+
+// pivot:
+vector  pivot     = @P;                       // pivot position
+vector4 orient    = @orient;                  // pivot rotation
+vector  pivot_rot = euler_from_quat(orient);  // maketransform expects rotations in degrees
+
+// xform {T} {R} {S} :// xform {T} {R} {S} :
+4@xform = maketransform(0, 0, {0,0,0}, {0,0,0}, scale,  pivot, pivot_rot);

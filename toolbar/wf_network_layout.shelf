@@ -12,13 +12,15 @@
 
   <tool name="pin" label="pin" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_layout
-#reload(wf_network_layout)
+#import imp
+#imp.reload(wf_network_layout)
 wf_network_layout.pin()]]></script>
   </tool>
 
   <tool name="lay" label="lay" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_layout
-reload(wf_network_layout)
+import imp
+imp.reload(wf_network_layout)
 wf_network_layout.lay()]]></script>
   </tool>
 </shelfDocument>

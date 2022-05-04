@@ -20,31 +20,36 @@
 
   <tool name="flag_render" label="flag_render" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_parm
-#reload(wf_network_parm)
+#import imp
+#imp.reload(wf_network_parm)
 wf_network_parm.flag_render()]]></script>
   </tool>
 
   <tool name="flag_display" label="flag_display" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_parm
-#reload(wf_network_parm)
+#import imp
+#imp.reload(wf_network_parm)
 wf_network_parm.flag_display()]]></script>
   </tool>
 
   <tool name="flag_bypass" label="flag_bypass" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_parm
-#reload(wf_network_parm)
+#import imp
+#imp.reload(wf_network_parm)
 wf_network_parm.flag_bypass()]]></script>
   </tool>
 
   <tool name="flag_template" label="flag_template" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_parm
-#reload(wf_network_parm)
+#import imp
+#imp.reload(wf_network_parm)
 wf_network_parm.flag_template()]]></script>
   </tool>
 
   <tool name="autoscope_off_old" label="autoscope_off_old" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_parm
-reload(wf_network_parm)
+#import imp
+#imp.reload(wf_network_parm)
 wf_network_parm.autoscope_off ()]]></script>
   </tool>
 
@@ -62,7 +67,8 @@ wf_network_parm.autoscope_off ()]]></script>
     </toolMenuContext>
     <toolSubmenu>_workflow</toolSubmenu>
     <script scriptType="python"><![CDATA[import wf_network_parm
-#reload(wf_network_parm)
+#import imp
+#imp.reload(wf_network_parm)
 wf_network_parm.opencl_container()]]></script>
   </tool>
 
@@ -80,7 +86,8 @@ wf_network_parm.opencl_container()]]></script>
     </toolMenuContext>
     <toolSubmenu>_workflow</toolSubmenu>
     <script scriptType="python"><![CDATA[import wf_network_parm
-#reload(wf_network_parm)
+#import imp
+#imp.reload(wf_network_parm)
 wf_network_parm.autoscope_off()]]></script>
   </tool>
 
@@ -90,19 +97,22 @@ wf_network_parm.autoscope_off()]]></script>
     </toolMenuContext>
     <toolSubmenu>_workflow</toolSubmenu>
     <script scriptType="python"><![CDATA[import wf_network_parm
-reload(wf_network_parm)
+#import imp
+#imp.reload(wf_network_parm)
 wf_network_parm.light_link()]]></script>
   </tool>
 
   <tool name="flag_template_all_off" label="flag_template_all_off" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_parm
-reload(wf_network_parm)
+#import imp
+#imp.reload(wf_network_parm)
 wf_network_parm.flag_template_all_off()]]></script>
   </tool>
 
   <tool name="hda_unlock" label="hda_unlock" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_parm
-reload(wf_network_parm)
+#import imp
+#imp.reload(wf_network_parm)
 wf_network_parm.hda_unlock()]]></script>
   </tool>
 

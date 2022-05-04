@@ -1,0 +1,24 @@
+///------------------------------------------------------------------------------------------------
+/// 
+// setgroup a_seed
+
+
+
+
+@force = volsample
+@lerp
+@
+READ vec
+MOVE to pos
+DRAG 
+
+@prev_pos = 
+had_vel = 
+
+
+vector force = volumesample(geometry, primnum, pos);
+float drag = 
+float amount
+
+lerp(value1, value2, amount)
+@P = @P += 

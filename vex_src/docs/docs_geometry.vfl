@@ -1,0 +1,58 @@
+///------------------------------------------------------------------------------------------------
+/// geo - nearpoints
+// array of point numbers 
+vector from    = @P;
+float  maxdist = chf("maxdist");  // 1 in 0 to 2
+int    maxpts  = chf("maxpts");   // 1 in 1 to 100
+
+nearpoints[] = nearpoints(0, from, maxdist, maxpts);
+
+
+///------------------------------------------------------------------------------------------------
+/// geo - nearpoint
+float maxdist = chf("maxdist"); // 0.5 in 0.0 to 1.0
+int nearpoint = nearpoint(0, @P);
+int nearpoint = nearpoint(0, @P, maxdist);
+@Cd = point(0, "Cd", nearpoint);
+
+
+///------------------------------------------------------------------------------------------------
+/// geo - intersect
+
+int geometry;
+vector from;
+vector dir;
+vector prim; // gets overwritten
+vector uvw;  // gets overwritten
+
+int primnum = intersect(geometry, from, dir, prim, uvw);
+
+
+///------------------------------------------------------------------------------------------------
+/// geo - intersect_all
+
+int geometry;
+vector from;
+vector dir;  
+vector pos[];  // overwritten world space positions of each hit
+vector prim[];  // overwritten
+vector uvw[];  // overwritten
+
+int number_of_intersections = intersect_all(geometry, from, dir, pos, prim, uvw);
+
+
+///------------------------------------------------------------------------------------------------
+/// geo - neighbours - connected to point
+// array of point numbers
+
+int point_numbers[] = neighbours(0, @ptnum);
+
+
+///------------------------------------------------------------------------------------------------
+/// geo - minpos - position on surface
+// closest position on surface
+
+vector from = @P;
+vector pos = minpos(1, from);
+
+///------------------------------------------------------------------------------------------------

@@ -1,0 +1,38 @@
+/// vector quantize
+
+vector pos = @P;
+vector noise = curlnoise(pos*scale);
+vector quant = {0,0,0};
+
+float amount = chf("amount"); // 1 in 0 to 1
+
+
+vec = vec_dir_quantize();
+
+
+vector vec_dir_quantize(vector orig )
+{
+
+
+    int reference_geo = 1;
+    // vec_prim = 0;
+    // vec_total = primvertexcount(reference_geo, vec_prim);
+    vector quant = {0,0,0};
+
+    int count = 3;
+
+    for (int i = 0; i < count; i++)
+    {
+        vector quant_dir = normalize(  point(reference_geo,"P",i)  ) ;
+        
+        float quant_add;
+        quant_add = dot (  normalize(orig)  ,  quant_dir  );
+        quant_add = rint (quant_add) ;
+
+        quant += quant_add * quant_dir;
+    }
+
+    quant = length(orig) * normalize( quant );
+    return quant;
+
+}

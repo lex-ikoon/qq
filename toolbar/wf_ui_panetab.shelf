@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<shelfDocument>
+  <!-- This file contains definitions of shelves, toolbars, and tools.
+ It should not be hand-edited when it is being used by the application.
+ Note, that two definitions of the same element are not allowed in
+ a single file. -->
+
+  <toolshelf name="wf_ui_panetab" label="wf_ui_panetab">
+    <memberTool name="panetab_clone_1"/>
+    <memberTool name="panetab_clone_2"/>
+    <memberTool name="panetab_ctrl"/>
+    <memberTool name="panetab_restore"/>
+    <memberTool name="panetab_set_1"/>
+    <memberTool name="panetab_set_2"/>
+    <memberTool name="panetab_set_3"/>
+    <memberTool name="panetab_set_4"/>
+    <memberTool name="panetab_set_5"/>
+  </toolshelf>
+
+  <tool name="panetab_clone_1" label="panetab_clone_1" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_ui_panetab
+#import imp
+#imp.reload(wf_ui_panetab)
+wf_ui_panetab.panetab_clone(1)]]></script>
+  </tool>
+
+  <tool name="panetab_restore" label="panetab_restore" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_ui_panetab
+#import imp
+#imp.reload(wf_ui_panetab)
+wf_ui_panetab.panetab_restore(script_456 = False, force_split = False)
+]]></script>
+  </tool>
+
+  <tool name="panetab_set_1" label="panetab_set_1" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_ui_panetab
+#import imp
+#imp.reload(wf_ui_panetab)
+wf_ui_panetab.panetab_set(1)]]></script>
+  </tool>
+
+  <tool name="panetab_ctrl" label="panetab_ctrl" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_ui_panetab
+#import imp
+#imp.reload(wf_ui_panetab)
+wf_ui_panetab.panetab_ctrl()]]></script>
+  </tool>
+
+  <tool name="panetab_clone_2" label="panetab_clone_2" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_ui_panetab
+#import imp
+#imp.reload(wf_ui_panetab)
+wf_ui_panetab.panetab_clone(2)]]></script>
+  </tool>
+
+  <tool name="panetab_set_2" label="panetab_set_2" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_ui_panetab
+#import imp
+#imp.reload(wf_ui_panetab)
+wf_ui_panetab.panetab_set(2)]]></script>
+  </tool>
+
+  <tool name="panetab_set_3" label="panetab_set_3" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_ui_panetab
+#import imp
+#imp.reload(wf_ui_panetab)
+wf_ui_panetab.panetab_set(3)]]></script>
+  </tool>
+
+  <tool name="panetab_set_4" label="panetab_set_4" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_ui_panetab
+#import imp
+#imp.reload(wf_ui_panetab)
+wf_ui_panetab.panetab_set(4)]]></script>
+  </tool>
+
+  <tool name="panetab_set_5" label="panetab_set_5" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_ui_panetab
+#import imp
+#imp.reload(wf_ui_panetab)
+wf_ui_panetab.panetab_set(5)]]></script>
+  </tool>
+</shelfDocument>

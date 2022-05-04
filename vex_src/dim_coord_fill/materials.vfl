@@ -1,0 +1,116 @@
+///------------------------------------------------------------------------------------------------
+/// material animations
+
+// convention:
+// ............/name_mov/name_mov_index.ext
+// $HIP/img/dir/name_000/name_000_00000.png
+// $HIP/img/dir/name_001/name_001_00000.png
+
+string firstfile = chs("firstfile"); // file 
+int mov          = 0;
+int index        = 0;
+
+override_value = file_mov_index(firstfile, mov, index);
+
+string file_mov_index(string firstfile; int mov, index)
+{
+
+    string split[] = split(firstfile,"/_.");
+    int split_len  = len(split);
+    //[ D:, bond, "5 houdini", img, dir, name, 000, name, 000, 00000, png ]
+
+    int file_name_len  = len( split[ split_len -4 ] );
+    int file_mov_len   = len( split[ split_len -3 ] );
+    int file_index_len = len( split[ split_len -2 ] );
+    int file_ext_len   = len( split[ split_len -1 ] );
+
+    int afterpath_len  = file_ext_len + 1 + file_index_len + 1 + 2*file_mov_len + 2 + 1 + 2*file_name_len;
+
+    string file_path  = slice(firstfile,0,-afterpath_len);
+    string file_name  = split[split_len - 4];
+    string file_type  = split[split_len - 1];
+
+    string file_mov   = padzero(file_mov_len, mov);
+    string file_index = padzero(file_index_len, index);
+
+    string path;
+
+    path  = file_path;
+    path += file_name + "_";
+    path += file_mov  + "/";
+    path += file_name + "_";
+    path += file_mov  + "_";
+    path += file_index+ ".";
+    path += file_type;
+
+    return path;
+}
+
+
+///------------------------------------------------------------------------------------------------
+/// material photos
+// convention:
+// ............/name_index.ext
+// $HIP/img/dir/name_00000.png
+
+
+string firstfile = chs("firstfile"); // file 
+int index        = 0;
+
+override_value = file_index(firstfile, index);
+
+string file_index(string firstfile; int index)
+{
+
+    string split[] = split(firstfile,"/_.");
+    int split_len  = len(split);
+    //[ D:, bond, "5 houdini", img, "seq timecode", timecode, 00001, jpg ]
+
+
+    int file_name_len  = len( split[ split_len -3 ] );
+    int file_index_len = len( split[ split_len -2 ] );
+    int file_ext_len   = len( split[ split_len -1 ] );
+
+    int afterpath_len  = file_ext_len + 1 + file_index_len + 1 + file_name_len;
+
+    string file_path  = slice(firstfile,0,-afterpath_len);
+    string file_name  = split[split_len - 3];
+    string file_type  = split[split_len - 1];
+
+    string file_index = padzero(file_index_len, index);
+
+    string path;
+
+    path  = file_path;
+    path += file_name + "_";
+    path += file_index+ ".";
+    path += file_type;
+
+    return path;
+}
+
+
+///------------------------------------------------------------------------------------------------
+/// material override
+
+void mat_over(string actual, override_name, override_value; int override_is_string)
+{
+    string contents, add, value;
+    value                      = override_value;
+    contents                   = slice(actual,1,-1); // to remove brackets { }
+    if (override_is_string) {
+        value = "'" + value + "'";
+    }
+    add                        = "'" + override_name + "':" + value;
+    actual                     = "{" + contents + add + ",}";
+}
+
+// ogl_opacitymap       RS
+// basecolor_texture    MANTRA
+
+string override_name      = chs("override_name");
+string override_value     = chs("override_value"); 
+int    override_is_string = chi("override_is_string"); //toggle
+
+mat_over(s@material_override , override_name, override_value , override_is_string);
+

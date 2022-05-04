@@ -7,6 +7,7 @@
 
   <toolshelf name="wf_network_utils" label="wf_network_utils">
     <memberTool name="wf_network_utils_create_object_merge"/>
+    <memberTool name="wf_network_utils_create_object_merge0"/>
     <memberTool name="recook_container"/>
     <memberTool name="create_node_null"/>
     <memberTool name="create_node_switch"/>
@@ -22,23 +23,13 @@
     <memberTool name="qfc_search_below_True"/>
     <memberTool name="qfc_search_below_False"/>
     <memberTool name="create_node_blast"/>
+    <memberTool name="wf_create_sticky_label"/>
   </toolshelf>
 
   <tool name="recook_container" label="qq recook container" icon="PLASMA_App">
-    <toolMenuContext name="network">
-      <contextNetType>OBJ</contextNetType>
-      <contextNetType>SOP</contextNetType>
-      <contextNetType>CHOP</contextNetType>
-      <contextNetType>ROP</contextNetType>
-      <contextNetType>SHOP</contextNetType>
-      <contextNetType>COP2</contextNetType>
-      <contextNetType>VOP</contextNetType>
-      <contextNetType>VOPNET</contextNetType>
-      <contextNetType>DOP</contextNetType>
-    </toolMenuContext>
-    <toolSubmenu>_workflow</toolSubmenu>
     <script scriptType="python"><![CDATA[import wf_network_utils
-reload(wf_network_utils)
+#import imp
+#imp.reload(wf_network_utils)
 wf_network_utils.recook_container()]]></script>
   </tool>
 
@@ -56,44 +47,51 @@ wf_network_utils.recook_container()]]></script>
     </toolMenuContext>
     <toolSubmenu>_workflow</toolSubmenu>
     <script scriptType="python"><![CDATA[import wf_network_utils
-reload(wf_network_utils)
-wf_network_utils.create_object_merge()]]></script>
+#import imp
+#imp.reload(wf_network_utils)
+wf_network_utils.create_object_merge(False)]]></script>
   </tool>
 
   <tool name="create_node_null" label="create_node_null" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_utils
-reload(wf_network_utils)
+#import imp
+#imp.reload(wf_network_utils)
 wf_network_utils.create_node('null')]]></script>
   </tool>
 
   <tool name="create_node_merge" label="create_node_merge" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_utils
-reload(wf_network_utils)
+#import imp
+#imp.reload(wf_network_utils)
 wf_network_utils.create_node('merge')]]></script>
   </tool>
 
   <tool name="create_node_awrangle" label="create_node_awrangle" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_utils
-reload(wf_network_utils)
+#import imp
+#imp.reload(wf_network_utils)
 wf_network_utils.create_node('attribwrangle')]]></script>
   </tool>
 
   <tool name="create_node_transform" label="create_node_transform" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_utils
-reload(wf_network_utils)
+#import imp
+#imp.reload(wf_network_utils)
 wf_network_utils.create_node('xform')]]></script>
   </tool>
 
   <tool name="create_node_switch" label="create_node_switch" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_utils
-reload(wf_network_utils)
+#import imp
+#imp.reload(wf_network_utils)
 wf_network_utils.create_node('switch')]]></script>
   </tool>
 
   <tool name="collect_by_name" label="collect_by_name" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import hou
 import wf_selection
-reload(wf_selection)
+#import imp
+#imp.reload(wf_selection)
 
 
 query = hou.ui.readInput("Collect name:", buttons=("OK", "Cancel"))
@@ -117,7 +115,8 @@ for node_src in nodes :
 
   <tool name="find_parm" label="find_parm" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_utils
-reload(wf_network_utils)
+#import imp
+#imp.reload(wf_network_utils)
 wf_network_utils.find_parm(None)]]></script>
   </tool>
 
@@ -131,7 +130,8 @@ for name_mrg in array :
 
   <tool name="selection_switch" label="selection_switch" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_utils
-reload(wf_network_utils)
+#import imp
+#imp.reload(wf_network_utils)
 wf_network_utils.selection_switch()]]></script>
   </tool>
 
@@ -140,7 +140,8 @@ wf_network_utils.selection_switch()]]></script>
       <contextNetType>ROP</contextNetType>
     </toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_utils
-reload(wf_network_utils)
+#import imp
+#imp.reload(wf_network_utils)
 wf_network_utils.create_hqueue_render()]]></script>
   </tool>
 
@@ -149,7 +150,8 @@ wf_network_utils.create_hqueue_render()]]></script>
       <contextNetType>SOP</contextNetType>
     </toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_utils
-reload(wf_network_utils)
+#import imp
+#imp.reload(wf_network_utils)
 
 # -------------------
 # iteration
@@ -202,7 +204,8 @@ wf_network_utils.fc_list_print(filecaches)]]></script>
       <contextNetType>SOP</contextNetType>
     </toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_utils
-reload(wf_network_utils)
+#import imp
+#imp.reload(wf_network_utils)
 
 # -------------------
 # iteration
@@ -252,13 +255,56 @@ wf_network_utils.fc_list_print(filecaches)]]></script>
 
   <tool name="create_node_blast" label="create_node_blast" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_utils
-reload(wf_network_utils)
+#import imp
+#imp.reload(wf_network_utils)
 wf_network_utils.create_node('blast')]]></script>
   </tool>
 
   <tool name="create_g" label="create_g" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_utils
-reload(wf_network_utils)
+#import imp
+#imp.reload(wf_network_utils)
 wf_network_utils.create_node('g')]]></script>
+  </tool>
+
+  <tool name="wf_network_utils_create_object_merge0" label="qq object merge relative" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+      <contextNetType>SOP</contextNetType>
+      <contextNetType>CHOP</contextNetType>
+      <contextNetType>ROP</contextNetType>
+      <contextNetType>SHOP</contextNetType>
+      <contextNetType>COP2</contextNetType>
+      <contextNetType>VOP</contextNetType>
+      <contextNetType>VOPNET</contextNetType>
+      <contextNetType>DOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>_workflow</toolSubmenu>
+    <script scriptType="python"><![CDATA[import wf_network_utils
+#import imp
+#imp.reload(wf_network_utils)
+wf_network_utils.create_object_merge(True)]]></script>
+  </tool>
+
+  <tool name="wf_create_sticky_label" label="qq sticky label" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+      <contextNetType>SOP</contextNetType>
+      <contextNetType>CHOP</contextNetType>
+      <contextNetType>ROP</contextNetType>
+      <contextNetType>SHOP</contextNetType>
+      <contextNetType>COP2</contextNetType>
+      <contextNetType>VOP</contextNetType>
+      <contextNetType>VOPNET</contextNetType>
+      <contextNetType>DOP</contextNetType>
+      <contextNetType>LOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>_workflow</toolSubmenu>
+    <script scriptType="python"><![CDATA[nodes = hou.selectedNodes()
+
+import wf_network_utils
+#import imp
+#imp.reload(wf_network_utils)
+wf_network_utils.create_sticky_label(nodes)]]></script>
   </tool>
 </shelfDocument>

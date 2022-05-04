@@ -1,0 +1,8 @@
+///------------------------------------------------------------------------------------------------
+/// angle between vectors
+
+vector vecA = normalize(point(0, "P", 1) - point(0, "P", 0));
+vector vecB = normalize(point(1, "P", 1) - point(1, "P", 0));
+
+f@angle = degrees(acos(dot(normalize(vecA),normalize(vecB))));
+///------------------------------------------------------------------------------------------------
