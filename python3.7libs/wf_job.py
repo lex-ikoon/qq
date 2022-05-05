@@ -161,6 +161,11 @@ def create_job_geo_data_from_nulls() :
         # link to the null
         geo_data.parm("job_source").set(node_null.path())
 
+        # range from parent
+        geo_data.parm("job_rangex").set(node_null.parent().parm("job_rangex").eval())
+        geo_data.parm("job_rangey").set(node_null.parent().parm("job_rangey").eval())
+        wf_job_archetype_data.job_data_update_range_descriptiveparm(geo_data)
+
         # create GL_ROP
         create_rop_gl(geo_data)
 

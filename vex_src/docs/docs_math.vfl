@@ -1,11 +1,17 @@
 ///-----------------------
 /// sin
+float rand   = rand(@ptnum);
 float speed  = chf("speed");   // 0.5 in 0.0 to 10
-float amp    = chf("amp");     // 0.5 in 0.0 to 10
-float offset = chf("offset");  // 0.0 in 0.0 to 10
+float amp    = chf("amp");     // 1.0 in 0.0 to 10
+float offset;
+float sin;
 
-float sin = amp * sin( speed * @Time + offset );
+offset = chf("offset");  // 10 in 0.0 to 1000
+offset = offset * rand;
 
-@P.x += sin;
+sin = amp * sin( speed * @Time + offset );
+sin = abs(sin);
+
+@Cd *= sin;
 
 ///-----------------------
