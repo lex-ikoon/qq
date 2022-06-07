@@ -15,12 +15,11 @@ root {
                 }
                 tabs 0 1 {
                     pane pt_sceneview_2 -a 0 -l 10 -H /obj/ -T CHOPNET -m sceneview
-                    pane pt_channelview -a 0 -l 10 -H /obj/ -T CHOPNET -m channelview
                 }
             }
             tabs 0 1 {
                 pane pt_sceneview_1 -a 0 -l 10 -H /obj/ -T CHOPNET -m sceneview
-                pane pt_sceneview_3 -a 0 -l 10 -H /obj/ -T CHOPNET -m sceneview
+                pane pt_channelview -a 0 -l 10 -H /obj/ -T CHOPNET -m channelview
             }
         }
         split 0.5 V {
@@ -140,10 +139,3 @@ viewlayout -s 2 ${DESKNAME}.pt_sceneview_2.world
 viewtype -t ortho_right ${DESKNAME}.pt_sceneview_2.world.`vpname("${DESKNAME}.pt_sceneview_2.world",4)`
 viewtype -t ortho_front ${DESKNAME}.pt_sceneview_2.world.`vpname("${DESKNAME}.pt_sceneview_2.world",3)`
 viewtype -t ortho_top ${DESKNAME}.pt_sceneview_2.world.`vpname("${DESKNAME}.pt_sceneview_2.world",1)`
-viewerstow -x open -b stow -l open -m hide -c hide -d open ${DESKNAME}.pt_sceneview_3.world
-vieweroption -a 2 ${DESKNAME}.pt_sceneview_3.world
-viewlayout -s 2 ${DESKNAME}.pt_sceneview_3.world
-viewtype -t ortho_right ${DESKNAME}.pt_sceneview_3.world.`vpname("${DESKNAME}.pt_sceneview_3.world",4)`
-viewtype -t ortho_front ${DESKNAME}.pt_sceneview_3.world.`vpname("${DESKNAME}.pt_sceneview_3.world",3)`
-viewtype -t ortho_top ${DESKNAME}.pt_sceneview_3.world.`vpname("${DESKNAME}.pt_sceneview_3.world",1)`
-viewtype -t perspective ${DESKNAME}.pt_sceneview_3.world.`vpname("${DESKNAME}.pt_sceneview_3.world",2)`
