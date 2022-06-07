@@ -1,5 +1,5 @@
 import hou
-#import imp
+import imp
 
 import wf_selection
 #imp.reload(wf_selection)
@@ -11,7 +11,7 @@ import wf_music
 #imp.reload(wf_music)
 
 import wf_network_parm
-#imp.reload(wf_network_parm)
+imp.reload(wf_network_parm)
 
 import wf_timeline
 #imp.reload(wf_timeline)

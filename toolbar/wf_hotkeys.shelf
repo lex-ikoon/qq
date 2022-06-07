@@ -122,8 +122,8 @@ wf_hotkeys.hotkey_del_ctrl()]]></script>
 
   <tool name="hk_ins" label="hk_ins" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_hotkeys
-#import imp
-#imp.reload(wf_hotkeys)
+import imp
+imp.reload(wf_hotkeys)
 wf_hotkeys.hotkey_ins()]]></script>
   </tool>
 

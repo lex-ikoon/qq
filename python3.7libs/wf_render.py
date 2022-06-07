@@ -47,11 +47,23 @@ def batch_script_rop () :
 
 
 def start () :
-    pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.IPRViewer)
-    pane.killRender()
-    pane.startRender()
+    sceneview_main = hou.ui.curDesktop().findPaneTab("pt_sceneview_1")
+    # if sceneview_main.currentState() == "karma" :
+    try:
+        if sceneview_main.currentHydraRenderer() == "Karma" :
+            sceneview_main.restartRenderer()
+        else :
+            sceneview_main.setHydraRenderer("Karma")
+    except:
+        pass
 
 
 def kill () :
-    pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.IPRViewer)
-    pane.killRender()
+    sceneview_main = hou.ui.curDesktop().findPaneTab("pt_sceneview_1")
+    # if sceneview_main.currentState() == "karma" :
+    try:
+        sceneview_main.setHydraRenderer("Houdini GL")
+        sceneview_main.restartRenderer()
+    except:
+        pass
+

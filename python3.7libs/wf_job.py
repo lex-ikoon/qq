@@ -72,12 +72,54 @@ def jobify_node_ptg_and_contents( node_target, archetype_name ) :
     # ui and contents
 
 
-    # copy parms
-    which_folder         = "JOB"
-    insert_before_folder = "Transform"
-    node_src             = node_archetype
-    node_dst             = node_target
-    copypaste_ptg_folder( which_folder, insert_before_folder, node_src, node_dst )
+    if archetype_name == "archetype_job_lopnet" :
+
+        # group initial parms
+        PTG_initial = node_target.parmTemplateGroup()
+        PTG_new     = hou.ParmTemplateGroup()
+        entries     = PTG_initial.entries()
+
+        FOLDER_init = hou.FolderParmTemplate("folder", "Initial Parms")
+        FOLDER_init.setFolderType(hou.folderType.Tabs)
+
+        for entry in entries :
+            FOLDER_init.addParmTemplate(entry)
+        
+        PTG_new.append(FOLDER_init)
+        node_target.setParmTemplateGroup(PTG_new)
+
+
+        # copy parms
+        which_folder         = "JOB"
+        insert_before_folder = "Initial Parms"
+        node_src             = node_archetype
+        node_dst             = node_target
+        copypaste_ptg_folder( which_folder, insert_before_folder, node_src, node_dst )
+
+        # copy contents
+        container_src = node_archetype
+        container_dst = node_target
+        copypaste_all_contents( container_src, container_dst )
+
+        # finetune
+        # set camera
+        # set render location
+        
+
+
+
+
+
+
+    # --------------------------------------------------------------------------------------
+    else :
+        # copy parms
+        which_folder         = "JOB"
+        insert_before_folder = "Transform"
+        node_src             = node_archetype
+        node_dst             = node_target
+        copypaste_ptg_folder( which_folder, insert_before_folder, node_src, node_dst )
+    # --------------------------------------------------------------------------------------
 
 
     if archetype_name == "archetype_job_cam" :
@@ -87,6 +129,7 @@ def jobify_node_ptg_and_contents( node_target, archetype_name ) :
         node_target.parm("use_dcolor").set(1)
         node_target.parmTuple("dcolor").set((1.0, 1.0, 0.0))
         # node_target.parm("picking").set(0)
+
 
 
     if archetype_name == "archetype_job_geo_data" :
@@ -107,8 +150,6 @@ def jobify_node_ptg_and_contents( node_target, archetype_name ) :
         wf_job_archetype_data.job_data_update_range_descriptiveparm(node_target)
 
         
-
-
 
     if archetype_name == "archetype_job_geo_network" :
         # copy parms
@@ -134,6 +175,37 @@ def jobify_node_ptg_and_contents( node_target, archetype_name ) :
 
     # delete the archetype
     node_archetype_hda.destroy()
+
+
+def create_job_lopnet_from_geo(node_geos) :
+
+    # define offset
+    offsetx = 3
+    offsety = 0
+
+    for node_geo in node_geos :
+        # name
+        lopnet_name = "lop_" + node_geo.name()
+
+        # create lopnet
+        node_lopnet = node_geo.parent().createNode("lopnet", 
+            node_name = lopnet_name,
+            run_init_scripts = True, 
+            load_contents = True, 
+            exact_type_name = True)
+
+        # layout pin position
+        node_lopnet.setComment("`")
+
+        # get pos
+        posx = node_geo.position()[0] + offsetx
+        posy = node_geo.position()[1] + offsety
+        node_lopnet.setPosition( [posx,posy] )
+
+        # jobify lopnet
+        jobify_node_ptg_and_contents( node_lopnet, "archetype_job_lopnet" )
+
+
 
 
 def create_job_geo_data_from_nulls() :

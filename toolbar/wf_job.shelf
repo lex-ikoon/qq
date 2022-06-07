@@ -8,6 +8,7 @@
   <toolshelf name="wf_job" label="wf_job">
     <memberTool name="wf_job_data"/>
     <memberTool name="wf_jobify"/>
+    <memberTool name="wf_lopnet"/>
   </toolshelf>
 
   <tool name="wf_job_data" label="wf job data" icon="PLASMA_App">
@@ -28,5 +29,16 @@ wf_job.create_job_geo_data_from_nulls()]]></script>
 import imp
 imp.reload(wf_job)
 wf_job.jobify()]]></script>
+  </tool>
+
+  <tool name="wf_lopnet" label="wf lopnet" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+    </toolMenuContext>
+    <script scriptType="python"><![CDATA[import wf_job
+import imp
+imp.reload(wf_job)
+nodes = hou.selectedNodes()
+wf_job.create_job_lopnet_from_geo(nodes)]]></script>
   </tool>
 </shelfDocument>

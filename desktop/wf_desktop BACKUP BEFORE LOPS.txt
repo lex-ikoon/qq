@@ -38,7 +38,7 @@ root {
                 tabs 0 1 {
                     pane pt_network_2 -a 0 -l 2 -H /obj/ -T OBJ -m neteditor
                     pane pt_perfmon -a 0 -l 0 -H /obj/ -T OBJ -m perfmon
-                    pane pt_scenegraphtree -a 0 -l 10 -H /obj/ -T LOP -m scenegraphtree                    
+                    pane pt_takelist -a 0 -l 0 -H /obj/ -T OBJ -m takelist
                 }
             }
         }
@@ -107,6 +107,7 @@ netcolumns -c display,bypass,delscript,comment,input -n LOP pt_network_2
 netcolumns -c delscript,comment -n MGR pt_network_2
 netcolumns -c delscript,comment -n DIR pt_network_2
 performance -c on -d on -f on -g off -k on -m off -n on -o on -t off -v on -p on -y on -u on -e off -r absolute -R seconds -w tree pt_perfmon
+takelist -w 1 -G 0.5 pt_takelist
 viewerstow -x open -b stow -l open -m hide -c hide -d open ${DESKNAME}.dual_scene.world
 vieweroption -a 2 ${DESKNAME}.dual_scene.world
 viewlayout -s 2 ${DESKNAME}.dual_scene.world
@@ -139,4 +140,4 @@ viewlayout -s 2 ${DESKNAME}.pt_sceneview_2.world
 viewtype -t ortho_right ${DESKNAME}.pt_sceneview_2.world.`vpname("${DESKNAME}.pt_sceneview_2.world",4)`
 viewtype -t ortho_front ${DESKNAME}.pt_sceneview_2.world.`vpname("${DESKNAME}.pt_sceneview_2.world",3)`
 viewtype -t ortho_top ${DESKNAME}.pt_sceneview_2.world.`vpname("${DESKNAME}.pt_sceneview_2.world",1)`
-scenegraphtree -S 0.25 -m 0 -p "/collections /lights" -c  -i  -o  -x 1 -s 1 -M 0 -C primtype,descendants,variants,kind,drawmode,populated,loaded,activation,visibility,solo  
+viewtype -t perspective ${DESKNAME}.pt_sceneview_2.world.`vpname("${DESKNAME}.pt_sceneview_2.world",2)`

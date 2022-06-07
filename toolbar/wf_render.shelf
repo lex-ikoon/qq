@@ -15,15 +15,15 @@
 
   <tool name="render_kill" label="render_kill" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_render
-#import imp
-#imp.reload(wf_render)
+import imp
+imp.reload(wf_render)
 wf_render.kill()]]></script>
   </tool>
 
   <tool name="render_start" label="render_start" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_render
-#import imp
-#imp.reload(wf_render)
+import imp
+imp.reload(wf_render)
 wf_render.start()]]></script>
   </tool>
 

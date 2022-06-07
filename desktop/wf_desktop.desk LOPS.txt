@@ -1,0 +1,472 @@
+fullscreen   -1
+playbarshown 1
+playbar      -1
+shelf        -1
+menubar      -1
+statusbar    -1
+radial menu set main
+root {
+    split 0.36 H {
+        split 0.5 V {
+            tabs 0 1 {
+                pane pt_sceneview_1 -a 0 -l 10 -H /obj/lop_car/ -T LOP -m sceneview
+                pane pt_channelview -a 0 -l 10 -H /ch/ -T CHOPNET -m channelview
+            }
+            split 0.5 H R {
+                tabs 1 1 {
+                    pane pt_chaneditor -a 0 -l 1 -H /obj/lop_car/ -T LOP -m chaneditor
+                    pane pt_details -a 0 -l 10 -H /obj/lop_car/ -T LOP -m details
+                }
+                tabs 0 1 {
+                    pane pt_sceneview_2 -a 0 -l 10 -H /obj/lop_car/ -T LOP -m sceneview
+                }
+            }
+        }
+        split 0.5 V {
+            split 0.34 H {
+                tabs 0 1 {
+                    pane pt_parmeditor_1 -a 0 -l 1 -H /obj/lop_car/ -T LOP -m parmeditor
+                }
+                tabs 0 1 {
+                    pane pt_network_1 -a 0 -l 1 -H /obj/lop_car/ -T LOP -m neteditor
+                }
+            }
+            split 0.34 H {
+                tabs 0 1 {
+                    pane pt_parmeditor_2 -a 0 -l 2 -H /obj/ -T OBJ -m parmeditor
+                }
+                tabs 0 1 {
+                    pane pt_network_2 -a 0 -l 2 -H /obj/ -T OBJ -m neteditor
+                    pane pt_perfmon -a 0 -l 0 -H /obj/ -T OBJ -m perfmon
+                    pane panetab1 -a 0 -l 10 -H /obj/lop_car/ -T LOP -m scenegraphtree
+                }
+            }
+        }
+    }
+}
+shelfdock -o 1 -l icon_and_text -G "0.50 0.50" add shelf_set_1 shelf_set_2
+viewerstow -x open -b stow -l open -m hide -c hide -d open ${DESKNAME}.pt_sceneview_2.solaris
+viewerstow -b stow -x open -l open -m hide -c hide -d open ${DESKNAME}.pt_sceneview_2.solaris
+vieweroption -r 'View: Mantra' ${DESKNAME}.pt_sceneview_2.solaris
+viewergrouplist -g off -s 0 0 -c  on -t matchselect -m '*' -e on -p off -h on ${DESKNAME}.pt_sceneview_2.solaris
+vieweroption -p 0 ${DESKNAME}.pt_sceneview_2.solaris
+viewlayout -s 2 ${DESKNAME}.pt_sceneview_2.solaris
+viewerinspect ${DESKNAME}.pt_sceneview_2.solaris mode ( objects ) object_properties ( ) prim_properties ( ) enable ( 0 ) magnify ( 1 )
+viewtype -t perspective ${DESKNAME}.pt_sceneview_2.solaris.`vpname("${DESKNAME}.pt_sceneview_2.solaris",2)`
+viewtype -t ortho_top ${DESKNAME}.pt_sceneview_2.solaris.`vpname("${DESKNAME}.pt_sceneview_2.solaris",1)`
+viewtype -t ortho_front ${DESKNAME}.pt_sceneview_2.solaris.`vpname("${DESKNAME}.pt_sceneview_2.solaris",3)`
+viewtype -t ortho_right ${DESKNAME}.pt_sceneview_2.solaris.`vpname("${DESKNAME}.pt_sceneview_2.solaris",4)`
+viewname -l on -n aaaa3 ${DESKNAME}.pt_sceneview_2.solaris.`vpname("${DESKNAME}.pt_sceneview_2.solaris",2)`
+viewname -l on -n aaaa2 ${DESKNAME}.pt_sceneview_2.solaris.`vpname("${DESKNAME}.pt_sceneview_2.solaris",1)`
+viewname -l on -n aaaa1 ${DESKNAME}.pt_sceneview_2.solaris.`vpname("${DESKNAME}.pt_sceneview_2.solaris",3)`
+viewname -l on -n aaaa0 ${DESKNAME}.pt_sceneview_2.solaris.`vpname("${DESKNAME}.pt_sceneview_2.solaris",4)`
+viewname -l off -n persp1 ${DESKNAME}.pt_sceneview_2.solaris.`vpname("${DESKNAME}.pt_sceneview_2.solaris",2)`
+viewname -l off -n top1 ${DESKNAME}.pt_sceneview_2.solaris.`vpname("${DESKNAME}.pt_sceneview_2.solaris",1)`
+viewname -l off -n front1 ${DESKNAME}.pt_sceneview_2.solaris.`vpname("${DESKNAME}.pt_sceneview_2.solaris",3)`
+viewname -l off -n right1 ${DESKNAME}.pt_sceneview_2.solaris.`vpname("${DESKNAME}.pt_sceneview_2.solaris",4)`
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L on -G off -B none -d uv -r unique scene ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewdispset -t off  scene ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L on -G off -B none -d uv -r scene selectscene ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewdispset -t off  selectscene ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L off -G on -B none -d uv -r unique ghostscene ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewdispset -t off  ghostscene ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P on -p off -f off -o off -w on -s shade_wire -F off -l on -L on -G off -B none -d uv -r unique display ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewdispset -t on  display ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P on -p off -f off -o off -w off -s wire -F off -l on -L off -G off -B none -d uv -r unique current ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewdispset -t off  current ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s wire -F on -l on -L off -G on -B none -d uv -r unique template ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewdispset -t off  template ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewdisplay -B dark -b off -d off -C 2 -e 1 -F on -f off -g on -G '*' -h off -H on -j off -J off -L on -n 0.2 -o off -O on -q on -r on -s off -t on -V 2 -z off -y off -x off -X off -U 4 -Y 4 -T on -R on -i on -D on -k off ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewdisplay -Q on -m on -v on ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewdisplay -W  off 0 0 ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewdisplay -c on -l1 -K on -P points -p 3 ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewdispopts -a on -A 0.5 -b current -B 0 -c 1 -C 60  -d  on -D 1 -g on -i on -n on -N 1000000 -o off -p 10 -P on -r off -R on -S 768 -l 128 -m 0.05 -M 1024 -s on -t 0.5 -u uv -w 0.1 -W 0.9 -x on -X off ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewdispopts -f off -k 0 -I 1 -O on -T MatCap/OilClay.pic -U uvgrid_grey.pic -v 1 ${DESKNAME}.pt_sceneview_2.solaris.persp1
+vieweffect -a 2 -A 4 -b on -B 1 -d on -D on off -e 0.8 -E -30 -30 -100 -f 1 -F 1 -g 2.2 -G 0 -h 1 -H on -i on -I 1 -j on -J 100 -K 2 -k 1 -l '' -m on -M 2048 -o off -O 3 -p off -P 3 -q 0 -Q 2 -r 2048 2048 -s 2 -t 100 -T 100 -u off -U off -v 256 256 256 -w 0.05 -W on -x 0.8 0.8 0.8 -X 0.8 0.8 0.8 -y 0.8 0.8 0.8 -Y 0.0025 0.0025 0.0025 -z 0.01 -Z 1 ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewinfotext -m always -s off -t on ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewlight  -a on -d on -e on -h off -l on -n 8 -s on ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewbackground -b on -e on -q 1 -i off -m 0 0 -M 1 1 ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off persp ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off cam ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off top ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off front ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off right ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off bottom ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off back ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off left ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewroto  -S file -F '$HH/pic/uvgrid_grey.pic' -C '' -a on -o 0 0 -s 1 1 -B 0.2 -e off uv ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off image ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewforeground -d on -f on -D Pz -s 0 ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewtransform ${DESKNAME}.pt_sceneview_2.solaris.persp1 version ( 3 )  flag ( Fx )  orthowidth ( 2.91267 )  focal ( 50 )  aperture ( 50 )  window ( 0 1 0 1 )  winroll ( 0 )  clear ( 1 )  nearfar ( 0.00385678 38567.8 )  aspect ( 1.33333 )  pixelaspect ( 1 )  txyz ( 0 0 3.91267 )  pxyz ( 0 0 0 )  rotation ( 0.707107 -0.353553 0.612372 0 0.866025 0.5 -0.707107 -0.353553 0.612372  )  homedistance ( 3.91267 )  homeadjboxwidth ( 2.91267 )  homeorthowidth ( 2.91267 )  homeradius ( 3.85639 )  homeaxis ( 0 )  homecustom ( 0.707107 -0.353553 0.612372 0 0.866025 0.5 -0.707107 -0.353553 0.612372  )  adjustlimits ( 3 )  fov (90)  
+viewcamera -c '' ${DESKNAME}.pt_sceneview_2.solaris.persp1
+vieworthogrid -d on -o 0 0 0 -s 0.2 0.2 -r 5 5 -R 1 ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewuvgrid -r on -s 0.1 0.1 -P off -S 64 64 -O 0 0 -C on -t on ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewagentopts  -L on -b 0 -d 1 -l 0 -m 4 -p 1000 -w 1 -B 1 ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewonionskin  -e on -a 4 -b 4 -i 6 -o 0.5 -A 1 1 1 -B 1 1 1 ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewposteffects  -D off -B off -t "" -f off -V off -S on -a 1 -b 5 -F 1 -g 1 -c 1 1 1 -C 1 1 1 -d 1e+06 -h 0 -H 100 10 -i 1 -I 1 -l 1 -n "" -o 1 -O 1 -r 0 1000 -R 1 200 -s 1 1 -u 0 -U 100 10 -v 0 ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewposteffects  -e off -E 10 -T 0.95 -L 1 ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewmaskoverlay -o 0.4 ${DESKNAME}.pt_sceneview_2.solaris.persp1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L on -G off -B none -d uv -r unique scene ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewdispset -t off  scene ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L on -G off -B none -d uv -r scene selectscene ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewdispset -t off  selectscene ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L off -G on -B none -d uv -r unique ghostscene ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewdispset -t off  ghostscene ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P on -p off -f off -o off -w on -s shade_wire -F off -l on -L on -G off -B none -d uv -r unique display ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewdispset -t on  display ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P on -p off -f off -o off -w off -s wire -F off -l on -L off -G off -B none -d uv -r unique current ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewdispset -t off  current ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s wire -F on -l on -L off -G on -B none -d uv -r unique template ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewdispset -t off  template ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewdisplay -B dark -b off -d off -C 2 -e 1 -F on -f off -g on -G '*' -h off -H on -j off -J off -L on -n 0.2 -o off -O on -q on -r on -s off -t on -V 2 -z off -y off -x off -X off -U 4 -Y 4 -T on -R on -i on -D on -k off ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewdisplay -Q on -m on -v on ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewdisplay -W  off 0 0 ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewdisplay -c on -l1 -K on -P points -p 3 ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewdispopts -a on -A 0.5 -b current -B 0 -c 1 -C 60  -d  on -D 1 -g on -i on -n on -N 1000000 -o off -p 10 -P on -r off -R on -S 768 -l 128 -m 0.05 -M 1024 -s on -t 0.5 -u uv -w 0.1 -W 0.9 -x on -X off ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewdispopts -f off -k 0 -I 1 -O on -T MatCap/OilClay.pic -U uvgrid_grey.pic -v 1 ${DESKNAME}.pt_sceneview_2.solaris.top1
+vieweffect -a 2 -A 4 -b on -B 1 -d on -D on off -e 0.8 -E -30 -30 -100 -f 1 -F 1 -g 2.2 -G 0 -h 1 -H on -i on -I 1 -j on -J 100 -K 2 -k 1 -l '' -m on -M 2048 -o off -O 3 -p off -P 3 -q 0 -Q 2 -r 2048 2048 -s 2 -t 100 -T 100 -u off -U off -v 256 256 256 -w 0.05 -W on -x 0.8 0.8 0.8 -X 0.8 0.8 0.8 -y 0.8 0.8 0.8 -Y 0.0025 0.0025 0.0025 -z 0.01 -Z 1 ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewinfotext -m always -s off -t on ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewlight  -a on -d on -e on -h off -l on -n 8 -s on ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewbackground -b on -e on -q 1 -i off -m 0 0 -M 1 1 ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off persp ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off cam ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off top ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off front ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off right ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off bottom ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off back ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off left ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewroto  -S file -F '$HH/pic/uvgrid_grey.pic' -C '' -a on -o 0 0 -s 1 1 -B 0.2 -e off uv ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off image ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewforeground -d on -f on -D Pz -s 0 ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewtransform ${DESKNAME}.pt_sceneview_2.solaris.top1 version ( 3 )  flag ( Fox )  orthowidth ( 2.22222 )  focal ( 50 )  aperture ( 50 )  window ( 0 1 0 1 )  winroll ( 0 )  clear ( 1 )  nearfar ( 0.00290032 29003.2 )  aspect ( 1.33333 )  pixelaspect ( 1 )  txyz ( 0 0 3.22222 )  pxyz ( 0 0 0 )  rotation ( 1 0 0 0 1.19209e-07 1 0 -1 1.19209e-07  )  homedistance ( 3.22222 )  homeadjboxwidth ( 2.22222 )  homeorthowidth ( 2.22222 )  homeradius ( 2.9 )  homeaxis ( 0 )  homecustom ( 0.707107 -0.353553 0.612372 0 0.866025 0.5 -0.707107 -0.353553 0.612372  )  adjustlimits ( 3 )  fov (90)  
+vieworthogrid -d on -o 0 0 0 -s 0.2 0.2 -r 5 5 -R 1 ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewuvgrid -r on -s 0.1 0.1 -P off -S 64 64 -O 0 0 -C on -t on ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewagentopts  -L on -b 0 -d 1 -l 0 -m 4 -p 1000 -w 1 -B 1 ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewonionskin  -e on -a 4 -b 4 -i 6 -o 0.5 -A 1 1 1 -B 1 1 1 ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewposteffects  -D off -B off -t "" -f off -V off -S on -a 1 -b 5 -F 1 -g 1 -c 1 1 1 -C 1 1 1 -d 1e+06 -h 0 -H 100 10 -i 1 -I 1 -l 1 -n "" -o 1 -O 1 -r 0 1000 -R 1 200 -s 1 1 -u 0 -U 100 10 -v 0 ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewposteffects  -e off -E 10 -T 0.95 -L 1 ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewmaskoverlay -o 0.4 ${DESKNAME}.pt_sceneview_2.solaris.top1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L on -G off -B none -d uv -r unique scene ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewdispset -t off  scene ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L on -G off -B none -d uv -r scene selectscene ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewdispset -t off  selectscene ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L off -G on -B none -d uv -r unique ghostscene ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewdispset -t off  ghostscene ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P on -p off -f off -o off -w on -s shade_wire -F off -l on -L on -G off -B none -d uv -r unique display ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewdispset -t on  display ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P on -p off -f off -o off -w off -s wire -F off -l on -L off -G off -B none -d uv -r unique current ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewdispset -t off  current ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s wire -F on -l on -L off -G on -B none -d uv -r unique template ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewdispset -t off  template ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewdisplay -B dark -b off -d off -C 2 -e 1 -F on -f off -g on -G '*' -h off -H on -j off -J off -L on -n 0.2 -o off -O on -q on -r on -s off -t on -V 2 -z off -y off -x off -X off -U 4 -Y 4 -T on -R on -i on -D on -k off ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewdisplay -Q on -m on -v on ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewdisplay -W  off 0 0 ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewdisplay -c on -l1 -K on -P points -p 3 ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewdispopts -a on -A 0.5 -b current -B 0 -c 1 -C 60  -d  on -D 1 -g on -i on -n on -N 1000000 -o off -p 10 -P on -r off -R on -S 768 -l 128 -m 0.05 -M 1024 -s on -t 0.5 -u uv -w 0.1 -W 0.9 -x on -X off ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewdispopts -f off -k 0 -I 1 -O on -T MatCap/OilClay.pic -U uvgrid_grey.pic -v 1 ${DESKNAME}.pt_sceneview_2.solaris.front1
+vieweffect -a 2 -A 4 -b on -B 1 -d on -D on off -e 0.8 -E -30 -30 -100 -f 1 -F 1 -g 2.2 -G 0 -h 1 -H on -i on -I 1 -j on -J 100 -K 2 -k 1 -l '' -m on -M 2048 -o off -O 3 -p off -P 3 -q 0 -Q 2 -r 2048 2048 -s 2 -t 100 -T 100 -u off -U off -v 256 256 256 -w 0.05 -W on -x 0.8 0.8 0.8 -X 0.8 0.8 0.8 -y 0.8 0.8 0.8 -Y 0.0025 0.0025 0.0025 -z 0.01 -Z 1 ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewinfotext -m always -s off -t on ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewlight  -a on -d on -e on -h off -l on -n 8 -s on ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewbackground -b on -e on -q 1 -i off -m 0 0 -M 1 1 ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off persp ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off cam ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off top ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off front ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off right ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off bottom ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off back ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off left ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewroto  -S file -F '$HH/pic/uvgrid_grey.pic' -C '' -a on -o 0 0 -s 1 1 -B 0.2 -e off uv ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off image ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewforeground -d on -f on -D Pz -s 0 ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewtransform ${DESKNAME}.pt_sceneview_2.solaris.front1 version ( 3 )  flag ( Fox )  orthowidth ( 2.22222 )  focal ( 50 )  aperture ( 50 )  window ( 0 1 0 1 )  winroll ( 0 )  clear ( 1 )  nearfar ( 0.00290032 29003.2 )  aspect ( 1.33333 )  pixelaspect ( 1 )  txyz ( 0 0 3.22222 )  pxyz ( 0 0 0 )  rotation ( 1 0 0 0 1 0 0 0 1  )  homedistance ( 3.22222 )  homeadjboxwidth ( 2.22222 )  homeorthowidth ( 2.22222 )  homeradius ( 2.9 )  homeaxis ( 0 )  homecustom ( 0.707107 -0.353553 0.612372 0 0.866025 0.5 -0.707107 -0.353553 0.612372  )  adjustlimits ( 3 )  fov (90)  
+vieworthogrid -d on -o 0 0 0 -s 0.2 0.2 -r 5 5 -R 1 ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewuvgrid -r on -s 0.1 0.1 -P off -S 64 64 -O 0 0 -C on -t on ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewagentopts  -L on -b 0 -d 1 -l 0 -m 4 -p 1000 -w 1 -B 1 ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewonionskin  -e on -a 4 -b 4 -i 6 -o 0.5 -A 1 1 1 -B 1 1 1 ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewposteffects  -D off -B off -t "" -f off -V off -S on -a 1 -b 5 -F 1 -g 1 -c 1 1 1 -C 1 1 1 -d 1e+06 -h 0 -H 100 10 -i 1 -I 1 -l 1 -n "" -o 1 -O 1 -r 0 1000 -R 1 200 -s 1 1 -u 0 -U 100 10 -v 0 ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewposteffects  -e off -E 10 -T 0.95 -L 1 ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewmaskoverlay -o 0.4 ${DESKNAME}.pt_sceneview_2.solaris.front1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L on -G off -B none -d uv -r unique scene ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewdispset -t off  scene ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L on -G off -B none -d uv -r scene selectscene ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewdispset -t off  selectscene ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L off -G on -B none -d uv -r unique ghostscene ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewdispset -t off  ghostscene ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P on -p off -f off -o off -w on -s shade_wire -F off -l on -L on -G off -B none -d uv -r unique display ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewdispset -t on  display ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P on -p off -f off -o off -w off -s wire -F off -l on -L off -G off -B none -d uv -r unique current ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewdispset -t off  current ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s wire -F on -l on -L off -G on -B none -d uv -r unique template ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewdispset -t off  template ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewdisplay -B dark -b off -d off -C 2 -e 1 -F on -f off -g on -G '*' -h off -H on -j off -J off -L on -n 0.2 -o off -O on -q on -r on -s off -t on -V 2 -z off -y off -x off -X off -U 4 -Y 4 -T on -R on -i on -D on -k off ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewdisplay -Q on -m on -v on ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewdisplay -W  off 0 0 ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewdisplay -c on -l1 -K on -P points -p 3 ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewdispopts -a on -A 0.5 -b current -B 0 -c 1 -C 60  -d  on -D 1 -g on -i on -n on -N 1000000 -o off -p 10 -P on -r off -R on -S 768 -l 128 -m 0.05 -M 1024 -s on -t 0.5 -u uv -w 0.1 -W 0.9 -x on -X off ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewdispopts -f off -k 0 -I 1 -O on -T MatCap/OilClay.pic -U uvgrid_grey.pic -v 1 ${DESKNAME}.pt_sceneview_2.solaris.right1
+vieweffect -a 2 -A 4 -b on -B 1 -d on -D on off -e 0.8 -E -30 -30 -100 -f 1 -F 1 -g 2.2 -G 0 -h 1 -H on -i on -I 1 -j on -J 100 -K 2 -k 1 -l '' -m on -M 2048 -o off -O 3 -p off -P 3 -q 0 -Q 2 -r 2048 2048 -s 2 -t 100 -T 100 -u off -U off -v 256 256 256 -w 0.05 -W on -x 0.8 0.8 0.8 -X 0.8 0.8 0.8 -y 0.8 0.8 0.8 -Y 0.0025 0.0025 0.0025 -z 0.01 -Z 1 ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewinfotext -m always -s off -t on ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewlight  -a on -d on -e on -h off -l on -n 8 -s on ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewbackground -b on -e on -q 1 -i off -m 0 0 -M 1 1 ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off persp ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off cam ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off top ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off front ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off right ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off bottom ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off back ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off left ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewroto  -S file -F '$HH/pic/uvgrid_grey.pic' -C '' -a on -o 0 0 -s 1 1 -B 0.2 -e off uv ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off image ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewforeground -d on -f on -D Pz -s 0 ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewtransform ${DESKNAME}.pt_sceneview_2.solaris.right1 version ( 3 )  flag ( Fox )  orthowidth ( 2.22222 )  focal ( 50 )  aperture ( 50 )  window ( 0 1 0 1 )  winroll ( 0 )  clear ( 1 )  nearfar ( 0.00290032 29003.2 )  aspect ( 1.33333 )  pixelaspect ( 1 )  txyz ( 0 0 3.22222 )  pxyz ( 0 0 0 )  rotation ( 6.12323e-17 0 1 0 1 0 -1 0 6.12323e-17  )  homedistance ( 3.22222 )  homeadjboxwidth ( 2.22222 )  homeorthowidth ( 2.22222 )  homeradius ( 2.9 )  homeaxis ( 0 )  homecustom ( 0.707107 -0.353553 0.612372 0 0.866025 0.5 -0.707107 -0.353553 0.612372  )  adjustlimits ( 3 )  fov (90)  
+vieworthogrid -d on -o 0 0 0 -s 0.2 0.2 -r 5 5 -R 1 ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewuvgrid -r on -s 0.1 0.1 -P off -S 64 64 -O 0 0 -C on -t on ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewagentopts  -L on -b 0 -d 1 -l 0 -m 4 -p 1000 -w 1 -B 1 ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewonionskin  -e on -a 4 -b 4 -i 6 -o 0.5 -A 1 1 1 -B 1 1 1 ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewposteffects  -D off -B off -t "" -f off -V off -S on -a 1 -b 5 -F 1 -g 1 -c 1 1 1 -C 1 1 1 -d 1e+06 -h 0 -H 100 10 -i 1 -I 1 -l 1 -n "" -o 1 -O 1 -r 0 1000 -R 1 200 -s 1 1 -u 0 -U 100 10 -v 0 ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewposteffects  -e off -E 10 -T 0.95 -L 1 ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewmaskoverlay -o 0.4 ${DESKNAME}.pt_sceneview_2.solaris.right1
+viewsnapshotoption -s off -h off -a 1 -v '*' -m 0 ${DESKNAME}.pt_sceneview_2.solaris
+cplane -o 0 0 0 -n 4.37114e-08 1 -4.37114e-08 -x 1.91069e-15 4.37114e-08 1 -l n -s 0.1 0.1 -c 40 40 -r 10 10 -d off ${DESKNAME}.pt_sceneview_2.solaris
+glcache -t 1638 -v 6553
+sceneviewopts -C on -c on -e on -F on -g on -i -1 -k "component" -l on -m on -M on -p "" -P off -s on -S 1 -r "HD_HoudiniRendererPlugin" -K off -R 960 540 -V off ${DESKNAME}.pt_sceneview_2.solaris
+viewlayout -s 2 ${DESKNAME}.pt_sceneview_2.solaris
+viewtype -t ortho_right ${DESKNAME}.pt_sceneview_2.solaris.`vpname("${DESKNAME}.pt_sceneview_2.solaris",4)`
+viewtype -t ortho_front ${DESKNAME}.pt_sceneview_2.solaris.`vpname("${DESKNAME}.pt_sceneview_2.solaris",3)`
+viewtype -t ortho_top ${DESKNAME}.pt_sceneview_2.solaris.`vpname("${DESKNAME}.pt_sceneview_2.solaris",1)`
+viewtype -t perspective ${DESKNAME}.pt_sceneview_2.solaris.`vpname("${DESKNAME}.pt_sceneview_2.solaris",2)`
+viewerstow -x open -b stow -l open -m hide -c hide -d open ${DESKNAME}.pt_sceneview_1.solaris
+viewerstow -b stow -x open -l open -m hide -c hide -d open ${DESKNAME}.pt_sceneview_1.solaris
+vieweroption -r 'View: Mantra' ${DESKNAME}.pt_sceneview_1.solaris
+viewergrouplist -g off -s 0 0 -c  on -t matchselect -m '*' -e on -p off -h on ${DESKNAME}.pt_sceneview_1.solaris
+vieweroption -p 0 ${DESKNAME}.pt_sceneview_1.solaris
+viewlayout -s 2 ${DESKNAME}.pt_sceneview_1.solaris
+viewerinspect ${DESKNAME}.pt_sceneview_1.solaris mode ( objects ) object_properties ( ) prim_properties ( ) enable ( 0 ) magnify ( 1 )
+viewtype -t perspective ${DESKNAME}.pt_sceneview_1.solaris.`vpname("${DESKNAME}.pt_sceneview_1.solaris",2)`
+viewtype -t ortho_top ${DESKNAME}.pt_sceneview_1.solaris.`vpname("${DESKNAME}.pt_sceneview_1.solaris",1)`
+viewtype -t ortho_front ${DESKNAME}.pt_sceneview_1.solaris.`vpname("${DESKNAME}.pt_sceneview_1.solaris",3)`
+viewtype -t ortho_right ${DESKNAME}.pt_sceneview_1.solaris.`vpname("${DESKNAME}.pt_sceneview_1.solaris",4)`
+viewname -l on -n aaaa3 ${DESKNAME}.pt_sceneview_1.solaris.`vpname("${DESKNAME}.pt_sceneview_1.solaris",2)`
+viewname -l on -n aaaa2 ${DESKNAME}.pt_sceneview_1.solaris.`vpname("${DESKNAME}.pt_sceneview_1.solaris",1)`
+viewname -l on -n aaaa1 ${DESKNAME}.pt_sceneview_1.solaris.`vpname("${DESKNAME}.pt_sceneview_1.solaris",3)`
+viewname -l on -n aaaa0 ${DESKNAME}.pt_sceneview_1.solaris.`vpname("${DESKNAME}.pt_sceneview_1.solaris",4)`
+viewname -l off -n persp1 ${DESKNAME}.pt_sceneview_1.solaris.`vpname("${DESKNAME}.pt_sceneview_1.solaris",2)`
+viewname -l off -n top1 ${DESKNAME}.pt_sceneview_1.solaris.`vpname("${DESKNAME}.pt_sceneview_1.solaris",1)`
+viewname -l off -n front1 ${DESKNAME}.pt_sceneview_1.solaris.`vpname("${DESKNAME}.pt_sceneview_1.solaris",3)`
+viewname -l off -n right1 ${DESKNAME}.pt_sceneview_1.solaris.`vpname("${DESKNAME}.pt_sceneview_1.solaris",4)`
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L on -G off -B none -d uv -r unique scene ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewdispset -t off  scene ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L on -G off -B none -d uv -r scene selectscene ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewdispset -t off  selectscene ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L off -G on -B none -d uv -r unique ghostscene ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewdispset -t off  ghostscene ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P on -p off -f off -o off -w on -s shade_wire -F off -l on -L on -G off -B none -d uv -r unique display ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewdispset -t on  display ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P on -p off -f off -o off -w off -s wire -F off -l on -L off -G off -B none -d uv -r unique current ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewdispset -t off  current ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s wire -F on -l on -L off -G on -B none -d uv -r unique template ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewdispset -t off  template ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewdisplay -B dark -b off -d off -C 2 -e 1 -F on -f off -g on -G '*' -h off -H on -j off -J off -L on -n 0.2 -o off -O on -q on -r on -s off -t on -V 2 -z off -y off -x off -X off -U 4 -Y 4 -T on -R on -i on -D on -k off ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewdisplay -Q on -m on -v on ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewdisplay -W  off 0 0 ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewdisplay -c on -l1 -K on -P points -p 3 ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewdispopts -a on -A 0.5 -b current -B 0 -c 1 -C 60  -d  on -D 1 -g on -i on -n on -N 1000000 -o off -p 10 -P on -r off -R on -S 768 -l 128 -m 0.05 -M 1024 -s on -t 0.5 -u uv -w 0.1 -W 0.9 -x on -X off ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewdispopts -f off -k 0 -I 1 -O on -T MatCap/OilClay.pic -U uvgrid_grey.pic -v 1 ${DESKNAME}.pt_sceneview_1.solaris.persp1
+vieweffect -a 2 -A 4 -b on -B 1 -d on -D on off -e 0.8 -E -30 -30 -100 -f 1 -F 1 -g 2.2 -G 0 -h 1 -H on -i on -I 1 -j on -J 100 -K 2 -k 1 -l '' -m on -M 2048 -o off -O 3 -p off -P 3 -q 0 -Q 2 -r 2048 2048 -s 2 -t 100 -T 100 -u off -U off -v 256 256 256 -w 0.05 -W on -x 0.8 0.8 0.8 -X 0.8 0.8 0.8 -y 0.8 0.8 0.8 -Y 0.0025 0.0025 0.0025 -z 0.01 -Z 1 ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewinfotext -m always -s off -t on ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewlight  -a on -d on -e on -h off -l on -n 8 -s on ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewbackground -b on -e on -q 1 -i off -m 0 0 -M 1 1 ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off persp ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off cam ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off top ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off front ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off right ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off bottom ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off back ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off left ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewroto  -S file -F '$HH/pic/uvgrid_grey.pic' -C '' -a on -o 0 0 -s 1 1 -B 0.2 -e off uv ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off image ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewforeground -d on -f on -D Pz -s 0 ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewtransform ${DESKNAME}.pt_sceneview_1.solaris.persp1 version ( 3 )  flag ( Fax )  orthowidth ( 2 )  focal ( 0.05 )  aperture ( 0.0414214 )  window ( 0 1 0 1 )  winroll ( 0 )  clear ( 1 )  nearfar ( 0.001 10000 )  aspect ( 1.43907 )  pixelaspect ( 1 )  txyz ( 0 1.53635 14.1424 )  pxyz ( 0.215611 1.25214 1.03134 )  rotation ( 1 0 -0 0 0.991894 0.127065 0 -0.127065 0.991894  )  homedistance ( 9.45905 )  homeadjboxwidth ( 6.32476 )  homeorthowidth ( 6.32476 )  homeradius ( 9.34578 )  homeaxis ( 0 )  homecustom ( 0.707107 -0.353553 0.612372 0 0.866025 0.5 -0.707107 -0.353553 0.612372  )  adjustlimits ( 3 )  fov (90)  
+viewcamera -c '' ${DESKNAME}.pt_sceneview_1.solaris.persp1
+vieworthogrid -d off -o 0 0 0 -s 0.2 0.2 -r 5 5 -R 1 ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewuvgrid -r on -s 0.1 0.1 -P off -S 64 64 -O 0 0 -C on -t on ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewagentopts  -L on -b 0 -d 1 -l 0 -m 4 -p 1000 -w 1 -B 1 ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewonionskin  -e on -a 4 -b 4 -i 6 -o 0.5 -A 1 1 1 -B 1 1 1 ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewposteffects  -D off -B off -t "" -f off -V off -S on -a 1 -b 5 -F 1 -g 1 -c 1 1 1 -C 1 1 1 -d 1e+06 -h 0 -H 100 10 -i 1 -I 1 -l 1 -n "" -o 1 -O 1 -r 0 1000 -R 1 200 -s 1 1 -u 0 -U 100 10 -v 0 ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewposteffects  -e off -E 10 -T 0.95 -L 1 ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewmaskoverlay -o 0.4 ${DESKNAME}.pt_sceneview_1.solaris.persp1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L on -G off -B none -d uv -r unique scene ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewdispset -t off  scene ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L on -G off -B none -d uv -r scene selectscene ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewdispset -t off  selectscene ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L off -G on -B none -d uv -r unique ghostscene ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewdispset -t off  ghostscene ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P on -p off -f off -o off -w on -s shade_wire -F off -l on -L on -G off -B none -d uv -r unique display ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewdispset -t on  display ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P on -p off -f off -o off -w off -s wire -F off -l on -L off -G off -B none -d uv -r unique current ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewdispset -t off  current ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s wire -F on -l on -L off -G on -B none -d uv -r unique template ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewdispset -t off  template ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewdisplay -B dark -b off -d off -C 2 -e 1 -F on -f off -g on -G '*' -h off -H on -j off -J off -L on -n 0.2 -o off -O on -q on -r on -s off -t on -V 2 -z off -y off -x off -X off -U 4 -Y 4 -T on -R on -i on -D on -k off ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewdisplay -Q on -m on -v on ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewdisplay -W  off 0 0 ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewdisplay -c on -l1 -K on -P points -p 3 ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewdispopts -a on -A 0.5 -b current -B 0 -c 1 -C 60  -d  on -D 1 -g on -i on -n on -N 1000000 -o off -p 10 -P on -r off -R on -S 768 -l 128 -m 0.05 -M 1024 -s on -t 0.5 -u uv -w 0.1 -W 0.9 -x on -X off ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewdispopts -f off -k 0 -I 1 -O on -T MatCap/OilClay.pic -U uvgrid_grey.pic -v 1 ${DESKNAME}.pt_sceneview_1.solaris.top1
+vieweffect -a 2 -A 4 -b on -B 1 -d on -D on off -e 0.8 -E -30 -30 -100 -f 1 -F 1 -g 2.2 -G 0 -h 1 -H on -i on -I 1 -j on -J 100 -K 2 -k 1 -l '' -m on -M 2048 -o off -O 3 -p off -P 3 -q 0 -Q 2 -r 2048 2048 -s 2 -t 100 -T 100 -u off -U off -v 256 256 256 -w 0.05 -W on -x 0.8 0.8 0.8 -X 0.8 0.8 0.8 -y 0.8 0.8 0.8 -Y 0.0025 0.0025 0.0025 -z 0.01 -Z 1 ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewinfotext -m always -s off -t on ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewlight  -a on -d on -e on -h off -l on -n 8 -s on ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewbackground -b on -e on -q 1 -i off -m 0 0 -M 1 1 ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off persp ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off cam ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off top ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off front ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off right ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off bottom ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off back ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off left ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewroto  -S file -F '$HH/pic/uvgrid_grey.pic' -C '' -a on -o 0 0 -s 1 1 -B 0.2 -e off uv ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off image ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewforeground -d on -f on -D Pz -s 0 ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewtransform ${DESKNAME}.pt_sceneview_1.solaris.top1 version ( 3 )  flag ( Fox )  orthowidth ( 2.22222 )  focal ( 50 )  aperture ( 50 )  window ( 0 1 0 1 )  winroll ( 0 )  clear ( 1 )  nearfar ( 0.00290032 29003.2 )  aspect ( 1.33333 )  pixelaspect ( 1 )  txyz ( 0 0 3.22222 )  pxyz ( 0 0 0 )  rotation ( 1 0 0 0 1.19209e-07 1 0 -1 1.19209e-07  )  homedistance ( 3.22222 )  homeadjboxwidth ( 2.22222 )  homeorthowidth ( 2.22222 )  homeradius ( 2.9 )  homeaxis ( 0 )  homecustom ( 0.707107 -0.353553 0.612372 0 0.866025 0.5 -0.707107 -0.353553 0.612372  )  adjustlimits ( 3 )  fov (90)  
+vieworthogrid -d on -o 0 0 0 -s 0.2 0.2 -r 5 5 -R 1 ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewuvgrid -r on -s 0.1 0.1 -P off -S 64 64 -O 0 0 -C on -t on ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewagentopts  -L on -b 0 -d 1 -l 0 -m 4 -p 1000 -w 1 -B 1 ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewonionskin  -e on -a 4 -b 4 -i 6 -o 0.5 -A 1 1 1 -B 1 1 1 ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewposteffects  -D off -B off -t "" -f off -V off -S on -a 1 -b 5 -F 1 -g 1 -c 1 1 1 -C 1 1 1 -d 1e+06 -h 0 -H 100 10 -i 1 -I 1 -l 1 -n "" -o 1 -O 1 -r 0 1000 -R 1 200 -s 1 1 -u 0 -U 100 10 -v 0 ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewposteffects  -e off -E 10 -T 0.95 -L 1 ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewmaskoverlay -o 0.4 ${DESKNAME}.pt_sceneview_1.solaris.top1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L on -G off -B none -d uv -r unique scene ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewdispset -t off  scene ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L on -G off -B none -d uv -r scene selectscene ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewdispset -t off  selectscene ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L off -G on -B none -d uv -r unique ghostscene ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewdispset -t off  ghostscene ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P on -p off -f off -o off -w on -s shade_wire -F off -l on -L on -G off -B none -d uv -r unique display ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewdispset -t on  display ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P on -p off -f off -o off -w off -s wire -F off -l on -L off -G off -B none -d uv -r unique current ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewdispset -t off  current ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s wire -F on -l on -L off -G on -B none -d uv -r unique template ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewdispset -t off  template ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewdisplay -B dark -b off -d off -C 2 -e 1 -F on -f off -g on -G '*' -h off -H on -j off -J off -L on -n 0.2 -o off -O on -q on -r on -s off -t on -V 2 -z off -y off -x off -X off -U 4 -Y 4 -T on -R on -i on -D on -k off ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewdisplay -Q on -m on -v on ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewdisplay -W  off 0 0 ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewdisplay -c on -l1 -K on -P points -p 3 ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewdispopts -a on -A 0.5 -b current -B 0 -c 1 -C 60  -d  on -D 1 -g on -i on -n on -N 1000000 -o off -p 10 -P on -r off -R on -S 768 -l 128 -m 0.05 -M 1024 -s on -t 0.5 -u uv -w 0.1 -W 0.9 -x on -X off ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewdispopts -f off -k 0 -I 1 -O on -T MatCap/OilClay.pic -U uvgrid_grey.pic -v 1 ${DESKNAME}.pt_sceneview_1.solaris.front1
+vieweffect -a 2 -A 4 -b on -B 1 -d on -D on off -e 0.8 -E -30 -30 -100 -f 1 -F 1 -g 2.2 -G 0 -h 1 -H on -i on -I 1 -j on -J 100 -K 2 -k 1 -l '' -m on -M 2048 -o off -O 3 -p off -P 3 -q 0 -Q 2 -r 2048 2048 -s 2 -t 100 -T 100 -u off -U off -v 256 256 256 -w 0.05 -W on -x 0.8 0.8 0.8 -X 0.8 0.8 0.8 -y 0.8 0.8 0.8 -Y 0.0025 0.0025 0.0025 -z 0.01 -Z 1 ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewinfotext -m always -s off -t on ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewlight  -a on -d on -e on -h off -l on -n 8 -s on ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewbackground -b on -e on -q 1 -i off -m 0 0 -M 1 1 ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off persp ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off cam ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off top ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off front ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off right ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off bottom ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off back ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off left ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewroto  -S file -F '$HH/pic/uvgrid_grey.pic' -C '' -a on -o 0 0 -s 1 1 -B 0.2 -e off uv ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off image ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewforeground -d on -f on -D Pz -s 0 ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewtransform ${DESKNAME}.pt_sceneview_1.solaris.front1 version ( 3 )  flag ( Fox )  orthowidth ( 2.22222 )  focal ( 50 )  aperture ( 50 )  window ( 0 1 0 1 )  winroll ( 0 )  clear ( 1 )  nearfar ( 0.00290032 29003.2 )  aspect ( 1.33333 )  pixelaspect ( 1 )  txyz ( 0 0 3.22222 )  pxyz ( 0 0 0 )  rotation ( 1 0 0 0 1 0 0 0 1  )  homedistance ( 3.22222 )  homeadjboxwidth ( 2.22222 )  homeorthowidth ( 2.22222 )  homeradius ( 2.9 )  homeaxis ( 0 )  homecustom ( 0.707107 -0.353553 0.612372 0 0.866025 0.5 -0.707107 -0.353553 0.612372  )  adjustlimits ( 3 )  fov (90)  
+vieworthogrid -d on -o 0 0 0 -s 0.2 0.2 -r 5 5 -R 1 ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewuvgrid -r on -s 0.1 0.1 -P off -S 64 64 -O 0 0 -C on -t on ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewagentopts  -L on -b 0 -d 1 -l 0 -m 4 -p 1000 -w 1 -B 1 ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewonionskin  -e on -a 4 -b 4 -i 6 -o 0.5 -A 1 1 1 -B 1 1 1 ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewposteffects  -D off -B off -t "" -f off -V off -S on -a 1 -b 5 -F 1 -g 1 -c 1 1 1 -C 1 1 1 -d 1e+06 -h 0 -H 100 10 -i 1 -I 1 -l 1 -n "" -o 1 -O 1 -r 0 1000 -R 1 200 -s 1 1 -u 0 -U 100 10 -v 0 ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewposteffects  -e off -E 10 -T 0.95 -L 1 ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewmaskoverlay -o 0.4 ${DESKNAME}.pt_sceneview_1.solaris.front1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L on -G off -B none -d uv -r unique scene ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewdispset -t off  scene ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L on -G off -B none -d uv -r scene selectscene ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewdispset -t off  selectscene ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s shade -F off -l on -L off -G on -B none -d uv -r unique ghostscene ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewdispset -t off  ghostscene ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P on -p off -f off -o off -w on -s shade_wire -F off -l on -L on -G off -B none -d uv -r unique display ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewdispset -t on  display ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P on -p off -f off -o off -w off -s wire -F off -l on -L off -G off -B none -d uv -r unique current ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewdispset -t off  current ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewdispset -m off always -n off always -c off always -u off always -x off always -N off always -C off always -b off always -M off always -v off always -V off always -U off always -h off -P off -p off -f off -o off -w off -s wire -F on -l on -L off -G on -B none -d uv -r unique template ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewdispset -t off  template ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewdisplay -B dark -b off -d off -C 2 -e 1 -F on -f off -g on -G '*' -h off -H on -j off -J off -L on -n 0.2 -o off -O on -q on -r on -s off -t on -V 2 -z off -y off -x off -X off -U 4 -Y 4 -T on -R on -i on -D on -k off ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewdisplay -Q on -m on -v on ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewdisplay -W  off 0 0 ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewdisplay -c on -l1 -K on -P points -p 3 ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewdispopts -a on -A 0.5 -b current -B 0 -c 1 -C 60  -d  on -D 1 -g on -i on -n on -N 1000000 -o off -p 10 -P on -r off -R on -S 768 -l 128 -m 0.05 -M 1024 -s on -t 0.5 -u uv -w 0.1 -W 0.9 -x on -X off ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewdispopts -f off -k 0 -I 1 -O on -T MatCap/OilClay.pic -U uvgrid_grey.pic -v 1 ${DESKNAME}.pt_sceneview_1.solaris.right1
+vieweffect -a 2 -A 4 -b on -B 1 -d on -D on off -e 0.8 -E -30 -30 -100 -f 1 -F 1 -g 2.2 -G 0 -h 1 -H on -i on -I 1 -j on -J 100 -K 2 -k 1 -l '' -m on -M 2048 -o off -O 3 -p off -P 3 -q 0 -Q 2 -r 2048 2048 -s 2 -t 100 -T 100 -u off -U off -v 256 256 256 -w 0.05 -W on -x 0.8 0.8 0.8 -X 0.8 0.8 0.8 -y 0.8 0.8 0.8 -Y 0.0025 0.0025 0.0025 -z 0.01 -Z 1 ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewinfotext -m always -s off -t on ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewlight  -a on -d on -e on -h off -l on -n 8 -s on ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewbackground -b on -e on -q 1 -i off -m 0 0 -M 1 1 ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off persp ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off cam ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off top ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off front ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off right ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off bottom ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off back ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewroto  -S file -F '' -C '' -a off -o 0 0 -s 1 1 -B 1 -e off left ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewroto  -S file -F '$HH/pic/uvgrid_grey.pic' -C '' -a on -o 0 0 -s 1 1 -B 0.2 -e off uv ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewroto  -S file -F '' -C '' -a on -o 0 0 -s 1 1 -B 1 -e off image ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewforeground -d on -f on -D Pz -s 0 ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewtransform ${DESKNAME}.pt_sceneview_1.solaris.right1 version ( 3 )  flag ( Fox )  orthowidth ( 2.22222 )  focal ( 50 )  aperture ( 50 )  window ( 0 1 0 1 )  winroll ( 0 )  clear ( 1 )  nearfar ( 0.00290032 29003.2 )  aspect ( 1.33333 )  pixelaspect ( 1 )  txyz ( 0 0 3.22222 )  pxyz ( 0 0 0 )  rotation ( 6.12323e-17 0 1 0 1 0 -1 0 6.12323e-17  )  homedistance ( 3.22222 )  homeadjboxwidth ( 2.22222 )  homeorthowidth ( 2.22222 )  homeradius ( 2.9 )  homeaxis ( 0 )  homecustom ( 0.707107 -0.353553 0.612372 0 0.866025 0.5 -0.707107 -0.353553 0.612372  )  adjustlimits ( 3 )  fov (90)  
+vieworthogrid -d on -o 0 0 0 -s 0.2 0.2 -r 5 5 -R 1 ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewuvgrid -r on -s 0.1 0.1 -P off -S 64 64 -O 0 0 -C on -t on ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewagentopts  -L on -b 0 -d 1 -l 0 -m 4 -p 1000 -w 1 -B 1 ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewonionskin  -e on -a 4 -b 4 -i 6 -o 0.5 -A 1 1 1 -B 1 1 1 ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewposteffects  -D off -B off -t "" -f off -V off -S on -a 1 -b 5 -F 1 -g 1 -c 1 1 1 -C 1 1 1 -d 1e+06 -h 0 -H 100 10 -i 1 -I 1 -l 1 -n "" -o 1 -O 1 -r 0 1000 -R 1 200 -s 1 1 -u 0 -U 100 10 -v 0 ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewposteffects  -e off -E 10 -T 0.95 -L 1 ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewmaskoverlay -o 0.4 ${DESKNAME}.pt_sceneview_1.solaris.right1
+viewsnapshotoption -s off -h off -a 1 -v '*' -m 0 ${DESKNAME}.pt_sceneview_1.solaris
+cplane -o 0 0 0 -n 4.37114e-08 1 -4.37114e-08 -x 1.91069e-15 4.37114e-08 1 -l n -s 0.1 0.1 -c 40 40 -r 10 10 -d off ${DESKNAME}.pt_sceneview_1.solaris
+glcache -t 1638 -v 6553
+sceneviewopts -C off -c on -e on -F off -g on -i -1 -k "component" -l on -m on -M on -p "" -P off -s on -S 1 -r "BRAY_HdKarma" -K off -R 960 540 -V off ${DESKNAME}.pt_sceneview_1.solaris
+viewlayout -s 2 ${DESKNAME}.pt_sceneview_1.solaris
+viewtype -t ortho_right ${DESKNAME}.pt_sceneview_1.solaris.`vpname("${DESKNAME}.pt_sceneview_1.solaris",4)`
+viewtype -t ortho_front ${DESKNAME}.pt_sceneview_1.solaris.`vpname("${DESKNAME}.pt_sceneview_1.solaris",3)`
+viewtype -t ortho_top ${DESKNAME}.pt_sceneview_1.solaris.`vpname("${DESKNAME}.pt_sceneview_1.solaris",1)`
+viewtype -t perspective ${DESKNAME}.pt_sceneview_1.solaris.`vpname("${DESKNAME}.pt_sceneview_1.solaris",2)`
+chopview -a 0 -c "" -k 1 -m 1 -b 1 -e 1 -f 0 -g 0 -H 1 -i 0 -j 1 -l 0 -n 1 -V 0 -y 0 -B 0 -s 0 -S 0.034375 -u 0 -v 0 -h -10 310 -r -1.5 1.5 pt_channelview
+parmeditor -T 0.25 -w 0 pt_parmeditor_1
+networkeditor -p '{\n	"showspareinputdep":"1",\n	"showchilddep":"1",\n	"showdep":"0",\n	"showtaskgraphperf":"0",\n	"taskgraphperfstatname":"Cook Time",\n	"perfstatname":"Time",\n	"showperfstats":"1",\n	"grouplistsplit":"0.75",\n	"showtree":"0",\n	"showtypesidebar":"0",\n	"taskgraphsortcriteria":"Automatic",\n	"showparmdialogmax":"1",\n	"treesplit":"0.25",\n	"palettesize":"150 150",\n	"typesidebarsplit":"0.25",\n	"taskgraphcollapsemode":"Off",\n	"workitemcolorattribute":"",\n	"gridmode":"0",\n	"overviewbounds":"0.000000 0.000000 320.700000 183.900000",\n	"overviewmode":"2",\n	"showgrouplist":"0",\n	"palettemode":"0",\n	"useworkitemcolorattribute":"0",\n	"showtasksmenu":"1",\n	"backgroundimageediting":"0",\n	"backgroundimagebrightness":"1.0",\n	"gridystep":"1.0",\n	"palettecolors":"",\n	"showmenu":"1",\n	"gridxstep":"2.0",\n	"showparmdialog":"0"\n}\n' pt_network_1
+netcolumns -c display,xray,select,origin,capture,bone -n OBJ pt_network_1
+netcolumns -c display,render,template,selectabletemplate,highlight,unload,bypass,lock -n SOP pt_network_1
+netcolumns -c delscript,comment -n CHOPNET pt_network_1
+netcolumns -c display,export,audio,bypass,lock -n CHOP pt_network_1
+netcolumns -c startrender,bypass,lock -n ROP pt_network_1
+netcolumns -c delscript,comment -n SHOP pt_network_1
+netcolumns -c display,render,template,bypass -n COP2 pt_network_1
+netcolumns -c delscript,comment -n IMG pt_network_1
+netcolumns -c delscript,comment,input -n VOP pt_network_1
+netcolumns -c delscript,comment -n VOPNET pt_network_1
+netcolumns -c delscript,comment -n DOP pt_network_1
+netcolumns -c delscript,comment -n TOP pt_network_1
+netcolumns -c delscript,comment -n TOPNET pt_network_1
+netcolumns -c display,bypass,delscript,comment,input -n LOP pt_network_1
+netcolumns -c delscript,comment -n MGR pt_network_1
+netcolumns -c delscript,comment -n DIR pt_network_1
+parmeditor -T 0.25 -w 0 pt_parmeditor_2
+networkeditor -p '{\n	"showspareinputdep":"1",\n	"showchilddep":"1",\n	"showdep":"0",\n	"showtaskgraphperf":"0",\n	"taskgraphperfstatname":"Cook Time",\n	"perfstatname":"Time",\n	"showperfstats":"1",\n	"grouplistsplit":"0.75",\n	"showtree":"0",\n	"showtypesidebar":"0",\n	"taskgraphsortcriteria":"Automatic",\n	"showparmdialogmax":"1",\n	"treesplit":"0.25",\n	"palettesize":"150 150",\n	"typesidebarsplit":"0.25",\n	"taskgraphcollapsemode":"Off",\n	"workitemcolorattribute":"",\n	"gridmode":"0",\n	"overviewbounds":"0.000000 0.000000 320.700000 186.000000",\n	"overviewmode":"2",\n	"showgrouplist":"0",\n	"palettemode":"0",\n	"useworkitemcolorattribute":"0",\n	"showtasksmenu":"1",\n	"backgroundimageediting":"0",\n	"backgroundimagebrightness":"1.0",\n	"gridystep":"1.0",\n	"palettecolors":"",\n	"showmenu":"1",\n	"gridxstep":"2.0",\n	"showparmdialog":"0"\n}\n' pt_network_2
+netcolumns -c display,xray,select,origin,capture,bone -n OBJ pt_network_2
+netcolumns -c display,render,template,selectabletemplate,highlight,unload,bypass,lock -n SOP pt_network_2
+netcolumns -c delscript,comment -n CHOPNET pt_network_2
+netcolumns -c display,export,audio,bypass,lock -n CHOP pt_network_2
+netcolumns -c startrender,bypass,lock -n ROP pt_network_2
+netcolumns -c delscript,comment -n SHOP pt_network_2
+netcolumns -c display,render,template,bypass -n COP2 pt_network_2
+netcolumns -c delscript,comment -n IMG pt_network_2
+netcolumns -c delscript,comment,input -n VOP pt_network_2
+netcolumns -c delscript,comment -n VOPNET pt_network_2
+netcolumns -c delscript,comment -n DOP pt_network_2
+netcolumns -c delscript,comment -n TOP pt_network_2
+netcolumns -c delscript,comment -n TOPNET pt_network_2
+netcolumns -c display,bypass,delscript,comment,input -n LOP pt_network_2
+netcolumns -c delscript,comment -n MGR pt_network_2
+netcolumns -c delscript,comment -n DIR pt_network_2
+performance -c on -d on -f on -g off -j on -k on -m off -n on -o on -t off -v on -p on -y on -u on -e off -r absolute -R seconds -w tree pt_perfmon
+scenegraphtree -S 0.25 -m 0 -p "/collections /lights" -c  -i  -o  -x 1 -s 1 -M 0 -C primtype,descendants,variants,kind,drawmode,populated,loaded,activation,visibility,solo  panetab1

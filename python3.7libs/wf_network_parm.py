@@ -1,5 +1,6 @@
 import hou
 import toolutils
+import nodesearch
 import wf_selection
 
 def flag_template_all_off () :
@@ -53,6 +54,36 @@ def flag_display () :
 
     if hou.dopNodeTypeCategory() == parmnode.parent().childTypeCategory():
         nodetype = "singleflag"
+
+    if parmnode.type().name() == "lopnet" :
+        nodetype = "lopnet"
+
+
+    ################################
+    ##      set active lopnet     ##
+    ################################
+
+    if nodetype == "lopnet":
+
+        # settings
+        color_node_on  = hou.Color(1.0, 0.725, 0.0)
+        color_node_off = hou.Color(0.306, 0.306, 0.306)
+
+        root    = hou.node("/obj")
+        matcher = nodesearch.NodeType( "lopnet", exact=True )
+        lopnets = matcher.nodes( root, recursive=False )
+
+        # set all OFF
+        for lopnet in lopnets :
+            lopnet.setColor(color_node_off)
+            lopnet.setUserData("lopnet_active", "off")
+
+        # set active ON
+        parmnode.setColor(color_node_on)
+        parmnode.setUserData("lopnet_active", "on")
+
+
+
 
     ################################
     ## unflag to the last flagged ##
