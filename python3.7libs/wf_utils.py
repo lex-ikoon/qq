@@ -15,6 +15,7 @@ def panetab_name_state (name) :
     if name == "pt_perfmon"      : state = 6
     if name == "pt_sceneview_1"  : state = 4
     if name == "pt_sceneview_2"  : state = 1
+    if name == "pt_sceneview_3"  : state = 4
     if name == "pt_takelist"     : state = 6
     return state
 
