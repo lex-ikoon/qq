@@ -7,6 +7,8 @@
 
   <toolshelf name="wf_hotkeys_job" label="wf_hotkeys_job">
     <memberTool name="enter_ctrl"/>
+    <memberTool name="enter_ctrl_shift"/>
+    <memberTool name="enter_alt"/>
   </toolshelf>
 
   <tool name="enter_ctrl" label="enter_ctrl" icon="PLASMA_App">
@@ -16,6 +18,28 @@ imp.reload(wf_hotkeys_enter)
 node_selected = hou.selectedNodes()[0]
 ctrl  = True
 alt   = False
+shift = False
+wf_hotkeys_enter.enter_execute(node_selected, ctrl, alt, shift )]]></script>
+  </tool>
+
+  <tool name="enter_ctrl_shift" label="enter_ctrl_shift" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys_enter
+import imp
+imp.reload(wf_hotkeys_enter)
+node_selected = hou.selectedNodes()[0]
+ctrl  = True
+alt   = False
+shift = True
+wf_hotkeys_enter.enter_execute(node_selected, ctrl, alt, shift )]]></script>
+  </tool>
+
+  <tool name="enter_alt" label="enter_alt" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_hotkeys_enter
+import imp
+imp.reload(wf_hotkeys_enter)
+node_selected = hou.selectedNodes()[0]
+ctrl  = False
+alt   = True
 shift = False
 wf_hotkeys_enter.enter_execute(node_selected, ctrl, alt, shift )]]></script>
   </tool>

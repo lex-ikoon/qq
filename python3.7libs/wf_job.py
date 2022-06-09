@@ -144,7 +144,7 @@ def jobify_node_ptg_and_contents( node_target, archetype_name ) :
         node_target.parmTuple("t").setAutoscope((0,0,0))
         node_target.parmTuple("r").setAutoscope((0,0,0))
         node_target.parmTuple("s").setAutoscope((0,0,0))
-        node_target.parm("shop_materialpath").set("matnet/GL")
+        node_target.parm("shop_materialpath").set("matnet/MX")
         node_target.setUserData("descriptiveparm","job_range_descriptiveparm")
         node_target.parm("picking").set(0)
         wf_job_archetype_data.job_data_update_range_descriptiveparm(node_target)

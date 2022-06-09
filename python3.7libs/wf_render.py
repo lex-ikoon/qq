@@ -93,13 +93,15 @@ def start () :
 
     # set viewer pwd and camera
     #-----------------------------------------------
-    #### this is a bug
-    #### lopnet_camera = lopnet_active.parm("force_cam").evalAsNode()
-    #### sceneview_LOP.curViewport().setCamera(lopnet_camera)
-    #### wf_desktop.pt_sceneview_1.solaris
+    lopnet_camera = lopnet_active.parm("force_cam").evalAsNode()
+    ######## this is a bug
+    ######## sceneview_LOP.curViewport().setCamera(lopnet_camera)
+    ######## wf_desktop.pt_sceneview_1.solaris
     sceneview_LOP.setPwd(lopnet_active)
     sceneview_LOP.setIsCurrentTab()
-    hou.hscript("viewcamera -c /cam  wf_desktop.pt_sceneview_3.solaris.persp1")
+    # print(lopnet_camera.name())
+    cam_command = "viewcamera -c /" + lopnet_camera.name() + " wf_desktop.pt_sceneview_3.solaris.persp1"
+    hou.hscript(cam_command)
 
 
     # unlock edit

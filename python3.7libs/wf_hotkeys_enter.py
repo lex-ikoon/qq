@@ -65,6 +65,7 @@ def network_set( panetab_name, node_selected, parm_name) :
         hou.ui.curDesktop().findPaneTab(panetab_name).setCurrentNode( hou.node(path_found) )
 
     else :
+        # print (panetab_name, node_selected, parm_name)
         path_checked = parm_check(node_selected, parm_name)
         if path_checked != "VOID" :
             hou.ui.curDesktop().findPaneTab(panetab_name).setCurrentNode( hou.node(path_checked) )
@@ -98,22 +99,22 @@ def enter_execute(node_selected, ctrl, alt, shift ) :
     # --------------------------
     # exception: networks
     elif node_type in {"chopnet", "cop2net", "dopnet", "lopnet", "matnet", "ropnet", "shopnet", "topnet"} :
-        if alt   : network_set( "pt_network_1" , node_selected, "ENTER_THIS_NODE")
-        if ctrl  : network_set( "pt_network_2" , node_selected, "ENTER_THIS_NODE")
+        # if alt   : network_set( "pt_network_1" , node_selected, "ENTER_THIS_NODE")
+        if ctrl  : network_set( "pt_network_1" , node_selected, "ENTER_THIS_NODE")
 
     # --------------------------
-    # gotoparm: geo classic
+    # gotoparm: geo NOT data
     elif node_type == "geo" and archetype != "archetype_job_geo_data" :
-        if alt   : network_set( "pt_network_1" , node_selected, "ENTER_THIS_NODE")
-        if ctrl  : network_set( "pt_network_2" , node_selected, "ENTER_THIS_NODE")
+        # if alt   : network_set( "pt_network_1" , node_selected, "ENTER_THIS_NODE")
+        if ctrl  : network_set( "pt_network_1" , node_selected, "ENTER_THIS_NODE")
 
     # --------------------------
-    #    gotoparm                                                    : geo DATA
+    # gotoparm: geo DATA
     elif node_type == "geo" and archetype == "archetype_job_geo_data": 
-        if alt  and not shift  : network_set( "pt_network_1" , node_selected, "job")
-        if ctrl and not shift  : network_set( "pt_network_2" , node_selected, "job")
-        if alt  and shift      : network_set( "pt_network_1" , node_selected, "material")
-        if ctrl and shift      : network_set( "pt_network_2" , node_selected, "material")
+        if alt  and not shift  : network_set( "pt_network_1" , node_selected, "shop_materialpath")
+        # if alt  and shift      : network_set( "pt_network_1" , node_selected, "material")
+        if ctrl and not shift  : network_set( "pt_network_1" , node_selected, "job_source")
+        # if ctrl and shift      : network_set( "pt_network_1" , node_selected, "shop_materialpath")
 
     # --------------------------
     else:

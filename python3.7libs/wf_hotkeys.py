@@ -133,22 +133,20 @@ def hotkey_pgdn_ctrl_shift() :
 #####################
 #####################
 
+# this is abandoned because of JOB hotkey in the network
+# def hotkey_enter_alt() :
+#     if cursor_over_music() :
+#         wf_music.span_edit()
+#     else :
+#         pass
 
-def hotkey_enter_alt() :
-    if cursor_over_music() :
-        wf_music.span_edit()
-    else :
-        pass
 
-
-
-def hotkey_enter_ctrl_shift() :
-    # no hotkey yet
-    # make it global
-    if cursor_over_music() :
-        wf_music.note_create()
-    else :
-        pass
+# this is abandoned because of JOB hotkey in the network
+# def hotkey_enter_ctrl_shift() :
+#     if cursor_over_music() :
+#         wf_music.note_create()
+#     else :
+#         pass
 
 
 #####################
