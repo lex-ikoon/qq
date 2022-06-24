@@ -179,9 +179,10 @@ def jobify_node_ptg_and_contents( node_target, archetype_name ) :
 
 def create_job_lopnet_from_geo(node_geos) :
 
-    # define offset
+    # define
     offsetx = 3
     offsety = 0
+    color_lop  = hou.Color(1.0, 0.725, 0.0)
 
     for node_geo in node_geos :
         # name
@@ -201,6 +202,7 @@ def create_job_lopnet_from_geo(node_geos) :
         posx = node_geo.position()[0] + offsetx
         posy = node_geo.position()[1] + offsety
         node_lopnet.setPosition( [posx,posy] )
+        node_lopnet.setColor( color_lop )
 
         # jobify lopnet
         jobify_node_ptg_and_contents( node_lopnet, "archetype_job_lopnet" )

@@ -117,6 +117,16 @@ def enter_execute(node_selected, ctrl, alt, shift ) :
         # if ctrl and shift      : network_set( "pt_network_1" , node_selected, "shop_materialpath")
 
     # --------------------------
+    # gotoparm: Material SOP
+    elif node_type == "material": 
+        if alt  and not shift  : network_set( "pt_network_1" , node_selected, "shop_materialpath1")
+        # if alt  and shift      : network_set( "pt_network_1" , node_selected, "material")
+        # if ctrl and not shift  : network_set( "pt_network_1" , node_selected, "job_source")
+        # if ctrl and shift      : network_set( "pt_network_1" , node_selected, "shop_materialpath")
+
+
+
+    # --------------------------
     else:
         if alt   : network_set( "pt_network_1" , node_selected, "ENTER_FIRST_VALID")
         if ctrl  : network_set( "pt_network_2" , node_selected, "ENTER_FIRST_VALID")

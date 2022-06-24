@@ -11,7 +11,7 @@ def tab_vex_edit (node) :
     sourcefile   = node.userData("sourcefile")
     sourceline   = node.userData("sourceline")
     arg = sourcefile + '":' + sourceline
-
+    print(arg)
     subprocess.call([editor, "--goto", arg], shell=True)
     # subprocess.call(editor, shell=True)
     # subprocess.call(["C:/Users/info/AppData/Local/Programs/Microsoft VS Code/Code.exe", "--goto", "Q:\_packages\wf_workflow\vex_src\dim_coord_fill\dimension.vfl"], shell=True) 
