@@ -606,7 +606,7 @@ def folders_trygo (node, name, count, dir) :
     
 def folders_tab_go (dir) :
     node = wf_selection.parmnode()
-    if node.type() == hou.nodeType("Sop/switch") :
+    if node.type() == hou.nodeType("Sop/switch") or node.type() == hou.nodeType("Dop/switch"):
         ########################
         #######  switch  #######
         for switch in hou.selectedNodes():

@@ -10,6 +10,7 @@ def tab_vex_edit (node) :
     editor       = hou.getenv("wf_editor")
     sourcefile   = node.userData("sourcefile")
     sourceline   = node.userData("sourceline")
+    print(sourceline)
     arg = sourcefile + '":' + sourceline
     print(arg)
     subprocess.call([editor, "--goto", arg], shell=True)

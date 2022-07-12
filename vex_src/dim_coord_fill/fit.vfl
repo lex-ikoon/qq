@@ -7,6 +7,7 @@ value = fit01(value, -new_max, new_max);
 ///------------------------------------------------------------------------------------------------
 /// fit01 float to symmetry 10
 float value   = v@noise[1];
+//float value   = rand(@ptnum);
 float new_max = chf("new_max");                   //  0.5 in 0 to 10
 value   = fit01(value, -new_max, new_max);
 
@@ -14,6 +15,7 @@ value   = fit01(value, -new_max, new_max);
 ///------------------------------------------------------------------------------------------------
 /// fit01 float to min max 0-1
 float value = v@noise[1];
+//float value = rand(@ptnum);
 float nmin  = chf("new_min");            // 0.4 in 0 to 1
 float nmax  = chf("new_max");            // 0.6 in 0 to 1
 value = fit01(value, nmin, nmax);
@@ -21,6 +23,7 @@ value = fit01(value, nmin, nmax);
 ///------------------------------------------------------------------------------------------------
 /// fit01 float to min max 10
 float value = v@noise[1];
+//float value = rand(@ptnum);
 float nmin  = chf("new_min");            // -1 in -10 to 0
 float nmax  = chf("new_max");            //  1 in 0   to 10
 value = fit01(value, nmin, nmax);
@@ -28,6 +31,7 @@ value = fit01(value, nmin, nmax);
 ///------------------------------------------------------------------------------------------------
 /// fit01 float to min max 10
 float value = v@noise[1];
+//float value = rand(@ptnum);
 float nmin  = chf("new_min");            // -1 in -10 to 0
 float nmax  = chf("new_max");            //  1 in 0   to 10
 value = fit01(value, nmin, nmax);
