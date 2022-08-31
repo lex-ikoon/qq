@@ -15,3 +15,33 @@ sin = abs(sin);
 @Cd *= sin;
 
 ///-----------------------
+/// sin spikes
+float seed = @ptnum;
+float time, sin;
+
+//---- rand speed
+
+float speed          = chf("speed");           // 0.5 in 0.0 to 1
+float speed_rand_min = chf("speed_rand_min");  // 0.4 in 0 to 1
+float speed_rand_max = chf("speed_rand_max");  // 0.6 in 0 to 1
+float speed_rand     = rand(seed + 0.123);
+
+speed_rand = fit01(speed_rand , speed_rand_min, speed_rand_max);
+time       = speed * speed_rand * (@Time + 123456.789);
+
+//---- rand amp
+float amp          = chf("amp");           // 2.0 in 0.0 to 10
+float amp_rand_min = chf("amp_rand_min");  // 0.4 in 0 to 1
+float amp_rand_max = chf("amp_rand_max");  // 1.0 in 0 to 1
+float amp_pow      = chf("amp_pow");       // 3.0 in 0.0 to 100
+float amp_rand     = pow(    rand(seed + 0.789)   , amp_pow );
+
+//---- sin power
+float sin_pow = chf("sin_pow");          // 20.0 in 0.0 to 100
+      sin     = 1 - abs(  sin(time)  );
+      sin     = pow( sin, sin_pow);
+
+amp_rand = fit01(amp_rand , amp_rand_min, amp_rand_max);
+sin      = amp * amp_rand * sin;
+
+@Cd = sin;

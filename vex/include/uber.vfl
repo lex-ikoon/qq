@@ -129,6 +129,52 @@ vector y = {0,1,0};
 ///------------------------------------------------------------------------------------------------
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 /////////                             /////////////////////////////////////////////////////////////
+/////////          range              /////////////////////////////////////////////////////////////
+/////////                             /////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
+///------------------------------------------------------------------------------------------------
+
+
+--vector2 range_random(float speed, speed_rand_min, speed_rand_max, length, length_rand_min, length_rand_max, seed, time; int both_directions)
+{
+    vector2 range;
+    float center;
+    float direction      = 1;
+
+    float speed_rand     = rand(seed + 0.123);
+    float length_rand    = rand(seed + 0.246);
+    float direction_rand = rand(seed + 0.369);
+
+    if ( direction_rand > 0.5   &&   both_directions == 1 ) {
+        direction = -1;
+    }
+
+    speed_rand   = fit01(speed_rand , speed_rand_min, speed_rand_max);
+    length_rand  = fit01(length_rand , length_rand_min, length_rand_max);
+
+    length      *= length_rand;
+    center       = direction * speed * speed_rand * (time + 123456.789);
+    center       = center % 1;
+    if (center<0.5) 
+        length     = clamp (length, 0, center);
+        // range[0]      = max(center - length, 0);
+        // range[1]      = min(center + length, 2*length);
+    else
+        length     = clamp (length, 0, (1-center));
+        // range[0]      = max(1-center - length, 1-2*length);
+        // range[1]      = min(1, center + length);
+
+        
+    range[0]      = center - length * 0.5;
+    range[1]      = center + length * 0.5;
+
+    return range;
+}
+
+
+///------------------------------------------------------------------------------------------------
+///////////////////////////////////////////////////////////////////////////////////////////////////
+/////////                             /////////////////////////////////////////////////////////////
 /////////         distort             /////////////////////////////////////////////////////////////
 /////////                             /////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////

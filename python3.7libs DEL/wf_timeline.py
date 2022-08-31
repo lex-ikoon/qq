@@ -13,18 +13,81 @@ import wf_selection
 # return the current dopnet node
 def sim_dopnet () :
     dopnet = hou.currentDopNet()
+
     if dopnet == None :
+        # try to find SOPsolver
+        # temporary workaround because bug (ID# 122908)
+        # ---------------------------------------------------------------------------------------------
+        container = wf_selection.container()
+        peer_nodes = container.children()
+
+        # # loop simple
+
+        for peer_node in peer_nodes:
+            if "solver" in peer_node.type().name():
+                dopnet         = peer_node
+                # cache_on       = dopnet.parm("explicitcache").eval()
+                # cache_name     = dopnet.parm("explicitcachename").rawValue()
+                # cache_substeps = dopnet.parm("substep").eval()
+                # cache_start    = dopnet.parm("startframe").eval()
+                # cache_spacing  = dopnet.parm("explicitcachecheckpointspacing").eval()
+
+        
+        for peer_node in peer_nodes:
+            if peer_node.type().name() == "solver" :
+                dopnet         = peer_node.node("d")
+                cache_on       = dopnet.parm("explicitcache").eval()
+                cache_name     = dopnet.parm("explicitcachename").rawValue()
+                cache_substeps = dopnet.parm("substep").eval()
+                cache_start    = dopnet.parm("startframe").eval()
+                cache_spacing  = dopnet.parm("explicitcachecheckpointspacing").eval()
+
+
+        # # loop check color
+        for peer_node in peer_nodes:
+            if peer_node.type().name() == "solver" and peer_node.color() == hou.Color(0, 0, 0):
+                dopnet         = peer_node.node("d")
+                cache_on       = dopnet.parm("explicitcache").eval()
+                cache_name     = dopnet.parm("explicitcachename").rawValue()
+                cache_substeps = dopnet.parm("substep").eval()
+                cache_start    = dopnet.parm("startframe").eval()
+                cache_spacing  = dopnet.parm("explicitcachecheckpointspacing").eval()
+
+
+        # # loop check flag
+        for peer_node in peer_nodes:
+            if peer_node.type().name() == "solver" and peer_node.isGenericFlagSet(hou.nodeFlag.Display) == True:
+                dopnet         = peer_node.node("d")
+                cache_on       = dopnet.parm("explicitcache").eval()
+                cache_name     = dopnet.parm("explicitcachename").rawValue()
+                cache_substeps = dopnet.parm("substep").eval()
+                cache_start    = dopnet.parm("startframe").eval()
+                cache_spacing  = dopnet.parm("explicitcachecheckpointspacing").eval()
+
+        # ---------------------------------------------------------------------------------------------
+
         cache_on       = 0
         cache_name     = None
         cache_substeps = 1
         cache_start    = 1
         cache_spacing  = 1
+
     else :
         cache_on       = dopnet.parm("explicitcache").eval()
         cache_name     = dopnet.parm("explicitcachename").rawValue()
         cache_substeps = dopnet.parm("substep").eval()
         cache_start    = dopnet.parm("startframe").eval()
         cache_spacing  = dopnet.parm("explicitcachecheckpointspacing").eval()
+
+    # ---------
+    # if dopnet == None :
+    #     current = hou.frame()
+    #     hou.setFrame(1)
+    #     print(current)
+    #     hou.setFrame(current)
+    # # ---------
+
+
     return [dopnet, cache_on, cache_name, cache_substeps, cache_start, cache_spacing]
 
 
@@ -83,6 +146,7 @@ def sim_cache_delete_playrange () :
 # reset the sim
 def sim_cache_reset (set_frame) :
     dopnet, cache_on, cache_name, cache_substeps, cache_start, cache_spacing = sim_dopnet()
+    # print (dopnet, cache_on, cache_name, cache_substeps, cache_start, cache_spacing)
 
     if cache_on:
         # delete .sim files

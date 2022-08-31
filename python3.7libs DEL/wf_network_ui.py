@@ -620,6 +620,19 @@ def folders_tab_go (dir) :
                 parm.set( parm.eval()+dir )
         ########################
 
+    if node.type() == hou.nodeType("Sop/mus_source"):
+        ########################
+        #######   mus    #######
+        ninputs = len(node.node("switch_source").inputs())
+        parm    = node.parm("source")
+        if parm.eval()+dir > ninputs-1 : 
+            parm.set( 0 )
+        elif parm.eval()+dir < 0 : 
+            parm.set( ninputs-1 )
+        else:
+            parm.set( parm.eval()+dir )
+        ########################
+
     elif node.type() == hou.nodeType("Object/blend") :
         ########################
         #######  blend  #######

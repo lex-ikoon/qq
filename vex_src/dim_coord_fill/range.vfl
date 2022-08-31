@@ -1,0 +1,142 @@
+///------------------------------------------------------------------------------------------------
+/// range to clip - dim
+v@__rest = @P;
+
+float dim   = @dim;
+float start = chf("start");  // 0.5 in 0.0 to 1.0
+float end   = chf("end");    // 0.5 in 0.0 to 1.0
+float slope = (end-start) * 0.5;
+
+@range  = fit(@dim, start-slope, start+slope, -1, 1);
+@range -= fit(@dim,   end-slope,  end+slope,   0, 2);
+
+@P.y    = @range;
+
+
+///------------------------------------------------------------------------------------------------
+/// range to clip - dim random
+// run over points
+#include "qq.vfl"
+
+      v@__rest = @P;
+float seed     = prim(0, "copynum", @primnum);
+float time     = @Time;
+float dim      = @dim;
+
+//---- rand speed
+float speed              = chf("speed");           // 0.5 in 0.0 to 1
+float speed_rand_min     = chf("speed_rand_min");  // 0.4 in 0 to 1
+float speed_rand_max     = chf("speed_rand_max");  // 0.6 in 0 to 1
+  
+//---- rand length   
+float length             = chf("length");           // 0.5 in 0.0 to 1
+float length_rand_min    = chf("length_rand_min");  // 0.4 in 0 to 1
+float length_rand_max    = chf("length_rand_max");  // 0.6 in 0 to 1
+
+//---- rand direction
+int   both_directions    = chi("both_directions");  // toggle
+
+
+
+// range FUNCTION
+vector2 range = range_random(speed, speed_rand_min, speed_rand_max, length, length_rand_min, length_rand_max, seed, time, both_directions);
+float   slope = (range[1]-range[0]) * 0.5;
+
+float range_clip_y;
+range_clip_y  = fit(@dim, range[0]-slope, range[0]+slope, -1, 1);
+range_clip_y -= fit(@dim, range[1]-slope, range[1]+slope,  0, 2);
+
+@P.y = range_clip_y;
+
+
+///------------------------------------------------------------------------------------------------
+/// range to clip - nurbs corners
+// expects: xe // nurbs carve by range
+// run over points
+
+float radius = chf("radius");  // 0.5 in 0.0 to 1.0
+float uv_u, uv_v, dist_u, dist_v, sum, uv_ratio;
+
+v@__rest = @P;
+radius   = max(0.0001, radius);
+
+// read attribs
+uv_u     = v@uv_norm[0];
+uv_v     = v@uv_norm[1];
+uv_ratio = prim(0, "uv_ratio", @primnum);
+
+// mirror and uv_ratio:
+uv_u   = min(  uv_u , 1 - uv_u) / uv_ratio;
+uv_v   = min(  uv_v , 1 - uv_v);
+
+// distance (fill into shape)
+dist_u = max(radius - uv_u , 0);
+dist_v = max(radius - uv_v , 0);
+
+// a2 + b2 = c2
+sum  = pow ( dist_u , 2);
+sum += pow ( dist_v , 2);
+
+@P.y = radius - sqrt(sum);
+
+
+///------------------------------------------------------------------------------------------------
+/// range to carve - nurbs along UV
+#include "qq.vfl"
+// run over primitives
+// outputs attributes for further carving
+float seed     = prim(0, "copynum", @primnum);
+float time     = @Time;
+
+//---- rand speed
+float speed              = chf("speed");           // 0.5 in 0.0 to 1
+float speed_rand_min     = chf("speed_rand_min");  // 0.4 in 0 to 1
+float speed_rand_max     = chf("speed_rand_max");  // 0.6 in 0 to 1
+  
+//---- rand length   
+float length             = chf("length");           // 0.5 in 0.0 to 1
+float length_rand_min    = chf("length_rand_min");  // 0.4 in 0 to 1
+float length_rand_max    = chf("length_rand_max");  // 0.6 in 0 to 1
+
+//---- rand direction
+int   both_directions    = chi("both_directions");  // toggle
+//---- 
+
+// range U animated
+vector2 range        = range_random(speed, speed_rand_min, speed_rand_max, length, length_rand_min, length_rand_max, seed, time, both_directions);
+        u@uv_carve_u = set(range[0], range[1]);
+
+
+// range V random
+
+float width             = chf("width");           // 0.5 in 0.0 to 1
+float width_rand_min    = chf("width_rand_min");  // 0.4 in 0 to 1
+float width_rand_max    = chf("width_rand_max");  // 0.6 in 0 to 1
+
+      width    *= fit01(  rand(seed + 0.111)  , width_rand_min  , width_rand_max );
+float center    = fit01(  rand(seed + 0.222) ,  width * 0.5  , 1 - width * 0.5  );
+u@uv_carve_v[0] = center  -  width * 0.5;
+u@uv_carve_v[1] = center  +  width * 0.5;
+
+
+
+///------------------------------------------------------------------------------------------------
+/// xe rest to P
+@P = v@__rest;
+removepointattrib(0,"__rest");
+
+
+///------------------------------------------------------------------------------------------------
+/// dim - sin repeater
+// ramp to make it dense somewhere in the middle .../'''
+float dim     = @dim;
+float dim_lut = chramp("dim_lut",dim);  //quad
+float mult    = chf("mult");            // 0.5 in 0.0 to 100
+
+@dim = sin(dim_lut * mult);
+@Cd  = @dim;
+
+// optional clip:
+// divide sop, polypath sop
+v@__rest = @P;
+@P.y     = @range;

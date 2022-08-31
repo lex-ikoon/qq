@@ -44,23 +44,6 @@ root {
             }
         }
     }
-
-    panel panel1 -w -1920 400 1920 1190 {
-        split 0.75 H R {
-            tabs 1 1 {
-                pane dual_scene -a 0 -l 10 -H /obj/ -T CHOPNET -m sceneview
-                pane dual_ipr -a 0 -l 10 -H /obj/ -T CHOPNET -m iprviewer
-            }
-            split 0.5 V R {
-                tabs 0 1 {
-                    pane music_parm -a 0 -l 3 -H /obj/ -T OBJ -m parmeditor
-                }
-                tabs 0 1 {
-                    pane music_net -a 0 -l 3 -H /obj/ -T OBJ -m neteditor
-                }
-            }
-        }
-    }
 }
 shelfdock -o 1 -l icon_and_text -G "0.50 0.50" add shelf_set_1 shelf_set_2
 viewerstow -x open -b stow -l open -m hide -c hide -d open ${DESKNAME}.pt_sceneview_1.world

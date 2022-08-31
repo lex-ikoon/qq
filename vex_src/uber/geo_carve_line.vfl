@@ -1,9 +1,23 @@
 ///------------------------------------------------------------------------------------------------
-/// geo line u Cd
+/// geo Cd line u
 #include "qq.vfl"
 float u = geo_line_u (0, @ptnum);
 
 @Cd = chramp("Cd",u); //dn_l
+
+
+///------------------------------------------------------------------------------------------------
+/// geo Cd rbx
+
+float x = getcomp( relbbox(0,@P) , 0 );
+float y = getcomp( relbbox(0,@P) , 1 );
+float z = getcomp( relbbox(0,@P) , 2 );
+
+float rx = chramp("rx",x); //quad
+float ry = chramp("ry",y); //quad
+float rz = chramp("rz",z); //quad
+
+@Cd *= rx * ry * rz;
 
 
 ///------------------------------------------------------------------------------------------------
@@ -14,6 +28,30 @@ int primnum  = @primnum;
 float u      = (@Time*0.1*random(@primnum)+random(@primnum)) %1;
 
 geo_carve_point (geometry, primnum, u);
+
+///------------------------------------------------------------------------------------------------
+/// geo carve point scattered
+
+float time;
+float seed            = @ptnum;
+float direction       = 1;
+float speed           = chf("speed");            // 0.5 in 0.0 to 1
+float speed_rand_min  = chf("speed_rand_min");   // 0.4 in 0 to 1
+float speed_rand_max  = chf("speed_rand_max");   // 0.6 in 0 to 1
+float speed_rand      = rand(seed + 0.123);
+float rand_direction  = rand(seed + 0.246);
+int   both_directions = chi("both_directions");  // toggle
+
+if ( rand_direction > 0.5   &&   both_directions == 1 ) {
+    direction = -1;
+}
+
+speed_rand = fit01(speed_rand , speed_rand_min, speed_rand_max);
+time       = direction * speed * speed_rand * (@Time + 123456.789);
+
+v@sourceprimuv = set(time%1,0,0);
+@P = primuv(1, "P", i@sourceprim, v@sourceprimuv);
+
 
 ///------------------------------------------------------------------------------------------------
 /// geo carve line random

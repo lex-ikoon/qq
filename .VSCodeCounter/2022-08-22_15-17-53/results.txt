@@ -1,0 +1,162 @@
+Date : 2022-08-22 15:17:53
+Directory : q:\_gd\houdini_packages\wf_workflow
+Total : 114 files,  11773 codes, 2821 comments, 5209 blanks, all 19803 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| Python   |         62 |      5,838 |      1,426 |      2,686 |      9,950 |
+| VEX      |         43 |      5,505 |      1,380 |      2,404 |      9,289 |
+| XML      |          1 |        197 |          0 |         69 |        266 |
+| Markdown |          5 |        127 |          0 |         31 |        158 |
+| C++      |          1 |        104 |         15 |         19 |        138 |
+| JSON     |          2 |          2 |          0 |          0 |          2 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                 | files      | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                    |        114 |     11,773 |      2,821 |      5,209 |     19,803 |
+| otls                                                                                                 |          1 |          7 |          0 |          5 |         12 |
+| python3.7libs DEL                                                                                    |         29 |      2,910 |        707 |      1,336 |      4,953 |
+| python3.9libs                                                                                        |         34 |      2,984 |        707 |      1,362 |      5,053 |
+| python3.9libs\.VSCodeCounter                                                                         |          5 |         74 |          0 |         26 |        100 |
+| python3.9libs\.VSCodeCounter\2022-08-22_15-06-37                                                     |          5 |         74 |          0 |         26 |        100 |
+| scripts                                                                                              |          3 |         11 |         12 |          9 |         32 |
+| scripts\_backup                                                                                      |          2 |          8 |         11 |          7 |         26 |
+| toolbar                                                                                              |          1 |          1 |          0 |          0 |          1 |
+| vex                                                                                                  |          2 |        756 |        204 |        471 |      1,431 |
+| vex\include                                                                                          |          2 |        756 |        204 |        471 |      1,431 |
+| vex_18                                                                                               |          6 |      3,846 |        739 |      1,427 |      6,012 |
+| vex_18\include                                                                                       |          6 |      3,846 |        739 |      1,427 |      6,012 |
+| vex_src                                                                                              |         36 |      1,007 |        452 |        525 |      1,984 |
+| vex_src\apatheia                                                                                     |          1 |         13 |          3 |          8 |         24 |
+| vex_src\dim_coord_fill                                                                               |          9 |        464 |        191 |        228 |        883 |
+| vex_src\docs                                                                                         |         13 |        327 |        199 |        185 |        711 |
+| vex_src\snippets                                                                                     |          5 |         42 |         20 |         17 |         79 |
+| vex_src\tools                                                                                        |          7 |        112 |         26 |         59 |        197 |
+| vex_src\uber                                                                                         |          1 |         49 |         13 |         28 |         90 |
++------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                             | language | code       | comment    | blank      | total      |
++------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| q:\_gd\houdini_packages\wf_workflow\PARMmenu.xml                                                     | XML      |        197 |          0 |         69 |        266 |
+| q:\_gd\houdini_packages\wf_workflow\README.md                                                        | Markdown |         54 |          0 |          5 |         59 |
+| q:\_gd\houdini_packages\wf_workflow\otls\_naming.py                                                  | Python   |          7 |          0 |          5 |         12 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\____variables.py                               | Python   |          5 |          8 |         10 |         23 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_chaneditor.py                               | Python   |         37 |          8 |         13 |         58 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_hda.py                                      | Python   |          8 |          7 |          9 |         24 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_hotkeys.py                                  | Python   |         91 |         29 |         71 |        191 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_hotkeys_del.py                              | Python   |          7 |          0 |          6 |         13 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_hotkeys_enter.py                            | Python   |         68 |         30 |         34 |        132 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_job.py                                      | Python   |        171 |         71 |        120 |        362 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_job_archetype_cam.py                        | Python   |          0 |          0 |          1 |          1 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_job_archetype_data.py                       | Python   |         10 |          8 |          6 |         24 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_job_archetype_lopnet.py                     | Python   |          6 |          0 |          2 |          8 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_job_archetype_network.py                    | Python   |          3 |          0 |          5 |          8 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_music.py                                    | Python   |        322 |        103 |        162 |        587 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_network_connection.py                       | Python   |         86 |          7 |         25 |        118 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_network_kwargs.py                           | Python   |         90 |          0 |         27 |        117 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_network_layout.py                           | Python   |        102 |         44 |         48 |        194 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_network_parm.py                             | Python   |        127 |         25 |         51 |        203 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_network_ui.py                               | Python   |        483 |         52 |        168 |        703 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_network_ui_parse_tab.py                     | Python   |        173 |         49 |         73 |        295 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_network_ui_ramp_lib.py                      | Python   |        108 |          5 |         36 |        149 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_network_utils.py                            | Python   |        214 |         41 |         90 |        345 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_node.py                                     | Python   |         16 |          2 |         12 |         30 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_os.py                                       | Python   |          6 |          3 |          3 |         12 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_render.py                                   | Python   |         67 |         24 |         35 |        126 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_rigging.py                                  | Python   |         57 |          8 |         29 |         94 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_sceneview.py                                | Python   |        207 |         20 |         75 |        302 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_selection.py                                | Python   |         35 |         30 |         23 |         88 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_timeline.py                                 | Python   |        171 |         56 |         83 |        310 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_ui_panetab.py                               | Python   |         68 |         61 |         58 |        187 |
+| q:\_gd\houdini_packages\wf_workflow\python3.7libs DEL\wf_utils.py                                    | Python   |        172 |         16 |         61 |        249 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\.VSCodeCounter\2022-08-22_15-06-37\details.md      | Markdown |         38 |          0 |          6 |         44 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\.VSCodeCounter\2022-08-22_15-06-37\diff-details.md | Markdown |          9 |          0 |          6 |         15 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\.VSCodeCounter\2022-08-22_15-06-37\diff.md         | Markdown |         12 |          0 |          7 |         19 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\.VSCodeCounter\2022-08-22_15-06-37\results.json    | JSON     |          1 |          0 |          0 |          1 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\.VSCodeCounter\2022-08-22_15-06-37\results.md      | Markdown |         14 |          0 |          7 |         21 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\____variables.py                                   | Python   |          5 |          8 |         10 |         23 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_chaneditor.py                                   | Python   |         37 |          8 |         13 |         58 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_hda.py                                          | Python   |          8 |          7 |          9 |         24 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_hotkeys.py                                      | Python   |         91 |         29 |         71 |        191 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_hotkeys_del.py                                  | Python   |          7 |          0 |          6 |         13 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_hotkeys_enter.py                                | Python   |         68 |         30 |         34 |        132 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_job.py                                          | Python   |        171 |         71 |        120 |        362 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_job_archetype_cam.py                            | Python   |          0 |          0 |          1 |          1 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_job_archetype_data.py                           | Python   |         10 |          8 |          6 |         24 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_job_archetype_lopnet.py                         | Python   |          6 |          0 |          2 |          8 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_job_archetype_network.py                        | Python   |          3 |          0 |          5 |          8 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_music.py                                        | Python   |        322 |        103 |        162 |        587 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_network_connection.py                           | Python   |         86 |          7 |         25 |        118 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_network_kwargs.py                               | Python   |         90 |          0 |         27 |        117 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_network_layout.py                               | Python   |        102 |         44 |         48 |        194 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_network_parm.py                                 | Python   |        127 |         25 |         51 |        203 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_network_ui.py                                   | Python   |        483 |         52 |        168 |        703 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_network_ui_parse_tab.py                         | Python   |        173 |         49 |         73 |        295 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_network_ui_ramp_lib.py                          | Python   |        108 |          5 |         36 |        149 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_network_utils.py                                | Python   |        214 |         41 |         90 |        345 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_node.py                                         | Python   |         16 |          2 |         12 |         30 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_os.py                                           | Python   |          6 |          3 |          3 |         12 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_render.py                                       | Python   |         67 |         24 |         35 |        126 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_rigging.py                                      | Python   |         57 |          8 |         29 |         94 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_sceneview.py                                    | Python   |        207 |         20 |         75 |        302 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_selection.py                                    | Python   |         35 |         30 |         23 |         88 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_timeline.py                                     | Python   |        171 |         56 |         83 |        310 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_ui_panetab.py                                   | Python   |         68 |         61 |         58 |        187 |
+| q:\_gd\houdini_packages\wf_workflow\python3.9libs\wf_utils.py                                        | Python   |        172 |         16 |         61 |        249 |
+| q:\_gd\houdini_packages\wf_workflow\scripts\456.py                                                   | Python   |          3 |          1 |          2 |          6 |
+| q:\_gd\houdini_packages\wf_workflow\scripts\_backup\also no 456.py                                   | Python   |          3 |          4 |          3 |         10 |
+| q:\_gd\houdini_packages\wf_workflow\scripts\_backup\no 456.py                                        | Python   |          5 |          7 |          4 |         16 |
+| q:\_gd\houdini_packages\wf_workflow\toolbar\shelf_tool_assets.json                                   | JSON     |          1 |          0 |          0 |          1 |
+| q:\_gd\houdini_packages\wf_workflow\vex\include\qq.vfl                                               | VEX      |        329 |         48 |        210 |        587 |
+| q:\_gd\houdini_packages\wf_workflow\vex\include\uber.vfl                                             | VEX      |        427 |        156 |        261 |        844 |
+| q:\_gd\houdini_packages\wf_workflow\vex_18\include\aevex.vfl                                         | VEX      |        275 |         46 |         62 |        383 |
+| q:\_gd\houdini_packages\wf_workflow\vex_18\include\array2d.h                                         | C++      |        104 |         15 |         19 |        138 |
+| q:\_gd\houdini_packages\wf_workflow\vex_18\include\ease.vfl                                          | VEX      |      1,603 |        276 |        403 |      2,282 |
+| q:\_gd\houdini_packages\wf_workflow\vex_18\include\qq.vfl                                            | VEX      |        630 |         84 |        363 |      1,077 |
+| q:\_gd\houdini_packages\wf_workflow\vex_18\include\subdiv.vfl                                        | VEX      |        249 |         41 |         29 |        319 |
+| q:\_gd\houdini_packages\wf_workflow\vex_18\include\uber.vfl                                          | VEX      |        985 |        277 |        551 |      1,813 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\apatheia\xe.vfl                                          | VEX      |         13 |          3 |          8 |         24 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\dim_coord_fill\dimension.vfl                             | VEX      |         68 |         17 |         35 |        120 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\dim_coord_fill\distort.vfl                               | VEX      |         26 |         12 |         19 |         57 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\dim_coord_fill\fill.vfl                                  | VEX      |          6 |          3 |          3 |         12 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\dim_coord_fill\fit.vfl                                   | VEX      |         36 |         26 |         13 |         75 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\dim_coord_fill\materials.vfl                             | VEX      |         65 |         17 |         35 |        117 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\dim_coord_fill\matrix.vfl                                | VEX      |         21 |         29 |         19 |         69 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\dim_coord_fill\noise.vfl                                 | VEX      |         79 |         31 |         24 |        134 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\dim_coord_fill\range.vfl                                 | VEX      |         68 |         34 |         41 |        143 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\dim_coord_fill\time_snap.vfl                             | VEX      |         95 |         22 |         39 |        156 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\docs\docs_array.vfl                                      | VEX      |          6 |          7 |          3 |         16 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\docs\docs_attribute.vfl                                  | VEX      |         20 |         23 |          9 |         52 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\docs\docs_geometry.vfl                                   | VEX      |         24 |         16 |         18 |         58 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\docs\docs_interpolation.vfl                              | VEX      |         17 |         13 |          9 |         39 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\docs\docs_intrinsic.vfl                                  | VEX      |         20 |          9 |         18 |         47 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\docs\docs_loops.vfl                                      | VEX      |         13 |          7 |          5 |         25 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\docs\docs_math.vfl                                       | VEX      |         29 |          7 |         12 |         48 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\docs\docs_measure.vfl                                    | VEX      |         29 |         10 |         15 |         54 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\docs\docs_pointclouds.vfl                                | VEX      |         67 |         17 |         38 |        122 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\docs\docs_strings.vfl                                    | VEX      |          4 |          3 |          2 |          9 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\docs\docs_table.vfl                                      | VEX      |         32 |         38 |         14 |         84 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\docs\docs_transforms.vfl                                 | VEX      |         60 |         42 |         40 |        142 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\docs\docs_volume.vfl                                     | VEX      |          6 |          7 |          2 |         15 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\snippets\color.vfl                                       | VEX      |          2 |          3 |          1 |          6 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\snippets\extend_polyline.vfl                             | VEX      |         18 |          3 |          7 |         28 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\snippets\group.vfl                                       | VEX      |         14 |          6 |          5 |         25 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\snippets\padzero.vfl                                     | VEX      |          4 |          3 |          2 |          9 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\snippets\polysplit xyzdist locations.vfl                 | VEX      |          4 |          5 |          2 |         11 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\tools\angle between edges, detect corners.vfl            | VEX      |         22 |          4 |         10 |         36 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\tools\angle between vectors.vfl                          | VEX      |          3 |          3 |          2 |          8 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\tools\extract axis from orient.vfl                       | VEX      |          4 |          3 |          3 |         10 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\tools\retime sequence loop ping.vfl                      | VEX      |         10 |          3 |          5 |         18 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\tools\slideframe.vfl                                     | VEX      |         40 |          5 |         17 |         62 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\tools\vector quantize.vfl                                | VEX      |         21 |          3 |         15 |         39 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\tools\vector randomize.vfl                               | VEX      |         12 |          5 |          7 |         24 |
+| q:\_gd\houdini_packages\wf_workflow\vex_src\uber\geo_carve_line.vfl                                  | VEX      |         49 |         13 |         28 |         90 |
+| Total                                                                                                |          |     11,773 |      2,821 |      5,209 |     19,803 |
++------------------------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

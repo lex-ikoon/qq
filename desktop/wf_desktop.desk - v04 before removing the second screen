@@ -1,0 +1,149 @@
+fullscreen   -1
+playbarshown 1
+playbar      -1
+shelf        -1
+menubar      -1
+statusbar    -1
+radial menu set main
+root {
+    split 0.36 H {
+        split 0.5 V {
+            split 0.5 H {
+                tabs 0 1 {
+                    pane pt_chaneditor -a 0 -l 1 -H /obj/ -T OBJ -m chaneditor
+                    pane pt_details -a 0 -l 10 -H /obj/ -T CHOPNET -m details
+                }
+                tabs 0 1 {
+                    pane pt_sceneview_2 -a 0 -l 10 -H /obj/ -T CHOPNET -m sceneview
+                    pane pt_channelview -a 0 -l 10 -H /obj/ -T CHOPNET -m channelview
+                }
+            }
+            tabs 0 1 {
+                pane pt_sceneview_1 -a 0 -l 10 -H /obj/ -T CHOPNET -m sceneview
+                pane pt_sceneview_3 -a 0 -l 10 -H /obj/ -T CHOPNET -m sceneview
+            }
+        }
+        split 0.5 V {
+            split 0.34 H {
+                tabs 0 1 {
+                    pane pt_parmeditor_1 -a 0 -l 1 -H /obj/ -T OBJ -m parmeditor
+                }
+                tabs 0 1 {
+                    pane pt_network_1 -a 0 -l 1 -H /obj/ -T OBJ -m neteditor
+                }
+            }
+            split 0.34 H {
+                tabs 0 1 {
+                    pane pt_parmeditor_2 -a 0 -l 2 -H /obj/ -T OBJ -m parmeditor
+                }
+                tabs 0 1 {
+                    pane pt_network_2 -a 0 -l 2 -H /obj/ -T OBJ -m neteditor
+                    pane pt_perfmon -a 0 -l 0 -H /obj/ -T OBJ -m perfmon
+                    pane pt_scenegraphtree -a 0 -l 10 -H /obj/ -T LOP -m scenegraphtree                    
+                }
+            }
+        }
+    }
+
+    panel panel1 -w -1920 400 1920 1190 {
+        split 0.75 H R {
+            tabs 1 1 {
+                pane dual_scene -a 0 -l 10 -H /obj/ -T CHOPNET -m sceneview
+                pane dual_ipr -a 0 -l 10 -H /obj/ -T CHOPNET -m iprviewer
+            }
+            split 0.5 V R {
+                tabs 0 1 {
+                    pane music_parm -a 0 -l 3 -H /obj/ -T OBJ -m parmeditor
+                }
+                tabs 0 1 {
+                    pane music_net -a 0 -l 3 -H /obj/ -T OBJ -m neteditor
+                }
+            }
+        }
+    }
+}
+shelfdock -o 1 -l icon_and_text -G "0.50 0.50" add shelf_set_1 shelf_set_2
+viewerstow -x open -b stow -l open -m hide -c hide -d open ${DESKNAME}.pt_sceneview_1.world
+vieweroption -a 2 ${DESKNAME}.pt_sceneview_1.world
+viewlayout -s 2 ${DESKNAME}.pt_sceneview_1.world
+viewtype -t ortho_right ${DESKNAME}.pt_sceneview_1.world.`vpname("${DESKNAME}.pt_sceneview_1.world",4)`
+viewtype -t ortho_front ${DESKNAME}.pt_sceneview_1.world.`vpname("${DESKNAME}.pt_sceneview_1.world",3)`
+viewtype -t ortho_top ${DESKNAME}.pt_sceneview_1.world.`vpname("${DESKNAME}.pt_sceneview_1.world",1)`
+viewtype -t perspective ${DESKNAME}.pt_sceneview_1.world.`vpname("${DESKNAME}.pt_sceneview_1.world",2)`
+chopview -a 0 -c "" -k 1 -m 1 -b 1 -e 1 -f 0 -g 0 -H 1 -i 0 -j 1 -l 0 -n 1 -V 0 -y 0 -B 0 -s 0 -S 0.034375 -u 0 -v 0 -h -10 310 -r -1.5 1.5 pt_channelview
+parmeditor -T 0.25 -w 0 pt_parmeditor_1
+parmeditor -T 0.25 -w 0 pt_parmeditor_2
+networkeditor -p '{\n	"showchilddep":"1",\n	"showdep":"0",\n	"showtaskgraphperf":"0",\n	"taskgraphperfstatname":"Cook Time",\n	"perfstatname":"Time",\n	"showperfstats":"1",\n	"grouplistsplit":"0.75",\n	"showtree":"0",\n	"showtypesidebar":"0",\n	"taskgraphsortcriteria":"Automatic",\n	"showparmdialogmax":"1",\n	"treesplit":"0.25",\n	"palettesize":"150 150",\n	"typesidebarsplit":"0.25",\n	"taskgraphcollapsemode":"Off",\n	"gridmode":"0",\n	"overviewbounds":"0.000000 0.000000 315.000000 183.900000",\n	"overviewmode":"2",\n	"showgrouplist":"0",\n	"palettemode":"0",\n	"showtasksmenu":"1",\n	"backgroundimageediting":"0",\n	"backgroundimagebrightness":"1.0",\n	"gridystep":"1.0",\n	"palettecolors":"",\n	"showmenu":"1",\n	"gridxstep":"2.0",\n	"showparmdialog":"0"\n}\n' pt_network_1
+netcolumns -c display,xray,select,origin,capture,bone -n OBJ pt_network_1
+netcolumns -c display,render,template,selectabletemplate,highlight,unload,bypass,lock -n SOP pt_network_1
+netcolumns -c delscript,comment -n CHOPNET pt_network_1
+netcolumns -c display,export,audio,bypass,lock -n CHOP pt_network_1
+netcolumns -c startrender,bypass,lock -n ROP pt_network_1
+netcolumns -c delscript,comment -n SHOP pt_network_1
+netcolumns -c display,render,template,bypass -n COP2 pt_network_1
+netcolumns -c delscript,comment -n IMG pt_network_1
+netcolumns -c delscript,comment,input -n VOP pt_network_1
+netcolumns -c delscript,comment -n VOPNET pt_network_1
+netcolumns -c delscript,comment -n DOP pt_network_1
+netcolumns -c delscript,comment -n TOP pt_network_1
+netcolumns -c delscript,comment -n TOPNET pt_network_1
+netcolumns -c display,bypass,delscript,comment,input -n LOP pt_network_1
+netcolumns -c delscript,comment -n MGR pt_network_1
+netcolumns -c delscript,comment -n DIR pt_network_1
+networkeditor -p '{\n	"showchilddep":"1",\n	"showdep":"0",\n	"showtaskgraphperf":"0",\n	"taskgraphperfstatname":"Cook Time",\n	"perfstatname":"Time",\n	"showperfstats":"1",\n	"grouplistsplit":"0.75",\n	"showtree":"0",\n	"showtypesidebar":"0",\n	"taskgraphsortcriteria":"Automatic",\n	"showparmdialogmax":"1",\n	"treesplit":"0.25",\n	"palettesize":"150 150",\n	"typesidebarsplit":"0.25",\n	"taskgraphcollapsemode":"Off",\n	"gridmode":"0",\n	"overviewbounds":"0.000000 0.000000 315.000000 186.000000",\n	"overviewmode":"2",\n	"showgrouplist":"0",\n	"palettemode":"0",\n	"showtasksmenu":"1",\n	"backgroundimageediting":"0",\n	"backgroundimagebrightness":"1.0",\n	"gridystep":"1.0",\n	"palettecolors":"",\n	"showmenu":"1",\n	"gridxstep":"2.0",\n	"showparmdialog":"0"\n}\n' pt_network_2
+netcolumns -c display,xray,select,origin,capture,bone -n OBJ pt_network_2
+netcolumns -c display,render,template,selectabletemplate,highlight,unload,bypass,lock -n SOP pt_network_2
+netcolumns -c delscript,comment -n CHOPNET pt_network_2
+netcolumns -c display,export,audio,bypass,lock -n CHOP pt_network_2
+netcolumns -c startrender,bypass,lock -n ROP pt_network_2
+netcolumns -c delscript,comment -n SHOP pt_network_2
+netcolumns -c display,render,template,bypass -n COP2 pt_network_2
+netcolumns -c delscript,comment -n IMG pt_network_2
+netcolumns -c delscript,comment,input -n VOP pt_network_2
+netcolumns -c delscript,comment -n VOPNET pt_network_2
+netcolumns -c delscript,comment -n DOP pt_network_2
+netcolumns -c delscript,comment -n TOP pt_network_2
+netcolumns -c delscript,comment -n TOPNET pt_network_2
+netcolumns -c display,bypass,delscript,comment,input -n LOP pt_network_2
+netcolumns -c delscript,comment -n MGR pt_network_2
+netcolumns -c delscript,comment -n DIR pt_network_2
+performance -c on -d on -f on -g off -k on -m off -n on -o on -t off -v on -p on -y on -u on -e off -r absolute -R seconds -w tree pt_perfmon
+viewerstow -x open -b stow -l open -m hide -c hide -d open ${DESKNAME}.dual_scene.world
+vieweroption -a 2 ${DESKNAME}.dual_scene.world
+viewlayout -s 2 ${DESKNAME}.dual_scene.world
+viewtype -t ortho_right ${DESKNAME}.dual_scene.world.`vpname("${DESKNAME}.dual_scene.world",4)`
+viewtype -t ortho_front ${DESKNAME}.dual_scene.world.`vpname("${DESKNAME}.dual_scene.world",3)`
+viewtype -t ortho_top ${DESKNAME}.dual_scene.world.`vpname("${DESKNAME}.dual_scene.world",1)`
+viewtype -t perspective ${DESKNAME}.dual_scene.world.`vpname("${DESKNAME}.dual_scene.world",2)`
+iprview -t 0.1 -l 0 -e 1 -u 1  dual_ipr
+parmeditor -T 0.25 -w 0 music_parm
+networkeditor -p '{\n	"showchilddep":"1",\n	"showdep":"0",\n	"showtaskgraphperf":"0",\n	"taskgraphperfstatname":"Cook Time",\n	"perfstatname":"Time",\n	"showperfstats":"1",\n	"grouplistsplit":"0.75",\n	"showtree":"0",\n	"showtypesidebar":"0",\n	"taskgraphsortcriteria":"Automatic",\n	"showparmdialogmax":"1",\n	"treesplit":"0.25",\n	"palettesize":"150 150",\n	"typesidebarsplit":"0.25",\n	"taskgraphcollapsemode":"Off",\n	"gridmode":"0",\n	"overviewbounds":"0 0 200 200",\n	"overviewmode":"2",\n	"showgrouplist":"0",\n	"palettemode":"0",\n	"showtasksmenu":"1",\n	"backgroundimageediting":"0",\n	"backgroundimagebrightness":"1.0",\n	"gridystep":"1.0",\n	"palettecolors":"",\n	"showmenu":"1",\n	"gridxstep":"2.0",\n	"showparmdialog":"0"\n}\n' music_net
+netcolumns -c display,xray,select,origin,capture,bone -n OBJ music_net
+netcolumns -c display,render,template,selectabletemplate,highlight,unload,bypass,lock -n SOP music_net
+netcolumns -c delscript,comment -n CHOPNET music_net
+netcolumns -c display,export,audio,bypass,lock -n CHOP music_net
+netcolumns -c startrender,bypass,lock -n ROP music_net
+netcolumns -c delscript,comment -n SHOP music_net
+netcolumns -c display,render,template,bypass -n COP2 music_net
+netcolumns -c delscript,comment -n IMG music_net
+netcolumns -c delscript,comment,input -n VOP music_net
+netcolumns -c delscript,comment -n VOPNET music_net
+netcolumns -c delscript,comment -n DOP music_net
+netcolumns -c delscript,comment -n TOP music_net
+netcolumns -c delscript,comment -n TOPNET music_net
+netcolumns -c display,bypass,delscript,comment,input -n LOP music_net
+netcolumns -c delscript,comment -n MGR music_net
+netcolumns -c delscript,comment -n DIR music_net
+viewerstow -x open -b stow -l open -m hide -c hide -d open ${DESKNAME}.pt_sceneview_2.world
+vieweroption -a 2 ${DESKNAME}.pt_sceneview_2.world
+viewlayout -s 2 ${DESKNAME}.pt_sceneview_2.world
+viewtype -t ortho_right ${DESKNAME}.pt_sceneview_2.world.`vpname("${DESKNAME}.pt_sceneview_2.world",4)`
+viewtype -t ortho_front ${DESKNAME}.pt_sceneview_2.world.`vpname("${DESKNAME}.pt_sceneview_2.world",3)`
+viewtype -t ortho_top ${DESKNAME}.pt_sceneview_2.world.`vpname("${DESKNAME}.pt_sceneview_2.world",1)`
+viewerstow -x open -b stow -l open -m hide -c hide -d open ${DESKNAME}.pt_sceneview_3.world
+vieweroption -a 2 ${DESKNAME}.pt_sceneview_3.world
+viewlayout -s 2 ${DESKNAME}.pt_sceneview_3.world
+viewtype -t ortho_right ${DESKNAME}.pt_sceneview_3.world.`vpname("${DESKNAME}.pt_sceneview_3.world",4)`
+viewtype -t ortho_front ${DESKNAME}.pt_sceneview_3.world.`vpname("${DESKNAME}.pt_sceneview_3.world",3)`
+viewtype -t ortho_top ${DESKNAME}.pt_sceneview_3.world.`vpname("${DESKNAME}.pt_sceneview_3.world",1)`
+viewtype -t perspective ${DESKNAME}.pt_sceneview_3.world.`vpname("${DESKNAME}.pt_sceneview_3.world",2)`
