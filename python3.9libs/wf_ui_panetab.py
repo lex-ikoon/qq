@@ -17,7 +17,7 @@ def panetab_restore(script_456, force_split) :
     # check if swap is needed
     if hou.ui.curDesktop().panes()[0].tabs()[0].type() == hou.paneTabType.ChannelEditor :
         hou.ui.curDesktop().panes()[2].splitSwap()
-        hou.ui.curDesktop().findPaneTab("pt_channelview").pane().setIsSplitMaximized( True )
+        hou.ui.curDesktop().findPaneTab("pt_sgdetails").pane().setIsSplitMaximized( True )
         hou.ui.curDesktop().findPaneTab("pt_sceneview_2").pane().setIsSplitMaximized( False )
 
 

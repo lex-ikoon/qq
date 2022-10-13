@@ -6,7 +6,8 @@ from shutil import copyfile
 def panetab_name_state (name) :
     state = 0
     if name == "pt_chaneditor"   : state = 1
-    if name == "pt_channelview"  : state = 4
+    if name == "pt_sgdetails"    : state = 1
+    if name == "pt_sgtree"       : state = 1
     if name == "pt_details"      : state = 1
     if name == "pt_network_1"    : state = 6
     if name == "pt_network_2"    : state = 6
@@ -17,6 +18,7 @@ def panetab_name_state (name) :
     if name == "pt_sceneview_2"  : state = 1
     if name == "pt_sceneview_3"  : state = 4
     if name == "pt_takelist"     : state = 6
+    # print (name)
     return state
 
 
