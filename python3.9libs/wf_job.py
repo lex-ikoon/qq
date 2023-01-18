@@ -45,6 +45,7 @@ def jobify () :
             jobify_node_ptg_and_contents( obj_node, "archetype_job_geo_network" )
 
         if obj_node.type().name() == "cam" :
+            obj_node.parm("focus").setExpression = ('ch("tz")')
             jobify_node_ptg_and_contents( obj_node, "archetype_job_cam" )
 
 
