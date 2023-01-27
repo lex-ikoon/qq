@@ -1,0 +1,7 @@
+{
+    "path": "Q:/path_to/wf_workflow", 
+    "env": [
+        {"wf_path":       "Q:/path_to/wf_workflow"},
+        {"wf_editor":     "C:/path_to_editor/Microsoft VS Code/Code.exe"}
+    ]
+}

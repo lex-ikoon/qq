@@ -4,6 +4,13 @@
 &nbsp;  
 &nbsp;  
 
+# installation 
+- edit the wf_workflow.json
+- copy the wf_workflow.json into your HOUDINI_PATH/packages
+- more here: https://www.sidefx.com/docs/houdini/ref/plugins.html
+
+
+
 # files and folders 
 
 #### toolbar
