@@ -55,6 +55,10 @@ def flag_display () :
     if hou.dopNodeTypeCategory() == parmnode.parent().childTypeCategory():
         nodetype = "singleflag"
 
+    if hou.lopNodeTypeCategory() == parmnode.parent().childTypeCategory():
+        nodetype = "singleflag"
+
+
     if parmnode.type().name() == "lopnet" :
         nodetype = "lopnet"
 
