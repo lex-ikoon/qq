@@ -7,7 +7,7 @@
 
   <toolshelf name="wf_network_utils" label="wf_network_utils">
     <memberTool name="wf_network_utils_create_object_merge"/>
-    <memberTool name="wf_network_utils_create_object_merge0"/>
+    <memberTool name="wf_network_utils_create_object_merge_relative"/>
     <memberTool name="recook_container"/>
     <memberTool name="create_node_null"/>
     <memberTool name="create_node_switch"/>
@@ -36,20 +36,16 @@ wf_network_utils.recook_container()]]></script>
   <tool name="wf_network_utils_create_object_merge" label="qq object merge" icon="PLASMA_App">
     <toolMenuContext name="network">
       <contextNetType>OBJ</contextNetType>
-      <contextNetType>SOP</contextNetType>
-      <contextNetType>CHOP</contextNetType>
-      <contextNetType>ROP</contextNetType>
-      <contextNetType>SHOP</contextNetType>
-      <contextNetType>COP2</contextNetType>
-      <contextNetType>VOP</contextNetType>
-      <contextNetType>VOPNET</contextNetType>
-      <contextNetType>DOP</contextNetType>
+      <contextNetType>LOP</contextNetType>
     </toolMenuContext>
     <toolSubmenu>_workflow</toolSubmenu>
     <script scriptType="python"><![CDATA[import wf_network_utils
 #import imp
 #imp.reload(wf_network_utils)
-wf_network_utils.create_object_merge(False)]]></script>
+
+selected = hou.selectedNodes()
+for node_src in selected :
+    wf_network_utils.create_object_merge(node_src, False)]]></script>
   </tool>
 
   <tool name="create_node_null" label="create_node_null" icon="PLASMA_App">
@@ -267,23 +263,19 @@ wf_network_utils.create_node('blast')]]></script>
 wf_network_utils.create_node('g')]]></script>
   </tool>
 
-  <tool name="wf_network_utils_create_object_merge0" label="qq object merge relative" icon="PLASMA_App">
+  <tool name="wf_network_utils_create_object_merge_relative" label="qq object merge relative" icon="PLASMA_App">
     <toolMenuContext name="network">
-      <contextNetType>OBJ</contextNetType>
       <contextNetType>SOP</contextNetType>
-      <contextNetType>CHOP</contextNetType>
-      <contextNetType>ROP</contextNetType>
-      <contextNetType>SHOP</contextNetType>
-      <contextNetType>COP2</contextNetType>
-      <contextNetType>VOP</contextNetType>
-      <contextNetType>VOPNET</contextNetType>
-      <contextNetType>DOP</contextNetType>
+      <contextNetType>LOP</contextNetType>
     </toolMenuContext>
     <toolSubmenu>_workflow</toolSubmenu>
     <script scriptType="python"><![CDATA[import wf_network_utils
-#import imp
-#imp.reload(wf_network_utils)
-wf_network_utils.create_object_merge(True)]]></script>
+import imp
+imp.reload(wf_network_utils)
+
+selected = hou.selectedNodes()
+for node_src in selected :
+    wf_network_utils.create_object_merge(node_src, True)]]></script>
   </tool>
 
   <tool name="wf_create_sticky_label" label="qq sticky label" icon="PLASMA_App">

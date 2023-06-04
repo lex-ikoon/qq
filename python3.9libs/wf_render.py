@@ -93,7 +93,7 @@ def start () :
 
     # set viewer pwd and camera
     #-----------------------------------------------
-    lopnet_camera = lopnet_active.parm("force_cam").evalAsNode()
+    lopnet_camera = lopnet_active.parm("job_camera").evalAsNode()
     ######## this is a bug
     ######## sceneview_LOP.curViewport().setCamera(lopnet_camera)
     ######## wf_desktop.pt_sceneview_1.solaris

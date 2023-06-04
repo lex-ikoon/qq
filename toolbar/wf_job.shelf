@@ -6,32 +6,35 @@
  a single file. -->
 
   <toolshelf name="wf_job" label="wf_job">
-    <memberTool name="wf_job_data"/>
-    <memberTool name="wf_jobify"/>
-    <memberTool name="wf_lopnet"/>
+    <memberTool name="wf_job_imports"/>
+    <memberTool name="wf_jobify_obj"/>
+    <memberTool name="wf_karma"/>
+    <memberTool name="wf_find_material"/>
   </toolshelf>
 
-  <tool name="wf_job_data" label="wf job data" icon="PLASMA_App">
+  <tool name="wf_job_imports" label="wf job imports" icon="PLASMA_App">
     <toolMenuContext name="network">
       <contextNetType>SOP</contextNetType>
     </toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_job
 import imp
 imp.reload(wf_job)
-wf_job.create_job_geo_data_from_nulls()]]></script>
+node_nulls = hou.selectedNodes()
+for node_null in node_nulls :
+    wf_job.create_job_import(node_null)]]></script>
   </tool>
 
-  <tool name="wf_jobify" label="wf jobify" icon="PLASMA_App">
+  <tool name="wf_jobify_obj" label="wf jobify" icon="PLASMA_App">
     <toolMenuContext name="network">
       <contextNetType>OBJ</contextNetType>
     </toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_job
 import imp
 imp.reload(wf_job)
-wf_job.jobify()]]></script>
+wf_job.jobify_obj()]]></script>
   </tool>
 
-  <tool name="wf_lopnet" label="wf lopnet" icon="PLASMA_App">
+  <tool name="wf_karma" label="wf karma" icon="PLASMA_App">
     <toolMenuContext name="network">
       <contextNetType>OBJ</contextNetType>
     </toolMenuContext>
@@ -39,6 +42,16 @@ wf_job.jobify()]]></script>
 import imp
 imp.reload(wf_job)
 nodes = hou.selectedNodes()
-wf_job.create_job_lopnet_from_geo(nodes)]]></script>
+
+for node in nodes:
+    wf_job.create_job_karma_from_geo(node)]]></script>
+  </tool>
+
+  <tool name="wf_find_material" label="wf find material" icon="PLASMA_App">
+    <script scriptType="python"><![CDATA[import wf_job_archetype_karma
+import imp
+imp.reload(wf_job_archetype_karma)
+node = hou.selectedNodes()[0]
+wf_job_archetype_karma.find_material(node)]]></script>
   </tool>
 </shelfDocument>

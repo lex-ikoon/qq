@@ -77,6 +77,7 @@ def pane_linkGroup( panetype ) :
 def parmnode () :
     parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
     parmnode = parm_pane.currentNode()
+    # print (parmnode)
     return parmnode
 
 

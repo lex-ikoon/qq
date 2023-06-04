@@ -200,27 +200,26 @@ def create_node(type) :
 
 
 
-def create_object_merge (relative) :
+def create_object_merge (node_src, relative) :
 
     offsetx = 3
     offsety = 0
     color = hou.Color(0.0, 0.0, 0.0)
-    selected = hou.selectedNodes()
 
-    for node_src in selected :
+    name_src = node_src.name()
 
-        name_src = node_src.name()
+    posx = node_src.position()[0] + offsetx
+    posy = node_src.position()[1] + offsety
 
-        posx = node_src.position()[0] + offsetx
-        posy = node_src.position()[1] + offsety
+    # name
+    container = node_src.parent().path()
+    name_mrg = "IN_" + name_src
 
-        #create, name, pos
-        container = node_src.parent().path()
-        name_mrg = "IN_" + name_src
-        node_mrg = hou.node(container).createNode('object_merge',name_mrg)
-        node_mrg.setPosition( [posx,posy] )
 
-        #parm
+    if node_src.type().category() == hou.sopNodeTypeCategory() :
+        # SOP
+        node_mrg  = hou.node(container).createNode('object_merge',name_mrg)
+
         if relative == False :
             path_src = node_src.path()
         if relative == True :
@@ -230,14 +229,33 @@ def create_object_merge (relative) :
         parm_path.set(path_src)
         parm_transform = node_mrg.parm("xformtype")
         parm_transform.set(1)
-
-        #setcol
+        # color
         node_src.setColor(color)
         node_mrg.setColor(color)
 
-        #selection
-        node_src.setSelected(False)
-        node_mrg.setSelected(True)
+
+    if node_src.type().category() == hou.lopNodeTypeCategory() :
+        # LOP
+        node_mrg  = hou.node(container).createNode('fetch',name_mrg)
+        if relative == False :
+            path_src = node_src.path()
+        if relative == True :
+            path_src = node_mrg.relativePathTo(node_src)
+
+        parm_path = node_mrg.parm("loppath")
+        parm_path.set(path_src)
+        # shape
+        node_mrg.setUserData("nodeshape", "trapezoid_down")
+
+
+    # position
+    node_mrg.setPosition( [posx,posy] )
+
+    # selection
+    node_src.setSelected(False)
+    node_mrg.setSelected(True)
+
+    return node_mrg
 
 
 def create_sticky_label (nodes) :

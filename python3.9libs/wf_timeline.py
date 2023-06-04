@@ -79,13 +79,6 @@ def sim_dopnet () :
         cache_start    = dopnet.parm("startframe").eval()
         cache_spacing  = dopnet.parm("explicitcachecheckpointspacing").eval()
 
-    # ---------
-    # if dopnet == None :
-    #     current = hou.frame()
-    #     hou.setFrame(1)
-    #     print(current)
-    #     hou.setFrame(current)
-    # # ---------
 
 
     return [dopnet, cache_on, cache_name, cache_substeps, cache_start, cache_spacing]

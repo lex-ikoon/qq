@@ -2,7 +2,8 @@ import hou
 import imp
 import wf_network_connection
 import wf_job_archetype_data
-# imp.reload(wf_network_connection)
+import wf_job_archetype_karma
+imp.reload(wf_job_archetype_karma)
 
 def copypaste_ptg_folder( which_folder, insert_before_folder, node_src, node_dst ) :
 
@@ -37,7 +38,7 @@ def copypaste_all_contents( container_src, container_dst ) :
 
 
 
-def jobify () :
+def jobify_obj () :
     obj_nodes = hou.selectedNodes()
     for obj_node in obj_nodes :
 
@@ -73,7 +74,7 @@ def jobify_node_ptg_and_contents( node_target, archetype_name ) :
     # ui and contents
 
 
-    if archetype_name == "archetype_job_lopnet" :
+    if archetype_name == "archetype_job_karma" :
 
         # group initial parms
         PTG_initial = node_target.parmTemplateGroup()
@@ -178,81 +179,89 @@ def jobify_node_ptg_and_contents( node_target, archetype_name ) :
     node_archetype_hda.destroy()
 
 
-def create_job_lopnet_from_geo(node_geos) :
+
+
+def create_job_karma_from_geo(node_geo) :
 
     # define
     offsetx = 3
     offsety = 0
     color_lop  = hou.Color(1.0, 0.725, 0.0)
 
-    for node_geo in node_geos :
-        # name
-        lopnet_name = "lop_" + node_geo.name()
+    # name
+    lopnet_name = "karma_" + node_geo.name()
 
-        # create lopnet
-        node_lopnet = node_geo.parent().createNode("lopnet", 
-            node_name = lopnet_name,
-            run_init_scripts = True, 
-            load_contents = True, 
-            exact_type_name = True)
+    # create lopnet
+    node_lopnet = node_geo.parent().createNode("lopnet", 
+        node_name = lopnet_name,
+        run_init_scripts = True, 
+        load_contents = True, 
+        exact_type_name = True)
 
-        # layout pin position
-        node_lopnet.setComment("`")
+    # layout pin position
+    node_lopnet.setComment("`")
 
-        # get pos
-        posx = node_geo.position()[0] + offsetx
-        posy = node_geo.position()[1] + offsety
-        node_lopnet.setPosition( [posx,posy] )
-        node_lopnet.setColor( color_lop )
+    # get pos
+    posx = node_geo.position()[0] + offsetx
+    posy = node_geo.position()[1] + offsety
+    node_lopnet.setPosition( [posx,posy] )
+    node_lopnet.setColor( color_lop )
 
-        # jobify lopnet
-        jobify_node_ptg_and_contents( node_lopnet, "archetype_job_lopnet" )
+    # jobify lopnet
+    jobify_node_ptg_and_contents( node_lopnet, "archetype_job_karma" )
+
+    # link parms
+    node_lopnet.parm("job_rangex").set(    node_geo.parm("job_rangex")    )
+    node_lopnet.parm("job_rangey").set(    node_geo.parm("job_rangey")    )
+    node_lopnet.parm("job_camera").set(    node_geo.parm("job_camera")    )
+    node_lopnet.parm("job_camera").setAutoscope(False)
+
+    # filename
+    node_lopnet.parm("file").set(node_geo.name())
 
 
 
 
-def create_job_geo_data_from_nulls() :
+def create_job_import(node_null) :
 
-    node_nulls = hou.selectedNodes()
-    parent     = node_nulls[0].parent()
+    parent     = node_null.parent()
     color_red  = hou.Color(0.8, 0.016, 0.016)
 
-    for node_null in node_nulls :
+    # ----------------------------------------------------------------------------------------------------
+    # KARMA
+    wf_job_archetype_karma.create_sop_import(node_null)
+    
 
-        #color the Null
-        node_null.setColor(color_red)
+    # ----------------------------------------------------------------------------------------------------
+    # OBJ
 
-        # create node_nulls
-        last_descendant = wf_network_connection.get_last_descendant(parent)
-        geo_data = last_descendant.createOutputNode("geo", 
-            node_name = node_null.name(),
-            run_init_scripts = True, 
-            load_contents = True, 
-            exact_type_name = True)
+    # color the Null
+    node_null.setColor(color_red)
 
-        # jobify geo
-        jobify_node_ptg_and_contents( geo_data, "archetype_job_geo_data" )
+    # create node_nulls
+    last_descendant = wf_network_connection.get_last_descendant(parent)
+    geo_data = last_descendant.createOutputNode("geo", 
+        node_name = node_null.name(),
+        run_init_scripts = True, 
+        load_contents = True, 
+        exact_type_name = True)
 
-        # link to the null
-        geo_data.parm("job_source").set(node_null.path())
+    # jobify geo
+    jobify_node_ptg_and_contents( geo_data, "archetype_job_geo_data" )
 
-        # range from parent
-        geo_data.parm("job_rangex").set(node_null.parent().parm("job_rangex").eval())
-        geo_data.parm("job_rangey").set(node_null.parent().parm("job_rangey").eval())
-        wf_job_archetype_data.job_data_update_range_descriptiveparm(geo_data)
+    # link to the null
+    geo_data.parm("job_source").set(node_null.path())
 
-        # create GL_ROP
-        create_rop_gl(geo_data)
+    # range from parent
+    geo_data.parm("job_rangex").set(node_null.parent().parm("job_rangex").eval())
+    geo_data.parm("job_rangey").set(node_null.parent().parm("job_rangey").eval())
+    wf_job_archetype_data.job_data_update_range_descriptiveparm(geo_data)
 
-        # create RS_ROP
+    # create GL_ROP
+    create_rop_gl(geo_data)
 
 
         
-
-
-def create_job_geo_data_from_geos() :
-    pass
-
 
 
 def create_rop_gl ( obj_node ) :
@@ -309,54 +318,3 @@ def create_rop_gl ( obj_node ) :
     path = "$JOB/__data.render/$OS/${OS}_$F4.png"
     gl_node.parm("picture").set(path)
 
-
-
-def create_rop_rs (obj_node) :
-
-    obj_name = obj_node.name()
-
-    # create ropnet
-    manager_RS = hou.node("/obj/rop_RS")
-    if not manager_RS :
-        manager_RS = hou.node("/obj").createNode("ropnet", "rop_RS") 
-
-    # create ROP
-    rs_node = manager_RS.createNode( "Redshift_ROP", obj_name )
-    rs_node.setPosition(obj_node.position())
-
-    #------------------------------------------------------------
-
-    # strict range
-    rs_node.parm("trange").set(2)
-
-    # range start, end
-    rs_node.parm("f1").deleteAllKeyframes()
-    rs_node.parm("f2").deleteAllKeyframes()
-    rs_node.parm("f1").setExpression('ch("/obj/$OS/job_rangex")')
-    rs_node.parm("f2").setExpression('ch("/obj/$OS/job_rangey")')
-
-    # camera
-    rs_node.parm("RS_renderCamera").set('`chs("/obj/$OS/job_camera")`')
-
-    # candidate objects
-    rs_node.parm("RS_objects_candidate").set("")
-
-    # force objects
-    rs_node.parm("RS_objects_force").set("/obj/$OS")
-
-    # candidate lights
-    rs_node.parm("RS_lights_candidate").set("")
-
-    # resolution preview
-    rs_node.parm("RS_overrideResScale").set(7)
-    rs_node.parm("RS_overrideRes1").setExpression('ch(chs("camera") + "/res_previewx")')
-    rs_node.parm("RS_overrideRes2").setExpression('ch(chs("camera") + "/res_previewy")')
-
-    # redshift parms
-    rs_node.parm("RS_nonBlockingRendering").set(0)
-    rs_node.parm("RS_renderToMPlay").set(0)
-    rs_node.parm("RS_outputFileFormat").set(3) # .png
-    
-    # set picture name
-    path = "$JOB/__data.render/$OS/${OS}_$F4.png"
-    rs_node.parm("RS_outputFileNamePrefix").set(path)

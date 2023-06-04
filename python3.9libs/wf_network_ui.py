@@ -606,12 +606,13 @@ def folders_trygo (node, name, count, dir) :
     
 def folders_tab_go (dir) :
     node = wf_selection.parmnode()
-    if node.type() == hou.nodeType("Sop/switch") or node.type() == hou.nodeType("Dop/switch"):
+    if node.type() == hou.nodeType("Sop/switch") or node.type() == hou.nodeType("Dop/switch") or node.type() == hou.nodeType("Lop/switch") or node.type() == hou.nodeType("Chop/switch") or node.type() == hou.nodeType("Top/switch"):
         ########################
         #######  switch  #######
         for switch in hou.selectedNodes():
             ninputs = len(switch.inputs())
             parm    = switch.parm("input")
+            if parm == None : parm = switch.parm("index")
             if parm.eval()+dir > ninputs-1 : 
                 parm.set( 0 )
             elif parm.eval()+dir < 0 : 
@@ -620,7 +621,7 @@ def folders_tab_go (dir) :
                 parm.set( parm.eval()+dir )
         ########################
 
-    if node.type() == hou.nodeType("Sop/mus_source"):
+    elif node.type() == hou.nodeType("Sop/mus_source"):
         ########################
         #######   mus    #######
         ninputs = len(node.node("switch_source").inputs())
