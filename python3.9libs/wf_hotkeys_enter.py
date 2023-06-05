@@ -1,7 +1,9 @@
 import hou
 import imp
 import wf_ui_panetab
+import wf_job_archetype_karma
 imp.reload(wf_ui_panetab)
+imp.reload(wf_job_archetype_karma)
 
 
 
@@ -124,9 +126,25 @@ def enter_execute(node_selected, ctrl, alt, shift ) :
         # if ctrl and not shift  : network_set( "pt_network_1" , node_selected, "job_source")
         # if ctrl and shift      : network_set( "pt_network_1" , node_selected, "shop_materialpath")
 
+    # --------------------------
+    # gotoparm: 
+    elif alt == True:
+        wf_ui_panetab.panetab_restore(script_456 = False, force_split = True)
 
+        material_path = wf_job_archetype_karma.karma_material_path(node_selected)
+        panetab_name  = "pt_network_2"
+
+        hou.ui.curDesktop().findPaneTab(panetab_name).setCurrentNode( hou.node(material_path) )
+
+        # ALT-ENTER
+        # if sop null camera shape (otevrit dole, nebo ve druhym)
+        # if no sop selected - ok
+        # if lop sopimport    (otevrit to v druhym panelu, nahore?)
 
     # --------------------------
     else:
-        if alt   : network_set( "pt_network_1" , node_selected, "ENTER_FIRST_VALID")
         if ctrl  : network_set( "pt_network_2" , node_selected, "ENTER_FIRST_VALID")
+
+        # CTRL ENTER
+        # if lop sopimport    (otevrit to v druhym panelu)
+        # if sop null kamera  (otevrit to v druhym panelu)

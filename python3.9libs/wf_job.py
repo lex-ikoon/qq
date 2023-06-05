@@ -184,7 +184,7 @@ def jobify_node_ptg_and_contents( node_target, archetype_name ) :
 def create_job_karma_from_geo(node_geo) :
 
     # define
-    offsetx = 3
+    offsetx = 6
     offsety = 0
     color_lop  = hou.Color(1.0, 0.725, 0.0)
 

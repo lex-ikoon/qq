@@ -1,12 +1,15 @@
 import hou
+import os
 import imp
 import nodesearch
 import wf_network_connection
 import wf_job
 import wf_network_utils
+# from pathlib import Path
 
+# -----------------------------------------------------------------
 
-def create_sop_import(node):
+def create_sop_import (node):
   
     # -----------------------
     # define
@@ -75,8 +78,10 @@ def create_sop_import(node):
     node_GEO.setInput(len(node_GEO.inputs()), node_fetch)
 
 
+# -----------------------------------------------------------------
 
-def check_usdmaterialpath(node):
+
+def geo_usdmaterialpath_value (node):
     geo = node.geometry()
 
     try:
@@ -98,8 +103,10 @@ def check_usdmaterialpath(node):
     return None
 
 
+# -----------------------------------------------------------------
 
-def check_material(node):
+
+def karma_material_path (node):
 
     # -----------------------
     # SOP nodes
@@ -107,38 +114,43 @@ def check_material(node):
 
         # -----------------------
         # try this node
-        material = check_usdmaterialpath(node)
+        material = geo_usdmaterialpath_value(node)
         if material != None :
-            return material
+            return "/obj/karma_" + node.parent().name() + "/MATLIB/" + material.split("/")[-1]
 
         # -----------------------
         # try last_descendant 
         last_descendant = wf_network_connection.get_last_descendant(node)
-        material        = check_usdmaterialpath(last_descendant)
+        material        = geo_usdmaterialpath_value(last_descendant)
         if material != None :
-            return material
+            return "/obj/karma_" + node.parent().name() + "/MATLIB/" + material.split("/")[-1]
+
+        # -----------------------
+        # SOP found nothing
+        return "/obj/karma_" + node.parent().name() + "/MATLIB"
+
 
 
     # -----------------------
     # LOP nodes
-    if node.type().category() == hou.lopNodeTypeCategory() :
+    elif node.type().category() == hou.lopNodeTypeCategory() :
 
         # -----------------------
         # sopimport
         if node.type().name() == "sopimport" :
             referenced_node = node.parm("soppath").evalAsNode()
-            material        = check_usdmaterialpath(referenced_node)
+            material        = geo_usdmaterialpath_value(referenced_node)
             if material != None :
-                return material
+                return "/obj/" + node.parent().name() + "/MATLIB/" + material.split("/")[-1]
 
         # -----------------------
         # filecache
         if node.type().name() == "filecache" :
             sopimport_node  = node.inputs()[0]
             referenced_node = sopimport_node.parm("soppath").evalAsNode()
-            material        = check_usdmaterialpath(referenced_node)
+            material        = geo_usdmaterialpath_value(referenced_node)
             if material != None :
-                return material
+                return "/obj/" + node.parent().name() + "/MATLIB/" + material.split("/")[-1]
 
         # -----------------------
         # fetch
@@ -146,13 +158,39 @@ def check_material(node):
             filecache_node  = node.parm("loppath").evalAsNode()
             sopimport_node  = filecache_node.inputs()[0]
             referenced_node = sopimport_node.parm("soppath").evalAsNode()
-            material        = check_usdmaterialpath(referenced_node)
+            material        = geo_usdmaterialpath_value(referenced_node)
             if material != None :
-                return material
+                return "/obj/" + node.parent().name() + "/MATLIB/" + material.split("/")[-1]
+
+        # -----------------------
+        # LOP found nothing
+        return "/obj/" + node.parent().name() + "/MATLIB"
+
+    # -----------------------
+    # LOP found nothing
+    # another context or whatever
+    else:
+        return "/obj/"
 
 
+# -----------------------------------------------------------------
 
-def find_material(node):
-    print(  check_material(node)  )
+# import wf_job_archetype_karma; import imp; imp.reload(wf_job_archetype_karma); node = kwargs["node"] ; wf_job_archetype_karma.dirty_codecs(node)
+def dirty_codecs (node) :
+    node.node("topnet_DISTRIBUTED/codec").dirtyWorkItems(False)
 
-    # OPEN BOTTOM 
+# -----------------------------------------------------------------
+
+# import wf_job_archetype_karma; import imp; imp.reload(wf_job_archetype_karma); node = kwargs["node"] ; wf_job_archetype_karma.video_path_to_clipboard(node)
+def video_path_to_clipboard (node) :
+    video_location = node.node("SETTINGS").parm("output_mp4").evalAsString()
+    hou.ui.copyTextToClipboard(video_location)
+
+# -----------------------------------------------------------------
+
+# import wf_job_archetype_karma; import imp; imp.reload(wf_job_archetype_karma); node = kwargs["node"] ; wf_job_archetype_karma.video_play(node)
+def video_play (node) :
+    video_location = node.node("SETTINGS").parm("output_mp4").evalAsString()
+    os.startfile(video_location)
+
+# -----------------------------------------------------------------
