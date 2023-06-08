@@ -69,14 +69,24 @@ def pane_linkGroup( panetype ) :
 
 
 
-
 #def parm_pane () :
 #    pass
 
 
 def parmnode () :
-    parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
-    parmnode = parm_pane.currentNode()
+    panetab_under_cursor = hou.ui.curDesktop().paneTabUnderCursor()
+    try:
+        panetab_name = panetab_under_cursor.name()
+    except:
+        panetab_name = "probably_stowbar"
+
+    if panetab_name == "pt_network_2" or panetab_name == "pt_parmeditor_2" :
+        parm_pane = hou.ui.curDesktop().findPaneTab("pt_parmeditor_2")
+        parmnode  = parm_pane.currentNode()
+    else :
+        parm_pane = hou.ui.curDesktop().findPaneTab("pt_parmeditor_1")
+        parmnode  = parm_pane.currentNode()
+
     # print (parmnode)
     return parmnode
 
