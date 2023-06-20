@@ -99,8 +99,8 @@ wf_timeline.toggle_realtime()]]></script>
 
   <tool name="sim_cache_reset_nosetframe" label="sim_cache_reset_nosetframe" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_timeline
-#import imp
-#imp.reload(wf_timeline)
+import imp
+imp.reload(wf_timeline)
 wf_timeline.sim_cache_reset(set_frame=False)]]></script>
   </tool>
 </shelfDocument>

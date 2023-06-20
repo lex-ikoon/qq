@@ -10,78 +10,71 @@ import wf_selection
 ###     resim     ###
 #####################
 
+
+def sim_solver_valid (node) :
+
+    if "solver" in node.type().name() or "dopnet" in node.type().name() and node.isInsideLockedHDA() == False :
+        return True
+    else:
+        return False
+
+
+
+def sim_solver () :
+
+    # workaround because houdini feature (ID# 122908)
+
+    # ----------------------------
+    # for display & inputs
+    try:
+        display = wf_selection.parmnode_obj().displayNode()
+        for i in range(64):
+            if sim_solver_valid(display) :
+                return display
+            else :
+                display = display.input(0)
+    except:
+        pass
+
+
+    # ----------------------------
+    # for selected & parents 
+    try:
+        selected = wf_selection.parmnode()
+        for i in range(8):
+            if sim_solver_valid(selected) :
+                return selected
+            else :
+                selected = selected.parent()
+    except:
+        pass
+
+    # ----------------------------
+    # dopnet
+    if hou.currentDopNet() != None :
+        return hou.currentDopNet()
+
+
+
+
 # return the current dopnet node
 def sim_dopnet () :
-    dopnet = hou.currentDopNet()
-
-    if dopnet == None :
-        # try to find SOPsolver
-        # temporary workaround because bug (ID# 122908)
-        # ---------------------------------------------------------------------------------------------
-        container = wf_selection.container()
-        peer_nodes = container.children()
-
-        # # loop simple
-
-        for peer_node in peer_nodes:
-            if "solver" in peer_node.type().name():
-                dopnet         = peer_node
-                # cache_on       = dopnet.parm("explicitcache").eval()
-                # cache_name     = dopnet.parm("explicitcachename").rawValue()
-                # cache_substeps = dopnet.parm("substep").eval()
-                # cache_start    = dopnet.parm("startframe").eval()
-                # cache_spacing  = dopnet.parm("explicitcachecheckpointspacing").eval()
-
-        
-        for peer_node in peer_nodes:
-            if peer_node.type().name() == "solver" :
-                dopnet         = peer_node.node("d")
-                cache_on       = dopnet.parm("explicitcache").eval()
-                cache_name     = dopnet.parm("explicitcachename").rawValue()
-                cache_substeps = dopnet.parm("substep").eval()
-                cache_start    = dopnet.parm("startframe").eval()
-                cache_spacing  = dopnet.parm("explicitcachecheckpointspacing").eval()
-
-
-        # # loop check color
-        for peer_node in peer_nodes:
-            if peer_node.type().name() == "solver" and peer_node.color() == hou.Color(0, 0, 0):
-                dopnet         = peer_node.node("d")
-                cache_on       = dopnet.parm("explicitcache").eval()
-                cache_name     = dopnet.parm("explicitcachename").rawValue()
-                cache_substeps = dopnet.parm("substep").eval()
-                cache_start    = dopnet.parm("startframe").eval()
-                cache_spacing  = dopnet.parm("explicitcachecheckpointspacing").eval()
-
-
-        # # loop check flag
-        for peer_node in peer_nodes:
-            if peer_node.type().name() == "solver" and peer_node.isGenericFlagSet(hou.nodeFlag.Display) == True:
-                dopnet         = peer_node.node("d")
-                cache_on       = dopnet.parm("explicitcache").eval()
-                cache_name     = dopnet.parm("explicitcachename").rawValue()
-                cache_substeps = dopnet.parm("substep").eval()
-                cache_start    = dopnet.parm("startframe").eval()
-                cache_spacing  = dopnet.parm("explicitcachecheckpointspacing").eval()
-
-        # ---------------------------------------------------------------------------------------------
-
+    dopnet         = sim_solver()
+    try:
+        cache_on       = dopnet.parm("explicitcache").eval()
+        cache_name     = dopnet.parm("explicitcachename").rawValue()
+        cache_substeps = dopnet.parm("substep").eval()
+        cache_start    = dopnet.parm("startframe").eval()
+        cache_spacing  = dopnet.parm("explicitcachecheckpointspacing").eval()
+    except:
         cache_on       = 0
         cache_name     = None
         cache_substeps = 1
         cache_start    = 1
         cache_spacing  = 1
 
-    else :
-        cache_on       = dopnet.parm("explicitcache").eval()
-        cache_name     = dopnet.parm("explicitcachename").rawValue()
-        cache_substeps = dopnet.parm("substep").eval()
-        cache_start    = dopnet.parm("startframe").eval()
-        cache_spacing  = dopnet.parm("explicitcachecheckpointspacing").eval()
-
-
-
     return [dopnet, cache_on, cache_name, cache_substeps, cache_start, cache_spacing]
+
 
 
 # list of all $SF that may be cached with current dopnet settings
@@ -132,7 +125,8 @@ def sim_cache_delete_playrange () :
             try :
                 os.remove(file_path)
             except :
-                frame_was_not_cached = 1
+                # frame was not cached
+                pass
 
 
 # hotkey: F5
@@ -147,11 +141,22 @@ def sim_cache_reset (set_frame) :
         if hou.ui.displayMessage(message, buttons=("OK", "Cancel")) == 0:
             sim_cache_delete_playrange()
 
-    if dopnet:
+    try:
         dopnet.parm("resimulate").pressButton()
+    except:
+        pass
+
+    try:
+        dopnet.parm("resetsim").pressButton()
+    except:
+        pass
+
+    wf_selection.parmnode().cook(force=True)
+    hou.setCurrentDopNet(dopnet)
 
     if set_frame :
         hou.setFrame(hou.playbar.playbackRange()[0]) 
+
 
 
 
@@ -164,6 +169,7 @@ def playrange_to_precedent () :
     frame_start = list_f[index]
     frame_end   = hou.playbar.playbackRange()[1]
     hou.playbar.setPlaybackRange( frame_start, frame_end )
+
 
 
 # hotkeys: . ,
@@ -204,8 +210,10 @@ def play_backward () :
     #    hou.playbar.reverse()
 
 
+
 def play_forward () :
     hou.playbar.play()
+
 
 
 def play_scrub (multiplier) :
@@ -252,9 +260,12 @@ def play_scrub (multiplier) :
     hou.putenv("time", str(time_now))
 
 
+
 def toggle_realtime () :
     hou.playbar.setRealTime(not hou.playbar.isRealTime())
     hou.playbar.setRealTimeSkipping(hou.playbar.isRealTime())
+
+
 
 
 def toggle_manualupdate () :
@@ -265,6 +276,7 @@ def toggle_manualupdate () :
         hou.setUpdateMode(hou.updateMode.AutoUpdate)
 
 
+
 def playrange_from_job () :
 
 
@@ -273,6 +285,8 @@ def playrange_from_job () :
         cont_end   = node.parm("job_rangey").eval();
         hou.playbar.setPlaybackRange( cont_start, cont_end )
     
+
+    # ----------------------------
     # selected has job_range
     try:
         node_range ( hou.selectedNodes()[0] )
@@ -280,6 +294,8 @@ def playrange_from_job () :
     except:
         pass 
 
+
+    # ----------------------------
     # parent has job_range
     try:
         node_range ( hou.selectedNodes()[0].parent() )
@@ -288,6 +304,7 @@ def playrange_from_job () :
         pass 
 
 
+    # ----------------------------
     # parent.parent has job_range
     try:
         node_range ( hou.selectedNodes()[0].parent().parent() )

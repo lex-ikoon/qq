@@ -91,8 +91,20 @@ def parmnode () :
     return parmnode
 
 
+def parmnode_obj () :
+    parmnode = parmnode ()
+    parent   = parmnode.parent()
+
+    try:
+        for i in range(8):
+            if parent.type().category() == hou.objNodeTypeCategory() :
+                return parent
+            else :
+                parent = parent.parent()
+    except:
+        return parmnode
+
+
 def container () :
-    parm_pane = hou.ui.curDesktop().paneTabOfType(hou.paneTabType.Parm)
-    parmnode = parm_pane.currentNode()
-    container = parmnode.parent()
+    container = parmnode().parent()
     return container
