@@ -49,6 +49,20 @@ def sim_solver () :
     except:
         pass
 
+
+    # ----------------------------
+    # for selected peers
+    try:
+        selected = wf_selection.parmnode()
+
+        for peer in selected.parent().children():
+            if sim_solver_valid(peer) :
+                return peer
+    except:
+        pass
+
+
+
     # ----------------------------
     # dopnet
     if hou.currentDopNet() != None :
@@ -151,6 +165,7 @@ def sim_cache_reset (set_frame) :
     except:
         pass
 
+    # print(dopnet)
     wf_selection.parmnode().cook(force=True)
     hou.setCurrentDopNet(dopnet)
 
