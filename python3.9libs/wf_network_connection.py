@@ -110,9 +110,11 @@ def create_by_y () :
             node_this.setInput(0, node_prev)
 
 def toggle_dependencies () :
-    parm_pane = wf_selection.pane_linkGroup( hou.paneTabType.NetworkEditor )
+    network_pane = wf_selection.pane_linkGroup( hou.paneTabType.NetworkEditor )
     view_dependencies = hou.getenv("view_dependencies", "0")
     if view_dependencies == "0": view_dependencies = "1"
     else:                        view_dependencies = "0"
     hou.putenv("view_dependencies", view_dependencies)
-    parm_pane.setPref('showdep',str(view_dependencies))
+    network_pane.setPref('showdep',str(view_dependencies))
+    network_pane.setPref('showspareinputdep',str(view_dependencies))
+    # print(network_pane.getPrefs())

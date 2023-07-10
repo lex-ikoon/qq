@@ -589,8 +589,15 @@ def names_counts_in (node, ptg) :
     return names, counts
 
 def folders_trygo (node, name, count, dir) :
-    went = 0
-    parm = node.parm(name+"1")
+    if node.type().name() == "pyrosolver" :
+        pass
+        # parm = node.parm("folder11")
+        # parm.set(35)
+        # dir = 0
+        # print(parm.eval())
+    # else:
+    parm   = node.parm(name+"1")
+    went   = 0
     actual = parm.eval()
     if dir > 0 :
         if actual < count-1:
@@ -670,7 +677,6 @@ def folders_tab_go (dir) :
             A_actual = node.parm(A_name+"1").eval()
             A_count = A_counts[iA]
             pt_name = A_name 
-            
             if A_actual > 0:
                 pt_name += "_" + str(A_actual)
                 
@@ -697,6 +703,7 @@ def folders_tab_go (dir) :
 
 
             if B_went == 0 and C_went == 0:
+                # print(node, A_name, A_count , dir)
                 A_went = folders_trygo(node, A_name, A_count , dir)
 
         ########  tabs  ########

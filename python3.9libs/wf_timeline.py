@@ -22,6 +22,14 @@ def sim_solver_valid (node) :
 
 def sim_solver () :
 
+
+    # ----------------------------
+    # dopnet
+    if hou.currentDopNet() != None :
+        return hou.currentDopNet()
+
+
+
     # workaround because houdini feature (ID# 122908)
 
     # ----------------------------
@@ -61,12 +69,6 @@ def sim_solver () :
     except:
         pass
 
-
-
-    # ----------------------------
-    # dopnet
-    if hou.currentDopNet() != None :
-        return hou.currentDopNet()
 
 
 
@@ -166,8 +168,8 @@ def sim_cache_reset (set_frame) :
         pass
 
     # print(dopnet)
-    wf_selection.parmnode().cook(force=True)
     hou.setCurrentDopNet(dopnet)
+    wf_selection.parmnode().cook(force=True)
 
     if set_frame :
         hou.setFrame(hou.playbar.playbackRange()[0]) 

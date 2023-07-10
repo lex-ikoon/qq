@@ -35,7 +35,7 @@ wf_network_utils.recook_container()]]></script>
 
   <tool name="wf_network_utils_create_object_merge" label="qq object merge" icon="PLASMA_App">
     <toolMenuContext name="network">
-      <contextNetType>OBJ</contextNetType>
+      <contextNetType>SOP</contextNetType>
       <contextNetType>LOP</contextNetType>
     </toolMenuContext>
     <toolSubmenu>_workflow</toolSubmenu>
