@@ -9,8 +9,6 @@
         <memberTool name="qw // dim falloff radial"/>
         <memberTool name="qw // dim falloff normalize"/>
         <memberTool name="qw // dim falloff vdb"/>
-        <memberTool name="qw // normalize 1) setdetailattrib"/>
-        <memberTool name="qw // normalize 2) fit"/>
         <memberTool name="qw // falloff bounding vector"/>
         <memberTool name="qw // distort bias"/>
         <memberTool name="qw // distort noise"/>
@@ -126,6 +124,7 @@
         <memberTool name="qw // polysplit xyzdist locations"/>
         <memberTool name="qw // angle between edges, detect corners"/>
         <memberTool name="qw // angle between vectors"/>
+        <memberTool name="qw // eps import curves"/>
         <memberTool name="qw // extract axes from quaternion"/>
         <memberTool name="qw // retime sequence loop ping "/>
         <memberTool name="qw // curve - slideframe up"/>
@@ -134,6 +133,7 @@
         <memberTool name="qw // vector randomize direction and length"/>
         <memberTool name="qw // geo Cd line u"/>
         <memberTool name="qw // geo Cd rbx"/>
+        <memberTool name="qw // geo Cd nage"/>
         <memberTool name="qw // geo carve point"/>
         <memberTool name="qw // geo carve point scattered"/>
         <memberTool name="qw // geo carve line random"/>
@@ -170,751 +170,751 @@ wf_network_ui_parse_tab.tab_vex_paste(3)]]></script>
 wf_network_ui_parse_tab.tab_vex_paste(4)]]></script>
   </tool>
 
-  <tool name="qw // normalize 1) setdetailattrib" label="qw // normalize 1) setdetailattrib" icon="PLASMA_App">
+  <tool name="qw // falloff bounding vector" label="qw // falloff bounding vector" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(5)]]></script>
   </tool>
 
-  <tool name="qw // normalize 2) fit" label="qw // normalize 2) fit" icon="PLASMA_App">
+  <tool name="qw // distort bias" label="qw // distort bias" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(6)]]></script>
   </tool>
 
-  <tool name="qw // falloff bounding vector" label="qw // falloff bounding vector" icon="PLASMA_App">
+  <tool name="qw // distort noise" label="qw // distort noise" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(7)]]></script>
   </tool>
 
-  <tool name="qw // distort bias" label="qw // distort bias" icon="PLASMA_App">
+  <tool name="qw // distort shrink random" label="qw // distort shrink random" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(8)]]></script>
   </tool>
 
-  <tool name="qw // distort noise" label="qw // distort noise" icon="PLASMA_App">
+  <tool name="qw // distort segment" label="qw // distort segment" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(9)]]></script>
   </tool>
 
-  <tool name="qw // distort shrink random" label="qw // distort shrink random" icon="PLASMA_App">
+  <tool name="qw // fill to coord" label="qw // fill to coord" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(10)]]></script>
   </tool>
 
-  <tool name="qw // distort segment" label="qw // distort segment" icon="PLASMA_App">
+  <tool name="qw // fit01 vector to symmetry 10" label="qw // fit01 vector to symmetry 10" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(11)]]></script>
   </tool>
 
-  <tool name="qw // fill to coord" label="qw // fill to coord" icon="PLASMA_App">
+  <tool name="qw // fit01 float to symmetry 10" label="qw // fit01 float to symmetry 10" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(12)]]></script>
   </tool>
 
-  <tool name="qw // fit01 vector to symmetry 10" label="qw // fit01 vector to symmetry 10" icon="PLASMA_App">
+  <tool name="qw // fit01 float to min max 0-1" label="qw // fit01 float to min max 0-1" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(13)]]></script>
   </tool>
 
-  <tool name="qw // fit01 float to symmetry 10" label="qw // fit01 float to symmetry 10" icon="PLASMA_App">
+  <tool name="qw // fit01 float to min max 10" label="qw // fit01 float to min max 10" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(14)]]></script>
   </tool>
 
-  <tool name="qw // fit01 float to min max 0-1" label="qw // fit01 float to min max 0-1" icon="PLASMA_App">
+  <tool name="qw // fit01 float to min max 10" label="qw // fit01 float to min max 10" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(15)]]></script>
   </tool>
 
-  <tool name="qw // fit01 float to min max 10" label="qw // fit01 float to min max 10" icon="PLASMA_App">
+  <tool name="qw // fit01 vector to separate 360" label="qw // fit01 vector to separate 360" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(16)]]></script>
   </tool>
 
-  <tool name="qw // fit01 float to min max 10" label="qw // fit01 float to min max 10" icon="PLASMA_App">
+  <tool name="qw // fit01 vector to separate 10" label="qw // fit01 vector to separate 10" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(17)]]></script>
   </tool>
 
-  <tool name="qw // fit01 vector to separate 360" label="qw // fit01 vector to separate 360" icon="PLASMA_App">
+  <tool name="qw // vector value 0 in 0 to 10" label="qw // vector value 0 in 0 to 10" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(18)]]></script>
   </tool>
 
-  <tool name="qw // fit01 vector to separate 10" label="qw // fit01 vector to separate 10" icon="PLASMA_App">
+  <tool name="qw // vector value 0 in -1 to 1" label="qw // vector value 0 in -1 to 1" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(19)]]></script>
   </tool>
 
-  <tool name="qw // vector value 0 in 0 to 10" label="qw // vector value 0 in 0 to 10" icon="PLASMA_App">
+  <tool name="qw // fit float" label="qw // fit float" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(20)]]></script>
   </tool>
 
-  <tool name="qw // vector value 0 in -1 to 1" label="qw // vector value 0 in -1 to 1" icon="PLASMA_App">
+  <tool name="qw // fit vector" label="qw // fit vector" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(21)]]></script>
   </tool>
 
-  <tool name="qw // fit float" label="qw // fit float" icon="PLASMA_App">
+  <tool name="qw // material animations" label="qw // material animations" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(22)]]></script>
   </tool>
 
-  <tool name="qw // fit vector" label="qw // fit vector" icon="PLASMA_App">
+  <tool name="qw // material photos" label="qw // material photos" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(23)]]></script>
   </tool>
 
-  <tool name="qw // material animations" label="qw // material animations" icon="PLASMA_App">
+  <tool name="qw // material override" label="qw // material override" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(24)]]></script>
   </tool>
 
-  <tool name="qw // material photos" label="qw // material photos" icon="PLASMA_App">
+  <tool name="qw // matrix - xform - rotate scale translate" label="qw // matrix - xform - rotate scale translate" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(25)]]></script>
   </tool>
 
-  <tool name="qw // material override" label="qw // material override" icon="PLASMA_App">
+  <tool name="qw // matrix - xform - rotate" label="qw // matrix - xform - rotate" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(26)]]></script>
   </tool>
 
-  <tool name="qw // matrix - xform - rotate scale translate" label="qw // matrix - xform - rotate scale translate" icon="PLASMA_App">
+  <tool name="qw // matrix - xform - scale" label="qw // matrix - xform - scale" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(27)]]></script>
   </tool>
 
-  <tool name="qw // matrix - xform - rotate" label="qw // matrix - xform - rotate" icon="PLASMA_App">
+  <tool name="qw // noise vector static" label="qw // noise vector static" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(28)]]></script>
   </tool>
 
-  <tool name="qw // matrix - xform - scale" label="qw // matrix - xform - scale" icon="PLASMA_App">
+  <tool name="qw // noise vector animated" label="qw // noise vector animated" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(29)]]></script>
   </tool>
 
-  <tool name="qw // noise vector static" label="qw // noise vector static" icon="PLASMA_App">
+  <tool name="qw // noise vector curl" label="qw // noise vector curl" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(30)]]></script>
   </tool>
 
-  <tool name="qw // noise vector animated" label="qw // noise vector animated" icon="PLASMA_App">
+  <tool name="qw // noise float static" label="qw // noise float static" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(31)]]></script>
   </tool>
 
-  <tool name="qw // noise vector curl" label="qw // noise vector curl" icon="PLASMA_App">
+  <tool name="qw // noise vector from uv" label="qw // noise vector from uv" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(32)]]></script>
   </tool>
 
-  <tool name="qw // noise float static" label="qw // noise float static" icon="PLASMA_App">
+  <tool name="qw // range to clip - dim" label="qw // range to clip - dim" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(33)]]></script>
   </tool>
 
-  <tool name="qw // noise vector from uv" label="qw // noise vector from uv" icon="PLASMA_App">
+  <tool name="qw // range to clip - dim random" label="qw // range to clip - dim random" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(34)]]></script>
   </tool>
 
-  <tool name="qw // range to clip - dim" label="qw // range to clip - dim" icon="PLASMA_App">
+  <tool name="qw // range to clip - nurbs corners" label="qw // range to clip - nurbs corners" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(35)]]></script>
   </tool>
 
-  <tool name="qw // range to clip - dim random" label="qw // range to clip - dim random" icon="PLASMA_App">
+  <tool name="qw // range to carve - nurbs along UV" label="qw // range to carve - nurbs along UV" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(36)]]></script>
   </tool>
 
-  <tool name="qw // range to clip - nurbs corners" label="qw // range to clip - nurbs corners" icon="PLASMA_App">
+  <tool name="qw // xe rest to P" label="qw // xe rest to P" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(37)]]></script>
   </tool>
 
-  <tool name="qw // range to carve - nurbs along UV" label="qw // range to carve - nurbs along UV" icon="PLASMA_App">
+  <tool name="qw // dim - sin repeater" label="qw // dim - sin repeater" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(38)]]></script>
   </tool>
 
-  <tool name="qw // xe rest to P" label="qw // xe rest to P" icon="PLASMA_App">
+  <tool name="qw // time snap one value" label="qw // time snap one value" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(39)]]></script>
   </tool>
 
-  <tool name="qw // dim - sin repeater" label="qw // dim - sin repeater" icon="PLASMA_App">
+  <tool name="qw // time snap two values" label="qw // time snap two values" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(40)]]></script>
   </tool>
 
-  <tool name="qw // time snap one value" label="qw // time snap one value" icon="PLASMA_App">
+  <tool name="qw // array - append " label="qw // array - append " icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(41)]]></script>
   </tool>
 
-  <tool name="qw // time snap two values" label="qw // time snap two values" icon="PLASMA_App">
+  <tool name="qw // array - argsort reorder" label="qw // array - argsort reorder" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(42)]]></script>
   </tool>
 
-  <tool name="qw // array - append " label="qw // array - append " icon="PLASMA_App">
+  <tool name="qw // array - resize" label="qw // array - resize" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(43)]]></script>
   </tool>
 
-  <tool name="qw // array - argsort reorder" label="qw // array - argsort reorder" icon="PLASMA_App">
+  <tool name="qw // setattribtypeinfo" label="qw // setattribtypeinfo" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(44)]]></script>
   </tool>
 
-  <tool name="qw // array - resize" label="qw // array - resize" icon="PLASMA_App">
+  <tool name="qw // findattribval" label="qw // findattribval" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(45)]]></script>
   </tool>
 
-  <tool name="qw // setattribtypeinfo" label="qw // setattribtypeinfo" icon="PLASMA_App">
+  <tool name="qw // idtopoint idtoprim" label="qw // idtopoint idtoprim" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(46)]]></script>
   </tool>
 
-  <tool name="qw // findattribval" label="qw // findattribval" icon="PLASMA_App">
+  <tool name="qw // nametopoint nametoprim" label="qw // nametopoint nametoprim" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(47)]]></script>
   </tool>
 
-  <tool name="qw // idtopoint idtoprim" label="qw // idtopoint idtoprim" icon="PLASMA_App">
+  <tool name="qw // uniqueval nuniqueval" label="qw // uniqueval nuniqueval" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(48)]]></script>
   </tool>
 
-  <tool name="qw // nametopoint nametoprim" label="qw // nametopoint nametoprim" icon="PLASMA_App">
+  <tool name="qw // primuv - value at uv intrinsic" label="qw // primuv - value at uv intrinsic" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(49)]]></script>
   </tool>
 
-  <tool name="qw // uniqueval nuniqueval" label="qw // uniqueval nuniqueval" icon="PLASMA_App">
+  <tool name="qw // uvsample - value at uv attribute" label="qw // uvsample - value at uv attribute" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(50)]]></script>
   </tool>
 
-  <tool name="qw // primuv - value at uv intrinsic" label="qw // primuv - value at uv intrinsic" icon="PLASMA_App">
+  <tool name="qw // geo - nearpoints" label="qw // geo - nearpoints" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(51)]]></script>
   </tool>
 
-  <tool name="qw // uvsample - value at uv attribute" label="qw // uvsample - value at uv attribute" icon="PLASMA_App">
+  <tool name="qw // geo - nearpoint" label="qw // geo - nearpoint" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(52)]]></script>
   </tool>
 
-  <tool name="qw // geo - nearpoints" label="qw // geo - nearpoints" icon="PLASMA_App">
+  <tool name="qw // geo - intersect" label="qw // geo - intersect" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(53)]]></script>
   </tool>
 
-  <tool name="qw // geo - nearpoint" label="qw // geo - nearpoint" icon="PLASMA_App">
+  <tool name="qw // geo - intersect_all" label="qw // geo - intersect_all" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(54)]]></script>
   </tool>
 
-  <tool name="qw // geo - intersect" label="qw // geo - intersect" icon="PLASMA_App">
+  <tool name="qw // geo - neighbours - connected to point" label="qw // geo - neighbours - connected to point" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(55)]]></script>
   </tool>
 
-  <tool name="qw // geo - intersect_all" label="qw // geo - intersect_all" icon="PLASMA_App">
+  <tool name="qw // geo - minpos - position on surface" label="qw // geo - minpos - position on surface" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(56)]]></script>
   </tool>
 
-  <tool name="qw // geo - neighbours - connected to point" label="qw // geo - neighbours - connected to point" icon="PLASMA_App">
+  <tool name="qw // smooth" label="qw // smooth" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(57)]]></script>
   </tool>
 
-  <tool name="qw // geo - minpos - position on surface" label="qw // geo - minpos - position on surface" icon="PLASMA_App">
+  <tool name="qw // smooth rolloff" label="qw // smooth rolloff" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(58)]]></script>
   </tool>
 
-  <tool name="qw // smooth" label="qw // smooth" icon="PLASMA_App">
+  <tool name="qw // lerp float" label="qw // lerp float" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(59)]]></script>
   </tool>
 
-  <tool name="qw // smooth rolloff" label="qw // smooth rolloff" icon="PLASMA_App">
+  <tool name="qw // lerp vector" label="qw // lerp vector" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(60)]]></script>
   </tool>
 
-  <tool name="qw // lerp float" label="qw // lerp float" icon="PLASMA_App">
+  <tool name="qw // intrinsics - set matrix3" label="qw // intrinsics - set matrix3" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(61)]]></script>
   </tool>
 
-  <tool name="qw // lerp vector" label="qw // lerp vector" icon="PLASMA_App">
+  <tool name="qw // intrinsics - set packed matrix4" label="qw // intrinsics - set packed matrix4" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(62)]]></script>
   </tool>
 
-  <tool name="qw // intrinsics - set matrix3" label="qw // intrinsics - set matrix3" icon="PLASMA_App">
+  <tool name="qw // intrinsics - packed disk sequence" label="qw // intrinsics - packed disk sequence" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(63)]]></script>
   </tool>
 
-  <tool name="qw // intrinsics - set packed matrix4" label="qw // intrinsics - set packed matrix4" icon="PLASMA_App">
+  <tool name="qw // intrinsics - bounds" label="qw // intrinsics - bounds" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(64)]]></script>
   </tool>
 
-  <tool name="qw // intrinsics - packed disk sequence" label="qw // intrinsics - packed disk sequence" icon="PLASMA_App">
+  <tool name="qw // for" label="qw // for" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(65)]]></script>
   </tool>
 
-  <tool name="qw // intrinsics - bounds" label="qw // intrinsics - bounds" icon="PLASMA_App">
+  <tool name="qw // for each" label="qw // for each" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(66)]]></script>
   </tool>
 
-  <tool name="qw // for" label="qw // for" icon="PLASMA_App">
+  <tool name="qw // for each enumerated" label="qw // for each enumerated" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(67)]]></script>
   </tool>
 
-  <tool name="qw // for each" label="qw // for each" icon="PLASMA_App">
+  <tool name="qw // sin" label="qw // sin" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(68)]]></script>
   </tool>
 
-  <tool name="qw // for each enumerated" label="qw // for each enumerated" icon="PLASMA_App">
+  <tool name="qw // sin spikes" label="qw // sin spikes" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(69)]]></script>
   </tool>
 
-  <tool name="qw // sin" label="qw // sin" icon="PLASMA_App">
+  <tool name="qw // planepointdistance" label="qw // planepointdistance" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(70)]]></script>
   </tool>
 
-  <tool name="qw // sin spikes" label="qw // sin spikes" icon="PLASMA_App">
+  <tool name="qw // surfacedist - along the surface/edge" label="qw // surfacedist - along the surface/edge" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(71)]]></script>
   </tool>
 
-  <tool name="qw // planepointdistance" label="qw // planepointdistance" icon="PLASMA_App">
+  <tool name="qw // uvdist - dart throwing" label="qw // uvdist - dart throwing" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(72)]]></script>
   </tool>
 
-  <tool name="qw // surfacedist - along the surface/edge" label="qw // surfacedist - along the surface/edge" icon="PLASMA_App">
+  <tool name="qw // xyzdist - on surface" label="qw // xyzdist - on surface" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(73)]]></script>
   </tool>
 
-  <tool name="qw // uvdist - dart throwing" label="qw // uvdist - dart throwing" icon="PLASMA_App">
+  <tool name="qw // pc - pciterate" label="qw // pc - pciterate" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(74)]]></script>
   </tool>
 
-  <tool name="qw // xyzdist - on surface" label="qw // xyzdist - on surface" icon="PLASMA_App">
+  <tool name="qw // pc - pcfilter" label="qw // pc - pcfilter" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(75)]]></script>
   </tool>
 
-  <tool name="qw // pc - pciterate" label="qw // pc - pciterate" icon="PLASMA_App">
+  <tool name="qw // pc - for loop farthest" label="qw // pc - for loop farthest" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(76)]]></script>
   </tool>
 
-  <tool name="qw // pc - pcfilter" label="qw // pc - pcfilter" icon="PLASMA_App">
+  <tool name="qw // pc - pcfarthest point distance" label="qw // pc - pcfarthest point distance" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(77)]]></script>
   </tool>
 
-  <tool name="qw // pc - for loop farthest" label="qw // pc - for loop farthest" icon="PLASMA_App">
+  <tool name="qw // pc - pcfind_radius attributetransfer" label="qw // pc - pcfind_radius attributetransfer" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(78)]]></script>
   </tool>
 
-  <tool name="qw // pc - pcfarthest point distance" label="qw // pc - pcfarthest point distance" icon="PLASMA_App">
+  <tool name="qw // strings - printf" label="qw // strings - printf" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(79)]]></script>
   </tool>
 
-  <tool name="qw // pc - pcfind_radius attributetransfer" label="qw // pc - pcfind_radius attributetransfer" icon="PLASMA_App">
+  <tool name="qw // pointprims - point >> array of primnums" label="qw // pointprims - point >> array of primnums" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(80)]]></script>
   </tool>
 
-  <tool name="qw // strings - printf" label="qw // strings - printf" icon="PLASMA_App">
+  <tool name="qw // pointvertex - point >> linvert" label="qw // pointvertex - point >> linvert" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(81)]]></script>
   </tool>
 
-  <tool name="qw // pointprims - point >> array of primnums" label="qw // pointprims - point >> array of primnums" icon="PLASMA_App">
+  <tool name="qw // pointvertices - point >> array of linvert" label="qw // pointvertices - point >> array of linvert" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(82)]]></script>
   </tool>
 
-  <tool name="qw // pointvertex - point >> linvert" label="qw // pointvertex - point >> linvert" icon="PLASMA_App">
+  <tool name="qw // primpoint - primnum + vertex >> point" label="qw // primpoint - primnum + vertex >> point" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(83)]]></script>
   </tool>
 
-  <tool name="qw // pointvertices - point >> array of linvert" label="qw // pointvertices - point >> array of linvert" icon="PLASMA_App">
+  <tool name="qw // primpoints - primnum >> array of points" label="qw // primpoints - primnum >> array of points" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(84)]]></script>
   </tool>
 
-  <tool name="qw // primpoint - primnum + vertex >> point" label="qw // primpoint - primnum + vertex >> point" icon="PLASMA_App">
+  <tool name="qw // primvertex - primnum + vertex >> linvert" label="qw // primvertex - primnum + vertex >> linvert" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(85)]]></script>
   </tool>
 
-  <tool name="qw // primpoints - primnum >> array of points" label="qw // primpoints - primnum >> array of points" icon="PLASMA_App">
+  <tool name="qw // primvertexcount - primnum >> vertex count" label="qw // primvertexcount - primnum >> vertex count" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(86)]]></script>
   </tool>
 
-  <tool name="qw // primvertex - primnum + vertex >> linvert" label="qw // primvertex - primnum + vertex >> linvert" icon="PLASMA_App">
+  <tool name="qw // primvertices - primnum >> array of vertices" label="qw // primvertices - primnum >> array of vertices" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(87)]]></script>
   </tool>
 
-  <tool name="qw // primvertexcount - primnum >> vertex count" label="qw // primvertexcount - primnum >> vertex count" icon="PLASMA_App">
+  <tool name="qw // vertexindex - primnum + vertex >> linvert" label="qw // vertexindex - primnum + vertex >> linvert" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(88)]]></script>
   </tool>
 
-  <tool name="qw // primvertices - primnum >> array of vertices" label="qw // primvertices - primnum >> array of vertices" icon="PLASMA_App">
+  <tool name="qw // vertexnext - linvert >> next linvert" label="qw // vertexnext - linvert >> next linvert" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(89)]]></script>
   </tool>
 
-  <tool name="qw // vertexindex - primnum + vertex >> linvert" label="qw // vertexindex - primnum + vertex >> linvert" icon="PLASMA_App">
+  <tool name="qw // vertexpoint - linvert >> point" label="qw // vertexpoint - linvert >> point" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(90)]]></script>
   </tool>
 
-  <tool name="qw // vertexnext - linvert >> next linvert" label="qw // vertexnext - linvert >> next linvert" icon="PLASMA_App">
+  <tool name="qw // vertexprev - linvert >> prev linvert" label="qw // vertexprev - linvert >> prev linvert" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(91)]]></script>
   </tool>
 
-  <tool name="qw // vertexpoint - linvert >> point" label="qw // vertexpoint - linvert >> point" icon="PLASMA_App">
+  <tool name="qw // vertexprim - linvert >> primnum + index 5:3" label="qw // vertexprim - linvert >> primnum + index 5:3" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(92)]]></script>
   </tool>
 
-  <tool name="qw // vertexprev - linvert >> prev linvert" label="qw // vertexprev - linvert >> prev linvert" icon="PLASMA_App">
+  <tool name="qw // polyneighbours - primnum >> neighbours" label="qw // polyneighbours - primnum >> neighbours" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(93)]]></script>
   </tool>
 
-  <tool name="qw // vertexprim - linvert >> primnum + index 5:3" label="qw // vertexprim - linvert >> primnum + index 5:3" icon="PLASMA_App">
+  <tool name="qw // sample direction cone" label="qw // sample direction cone" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(94)]]></script>
   </tool>
 
-  <tool name="qw // polyneighbours - primnum >> neighbours" label="qw // polyneighbours - primnum >> neighbours" icon="PLASMA_App">
+  <tool name="qw // sample orientation cone" label="qw // sample orientation cone" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(95)]]></script>
   </tool>
 
-  <tool name="qw // sample direction cone" label="qw // sample direction cone" icon="PLASMA_App">
+  <tool name="qw // dihedral - rotate a >> b - matrix3" label="qw // dihedral - rotate a >> b - matrix3" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(96)]]></script>
   </tool>
 
-  <tool name="qw // sample orientation cone" label="qw // sample orientation cone" icon="PLASMA_App">
+  <tool name="qw // dihedral - rotate a >> b - quaternion" label="qw // dihedral - rotate a >> b - quaternion" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(97)]]></script>
   </tool>
 
-  <tool name="qw // dihedral - rotate a >> b - matrix3" label="qw // dihedral - rotate a >> b - matrix3" icon="PLASMA_App">
+  <tool name="qw // quaternion - matrix3 >> quaternion" label="qw // quaternion - matrix3 >> quaternion" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(98)]]></script>
   </tool>
 
-  <tool name="qw // dihedral - rotate a >> b - quaternion" label="qw // dihedral - rotate a >> b - quaternion" icon="PLASMA_App">
+  <tool name="qw // NDC - camera space" label="qw // NDC - camera space" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(99)]]></script>
   </tool>
 
-  <tool name="qw // quaternion - matrix3 >> quaternion" label="qw // quaternion - matrix3 >> quaternion" icon="PLASMA_App">
+  <tool name="qw // rotate - matrix around axis" label="qw // rotate - matrix around axis" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(100)]]></script>
   </tool>
 
-  <tool name="qw // NDC - camera space" label="qw // NDC - camera space" icon="PLASMA_App">
+  <tool name="qw // lookat" label="qw // lookat" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(101)]]></script>
   </tool>
 
-  <tool name="qw // rotate - matrix around axis" label="qw // rotate - matrix around axis" icon="PLASMA_App">
+  <tool name="qw // matrix instance" label="qw // matrix instance" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(102)]]></script>
   </tool>
 
-  <tool name="qw // lookat" label="qw // lookat" icon="PLASMA_App">
+  <tool name="qw // qrotate - rotate vector by quaternion" label="qw // qrotate - rotate vector by quaternion" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(103)]]></script>
   </tool>
 
-  <tool name="qw // matrix instance" label="qw // matrix instance" icon="PLASMA_App">
+  <tool name="qw // cracktransform - quaternion >> euler" label="qw // cracktransform - quaternion >> euler" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(104)]]></script>
   </tool>
 
-  <tool name="qw // qrotate - rotate vector by quaternion" label="qw // qrotate - rotate vector by quaternion" icon="PLASMA_App">
+  <tool name="qw // maketransform - N + up >> quaternion" label="qw // maketransform - N + up >> quaternion" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(105)]]></script>
   </tool>
 
-  <tool name="qw // cracktransform - quaternion >> euler" label="qw // cracktransform - quaternion >> euler" icon="PLASMA_App">
+  <tool name="qw // makebasis - N + up >> orthonormal" label="qw // makebasis - N + up >> orthonormal" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(106)]]></script>
   </tool>
 
-  <tool name="qw // maketransform - N + up >> quaternion" label="qw // maketransform - N + up >> quaternion" icon="PLASMA_App">
+  <tool name="qw // qmultiply - rotate quaternion by quaternion" label="qw // qmultiply - rotate quaternion by quaternion" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(107)]]></script>
   </tool>
 
-  <tool name="qw // makebasis - N + up >> orthonormal" label="qw // makebasis - N + up >> orthonormal" icon="PLASMA_App">
+  <tool name="qw // volume gradient" label="qw // volume gradient" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(108)]]></script>
   </tool>
 
-  <tool name="qw // qmultiply - rotate quaternion by quaternion" label="qw // qmultiply - rotate quaternion by quaternion" icon="PLASMA_App">
+  <tool name="qw // volume sample" label="qw // volume sample" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(109)]]></script>
   </tool>
 
-  <tool name="qw // volume gradient" label="qw // volume gradient" icon="PLASMA_App">
+  <tool name="qw // volume samplev" label="qw // volume samplev" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(110)]]></script>
   </tool>
 
-  <tool name="qw // volume sample" label="qw // volume sample" icon="PLASMA_App">
+  <tool name="qw // karma - bind material" label="qw // karma - bind material" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(111)]]></script>
   </tool>
 
-  <tool name="qw // volume samplev" label="qw // volume samplev" icon="PLASMA_App">
+  <tool name="qw // color randomize hue hsv" label="qw // color randomize hue hsv" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(112)]]></script>
   </tool>
 
-  <tool name="qw // karma - bind material" label="qw // karma - bind material" icon="PLASMA_App">
+  <tool name="qw // extend polyline normal direction" label="qw // extend polyline normal direction" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(113)]]></script>
   </tool>
 
-  <tool name="qw // color randomize hue hsv" label="qw // color randomize hue hsv" icon="PLASMA_App">
+  <tool name="qw // group if random threshold" label="qw // group if random threshold" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(114)]]></script>
   </tool>
 
-  <tool name="qw // extend polyline normal direction" label="qw // extend polyline normal direction" icon="PLASMA_App">
+  <tool name="qw // group if modulo range" label="qw // group if modulo range" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(115)]]></script>
   </tool>
 
-  <tool name="qw // group if random threshold" label="qw // group if random threshold" icon="PLASMA_App">
+  <tool name="qw // padzero" label="qw // padzero" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(116)]]></script>
   </tool>
 
-  <tool name="qw // group if modulo range" label="qw // group if modulo range" icon="PLASMA_App">
+  <tool name="qw // polysplit xyzdist locations" label="qw // polysplit xyzdist locations" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(117)]]></script>
   </tool>
 
-  <tool name="qw // padzero" label="qw // padzero" icon="PLASMA_App">
+  <tool name="qw // angle between edges, detect corners" label="qw // angle between edges, detect corners" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(118)]]></script>
   </tool>
 
-  <tool name="qw // polysplit xyzdist locations" label="qw // polysplit xyzdist locations" icon="PLASMA_App">
+  <tool name="qw // angle between vectors" label="qw // angle between vectors" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(119)]]></script>
   </tool>
 
-  <tool name="qw // angle between edges, detect corners" label="qw // angle between edges, detect corners" icon="PLASMA_App">
+  <tool name="qw // eps import curves" label="qw // eps import curves" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(120)]]></script>
   </tool>
 
-  <tool name="qw // angle between vectors" label="qw // angle between vectors" icon="PLASMA_App">
+  <tool name="qw // extract axes from quaternion" label="qw // extract axes from quaternion" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(121)]]></script>
   </tool>
 
-  <tool name="qw // extract axes from quaternion" label="qw // extract axes from quaternion" icon="PLASMA_App">
+  <tool name="qw // retime sequence loop ping " label="qw // retime sequence loop ping " icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(122)]]></script>
   </tool>
 
-  <tool name="qw // retime sequence loop ping " label="qw // retime sequence loop ping " icon="PLASMA_App">
+  <tool name="qw // curve - slideframe up" label="qw // curve - slideframe up" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(123)]]></script>
   </tool>
 
-  <tool name="qw // curve - slideframe up" label="qw // curve - slideframe up" icon="PLASMA_App">
+  <tool name="qw // curve - slideframe up - rotate" label="qw // curve - slideframe up - rotate" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(124)]]></script>
   </tool>
 
-  <tool name="qw // curve - slideframe up - rotate" label="qw // curve - slideframe up - rotate" icon="PLASMA_App">
+  <tool name="qw // vector quantize" label="qw // vector quantize" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(125)]]></script>
   </tool>
 
-  <tool name="qw // vector quantize" label="qw // vector quantize" icon="PLASMA_App">
+  <tool name="qw // vector randomize direction and length" label="qw // vector randomize direction and length" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(126)]]></script>
   </tool>
 
-  <tool name="qw // vector randomize direction and length" label="qw // vector randomize direction and length" icon="PLASMA_App">
+  <tool name="qw // geo Cd line u" label="qw // geo Cd line u" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(127)]]></script>
   </tool>
 
-  <tool name="qw // geo Cd line u" label="qw // geo Cd line u" icon="PLASMA_App">
+  <tool name="qw // geo Cd rbx" label="qw // geo Cd rbx" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(128)]]></script>
   </tool>
 
-  <tool name="qw // geo Cd rbx" label="qw // geo Cd rbx" icon="PLASMA_App">
+  <tool name="qw // geo Cd nage" label="qw // geo Cd nage" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(129)]]></script>

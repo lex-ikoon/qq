@@ -22,11 +22,12 @@ def sim_solver_valid (node) :
 
 def sim_solver () :
 
-
+    # we need to return the locked dopnet :-(
     # ----------------------------
     # dopnet
-    if hou.currentDopNet() != None :
-        return hou.currentDopNet()
+    # this returns some open dopnet, regardles to the checkboxed oe
+    # if hou.currentDopNet() != None :
+    # return hou.currentDopNet()
 
 
 
@@ -158,6 +159,8 @@ def sim_cache_reset (set_frame) :
             sim_cache_delete_playrange()
 
     try:
+        # print("resimulate")
+        # print(dopnet.path())
         dopnet.parm("resimulate").pressButton()
     except:
         pass

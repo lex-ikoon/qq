@@ -217,15 +217,15 @@ float coord_music(string track, array; int pitch, clone, frame)
 
 
 //DON'T EDIT THIS FILE, IT GETS OVERWRITTEN BY A SCRIPT
-float fill_to_coord(float dimension, coord, feather_spread)
+float fill_to_coord(float dimension, coord, spread)
 {
     float eval, trywide;
-    trywide = fit01(coord, -feather_spread/2 , 1+feather_spread/2);
+    trywide = fit01(coord, -spread/2 , 1+spread/2);
 
-    if ( feather_spread>0 )
+    if ( spread>0 )
     {
-        float omin = dimension - feather_spread/2;
-        float omax = dimension + feather_spread/2;
+        float omin = dimension - spread/2;
+        float omax = dimension + spread/2;
         eval = fit(trywide, omin, omax, 0, 1);
     } else {
         if ( trywide > dimension )

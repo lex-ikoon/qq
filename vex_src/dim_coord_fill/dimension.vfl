@@ -68,24 +68,6 @@ value = length(@P - center) / radius;
 @dim = value;
 @Cd  = value;
 
-///------------------------------------------------------------------------------------------------
-/// normalize 1) setdetailattrib
-float value = @dim;
-setdetailattrib(0, "value_max", value, "max");
-setdetailattrib(0, "value_min", value, "min");
-
-///------------------------------------------------------------------------------------------------
-/// normalize 2) fit
-
-float value = @dim;
-float value_max = detail(0, "value_max", 0);
-float value_min = detail(0, "value_min", 0);
-float nmin  = 0;
-float nmax  = 1;
-value = fit(value, value_min, value_max, nmin, nmax);
-
-@dim = value;
-@Cd  = value;
 
 ///------------------------------------------------------------------------------------------------
 /// falloff bounding vector

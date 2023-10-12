@@ -1,0 +1,17 @@
+///------------------------------------------------------------------------------------------------
+/// eps import curves
+// for each primitive:
+// - foreach_begin
+// - ends: Unroll with New Points
+// - this wrangle over points
+// - foreach_end
+
+
+int i = chi("i"); // 7 in 0 to 10
+
+if ( @ptnum > @numpt - i)
+{
+    removepoint(0, @ptnum);
+}
+
+///------------------------------------------------------------------------------------------------
