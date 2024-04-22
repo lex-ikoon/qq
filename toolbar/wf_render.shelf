@@ -11,6 +11,7 @@
     <memberTool name="wf_create_rop_GL"/>
     <memberTool name="wf_batch_script_rop"/>
     <memberTool name="wf_create_rop_RS"/>
+    <memberTool name="wf_batch_script_karma"/>
   </toolshelf>
 
   <tool name="render_kill" label="render_kill" icon="PLASMA_App">
@@ -64,5 +65,17 @@ imp.reload(wf_job)
 obj_nodes = hou.selectedNodes()
 for obj_node in obj_nodes :
     wf_job.create_rop_rs (obj_node)]]></script>
+  </tool>
+
+  <tool name="wf_batch_script_karma" label="wf batch script karma" icon="PLASMA_App">
+    <toolMenuContext name="network">
+      <contextNetType>OBJ</contextNetType>
+      <contextNetType>LOP</contextNetType>
+    </toolMenuContext>
+    <toolSubmenu>_workflow</toolSubmenu>
+    <script scriptType="python"><![CDATA[import wf_render
+import imp
+imp.reload(wf_render)
+wf_render.batch_script_karma()]]></script>
   </tool>
 </shelfDocument>

@@ -45,10 +45,48 @@ def jobify_obj () :
         if obj_node.type().name() == "geo" :
             jobify_node_ptg_and_contents( obj_node, "archetype_job_geo_network" )
 
-        if obj_node.type().name() == "cam" :
-            obj_node.parm("focus").setExpression = ('ch("tz")')
-            jobify_node_ptg_and_contents( obj_node, "archetype_job_cam" )
 
+
+        if obj_node.type().name() == "cam" :
+
+            # --------------------------------------
+            # jobify cam 
+            jobify_node_ptg_and_contents( obj_node, "archetype_job_cam" )
+            obj_node.setComment("`")
+
+            # --------------------------------------
+            # create and jobify focus node
+
+            offsetx = 4
+            offsety = 0
+            color_focus  = hou.Color(0.4, 0.4, 0.4)
+
+            # name
+            focus_name = obj_node.name() + "_focus"
+
+            # create lopnet
+            node_focus = obj_node.parent().createNode("geo", 
+                node_name = focus_name,
+                run_init_scripts = True, 
+                load_contents = True, 
+                exact_type_name = True)
+
+            posx = obj_node.position()[0] + offsetx
+            posy = obj_node.position()[1] + offsety
+            node_focus.setPosition( [posx,posy] )
+            node_focus.setColor( color_focus )
+            node_focus.setUserData("nodeshape", "diamond")
+            node_focus.setGenericFlag(hou.nodeFlag.Selectable,False)
+
+            jobify_node_ptg_and_contents( node_focus, "archetype_job_cam_focus" )
+
+            # layout pin position
+            node_focus.setComment("`")
+
+            # --------------------------------------
+            # link the nodes
+            obj_node.parm("focus_node").set(   node_focus.path()   )
+            node_focus.parm("job_camera").set(   obj_node.path()   )
 
 
 
@@ -109,10 +147,6 @@ def jobify_node_ptg_and_contents( node_target, archetype_name ) :
         
 
 
-
-
-
-
     # --------------------------------------------------------------------------------------
     else :
         # copy parms
@@ -151,7 +185,15 @@ def jobify_node_ptg_and_contents( node_target, archetype_name ) :
         node_target.parm("picking").set(0)
         wf_job_archetype_data.job_data_update_range_descriptiveparm(node_target)
 
-        
+
+    if archetype_name == "archetype_job_cam_focus" :
+
+        # copy contents
+        container_src = node_archetype
+        container_dst = node_target
+        copypaste_all_contents( container_src, container_dst )
+
+
 
     if archetype_name == "archetype_job_geo_network" :
         # copy parms

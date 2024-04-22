@@ -43,6 +43,78 @@ def batch_script_rop () :
 
 
 
+def batch_script_karma () :
+
+    # ----------------------------------------
+    # top verbosity:
+    # https://www.sidefx.com/docs/houdini/tops/pdg/debugging.html
+
+
+    # ----------------------------------------
+    # create "/scripts" folder
+
+    import os
+    
+    path_hip     = hou.expandString('$HIP')
+    path_hipfile = hou.expandString('$HIPFILE')
+    path_hython  = hou.expandString('$HB') + '/hython.exe'
+    path_scripts = path_hip + '/scripts/'
+
+    if not os.path.exists(path_scripts):
+        os.makedirs(path_scripts)
+
+
+    for node_sel in hou.selectedNodes() :
+
+        # ----------------------------------------
+        # find topnet
+        if node_sel.type().name() == "lopnet" :
+            node_top = node_sel.node("topnet_DISTRIBUTED")
+            node_lop = node_top.parent()
+
+        if node_sel.type().name() == "topnet" :
+            node_top = node_sel
+            node_lop = node_top.parent()
+
+        # print(node_top.path())
+
+        # ----------------------------------------
+        # .py script
+        script_rop  = '# This .py script opens a file and renders single topnet\n'
+        script_rop += 'import hou\n'
+        script_rop += 'import hqueue.houdini as hq \n'
+        script_rop += 'file      = "' + path_hipfile + '"\n'
+        script_rop += 'node_top  = "' + node_top.path() + '"\n'
+        script_rop += '# -----------------------------------------------------\n'
+        script_rop += 'hou.hipFile.load(file)\n'
+        script_rop += 'node_hq   = hq.getNode(node_top)\n'
+        script_rop += 'node_disp = node_hq.displayNode()\n'
+        script_rop += 'node_disp.executeGraph(False, True, False)\n'
+
+
+        # write .py to disk
+        path_py = path_scripts + node_lop.name() + '.py'
+        file_py = open( path_py, "w")
+        file_py.write(script_rop)
+
+
+        # ----------------------------------------
+        # .bat script
+        script_bat =  'REM This batch file runs .py script \n'
+        script_bat += 'start "Render: ' + node_sel.name() + '" "'
+        script_bat += path_hython + '" "'
+        script_bat += path_py + '"\n'
+
+        # # write .bat to disk
+        path_bat = path_hip + '/_render_KARMA___' + node_lop.name() + '.bat'
+        file_rop = open( path_bat, "w")
+        file_rop.write(script_bat)
+
+
+
+
+
+
 
 def kill () :
     sceneview_SOP = hou.ui.curDesktop().findPaneTab("pt_sceneview_1")
@@ -118,9 +190,9 @@ def start () :
     # restart Karma render (or set Karma as renderer)
     #-----------------------------------------------
     try:
-        if sceneview_LOP.currentHydraRenderer() == "Karma" :
+        if sceneview_LOP.currentHydraRenderer() == "Karma XPU" :
             sceneview_LOP.restartRenderer()
         else :
-            sceneview_LOP.setHydraRenderer("Karma")
+            sceneview_LOP.setHydraRenderer("Karma XPU")
     except:
         pass
