@@ -7,8 +7,8 @@ float start = chf("start");  // 0.5 in 0.0 to 1.0
 float end   = chf("end");    // 0.5 in 0.0 to 1.0
 float slope = (end-start) * 0.5;
 
-@range  = fit(@dim, start-slope, start+slope, -1, 1);
-@range -= fit(@dim,   end-slope,  end+slope,   0, 2);
+@range  = fit(dim, start-slope, start+slope, -1, 1);
+@range -= fit(dim,   end-slope,  end+slope,   0, 2);
 
 @P.y    = @range;
 

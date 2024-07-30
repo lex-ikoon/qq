@@ -44,7 +44,7 @@ def jobify_obj () :
 
         if obj_node.type().name() == "geo" :
             jobify_node_ptg_and_contents( obj_node, "archetype_job_geo_network" )
-
+            obj_node.setComment("`")
 
 
         if obj_node.type().name() == "cam" :
@@ -226,8 +226,8 @@ def jobify_node_ptg_and_contents( node_target, archetype_name ) :
 def create_job_karma_from_geo(node_geo) :
 
     # define
-    offsetx = 6
-    offsety = 0
+    offsetx = 0
+    offsety = 1.3
     color_lop  = hou.Color(1.0, 0.725, 0.0)
 
     # name
@@ -314,10 +314,12 @@ def create_rop_gl ( obj_node ) :
     manager_GL = hou.node("/obj/rop_GL")
     if not manager_GL :
         manager_GL = hou.node("/obj").createNode("ropnet", "rop_GL") 
+        manager_GL.setComment("`")
 
     # create ROP
     gl_node = manager_GL.createNode( "opengl", obj_name )
     gl_node.setPosition(obj_node.position())
+    gl_node.setComment("`")
 
     #------------------------------------------------------------
 
