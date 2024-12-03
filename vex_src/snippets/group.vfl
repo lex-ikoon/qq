@@ -1,10 +1,10 @@
 ///------------------------------------------------------------------------------------------------
-/// group if random threshold
+/// group if threshold
 
-float thr  = chf("thr"); // 0.5 in 0.0 to 1.0
-float rand = rand(@ptnum + 0.654);
+float thr   = chf("thr"); // 0.5 in 0.0 to 1.0
+float value = rand(@ptnum + 0.654);
 
-if ( rand < thr)
+if ( value < thr)
 {
     // @group_selected = 1;
     removepoint(0, @ptnum);

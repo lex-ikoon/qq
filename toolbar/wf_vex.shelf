@@ -118,7 +118,7 @@
         <memberTool name="qw // karma - bind material"/>
         <memberTool name="qw // color randomize hue hsv"/>
         <memberTool name="qw // extend polyline normal direction"/>
-        <memberTool name="qw // group if random threshold"/>
+        <memberTool name="qw // group if threshold"/>
         <memberTool name="qw // group if modulo range"/>
         <memberTool name="qw // padzero"/>
         <memberTool name="qw // polysplit xyzdist locations"/>
@@ -824,7 +824,7 @@ wf_network_ui_parse_tab.tab_vex_paste(112)]]></script>
 wf_network_ui_parse_tab.tab_vex_paste(113)]]></script>
   </tool>
 
-  <tool name="qw // group if random threshold" label="qw // group if random threshold" icon="PLASMA_App">
+  <tool name="qw // group if threshold" label="qw // group if threshold" icon="PLASMA_App">
     <toolMenuContext name="network"><contextNetType>SOP</contextNetType><contextNetType>DOP</contextNetType></toolMenuContext>
     <script scriptType="python"><![CDATA[import wf_network_ui_parse_tab
 wf_network_ui_parse_tab.tab_vex_paste(114)]]></script>

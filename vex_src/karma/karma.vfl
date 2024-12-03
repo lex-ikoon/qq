@@ -1,5 +1,11 @@
 ///------------------------------------------------------------------------------------------------
 /// karma - bind material
-string material_name = chs("material_name");
-s@usdmaterialpath    = "/materials/" + material_name;
+// run over Primitives to process the @path attribute
+string material_name  = chs("material_name");
+s@usdmaterialpath     = "/materials/" + material_name;
+s@path                = "/geo/mat_" + material_name;
+
+// point attribute to reveal the "image_plane" AOV
+// @image_plane_mult = @fill;
+
 ///------------------------------------------------------------------------------------------------

@@ -142,9 +142,7 @@ def jobify_node_ptg_and_contents( node_target, archetype_name ) :
         copypaste_all_contents( container_src, container_dst )
 
         # finetune
-        # set camera
-        # set render location
-        
+        node_target.parm("rendergallerysource").set("$HIP/galleries/rendergallery.db")
 
 
     # --------------------------------------------------------------------------------------
@@ -180,7 +178,7 @@ def jobify_node_ptg_and_contents( node_target, archetype_name ) :
         node_target.parmTuple("t").setAutoscope((0,0,0))
         node_target.parmTuple("r").setAutoscope((0,0,0))
         node_target.parmTuple("s").setAutoscope((0,0,0))
-        node_target.parm("shop_materialpath").set("matnet/MX")
+        # node_target.parm("shop_materialpath").set("matnet/MX")
         node_target.setUserData("descriptiveparm","job_range_descriptiveparm")
         node_target.parm("picking").set(0)
         wf_job_archetype_data.job_data_update_range_descriptiveparm(node_target)
@@ -299,6 +297,10 @@ def create_job_import(node_null) :
     geo_data.parm("job_rangey").set(node_null.parent().parm("job_rangey").eval())
     wf_job_archetype_data.job_data_update_range_descriptiveparm(geo_data)
 
+    # cam from parent
+    geo_data.parm("job_camera").set(node_null.parent().parm("job_camera").eval())
+
+
     # create GL_ROP
     create_rop_gl(geo_data)
 
@@ -359,6 +361,6 @@ def create_rop_gl ( obj_node ) :
     gl_node.parm("aamode").set(4)
     
     # set picture name
-    path = "$JOB/__data.render/$OS/${OS}_$F4.png"
+    path = "$HIP/__data.render/$OS/${OS}_$F4.png"
     gl_node.parm("picture").set(path)
 

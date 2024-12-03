@@ -3,10 +3,14 @@
 // array of point numbers 
 vector from    = @P;
 float  maxdist = chf("maxdist");  // 1 in 0 to 2
-int    maxpts  = chf("maxpts");   // 1 in 1 to 100
+int    maxpts  = chi("maxpts");   // 1 in 1 to 100
 
-nearpoints[] = nearpoints(0, from, maxdist, maxpts);
+int nearpoints[] = nearpoints(0, from, maxdist, maxpts);
 
+
+foreach (int i; int ptnum; nearpoints) {
+    
+}
 
 ///------------------------------------------------------------------------------------------------
 /// geo - nearpoint
