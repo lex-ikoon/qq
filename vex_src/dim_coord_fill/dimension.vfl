@@ -1,4 +1,22 @@
 ///------------------------------------------------------------------------------------------------
+/// dim falloff cone
+
+vector A_center = point(1, "P", 0);
+vector B_dir    = point(1, "P", 1);
+
+vector AB_line     = normalize(B_dir - A_center);
+vector AP_point    = normalize(@P - A_center);
+float  dot_product = dot(AB_line, AP_point);
+
+float value = acos(dot_product)   /   $PI;
+
+
+@dim = value;
+@Cd  = value;
+
+
+
+///------------------------------------------------------------------------------------------------
 /// dim falloff linear
 // vector A_from  = getbbox_center(1);
 

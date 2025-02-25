@@ -5,6 +5,7 @@ import wf_job_archetype_data
 import wf_job_archetype_karma
 imp.reload(wf_job_archetype_karma)
 
+
 def copypaste_ptg_folder( which_folder, insert_before_folder, node_src, node_dst ) :
 
     ptg_dst = node_dst.parmTemplateGroup()
@@ -20,6 +21,12 @@ def copypaste_ptg_folder( which_folder, insert_before_folder, node_src, node_dst
     # find and insert the folder, set PTG
     cargo    = ptg_src.findFolder( which_folder )
     location = ptg_dst.findFolder( insert_before_folder )
+    # :) debug in 20.5.487 
+    # print ("cargo: ")
+    # print (cargo)
+    # print ("location: ")
+    # print (location)
+    # ptg_dst.insertBefore( 0 , cargo )
     ptg_dst.insertBefore( location , cargo )
     node_dst.setParmTemplateGroup(ptg_dst)
 
