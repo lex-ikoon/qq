@@ -58,7 +58,7 @@ float scale_z = chf("scale_z"); // 1 in 0 to 10
 
 vector  scale = lut * set(scale_x, scale_y, scale_z);
 
-//vector  amount = set(1,1,1);    // scale
+// vector  amount = set(1,1,1);    // scale
 
 // pivot:
 vector  pivot     = @P;                       // pivot position

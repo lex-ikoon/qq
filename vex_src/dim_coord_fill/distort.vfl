@@ -48,7 +48,7 @@ float offset_0  = chf("offset_0"); // 0 in 0 to 1
 float offset_1  = chf("offset_1"); // 1 in 0 to 1
 int enable_gaps = chi("enable_gaps"); // toggle
 
-//get segment_rel
+// get segment_rel
 int primitives[]  = pointprims(0, @ptnum);
 int segment       =   prim(0, segment_attname, primitives[0]);
 int segment_max   = detail(0, segment_maxname) ;

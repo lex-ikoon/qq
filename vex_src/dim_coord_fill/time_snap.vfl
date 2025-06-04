@@ -151,5 +151,5 @@ float time_snap_two_values(int frame_current, snapframe_0, snapframe_1, frames_s
     }
 
     return value;
-    //return float(range_lin);
+    // return float(range_lin);
 }

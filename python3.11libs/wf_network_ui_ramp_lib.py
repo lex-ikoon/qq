@@ -70,6 +70,13 @@ def ramp_lib() :
     ramp_keys.append( (0.0, 0.15000000596046448, 0.30000001192092896, 0.44999998807907104, 0.550000011920929, 0.6700000166893005, 0.75, 0.8500000238418579, 1.0) ) 
     ramp_values.append( (0.0, 1.149999976158142, 0.09000000357627869, 0.75, 0.3499999940395355, 0.5799999833106995, 0.4699999988079071, 0.5, 0.5) ) 
 
+    ramp_preset.append( 'spike' )
+    ramp_basis.append( (hou.rampBasis.MonotoneCubic, hou.rampBasis.MonotoneCubic, hou.rampBasis.MonotoneCubic, hou.rampBasis.MonotoneCubic, hou.rampBasis.MonotoneCubic) ) 
+    ramp_keys.append( (0.0, 0.44999998807907104, 0.5, 0.550000011920929, 1.0) ) 
+    ramp_values.append( (0.0, 0.10000000149011612, 1.0, 0.10000000149011612, 0.0) ) 
+
+
+
     #######################
 
     ramp_preset.append( 'up' )

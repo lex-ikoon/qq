@@ -23,3 +23,17 @@ if (   (index % of) < select   )
     @group_selected = 1;
 }
 ///------------------------------------------------------------------------------------------------
+/// group first last point in primitive
+
+// first point of primitive
+if ( vertexprimindex(0, @vtxnum) == 0 )
+{
+    @group_sel = 1;
+}
+
+// last point of primitive
+if ( vertexprimindex(0, @vtxnum) == primvertexcount(0,@primnum)-1 )
+{
+    @group_sel = 1;
+}
+///------------------------------------------------------------------------------------------------

@@ -4,7 +4,7 @@
 #include "qq.vfl"
 
 float dimension = @dim;
-//float coord = @coord;
+// float coord = @coord;
 float coord  = chf("coord");   // 0.5 in 0.0 to 1.0
 float spread = chf("spread");  // 0.5 in 0 to 1
 
