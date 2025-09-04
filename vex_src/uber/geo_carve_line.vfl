@@ -8,7 +8,6 @@ float u = geo_line_u (0, @ptnum);
 
 ///------------------------------------------------------------------------------------------------
 /// geo Cd rbx
-
 float x = getcomp( relbbox(0,@P) , 0 );
 float y = getcomp( relbbox(0,@P) , 1 );
 float z = getcomp( relbbox(0,@P) , 2 );
@@ -21,7 +20,6 @@ float rz = chramp("rz",z); //quad
 
 ///------------------------------------------------------------------------------------------------
 /// geo Cd nage
-
 @nage = @age/@life;
 
 float value;
@@ -34,6 +32,16 @@ value  = sign(value) * pow( abs(value) , pow );
 @Cd = value;
 
 
+///------------------------------------------------------------------------------------------------
+/// geo Cd length intrinsic
+float length = primintrinsic(0, "measuredperimeter", @primnum);
+
+float l_min  = chf("length_min");  // 0 in 0 to 1
+float l_max  = chf("length_max");  // 1 in 0 to 1
+float Cd_min = chf("Cd_min");     // 0 in 0 to 1
+float Cd_max = chf("Cd_max");     // 1 in 0 to 1
+
+@Cd *= fit(length, l_min, l_max, Cd_min, Cd_max);
 
 ///------------------------------------------------------------------------------------------------
 /// geo carve point

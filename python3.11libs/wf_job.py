@@ -437,9 +437,8 @@ def create_rop_vu ( obj_node ) :
     vu_node.parm("res2").setExpression('ch(chs("camera") + "/res_previewy")')
 
     # gamma
-    # vu_node.parm("gamma").set(2.2)
-    # vu_node.parm("shadows").set(0)
-    # vu_node.parm("hqlighting").set(0)
+    vu_node.parm("colorcorrect").set(1)
+    vu_node.parm("ociocolorspace").set('Gamma 2.2 Rec.709 - Texture')
 
     # lighting
     vu_node.parm("ambocclusion").set(1)
