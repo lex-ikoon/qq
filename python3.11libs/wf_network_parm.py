@@ -15,7 +15,8 @@ def flag_template_all_off () :
 
 
 def light_link () :
-    parm_names = ["light_enabled","light_enable","ogl_enablelight"]
+    # parm_names = ["light_enabled","light_enable","ogl_enablelight"]
+    parm_names = ["ogl_enablelight"]
     expression = '''flag_parent = hou.pwd().parent().isGenericFlagSet(hou.nodeFlag.Display)
 flag_this   = hou.pwd().isGenericFlagSet(hou.nodeFlag.Display)
 if flag_parent and flag_this :
@@ -30,7 +31,8 @@ else :
                 parm.setExpression(expression, language=hou.exprLanguage.Python) 
                 light.setUserData("nodeshape", "light")
             except:
-                parm_doesnt_exist = 1
+                # parm_doesnt_exist = 1
+                pass
 
 
 def flag_render () :
@@ -171,8 +173,39 @@ def flag_display () :
 
 
 def flag_bypass () :
+
     for node in hou.selectedNodes():
-        node.bypass(not node.isBypassed())
+
+        if node.type().name().find("light") != -1      and      hou.objNodeTypeCategory() == node.parent().childTypeCategory():
+
+            # ---------------------------------------
+            # OBJ toggle light
+
+            color_light_on  = hou.Color(1.0, 0.75, 0.2)
+            color_light_off = hou.Color(0.306, 0.306, 0.306)
+
+            enabled = node.parm("ogl_enablelight").eval()
+
+            if enabled == 1 :
+                node.setColor(color_light_off)
+                node.parm("ogl_enablelight").set(0)
+
+            if enabled == 0 :
+                node.setColor(color_light_on)
+                node.parm("ogl_enablelight").set(1)
+
+
+        else :
+            # ---------------------------------------
+            # SOP bypass
+            try:
+                node.bypass(not node.isBypassed())
+            except:
+                pass
+
+
+
+
 
 
 def flag_template () :

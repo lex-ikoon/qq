@@ -326,8 +326,11 @@ def create_job_import(node_null) :
     geo_data.parm("job_camera").set(node_null.parent().parm("job_camera").eval())
 
 
-    # create GL_ROP
+    # create rop_GL
     create_rop_gl(geo_data)
+
+    # create rop_VU
+    create_rop_vu(geo_data)
 
 
         
@@ -388,4 +391,70 @@ def create_rop_gl ( obj_node ) :
     # set picture name
     path = "$HIP/__data.render/$OS/${OS}_$F4.png"
     gl_node.parm("picture").set(path)
+
+
+
+
+def create_rop_vu ( obj_node ) :
+
+    obj_name = obj_node.name()
+
+    # create ropnet
+    manager_VU = hou.node("/obj/rop_VU")
+    if not manager_VU :
+        manager_VU = hou.node("/obj").createNode("ropnet", "rop_VU") 
+        manager_VU.moveToGoodPosition()
+        manager_VU.setComment("`")
+
+    # create ROP
+    vu_node = manager_VU.createNode( "flipbook", obj_name )
+    vu_node.setPosition(obj_node.position())
+    vu_node.setComment("`")
+
+    #------------------------------------------------------------
+
+    # strict range
+    vu_node.parm("trange").set(2)
+
+    # range start, end
+    vu_node.parm("f1").setExpression('ch("/obj/$OS/job_rangex")')
+    vu_node.parm("f2").setExpression('ch("/obj/$OS/job_rangey")')
+
+    # camera
+    vu_node.parm("camera").set('`chs("/obj/$OS/job_camera")`')
+
+    # candidate objects
+    vu_node.parm("vobjects").set("")
+
+    # force objects
+    vu_node.parm("forceobjects").set("/obj/$OS")
+
+    # candidate lights
+    vu_node.parm("alights").set("")
+
+    # resolution preview
+    vu_node.parm("res1").setExpression('ch(chs("camera") + "/res_previewx")')
+    vu_node.parm("res2").setExpression('ch(chs("camera") + "/res_previewy")')
+
+    # gamma
+    # vu_node.parm("gamma").set(2.2)
+    # vu_node.parm("shadows").set(0)
+    # vu_node.parm("hqlighting").set(0)
+
+    # lighting
+    vu_node.parm("ambocclusion").set(1)
+    vu_node.parm("occlweight").set(2)
+    vu_node.parm("occldist").set(3)
+    vu_node.parm("lightsamples").set(128)
+
+    # max sprite resolution
+    vu_node.parm("spritetexmaxresx").set(2048)
+    vu_node.parm("spritetexmaxresy").set(2048)
+
+    # antialias
+    # vu_node.parm("aamode").set(4)
+    
+    # set picture name
+    path = "$HIP/__data.render/$OS/${OS}_$F4.png"
+    vu_node.parm("picture").set(path)
 

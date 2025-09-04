@@ -57,8 +57,19 @@ def selection_go( direction, parent ) :
     outputs_count = len(outputs)
 
     if direction == [0,1] :
-        if inputs_count > 0   :   target = inputs[0]
-        else                  :   target = selection_find(current, direction, current.parent().children())
+        # UP
+        # we have to test if inputs[0] is wired
+        if inputs_count > 0 : 
+            if inputs[0] == None :
+                try:
+                    target = inputs[1]
+                except :
+                    pass
+            else:
+                target = inputs[0]
+        else :
+            target = selection_find(current, direction, current.parent().children())
+
 
     if direction == [0,-1] :
         if outputs_count > 0  :   target = outputs[0]
@@ -68,6 +79,7 @@ def selection_go( direction, parent ) :
         siblings = get_siblings ( current, inputs, outputs )
         if len(siblings) == 0 :   target = selection_find(current, direction, current.parent().children())
         else                  :   target = selection_find(current, direction, siblings)
+
 
     if parent == True   :   parm_pane.cd(target.path())
     else                :   parm_pane.setCurrentNode(target)

@@ -34,8 +34,8 @@ wf_network_parm.flag_display()]]></script>
 
   <tool name="flag_bypass" label="flag_bypass" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_network_parm
-#import imp
-#imp.reload(wf_network_parm)
+# import importlib
+# importlib.reload(wf_network_parm)
 wf_network_parm.flag_bypass()]]></script>
   </tool>
 

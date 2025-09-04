@@ -45,8 +45,9 @@ wf_hotkeys.hotkey_z_shift()]]></script>
 
   <tool name="hk_pgup" label="hk_pgup" icon="PLASMA_App">
     <script scriptType="python"><![CDATA[import wf_hotkeys
-#import imp
-#imp.reload(wf_hotkeys)
+# import imp
+# import wf_network_connection
+# imp.reload(wf_network_connection)
 wf_hotkeys.hotkey_pgup()]]></script>
   </tool>
 
