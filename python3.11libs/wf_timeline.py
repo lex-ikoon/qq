@@ -238,7 +238,7 @@ def play_forward () :
 
 def play_scrub (multiplier) :
     import time
-    from PySide2.QtGui import QCursor
+    from PySide6.QtGui import QCursor
 
     mouse_last = hou.getenv("mouse", "0")
     mouse_last = float(mouse_last)
